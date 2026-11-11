@@ -3,669 +3,937 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08172d">
-<title>MEU NEGÓCIO PRO | Central RH</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1730">
+<title>MEU NEGÓCIO PRO | Central RH V2</title>
 <style>
 :root{
---navy:#09182e;--navy2:#112b4b;--blue:#2563eb;
---sky:#60a5fa;--bg:#f3f6fb;--card:#fff;
---line:#e3eaf3;--text:#17263d;--muted:#64748b;
---green:#059669;--red:#dc3545;--orange:#d97706
+ --navy:#0b1730;--navy2:#142849;--blue:#2563eb;
+ --bg:#f3f6fc;--white:#fff;--text:#182842;
+ --muted:#718099;--line:#e4eaf3;--green:#059669;
+ --red:#dc2626;--orange:#ea8b23;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
+body{margin:0;background:var(--bg);font-family:Inter,Arial,system-ui,sans-serif;color:var(--text)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
-.layout{display:flex;min-height:100vh}
-.sidebar{width:255px;background:linear-gradient(180deg,#122c4c,#08172d);color:white;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0;padding:23px 14px}
-.brand{font-size:21px;font-weight:900;letter-spacing:-.7px;padding:8px 12px 30px}
-.brand span{color:#60a5fa}
-.brand small{display:block;color:#9cb9d9;font-size:10px;letter-spacing:2px;margin-top:7px}
-.navtitle{font-size:10px;color:#799abf;letter-spacing:2px;margin:18px 12px 10px}
-.nav{width:100%;text-align:left;border:0;background:transparent;color:#c3d5e8;padding:13px;border-radius:10px;margin-bottom:4px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.shell{display:flex;min-height:100vh}
+aside{width:258px;flex-shrink:0;background:var(--navy);color:white;padding:24px 14px;position:sticky;top:0;height:100vh;overflow:auto}
+.logo{font-size:22px;font-weight:900;letter-spacing:-.7px;padding:8px 12px 25px}
+.logo span{color:#67a7ff}
+.logo small{display:block;color:#88a5ca;font-size:10px;letter-spacing:2px;margin-top:7px}
+.navlabel{color:#7189ac;font-size:10px;letter-spacing:2px;margin:18px 13px 10px}
+.nav{width:100%;border:0;text-align:left;background:transparent;color:#c4d1e4;padding:13px;border-radius:10px;margin:3px 0}
 .nav:hover,.nav.active{background:#2563eb;color:white}
-.sidefoot{font-size:11px;color:#91aac8;padding:20px 12px}
-.main{flex:1;min-width:0;padding:25px 30px 85px;max-width:1800px;margin:auto}
-.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}
-.top h1{font-size:25px;margin:4px 0}
+main{flex:1;min-width:0;padding:27px 30px 90px;max-width:1800px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.top h1{font-size:25px;margin:5px 0}
 .muted{color:var(--muted)}
 .small{font-size:12px}
-.pill{border:1px solid var(--line);background:white;border-radius:30px;padding:10px 14px;font-size:12px}
-.hero{background:linear-gradient(115deg,#0d3056,#1d58ac 70%,#4091f4);border-radius:20px;padding:31px;color:white;display:flex;justify-content:space-between;gap:20px;align-items:center;box-shadow:0 13px 30px #1b54a525}
-.hero h2{font-size:29px;margin:8px 0}
-.hero p{color:#d7e8ff;line-height:1.6;max-width:720px}
-.heroicon{font-size:70px;opacity:.8}
-.btn{border:0;background:var(--blue);color:white;border-radius:10px;padding:11px 16px;font-weight:700}
+.tag{border:1px solid var(--line);background:white;border-radius:25px;padding:9px 13px;font-size:12px}
+.hero{background:linear-gradient(115deg,#112c50,#1b56aa 75%,#448cf1);color:white;border-radius:20px;padding:29px;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 12px 28px #1c56a61b}
+.hero h2{font-size:29px;margin:10px 0}
+.hero p{color:#d7e7ff;line-height:1.6;max-width:760px}
+.heroicon{font-size:68px}
+.btn{border:0;border-radius:10px;padding:11px 16px;background:var(--blue);color:white;font-weight:700}
 .btn:hover{filter:brightness(.95)}
-.btn.secondary{background:#eaf1fc;color:#1c4b84}
-.btn.green{background:#d1fae5;color:#065f46}
-.btn.red{background:#fee2e2;color:#991b1b}
-.btn.dark{background:#17385e;color:white}
+.btn.light{background:#eaf1ff;color:#174e9a}
+.btn.white{background:white;color:#174b92}
+.btn.danger{background:#fee2e2;color:#991b1b}
+.btn.green{background:#dcfce7;color:#166534}
+.btn.dark{background:#19385e}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0}
-.stat,.panel,.feature,.employee,.item{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 16px #142d4d08}
+.stat,.panel,.feature,.person{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 3px 14px #102a4d08}
 .stat{padding:20px}
 .stat small{color:var(--muted)}
-.stat strong{display:block;font-size:27px;margin:12px 0 6px}
+.stat strong{display:block;font-size:27px;margin:12px 0 5px}
 .stat em{font-size:11px;color:var(--muted);font-style:normal}
 .panel{padding:23px;margin:18px 0}
-.panel h3{margin:0 0 16px;font-size:19px}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:27px 0 14px}
+.panel h3{margin:0 0 16px}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:26px 0 14px}
 .sectionhead h2{font-size:20px;margin:0}
-.features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.feature{padding:20px;text-align:left;min-height:150px;transition:.18s;color:var(--text);position:relative}
-.feature:hover{transform:translateY(-4px);border-color:#93c5fd;box-shadow:0 13px 28px #164c9220}
-.feature .icon{font-size:29px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.feature{padding:19px;text-align:left;min-height:145px;transition:.2s;color:var(--text)}
+.feature:hover{transform:translateY(-3px);border-color:#93c5fd;box-shadow:0 10px 24px #1d4ed818}
+.feature .emoji{font-size:29px}
 .feature b{display:block;font-size:14px;margin:14px 0 7px}
 .feature small{display:block;color:var(--muted);line-height:1.5}
-.feature .count{position:absolute;top:16px;right:15px;font-size:11px;color:#2563eb;background:#eff6ff;padding:5px 8px;border-radius:20px}
-.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0}
-.search,input,select,textarea{border:1px solid #d8e2ef;background:#f9fbff;border-radius:10px;padding:11px;color:var(--text);max-width:100%}
-.search{width:100%;min-height:45px}
-.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:15px 0}
+input,select,textarea{background:#fafcff;border:1px solid #d9e3f0;border-radius:10px;padding:11px;color:var(--text);max-width:100%}
+.search{width:100%;min-height:46px}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
 .field{display:flex;flex-direction:column;gap:7px;min-width:0}
-.field label{font-size:12px;color:#496684;font-weight:700}
+.field label{font-size:12px;color:#4c6685;font-weight:700}
 .field input,.field select,.field textarea{width:100%;min-height:44px}
 .field textarea{min-height:95px;resize:vertical}
 .full{grid-column:1/-1}
-.divider{grid-column:1/-1;font-size:14px;font-weight:800;color:#1e5794;border-bottom:1px solid var(--line);padding:12px 0 8px}
+.heading{grid-column:1/-1;font-size:14px;font-weight:800;color:#215a9e;border-bottom:1px solid var(--line);padding:13px 0 8px}
 .tablewrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:640px}
-th,td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
-th{color:#59728e;font-size:12px}
-.action{background:#eaf1fc;color:#20518b;border:0;border-radius:8px;padding:8px 10px;margin:2px}
-.action.danger{background:#fee2e2;color:#991b1b}
-.back{background:transparent;border:0;color:#2563eb;font-weight:750;padding:10px 0;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;min-width:650px}
+th,td{text-align:left;padding:13px 11px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top;overflow-wrap:anywhere}
+th{font-size:11px;color:#64748b}
+.act{border:0;background:#eaf1ff;color:#20518d;border-radius:8px;padding:8px;margin:2px}
+.act.red{background:#fee2e2;color:#991b1b}
 .empty{text-align:center;padding:35px;color:var(--muted)}
-.notice{background:#eff6ff;border:1px solid #bfdbfe;color:#235384;padding:15px;border-radius:12px;line-height:1.6}
-.employeegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.employee{padding:18px}
-.avatar{background:#dbeafe;color:#1d4ed8;border-radius:13px;width:45px;height:45px;display:grid;place-items:center;font-size:20px;font-weight:800}
-.employee h4{margin:12px 0 5px}
-.employee p{font-size:12px;color:var(--muted);margin:4px 0}
-.badge{display:inline-block;background:#dcfce7;color:#166534;padding:5px 9px;border-radius:20px;font-size:11px}
-.emptyicon{font-size:44px;opacity:.6}
-.bottomnav{display:none}
-@media(max-width:1200px){.features{grid-template-columns:repeat(3,1fr)}.employeegrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.sidebar{width:215px}.main{padding:20px}.features{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+.notice{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:15px;color:#235384;line-height:1.6;font-size:13px}
+.back{border:0;background:transparent;color:var(--blue);font-weight:800;padding:10px 0;margin-bottom:10px}
+.people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.person{padding:18px}
+.avatar{height:45px;width:45px;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center;border-radius:12px;font-size:20px;font-weight:900}
+.person h4{margin:12px 0 6px}
+.person p{font-size:12px;color:var(--muted);margin:5px 0}
+.status{display:inline-block;background:#dcfce7;color:#166534;border-radius:20px;padding:5px 10px;font-size:11px}
+.subgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.subcard{background:#f8fbff;border:1px solid var(--line);border-radius:12px;padding:15px}
+.subcard b{display:block;font-size:13px;margin-bottom:7px}
+.subcard small{color:var(--muted);line-height:1.5}
+.chart{display:flex;align-items:flex-end;gap:12px;height:160px;padding:12px 0}
+.barbox{flex:1;text-align:center;font-size:11px;color:var(--muted)}
+.bar{background:linear-gradient(#3b82f6,#174a9b);border-radius:7px 7px 0 0;min-height:4px}
+.mobile{display:none}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}.people{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){aside{width:210px}main{padding:20px}.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){
-.sidebar{display:none}.main{padding:15px 12px 90px}
-.top h1{font-size:20px}.pill{font-size:10px}
-.hero{padding:21px}.hero h2{font-size:23px}.heroicon{display:none}
-.features{gap:10px}.feature{padding:15px;min-height:145px}.feature b{font-size:13px}
-.feature small{font-size:11px}
-.stats{gap:10px}.stat{padding:14px}.stat strong{font-size:21px}
-.panel{padding:15px}.form,.employeegrid{grid-template-columns:1fr}
-.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#0b1d35;padding:10px;justify-content:space-around;z-index:30}
-.bottomnav button{background:transparent;border:0;color:white;font-size:12px;padding:8px}
+aside{display:none}main{padding:15px 12px 90px}
+.top h1{font-size:20px}.hero{padding:21px}.hero h2{font-size:23px}.heroicon{display:none}
+.grid{gap:10px}.feature{padding:14px;min-height:135px}
+.stats{gap:10px}.stat{padding:14px}.stat strong{font-size:22px}
+.panel{padding:15px}.form,.people,.subgrid{grid-template-columns:1fr}
+.mobile{display:flex;position:fixed;bottom:0;left:0;right:0;background:#0b1730;padding:10px;justify-content:space-around;z-index:20}
+.mobile button{background:transparent;color:white;border:0;font-size:12px;padding:8px}
 }
 @media print{
-.sidebar,.top,.bottomnav,.toolbar,.back,.action,.btn{display:none!important}
-.main{padding:0}.panel{box-shadow:none;border:0}
-body{background:white}
+aside,.mobile,.top,.toolbar,.back,.btn,.act{display:none!important}
+main{padding:0}.panel{box-shadow:none;border:0}body{background:white}
 }
 </style>
 </head>
 <body>
 
-<div class="layout">
-<aside class="sidebar">
-<div class="brand">MEU <span>NEGÓCIO</span><small>BUSINESS PRO • RH</small></div>
-<div class="navtitle">PLATAFORMA</div>
-<button class="nav" onclick="show('home')">⌂ Painel principal</button>
-<button class="nav active" onclick="show('rh')">👥 Central RH PRO</button>
-<div class="navtitle">RECURSOS HUMANOS</div>
-<button class="nav" onclick="openModule('funcionarios')">👤 Colaboradores</button>
-<button class="nav" onclick="openModule('ponto')">🕒 Controle de ponto</button>
-<button class="nav" onclick="openModule('ferias')">🏖️ Férias e licenças</button>
-<button class="nav" onclick="openModule('folha')">💰 Folha gerencial</button>
-<button class="nav" onclick="openModule('recrutamento')">🎯 Recrutamento</button>
-<button class="nav" onclick="openModule('avaliacoes')">📈 Desempenho</button>
-<button class="nav" onclick="openModule('treinamentos')">🎓 Treinamentos</button>
-<button class="nav" onclick="openModule('documentos')">📄 Documentos RH</button>
-<button class="nav" onclick="openModule('relatorios')">📊 Relatórios RH</button>
-<div class="sidefoot">Versão de demonstração local.<br>Dados salvos neste navegador.</div>
+<div class="shell">
+<aside>
+<div class="logo">MEU <span>NEGÓCIO</span><small>BUSINESS PRO • V2</small></div>
+<div class="navlabel">PLATAFORMA</div>
+<button class="nav" onclick="home()">⌂ Meu Negócio</button>
+<button class="nav active" onclick="rh()">👥 Central RH PRO</button>
+<div class="navlabel">ACESSO RÁPIDO</div>
+<button class="nav" onclick="openArea('pessoas')">👤 Pessoas</button>
+<button class="nav" onclick="openArea('jornada')">🕒 Ponto e jornadas</button>
+<button class="nav" onclick="openArea('remuneracao')">💰 Folha e salários</button>
+<button class="nav" onclick="openArea('ferias')">🏖️ Férias e licenças</button>
+<button class="nav" onclick="openArea('recrutamento')">🎯 Recrutamento</button>
+<button class="nav" onclick="openArea('talentos')">📈 Desempenho</button>
+<button class="nav" onclick="openArea('educacao')">🎓 Treinamentos</button>
+<button class="nav" onclick="openArea('seguranca')">🦺 Saúde e segurança</button>
+<button class="nav" onclick="openArea('documentos')">📄 Documentos</button>
+<button class="nav" onclick="openArea('portal')">📱 Portal interno</button>
+<button class="nav" onclick="openArea('estrutura')">🏢 Estrutura</button>
+<button class="nav" onclick="openArea('indicadores')">📊 Indicadores</button>
+<div class="navlabel">SISTEMA</div>
+<button class="nav" onclick="backup()">💾 Baixar backup</button>
+<button class="nav" onclick="document.getElementById('restore').click()">📂 Restaurar backup</button>
+<div class="muted small" style="padding:18px 12px;color:#91a9ca">Protótipo local. Não use dados pessoais reais de funcionários nesta versão.</div>
 </aside>
 
-<main class="main">
+<main>
 <header class="top">
 <div>
 <div class="muted small">BUSINESS PRO / MEU NEGÓCIO</div>
-<h1 id="pageTitle">Central RH PRO</h1>
+<h1 id="title">Central RH PRO</h1>
 </div>
-<span class="pill">🔒 Teste local</span>
+<span class="tag">Versão V2 • Teste</span>
 </header>
 <div id="app"></div>
 </main>
 </div>
 
-<div class="bottomnav">
-<button onclick="show('home')">⌂ Início</button>
-<button onclick="show('rh')">👥 RH</button>
-<button onclick="openModule('funcionarios')">👤 Equipe</button>
-<button onclick="openModule('ponto')">🕒 Ponto</button>
-<button onclick="openModule('relatorios')">📊 Dados</button>
+<div class="mobile">
+<button onclick="home()">⌂ Início</button>
+<button onclick="rh()">👥 RH</button>
+<button onclick="openArea('pessoas')">👤 Equipe</button>
+<button onclick="openArea('jornada')">🕒 Ponto</button>
+<button onclick="openArea('indicadores')">📊 Dados</button>
 </div>
+
+<input type="file" id="restore" accept=".json" hidden onchange="restoreBackup(this)">
 
 <script>
 "use strict";
 
-/* ===============================
-   CONFIGURAÇÃO E ARMAZENAMENTO
-================================ */
+/* ===================================
+   ÁREAS E FUNCIONALIDADES
+=================================== */
 
-const KEY="meu_negocio_rh_pro_demo_v1";
-
-const MODULES=[
-["funcionarios","👥","Colaboradores","Cadastro e ficha profissional"],
-["admissoes","📝","Admissões","Processos de contratação"],
-["desligamentos","🚪","Desligamentos","Controle de desligamentos"],
-["ponto","🕒","Ponto eletrônico","Registro de entradas e saídas"],
-["bancoHoras","⏱️","Banco de horas","Créditos e débitos de horas"],
-["escalas","📅","Escalas e jornadas","Turnos e horários"],
-["ferias","🏖️","Férias e licenças","Planejamento e solicitações"],
-["folha","💰","Folha gerencial","Lançamentos remuneratórios"],
-["holerites","🧾","Holerites","Demonstrativos internos"],
-["beneficios","🎁","Benefícios","Auxílios e vantagens"],
-["recrutamento","🎯","Recrutamento","Vagas e processos seletivos"],
-["candidatos","📋","Candidatos","Banco de talentos"],
-["avaliacoes","📈","Avaliações","Desempenho profissional"],
-["metas","🏆","Metas e PDI","Desenvolvimento individual"],
-["treinamentos","🎓","Treinamentos","Cursos e capacitações"],
-["certificados","📜","Certificados","Controle de qualificações"],
-["saude","🩺","Saúde ocupacional","Exames e acompanhamento"],
-["epis","🦺","EPIs e segurança","Equipamentos e entregas"],
-["documentos","📄","Documentos RH","Arquivos e documentos"],
-["assinaturas","✍️","Assinaturas","Solicitações de assinatura"],
-["portal","📱","Portal do colaborador","Solicitações internas"],
-["solicitacoes","📨","Solicitações","Pedidos e aprovações"],
-["comunicados","📢","Comunicados","Avisos corporativos"],
-["clima","💬","Pesquisa de clima","Opiniões e questionários"],
-["organograma","🏢","Organograma","Estrutura organizacional"],
-["cargos","💼","Cargos e salários","Estrutura de remuneração"],
-["auditoria","🔐","Auditoria RH","Histórico de alterações"],
-["relatorios","📊","Relatórios RH","Indicadores e exportações"]
+const AREAS=[
+{
+id:"pessoas",icon:"👤",name:"Pessoas e contratos",
+desc:"Gestão completa do ciclo do colaborador",
+items:[
+["funcionarios","Cadastro de funcionários"],
+["dependentes","Dependentes"],
+["contratos","Contratos de trabalho"],
+["admissoes","Admissões"],
+["desligamentos","Desligamentos"],
+["movimentacoes","Movimentações internas"],
+["experiencias","Período de experiência"],
+["historico","Histórico profissional"],
+["aniversarios","Datas importantes"],
+["emergencia","Contatos de emergência"],
+["identificacao","Documentos de identificação"],
+["integracao","Integração de novos colaboradores"]
+]},
+{
+id:"jornada",icon:"🕒",name:"Ponto e jornadas",
+desc:"Frequência, horários e banco de horas",
+items:[
+["ponto","Registro de ponto"],
+["espelho","Espelho de ponto"],
+["bancoHoras","Banco de horas"],
+["escalas","Escalas de trabalho"],
+["turnos","Turnos"],
+["horasExtras","Horas extras"],
+["atrasos","Atrasos"],
+["faltas","Faltas"],
+["justificativas","Justificativas"],
+["compensacoes","Compensações"],
+["aprovacoesPonto","Aprovações de ponto"]
+]},
+{
+id:"remuneracao",icon:"💰",name:"Folha e remuneração",
+desc:"Controle gerencial de valores e benefícios",
+items:[
+["folha","Folha gerencial"],
+["rubricas","Rubricas"],
+["proventos","Proventos"],
+["descontos","Descontos"],
+["holerites","Demonstrativos internos"],
+["beneficios","Benefícios"],
+["valeTransporte","Vale-transporte"],
+["valeAlimentacao","Vale-alimentação"],
+["reembolsos","Reembolsos"],
+["adiantamentos","Adiantamentos"],
+["comissoes","Comissões"],
+["bonificacoes","Bonificações"],
+["custosRH","Custos de pessoal"],
+["revisoesSalariais","Revisões salariais"]
+]},
+{
+id:"ferias",icon:"🏖️",name:"Férias e ausências",
+desc:"Planejamento e solicitações",
+items:[
+["ferias","Férias"],
+["periodos","Períodos aquisitivos"],
+["saldoFerias","Saldos informados"],
+["licencas","Licenças"],
+["afastamentos","Afastamentos"],
+["atestados","Registro administrativo de atestados"],
+["calendarioAusencias","Calendário de ausências"],
+["aprovacoesFerias","Aprovações"],
+["substituicoes","Substituições"]
+]},
+{
+id:"recrutamento",icon:"🎯",name:"Recrutamento e seleção",
+desc:"Vagas, candidatos e processos seletivos",
+items:[
+["vagas","Vagas"],
+["candidatos","Candidatos"],
+["entrevistas","Entrevistas"],
+["testes","Testes seletivos"],
+["triagem","Triagem"],
+["propostas","Propostas de contratação"],
+["talentosBanco","Banco de talentos"],
+["indicacoes","Indicações"],
+["etapas","Etapas seletivas"],
+["requisicoesVagas","Requisições de vagas"],
+["onboarding","Onboarding"],
+["offboarding","Offboarding"]
+]},
+{
+id:"talentos",icon:"📈",name:"Talentos e desempenho",
+desc:"Avaliações, carreira e desenvolvimento",
+items:[
+["avaliacoes","Avaliações de desempenho"],
+["feedbacks","Feedbacks"],
+["metas","Metas"],
+["pdi","Plano de desenvolvimento"],
+["competencias","Competências"],
+["carreira","Plano de carreira"],
+["promocoes","Promoções"],
+["sucessao","Planejamento sucessório"],
+["reconhecimentos","Reconhecimentos"],
+["pesquisasClima","Pesquisas de clima"],
+["engajamento","Engajamento"],
+["planosAcao","Planos de ação"]
+]},
+{
+id:"educacao",icon:"🎓",name:"Educação corporativa",
+desc:"Treinamentos, cursos e certificações",
+items:[
+["treinamentos","Treinamentos"],
+["cursos","Cursos"],
+["trilhas","Trilhas de aprendizagem"],
+["certificados","Certificados"],
+["instrutores","Instrutores"],
+["inscricoes","Inscrições"],
+["avaliacoesCursos","Avaliações de cursos"],
+["validadeCursos","Validade de qualificações"]
+]},
+{
+id:"seguranca",icon:"🦺",name:"Saúde e segurança",
+desc:"Controles administrativos de SST",
+items:[
+["exames","Agendamentos ocupacionais"],
+["aso","Controle administrativo de ASO"],
+["epis","Entrega de EPIs"],
+["riscos","Inventário de riscos"],
+["acidentes","Registros de acidentes"],
+["inspecoes","Inspeções"],
+["treinamentosSST","Treinamentos SST"],
+["cipa","CIPA"],
+["pgr","Controle de PGR"],
+["pcmso","Controle de PCMSO"],
+["vencimentosSST","Vencimentos SST"],
+["ocorrencias","Ocorrências de segurança"]
+]},
+{
+id:"documentos",icon:"📄",name:"Documentos e assinaturas",
+desc:"Organização documental de RH",
+items:[
+["documentos","Documentos RH"],
+["modelos","Modelos de documentos"],
+["declaracoes","Declarações"],
+["recibos","Recibos"],
+["termos","Termos internos"],
+["assinaturas","Solicitações de assinatura"],
+["vencimentosDoc","Vencimentos documentais"],
+["versoes","Controle de versões"],
+["protocolos","Protocolos de entrega"]
+]},
+{
+id:"portal",icon:"📱",name:"Portal do colaborador",
+desc:"Solicitações e comunicação interna",
+items:[
+["solicitacoes","Solicitações"],
+["comunicados","Comunicados"],
+["avisos","Avisos"],
+["pedidosFerias","Pedidos de férias"],
+["pedidosDocumentos","Pedidos de documentos"],
+["atendimentoRH","Atendimento RH"],
+["enquetes","Enquetes"],
+["sugestoes","Sugestões"],
+["ocorrenciasInternas","Ocorrências internas"],
+["faq","Perguntas frequentes"]
+]},
+{
+id:"estrutura",icon:"🏢",name:"Estrutura organizacional",
+desc:"Cargos, departamentos e organização",
+items:[
+["departamentos","Departamentos"],
+["cargos","Cargos"],
+["faixasSalariais","Faixas salariais"],
+["centrosCusto","Centros de custo"],
+["filiais","Filiais"],
+["gestores","Gestores"],
+["hierarquia","Hierarquia"],
+["politicas","Políticas internas"]
+]},
+{
+id:"indicadores",icon:"📊",name:"Indicadores e automações",
+desc:"Relatórios e inteligência gerencial",
+items:[
+["dashboard","Dashboard RH"],
+["relatorios","Relatórios"],
+["turnover","Turnover"],
+["absenteismo","Absenteísmo"],
+["headcount","Headcount"],
+["custosIndicadores","Custos"],
+["indicadoresVagas","Indicadores de vagas"],
+["indicadoresTreino","Indicadores de treinamento"],
+["alertas","Alertas"],
+["tarefasAuto","Tarefas automáticas"],
+["auditoria","Auditoria"],
+["exportacoes","Exportações"],
+["backup","Backup"]
+]}
 ];
 
-const SPECIAL=new Set(["relatorios","auditoria","organograma"]);
+const special=new Set([
+"dashboard","relatorios","turnover","absenteismo","headcount",
+"custosIndicadores","indicadoresVagas","indicadoresTreino",
+"auditoria","exportacoes","backup","espelho","calendarioAusencias",
+"hierarquia","aniversarios"
+]);
 
-function fresh(){
-return {
-funcionarios:[],logs:[],
-...Object.fromEntries(MODULES.filter(m=>!SPECIAL.has(m[0])&&m[0]!=="funcionarios").map(m=>[m[0],[]]))
+const itemNames={};
+const itemAreas={};
+AREAS.forEach(a=>a.items.forEach(i=>{
+itemNames[i[0]]=i[1];itemAreas[i[0]]=a.id;
+}));
+
+const field=(key,label,type="text",required=false,options=[])=>({key,label,type,required,options});
+const section=label=>({section:label});
+
+const employeeSchema=[
+section("Dados pessoais"),
+field("nome","Nome completo","text",true),
+field("matricula","Matrícula"),
+field("cpf","CPF"),
+field("nascimento","Nascimento","date"),
+field("email","E-mail","email"),
+field("telefone","Telefone"),
+field("endereco","Endereço"),
+field("cidade","Cidade"),
+field("uf","Estado"),
+section("Informações profissionais"),
+field("cargo","Cargo","text",true),
+field("departamento","Departamento"),
+field("gestor","Gestor"),
+field("admissao","Admissão","date"),
+field("vinculo","Vínculo","select",false,["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"]),
+field("situacao","Situação","select",false,["Ativo","Férias","Afastado","Desligado"]),
+section("Remuneração e jornada"),
+field("salario","Salário-base informado (R$)","number"),
+field("jornada","Jornada semanal (horas)","number"),
+field("escala","Escala"),
+field("beneficios","Benefícios","textarea"),
+section("Outras informações"),
+field("formacao","Formação"),
+field("habilidades","Habilidades","textarea"),
+field("observacoes","Observações","textarea")
+];
+
+const employeeRef=field("funcionario","Colaborador","employee",true);
+const dateField=field("data","Data","date",true);
+const statusField=field("status","Situação","select",false,["Pendente","Em andamento","Aprovado","Concluído","Cancelado"]);
+const descField=field("descricao","Descrição","textarea");
+
+const genericSchema=[
+field("titulo","Título / assunto","text",true),
+employeeRef,dateField,statusField,
+field("responsavel","Responsável"),
+field("prazo","Prazo","date"),
+descField
+];
+
+const SCHEMAS={
+funcionarios:employeeSchema,
+ponto:[
+employeeRef,dateField,
+field("entrada","Entrada","time",true),
+field("inicioIntervalo","Início do intervalo","time"),
+field("fimIntervalo","Fim do intervalo","time"),
+field("saida","Saída","time",true),
+field("observacoes","Observações","textarea")
+],
+ferias:[
+employeeRef,
+field("tipo","Tipo","select",false,["Férias","Licença","Afastamento"]),
+field("inicio","Início","date",true),
+field("fim","Fim","date",true),
+field("status","Situação","select",false,["Solicitado","Aprovado","Rejeitado","Concluído"]),
+field("aprovador","Aprovador"),
+field("observacoes","Observações","textarea")
+],
+folha:[
+employeeRef,
+field("competencia","Competência","month",true),
+field("salario","Salário-base informado (R$)","number",true),
+field("adicionais","Adicionais informados (R$)","number"),
+field("descontos","Descontos informados (R$)","number"),
+field("status","Situação","select",false,["Rascunho","Conferido","Fechado"]),
+field("observacoes","Observações","textarea")
+],
+vagas:[
+field("titulo","Título da vaga","text",true),
+field("departamento","Departamento"),
+field("local","Localidade"),
+field("modelo","Modelo","select",false,["Presencial","Remoto","Híbrido"]),
+field("salario","Remuneração prevista (R$)","number"),
+field("abertura","Abertura","date"),
+field("prazo","Prazo","date"),
+field("status","Situação","select",false,["Aberta","Triagem","Entrevistas","Encerrada"]),
+field("requisitos","Requisitos","textarea"),
+descField
+],
+candidatos:[
+field("nome","Nome completo","text",true),
+field("email","E-mail","email"),
+field("telefone","Telefone"),
+field("vaga","Vaga pretendida"),
+field("formacao","Formação"),
+field("experiencia","Experiência","textarea"),
+field("etapa","Etapa","select",false,["Inscrito","Triagem","Entrevista","Teste","Aprovado","Reprovado"]),
+field("observacoes","Observações","textarea")
+],
+entrevistas:[
+field("candidato","Nome do candidato","text",true),
+field("vaga","Vaga"),
+dateField,
+field("horario","Horário","time"),
+field("entrevistador","Entrevistador"),
+field("modalidade","Modalidade","select",false,["Presencial","Online","Telefone"]),
+field("resultado","Resultado","select",false,["Agendada","Realizada","Aprovado","Reprovado"]),
+descField
+],
+beneficios:[
+employeeRef,
+field("beneficio","Benefício","text",true),
+field("valor","Valor mensal (R$)","number"),
+field("inicio","Início","date"),
+statusField,descField
+],
+bancoHoras:[
+employeeRef,dateField,
+field("tipo","Movimento","select",false,["Crédito","Débito"]),
+field("horas","Horas em formato decimal","number",true),
+field("motivo","Motivo","textarea")
+],
+escalas:[
+employeeRef,
+field("inicio","Início","date",true),
+field("fim","Fim","date",true),
+field("turno","Turno"),
+field("entrada","Entrada","time"),
+field("saida","Saída","time"),
+field("folgas","Folgas"),
+descField
+],
+treinamentos:[
+field("titulo","Treinamento","text",true),
+employeeRef,
+field("instrutor","Instrutor"),
+field("inicio","Início","date"),
+field("fim","Fim","date"),
+field("carga","Carga horária","number"),
+statusField,descField
+],
+avaliacoes:[
+employeeRef,dateField,
+field("avaliador","Avaliador"),
+field("nota","Nota de 0 a 10","number"),
+field("competencias","Competências","textarea"),
+field("feedback","Feedback","textarea")
+],
+metas:[
+employeeRef,
+field("titulo","Meta","text",true),
+field("prazo","Prazo","date"),
+field("progresso","Progresso (%)","number"),
+statusField,descField
+],
+documentos:[
+employeeRef,
+field("titulo","Nome do documento","text",true),
+field("tipo","Tipo"),
+dateField,
+field("validade","Validade","date"),
+field("referencia","Referência"),
+descField
+],
+epis:[
+employeeRef,
+field("equipamento","Equipamento","text",true),
+field("quantidade","Quantidade","number"),
+field("ca","CA do equipamento"),
+dateField,
+field("devolucao","Devolução prevista","date"),
+descField
+],
+solicitacoes:[
+employeeRef,
+field("titulo","Assunto","text",true),
+dateField,statusField,
+field("responsavel","Responsável"),
+descField
+],
+comunicados:[
+field("titulo","Título","text",true),
+dateField,
+field("publico","Público-alvo"),
+field("mensagem","Mensagem","textarea",true)
+],
+departamentos:[
+field("nome","Departamento","text",true),
+field("gestor","Gestor"),
+field("centroCusto","Centro de custo"),
+descField
+],
+cargos:[
+field("nome","Cargo","text",true),
+field("departamento","Departamento"),
+field("nivel","Nível"),
+field("faixaMin","Faixa salarial mínima (R$)","number"),
+field("faixaMax","Faixa salarial máxima (R$)","number"),
+field("requisitos","Requisitos","textarea"),
+field("responsabilidades","Responsabilidades","textarea")
+],
+exames:[
+employeeRef,
+field("tipo","Tipo de agendamento","text",true),
+dateField,
+field("validade","Próxima data","date"),
+statusField,
+field("observacoes","Observações administrativas, sem informações clínicas","textarea")
+]
 };
+
+/* ===================================
+   DADOS LOCAIS
+=================================== */
+
+const KEY="meu_negocio_rh_v2_teste";
+const ids=Object.keys(itemNames).filter(x=>!special.has(x));
+
+function emptyDB(){
+const result={logs:[]};
+ids.forEach(id=>result[id]=[]);
+return result;
 }
 
-let db=fresh(),current="rh",editing=null,filterText="";
+let db=emptyDB();
+let currentArea=null;
+let currentModule=null;
+let editing=null;
 
 try{
 const saved=JSON.parse(localStorage.getItem(KEY)||"null");
 if(saved&&typeof saved==="object"){
-for(const k of Object.keys(db)){
+Object.keys(db).forEach(k=>{
 if(Array.isArray(saved[k]))db[k]=saved[k];
+});
 }
-}
-}catch(e){console.warn("Dados locais inválidos",e)}
+}catch(e){console.warn("Armazenamento local inválido",e)}
 
 const $=id=>document.getElementById(id);
-const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({
+const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({
 "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
-const uid=()=>globalThis.crypto?.randomUUID?.()||
+const uid=()=>crypto.randomUUID?.()||
 Date.now()+"-"+Math.random().toString(36).slice(2);
-const today=()=>new Date().toLocaleDateString("en-CA");
-const money=v=>Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-const moduleName=k=>MODULES.find(x=>x[0]===k)?.[2]||k;
+const money=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const areaById=id=>AREAS.find(a=>a.id===id);
+const schema=id=>SCHEMAS[id]||genericSchema;
+const dateBR=s=>{
+if(!s)return "—";
+const [y,m,d]=s.split("-");
+return d&&m&&y?`${d}/${m}/${y}`:s;
+};
 
-function commit(fn,desc){
-const old=JSON.stringify(db);
-fn();
-db.logs.unshift({id:uid(),data:new Date().toISOString(),descricao:desc});
+function saveDB(desc){
+db.logs.unshift({
+id:uid(),
+date:new Date().toISOString(),
+description:desc
+});
 db.logs=db.logs.slice(0,1000);
-try{localStorage.setItem(KEY,JSON.stringify(db));return true}
-catch(e){db=JSON.parse(old);alert("Não foi possível salvar. Verifique o armazenamento.");return false}
+try{
+localStorage.setItem(KEY,JSON.stringify(db));
+return true;
+}catch(e){
+db.logs.shift();
+alert("Não foi possível salvar. Verifique o espaço do navegador.");
+return false;
+}
 }
 
-function download(name,content,type){
-const url=URL.createObjectURL(new Blob([content],{type}));
+function download(name,text,type){
+const url=URL.createObjectURL(new Blob([text],{type}));
 const a=document.createElement("a");
-a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+a.href=url;a.download=name;document.body.appendChild(a);
+a.click();a.remove();
 setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
 
-/* ===============================
-   DEFINIÇÃO DOS FORMULÁRIOS
-================================ */
+function title(t){$("title").textContent=t}
+function setNav(){
+document.querySelectorAll(".nav").forEach(b=>b.classList.remove("active"));
+}
 
-const f=(key,label,type="text",required=false,options=[])=>({key,label,type,required,options});
-const h=label=>({heading:label});
+/* ===================================
+   MEU NEGÓCIO PRINCIPAL
+=================================== */
 
-const employeeFields=[
-h("Identificação pessoal"),
-f("nome","Nome completo","text",true),
-f("matricula","Matrícula"),
-f("cpf","CPF"),f("nascimento","Nascimento","date"),
-f("email","E-mail","email"),f("telefone","Telefone"),
-f("endereco","Endereço"),f("cidade","Cidade"),
-h("Vínculo profissional"),
-f("cargo","Cargo","text",true),
-f("departamento","Departamento"),
-f("gestor","Gestor"),
-f("admissao","Data de admissão","date"),
-f("vinculo","Tipo de vínculo","select",false,["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"]),
-f("situacao","Situação","select",false,["Ativo","Férias","Afastado","Desligado"]),
-h("Remuneração e jornada"),
-f("salario","Salário-base informado (R$)","number"),
-f("horas","Jornada semanal (horas)","number"),
-f("escala","Escala"),
-f("beneficios","Benefícios","textarea"),
-h("Informações adicionais"),
-f("habilidades","Habilidades","textarea"),
-f("formacao","Formação"),
-f("observacoes","Observações","textarea")
+function home(){
+currentArea=null;currentModule=null;editing=null;
+title("MEU NEGÓCIO PRO");setNav();
+
+const departments=[
+["👥","Recursos Humanos","Central RH PRO",true],
+["💰","Financeiro","Gestão financeira",false],
+["🛒","Vendas e CRM","Clientes e vendas",false],
+["📄","Central Office","Documentos empresariais",false],
+["📦","Estoque e compras","Produtos e fornecedores",false],
+["🧾","Fiscal e contábil","Controles fiscais",false],
+["⚙️","Operações","Projetos e serviços",false],
+["📊","Relatórios","Inteligência empresarial",false],
+["🏢","Gestão empresarial","Administração geral",false],
+["✨","BUSINESS IA","Assistente empresarial",false]
 ];
 
-const common=[
-f("funcionario","Funcionário","employee",true),
-f("data","Data","date",true),
-f("status","Situação","select",false,["Pendente","Em andamento","Aprovado","Concluído","Cancelado"]),
-f("descricao","Descrição","textarea")
-];
-
-const SCHEMA={
-funcionarios:employeeFields,
-admissoes:[
-...common,
-f("cargo","Cargo"),f("inicio","Data prevista de início","date"),
-f("etapa","Etapa","select",false,["Documentação","Exame admissional","Contrato","Integração","Concluído"]),
-f("responsavel","Responsável")
-],
-desligamentos:[
-...common,f("motivo","Motivo"),f("dataSaida","Data de saída","date"),
-f("tipo","Tipo de desligamento"),f("responsavel","Responsável")
-],
-ponto:[
-f("funcionario","Funcionário","employee",true),
-f("data","Data","date",true),
-f("entrada","Entrada","time",true),
-f("saidaIntervalo","Início do intervalo","time"),
-f("voltaIntervalo","Fim do intervalo","time"),
-f("saida","Saída","time",true),
-f("observacoes","Observações","textarea")
-],
-bancoHoras:[
-...common,
-f("tipo","Movimento","select",false,["Crédito","Débito"]),
-f("horas","Horas (decimal)","number",true),
-f("motivo","Motivo")
-],
-escalas:[
-f("funcionario","Funcionário","employee",true),
-f("inicio","Início","date",true),
-f("fim","Fim","date",true),
-f("turno","Turno"),f("entrada","Entrada","time"),
-f("saida","Saída","time"),f("folgas","Folgas"),f("descricao","Observações","textarea")
-],
-ferias:[
-f("funcionario","Funcionário","employee",true),
-f("tipo","Tipo","select",false,["Férias","Licença","Afastamento"]),
-f("inicio","Início","date",true),
-f("fim","Fim","date",true),
-f("status","Situação","select",false,["Solicitado","Aprovado","Rejeitado","Concluído"]),
-f("aprovador","Responsável pela aprovação"),
-f("observacoes","Observações","textarea")
-],
-folha:[
-f("funcionario","Funcionário","employee",true),
-f("competencia","Competência (AAAA-MM)","month",true),
-f("salario","Salário-base (R$)","number",true),
-f("adicionais","Adicionais informados (R$)","number"),
-f("descontos","Descontos informados (R$)","number"),
-f("status","Situação","select",false,["Rascunho","Conferido","Fechado"]),
-f("observacoes","Observações","textarea")
-],
-holerites:[
-f("funcionario","Funcionário","employee",true),
-f("competencia","Competência","month",true),
-f("proventos","Proventos informados (R$)","number"),
-f("descontos","Descontos informados (R$)","number"),
-f("observacoes","Observações","textarea")
-],
-beneficios:[
-...common,f("beneficio","Benefício","text",true),
-f("valor","Valor mensal (R$)","number"),
-f("fornecedor","Fornecedor")
-],
-recrutamento:[
-f("titulo","Título da vaga","text",true),
-f("departamento","Departamento"),
-f("local","Localidade"),
-f("modelo","Modelo","select",false,["Presencial","Remoto","Híbrido"]),
-f("tipo","Vínculo"),
-f("salario","Remuneração prevista (R$)","number"),
-f("abertura","Abertura","date"),
-f("prazo","Prazo","date"),
-f("status","Situação","select",false,["Aberta","Triagem","Entrevistas","Encerrada"]),
-f("requisitos","Requisitos","textarea"),
-f("descricao","Descrição da vaga","textarea")
-],
-candidatos:[
-f("nome","Nome","text",true),
-f("email","E-mail","email"),
-f("telefone","Telefone"),
-f("vaga","Vaga pretendida"),
-f("formacao","Formação"),
-f("experiencia","Experiência","textarea"),
-f("etapa","Etapa","select",false,["Inscrito","Triagem","Entrevista","Teste","Aprovado","Reprovado"]),
-f("observacoes","Observações","textarea")
-],
-avaliacoes:[
-...common,f("avaliador","Avaliador"),
-f("nota","Nota (0 a 10)","number"),
-f("competencias","Competências avaliadas","textarea"),
-f("feedback","Feedback","textarea")
-],
-metas:[
-...common,f("meta","Meta","text",true),
-f("prazo","Prazo","date"),
-f("progresso","Progresso (%)","number"),
-f("acoes","Plano de desenvolvimento","textarea")
-],
-treinamentos:[
-f("titulo","Treinamento","text",true),
-f("funcionario","Participante","employee",true),
-f("instrutor","Instrutor"),
-f("inicio","Início","date"),
-f("fim","Fim","date"),
-f("carga","Carga horária","number"),
-f("status","Situação","select",false,["Planejado","Em andamento","Concluído"]),
-f("descricao","Conteúdo","textarea")
-],
-certificados:[
-...common,f("curso","Curso / certificação","text",true),
-f("instituicao","Instituição"),
-f("validade","Validade","date"),
-f("carga","Carga horária","number")
-],
-saude:[
-f("funcionario","Funcionário","employee",true),
-f("tipo","Tipo de exame / ação","text",true),
-f("data","Data","date",true),
-f("validade","Próxima data","date"),
-f("status","Situação","select",false,["Agendado","Realizado","Pendente"]),
-f("observacoes","Observações administrativas","textarea")
-],
-epis:[
-...common,f("equipamento","Equipamento","text",true),
-f("quantidade","Quantidade","number"),
-f("ca","Certificado de aprovação (CA)"),
-f("devolucao","Data prevista de devolução","date")
-],
-documentos:[
-...common,f("tipo","Tipo de documento","text",true),
-f("referencia","Número / referência"),
-f("validade","Validade","date"),
-f("local","Local de armazenamento / referência")
-],
-assinaturas:[
-...common,f("documento","Documento","text",true),
-f("signatario","Signatário"),
-f("prazo","Prazo","date")
-],
-portal:[
-...common,f("assunto","Assunto","text",true),
-f("resposta","Resposta","textarea")
-],
-solicitacoes:[
-...common,f("tipo","Tipo de solicitação","text",true),
-f("responsavel","Responsável"),
-f("prazo","Prazo","date")
-],
-comunicados:[
-f("titulo","Título","text",true),
-f("data","Data","date",true),
-f("publico","Público-alvo"),
-f("mensagem","Comunicado","textarea",true)
-],
-clima:[
-f("titulo","Pesquisa / questão","text",true),
-f("departamento","Departamento"),
-f("data","Data","date"),
-f("nota","Nota agregada (0 a 10)","number"),
-f("comentario","Comentário não identificável","textarea")
-],
-cargos:[
-f("nome","Cargo","text",true),
-f("departamento","Departamento"),
-f("nivel","Nível"),
-f("faixaMin","Faixa salarial mínima (R$)","number"),
-f("faixaMax","Faixa salarial máxima (R$)","number"),
-f("requisitos","Requisitos","textarea"),
-f("responsabilidades","Responsabilidades","textarea")
-]
-};
-
-/* ===============================
-   PAINEL PRINCIPAL
-================================ */
-
-function stats(){
-const employees=db.funcionarios;
-const active=employees.filter(x=>x.situacao==="Ativo").length;
-const vacation=db.ferias.filter(x=>x.status==="Aprovado").length;
-const vacancies=db.recrutamento.filter(x=>x.status==="Aberta").length;
-const pending=db.solicitacoes.filter(x=>x.status==="Pendente").length;
-return [
-["Colaboradores ativos",active,"Pessoas ativas"],
-["Férias aprovadas",vacation,"Registros de férias"],
-["Vagas abertas",vacancies,"Processos seletivos"],
-["Solicitações pendentes",pending,"Aguardando análise"]
-];
-}
-
-function statCards(){
-return `<div class="stats">${stats().map(s=>`
-<div class="stat"><small>${s[0]}</small><strong>${s[1]}</strong><em>${s[2]}</em></div>
-`).join("")}</div>`;
-}
-
-function show(p){
-current=p;editing=null;filterText="";
-$("pageTitle").textContent=p==="home"?"MEU NEGÓCIO PRO":"Central RH PRO";
-document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
-if(p==="home"){
-$("app").innerHTML=`
-<div class="hero">
-<div><small>BUSINESS PRO</small>
-<h2>Bem-vindo ao MEU NEGÓCIO</h2>
-<p>Seu ambiente empresarial integrado. Acesse o departamento de Recursos Humanos para gerenciar pessoas, processos e indicadores.</p>
-<button class="btn" onclick="show('rh')">Entrar na Central RH PRO →</button>
-</div><div class="heroicon">🏢</div></div>
-<div class="sectionhead"><h2>Departamentos</h2></div>
-<div class="features">
-${[
-["👥","Recursos Humanos","Central RH completa","rh"],
-["💰","Financeiro","Departamento do sistema principal",null],
-["🛒","Vendas","Departamento do sistema principal",null],
-["📄","Documentos","Departamento do sistema principal",null],
-["📦","Estoque","Departamento do sistema principal",null],
-["🧾","Fiscal","Departamento do sistema principal",null],
-["⚙️","Operações","Departamento do sistema principal",null],
-["📊","Relatórios","Departamento do sistema principal",null],
-["🏢","Gestão","Departamento do sistema principal",null],
-["✨","BUSINESS IA","Departamento do sistema principal",null]
-].map(x=>`<button class="feature" onclick="${x[3]?"show('rh')":"otherDepartment()"}">
-<span class="icon">${x[0]}</span><b>${x[1]}</b><small>${x[2]}</small></button>`).join("")}
-</div>`;
-return;
-}
-renderRH();
-}
-
-function otherDepartment(){
-alert("Este index é o protótipo da Central RH. Os outros departamentos permanecem no projeto principal e não estão implementados neste arquivo.");
-}
-
-function renderRH(){
 $("app").innerHTML=`
 <div class="hero">
 <div>
-<small>GESTÃO DE PESSOAS • BUSINESS PRO</small>
-<h2>👥 Central RH PRO</h2>
-<p>Um departamento completo, com colaboradores, ponto, férias, folha gerencial, recrutamento, desempenho, segurança e relatórios.</p>
-<div class="toolbar">
-<button class="btn" style="background:white;color:#17477e" onclick="openModule('funcionarios')">＋ Novo colaborador</button>
-<button class="btn" style="background:#153a67" onclick="openModule('relatorios')">Ver indicadores</button>
-</div></div><div class="heroicon">👥</div>
+<small>BUSINESS PRO • PLATAFORMA EMPRESARIAL</small>
+<h2>Bem-vindo ao MEU NEGÓCIO PRO</h2>
+<p>Uma plataforma para organizar sua empresa. Entre na Central RH PRO para acessar os recursos de gestão de pessoas.</p>
+<button class="btn white" onclick="rh()">Abrir Central RH PRO →</button>
+</div><div class="heroicon">🏢</div>
 </div>
-${statCards()}
-<div class="panel">
-<div class="sectionhead"><h3>Encontre qualquer função</h3><span class="muted small">28 áreas</span></div>
-<input class="search" id="moduleSearch" placeholder="Pesquisar ponto, férias, folha, recrutamento, benefícios..." oninput="searchModules(this.value)">
+<div class="sectionhead"><h2>Departamentos</h2></div>
+<div class="grid">
+${departments.map(d=>`
+<button class="feature" onclick="${d[3]?"rh()":"notAvailable()"}">
+<span class="emoji">${d[0]}</span>
+<b>${d[1]}</b>
+<small>${d[2]}</small>
+</button>`).join("")}
 </div>
-<div class="sectionhead"><h2>Todos os recursos de RH</h2><span class="muted small">Selecione uma área</span></div>
-<div class="features" id="featureGrid">
-${MODULES.map(m=>featureCard(m)).join("")}
-</div>
-<div class="panel">
-<h3>Como o departamento funciona</h3>
-<div class="notice">Cada opção abre sua própria tela. Você pode criar registros, consultar, editar, excluir e exportar dados. Os recursos desta demonstração são locais e não equivalem a folha oficial, ponto eletrônico regulamentado, assinatura eletrônica ou integração eSocial.</div>
+<div class="panel notice">
+Este arquivo demonstra a Central RH. Os outros departamentos serão integrados ao aplicativo principal posteriormente.
 </div>`;
 }
 
-function featureCard(m){
-const n=(db[m[0]]||[]).length;
-return `<button class="feature" data-search="${esc((m[2]+" "+m[3]).toLowerCase())}" onclick="openModule('${m[0]}')">
-<span class="icon">${m[1]}</span>
-<span class="count">${SPECIAL.has(m[0])?"Painel":n+" registros"}</span>
-<b>${m[2]}</b><small>${m[3]}</small>
-</button>`;
+function notAvailable(){
+alert("Este departamento não faz parte do protótipo RH V2. Não foi implementado neste arquivo.");
 }
 
-function searchModules(q){
-document.querySelectorAll("#featureGrid .feature").forEach(el=>{
+/* ===================================
+   PAINEL CENTRAL RH
+=================================== */
+
+function metrics(){
+return [
+["Colaboradores ativos",db.funcionarios.filter(x=>x.situacao==="Ativo").length,"Cadastro de pessoas"],
+["Férias aprovadas",db.ferias.filter(x=>x.status==="Aprovado").length,"Solicitações aprovadas"],
+["Vagas abertas",db.vagas.filter(x=>x.status==="Aberta").length,"Recrutamento"],
+["Solicitações pendentes",db.solicitacoes.filter(x=>x.status==="Pendente").length,"Atendimento RH"]
+];
+}
+
+function metricCards(){
+return `<div class="stats">${metrics().map(x=>`
+<div class="stat"><small>${x[0]}</small><strong>${x[1]}</strong><em>${x[2]}</em></div>
+`).join("")}</div>`;
+}
+
+function rh(){
+currentArea=null;currentModule=null;editing=null;
+title("Central RH PRO");setNav();
+
+$("app").innerHTML=`
+<div class="hero">
+<div>
+<small>MEU NEGÓCIO PRO • GESTÃO DE PESSOAS</small>
+<h2>👥 Central RH PRO</h2>
+<p>Organize colaboradores, jornadas, férias, remuneração, recrutamento, desenvolvimento, documentos e indicadores em um único ambiente.</p>
+<div class="toolbar">
+<button class="btn white" onclick="openModule('funcionarios')">＋ Novo colaborador</button>
+<button class="btn dark" onclick="openArea('indicadores')">Ver indicadores</button>
+</div>
+</div><div class="heroicon">👥</div>
+</div>
+${metricCards()}
+<div class="panel">
+<h3>Pesquisar funcionalidades</h3>
+<input class="search" id="areaSearch" placeholder="Pesquisar ponto, folha, férias, benefícios, documentos..." oninput="searchAreas(this.value)">
+</div>
+<div class="sectionhead"><h2>Departamentos internos do RH</h2><span class="muted small">12 áreas</span></div>
+<div class="grid" id="areaGrid">
+${AREAS.map(a=>`
+<button class="feature" data-search="${safe((a.name+" "+a.desc+" "+a.items.map(i=>i[1]).join(" ")).toLowerCase())}" onclick="openArea('${a.id}')">
+<span class="emoji">${a.icon}</span>
+<b>${a.name}</b>
+<small>${a.desc}</small>
+<small style="margin-top:10px;color:#2563eb">${a.items.length} opções no catálogo</small>
+</button>`).join("")}
+</div>
+<div class="panel">
+<h3>Sobre esta versão</h3>
+<div class="notice">
+As áreas apresentam um catálogo amplo de funções. Parte delas usa formulários administrativos genéricos; outras possuem telas específicas. Recursos oficiais, integrações externas e automações avançadas ainda precisam ser desenvolvidos.
+</div>
+</div>`;
+}
+
+function searchAreas(q){
+document.querySelectorAll("#areaGrid .feature").forEach(el=>{
 el.style.display=el.dataset.search.includes(q.toLowerCase())?"":"none";
 });
 }
 
-/* ===============================
-   FORMULÁRIOS E REGISTROS
-================================ */
+/* ===================================
+   ABRIR ÁREA
+=================================== */
 
-function inputField(field,value=""){
-const name=esc(field.key);
-let html="";
-if(field.type==="select"){
-html=`<select name="${name}" ${field.required?"required":""}>
-${field.options.map(o=>`<option value="${esc(o)}" ${value===o?"selected":""}>${esc(o)}</option>`).join("")}
-</select>`;
-}else if(field.type==="employee"){
-html=`<select name="${name}" ${field.required?"required":""}>
+function openArea(id){
+const a=areaById(id);
+if(!a)return;
+currentArea=id;currentModule=null;editing=null;
+title(a.name);setNav();
+
+$("app").innerHTML=`
+<button class="back" onclick="rh()">← Voltar para Central RH</button>
+<div class="hero">
+<div>
+<small>MEU NEGÓCIO PRO / RECURSOS HUMANOS</small>
+<h2>${a.icon} ${a.name}</h2>
+<p>${a.desc}. Selecione abaixo a ferramenta que deseja utilizar.</p>
+</div><div class="heroicon">${a.icon}</div>
+</div>
+<div class="sectionhead">
+<h2>Ferramentas disponíveis</h2>
+<span class="muted small">${a.items.length} opções</span>
+</div>
+<div class="panel">
+<input class="search" id="subSearch" placeholder="Pesquisar nesta área..." oninput="searchSub(this.value)">
+</div>
+<div class="subgrid" id="subGrid">
+${a.items.map(i=>`
+<button class="feature" data-search="${safe(i[1].toLowerCase())}" onclick="openModule('${i[0]}')">
+<span class="emoji">📌</span>
+<b>${i[1]}</b>
+<small>${special.has(i[0])?"Painel de consulta":"Abrir ferramenta e registros"}</small>
+</button>`).join("")}
+</div>`;
+}
+
+function searchSub(q){
+document.querySelectorAll("#subGrid .feature").forEach(el=>{
+el.style.display=el.dataset.search.includes(q.toLowerCase())?"":"none";
+});
+}
+
+/* ===================================
+   FORMULÁRIOS
+=================================== */
+
+function employeeName(id){
+return db.funcionarios.find(x=>x.id===id)?.nome||"Colaborador não encontrado";
+}
+
+function formField(f,value=""){
+if(f.section)return `<div class="heading">${safe(f.section)}</div>`;
+
+let control="";
+const name=safe(f.key);
+const required=f.required?"required":"";
+
+if(f.type==="employee"){
+control=`<select name="${name}" ${required}>
 <option value="">Selecione o colaborador</option>
-${db.funcionarios.map(e=>`<option value="${esc(e.id)}" ${value===e.id?"selected":""}>${esc(e.nome)} — ${esc(e.cargo)}</option>`).join("")}
+${db.funcionarios.map(x=>`
+<option value="${safe(x.id)}" ${value===x.id?"selected":""}>
+${safe(x.nome)} — ${safe(x.cargo)}
+</option>`).join("")}
 </select>`;
-}else if(field.type==="textarea"){
-html=`<textarea name="${name}" ${field.required?"required":""}>${esc(value)}</textarea>`;
+}else if(f.type==="select"){
+control=`<select name="${name}" ${required}>
+${f.options.map(x=>`<option value="${safe(x)}" ${x===value?"selected":""}>${safe(x)}</option>`).join("")}
+</select>`;
+}else if(f.type==="textarea"){
+control=`<textarea name="${name}" ${required}>${safe(value)}</textarea>`;
 }else{
-html=`<input name="${name}" type="${field.type}" value="${esc(value)}"
-${field.required?"required":""} ${field.type==="number"?'step="any"':""}>`;
-}
-return `<div class="field"><label>${esc(field.label)}${field.required?" *":""}</label>${html}</div>`;
+control=`<input type="${f.type}" name="${name}" value="${safe(value)}" ${required} ${f.type==="number"?'step="any"':""}>`;
 }
 
-function formHTML(kind,record={}){
+return `<div class="field"><label>${safe(f.label)}${f.required?" *":""}</label>${control}</div>`;
+}
+
+function formHTML(id,record={}){
 return `<div class="panel" id="formPanel">
-<h3>${editing?"Editar registro":"Novo registro"} — ${esc(moduleName(kind))}</h3>
+<h3>${editing?"Editar registro":"Novo registro"} — ${safe(itemNames[id])}</h3>
 <form id="dataForm" class="form">
-${SCHEMA[kind].map(f=>f.heading?`<div class="divider">${esc(f.heading)}</div>`:inputField(f,record[f.key]??"")).join("")}
+${schema(id).map(f=>formField(f,record[f.key]??"")).join("")}
 <div class="full toolbar">
 <button class="btn" type="submit">Salvar registro</button>
-<button class="btn secondary" type="button" onclick="cancelForm()">Cancelar</button>
-</div></form></div>`;
+<button class="btn light" type="button" onclick="cancelForm()">Cancelar</button>
+</div>
+</form></div>`;
 }
 
-function employeeName(eid){
-return db.funcionarios.find(x=>x.id===eid)?.nome||"Colaborador não encontrado";
+function openModule(id){
+currentModule=id;currentArea=itemAreas[id];editing=null;
+title(itemNames[id]||"Ferramenta RH");
+
+if(special.has(id))return specialPage(id);
+renderModule();
 }
 
-function displayValue(field,value){
-if(field.type==="employee")return employeeName(value);
-if(field.type==="number"&&["salario","valor","adicionais","descontos","proventos","faixaMin","faixaMax"].includes(field.key))return money(value);
-return String(value??"");
-}
+function renderModule(){
+const id=currentModule;
+const arr=db[id]||[];
+const fields=schema(id).filter(x=>!x.section).slice(0,4);
 
-function openModule(kind){
-current=kind;editing=null;filterText="";
-$("pageTitle").textContent=moduleName(kind);
-if(kind==="relatorios")return renderReports();
-if(kind==="auditoria")return renderAudit();
-if(kind==="organograma")return renderOrg();
-renderList();
-}
-
-function renderList(){
-const kind=current;
-const m=MODULES.find(x=>x[0]===kind);
-if(!m||!SCHEMA[kind])return;
-const arr=db[kind]||[];
-const cols=SCHEMA[kind].filter(x=>!x.heading).slice(0,4);
 $("app").innerHTML=`
-<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
+<button class="back" onclick="openArea('${currentArea}')">← Voltar para ${safe(areaById(currentArea).name)}</button>
 <div class="hero">
-<div><small>CENTRAL RH PRO</small>
-<h2>${m[1]} ${m[2]}</h2><p>${m[3]}. Gerencie os registros com pesquisa, edição, histórico e exportação.</p></div>
-<div class="heroicon">${m[1]}</div></div>
+<div>
+<small>CENTRAL RH PRO / ${safe(areaById(currentArea).name)}</small>
+<h2>${safe(itemNames[id])}</h2>
+<p>Registre, consulte, edite, pesquise e exporte informações desta ferramenta.</p>
+</div><div class="heroicon">📋</div>
+</div>
 <div class="panel">
 <div class="toolbar">
 <button class="btn" onclick="newRecord()">＋ Novo registro</button>
-<button class="btn secondary" onclick="exportCSV('${kind}')">Exportar CSV</button>
-<button class="btn secondary" onclick="exportExcel('${kind}')">Excel compatível</button>
-<button class="btn secondary" onclick="window.print()">Imprimir</button>
+<button class="btn light" onclick="exportCSV('${id}')">Exportar CSV</button>
+<button class="btn light" onclick="window.print()">Imprimir</button>
 </div>
-<input class="search" id="recordSearch" placeholder="Pesquisar registros..." oninput="searchRecords(this.value)">
+<input class="search" id="recordSearch" placeholder="Pesquisar registros..." oninput="filterRecords(this.value)">
 </div>
 <div id="formArea"></div>
 <div class="panel">
-<div class="sectionhead"><h3>Registros (${arr.length})</h3></div>
-${kind==="funcionarios"?employeeCards(arr):recordTable(kind,arr,cols)}
+<h3>Registros (${arr.length})</h3>
+${id==="funcionarios"?peopleCards(arr):dataTable(id,arr,fields)}
 </div>
-${kind==="ponto"?pointSummary():""}
-${kind==="folha"?payrollNotice():""}
-${kind==="saude"?'<div class="notice">Evite cadastrar diagnósticos e dados médicos sensíveis nesta demonstração local. Um módulo de saúde ocupacional real exige controles específicos de privacidade.</div>':""}
+${id==="ponto"?pointPanel():""}
+${id==="folha"?payrollPanel():""}
+${id==="ferias"?leavePanel():""}
+${id==="exames"?'<div class="notice">Não insira diagnósticos ou informações clínicas neste protótipo. Dados de saúde exigem proteção reforçada.</div>':""}
 `;
 }
 
-function employeeCards(arr){
-if(!arr.length)return `<div class="empty"><div class="emptyicon">👥</div><p>Nenhum colaborador cadastrado.</p></div>`;
-return `<div class="employeegrid" id="recordGrid">${arr.map(e=>`
-<div class="employee" data-search="${esc(JSON.stringify(e).toLowerCase())}">
-<div class="avatar">${esc((e.nome||"?").slice(0,1).toUpperCase())}</div>
-<h4>${esc(e.nome)}</h4>
-<p>${esc(e.cargo)} • ${esc(e.departamento)}</p>
-<p>Matrícula: ${esc(e.matricula||"Não informada")}</p>
-<span class="badge">${esc(e.situacao||"Ativo")}</span>
+function peopleCards(arr){
+if(!arr.length)return `<div class="empty">👥<p>Nenhum colaborador cadastrado.</p></div>`;
+return `<div class="people">${arr.map(e=>`
+<div class="person" data-search="${safe(JSON.stringify(e).toLowerCase())}">
+<div class="avatar">${safe((e.nome||"?").charAt(0).toUpperCase())}</div>
+<h4>${safe(e.nome)}</h4>
+<p>${safe(e.cargo)} • ${safe(e.departamento)}</p>
+<p>Matrícula: ${safe(e.matricula||"Não informada")}</p>
+<span class="status">${safe(e.situacao||"Ativo")}</span>
 <div class="toolbar">
-<button class="action" onclick="detail('${e.id}')">Ficha</button>
-<button class="action" onclick="editRecord('${e.id}')">Editar</button>
-<button class="action danger" onclick="deleteRecord('${e.id}')">Excluir</button>
-</div></div>`).join("")}</div>`;
+<button class="act" onclick="viewRecord('${e.id}')">Ficha</button>
+<button class="act" onclick="editRecord('${e.id}')">Editar</button>
+<button class="act red" onclick="deleteRecord('${e.id}')">Excluir</button>
+</div>
+</div>`).join("")}</div>`;
 }
 
-function recordTable(kind,arr,cols){
-return `<div class="tablewrap"><table><thead><tr>
-${cols.map(f=>`<th>${esc(f.label)}</th>`).join("")}
-<th>Ações</th></tr></thead><tbody id="recordRows">
-${arr.map(r=>`<tr data-search="${esc(JSON.stringify(r).toLowerCase()+" "+employeeName(r.funcionario).toLowerCase())}">
-${cols.map(f=>`<td>${esc(displayValue(f,r[f.key]))}</td>`).join("")}
-<td><button class="action" onclick="detail('${r.id}')">Ver</button>
-<button class="action" onclick="editRecord('${r.id}')">Editar</button>
-<button class="action danger" onclick="deleteRecord('${r.id}')">Excluir</button></td>
-</tr>`).join("")||`<tr><td colspan="${cols.length+1}" class="empty">Nenhum registro cadastrado.</td></tr>`}
+function displayField(f,v){
+if(f.type==="employee")return employeeName(v);
+if(f.type==="number"&&/salario|valor|adicionais|descontos|faixaMin|faixaMax/i.test(f.key))return money(v);
+if(f.type==="date")return dateBR(v);
+return String(v??"");
+}
+
+function dataTable(id,arr,fields){
+return `<div class="tablewrap"><table>
+<thead><tr>${fields.map(f=>`<th>${safe(f.label)}</th>`).join("")}<th>Ações</th></tr></thead>
+<tbody>
+${arr.map(r=>`
+<tr data-search="${safe((JSON.stringify(r)+" "+employeeName(r.funcionario)).toLowerCase())}">
+${fields.map(f=>`<td>${safe(displayField(f,r[f.key]))}</td>`).join("")}
+<td>
+<button class="act" onclick="viewRecord('${r.id}')">Ver</button>
+<button class="act" onclick="editRecord('${r.id}')">Editar</button>
+<button class="act red" onclick="deleteRecord('${r.id}')">Excluir</button>
+</td></tr>`).join("")||`<tr><td colspan="${fields.length+1}" class="empty">Nenhum registro cadastrado.</td></tr>`}
 </tbody></table></div>`;
 }
 
-function searchRecords(q){
+function filterRecords(q){
 document.querySelectorAll("[data-search]").forEach(el=>{
 el.style.display=el.dataset.search.includes(q.toLowerCase())?"":"none";
 });
@@ -673,215 +941,401 @@ el.style.display=el.dataset.search.includes(q.toLowerCase())?"":"none";
 
 function newRecord(){
 editing=null;
-$("formArea").innerHTML=formHTML(current);
+$("formArea").innerHTML=formHTML(currentModule);
 $("dataForm").onsubmit=saveRecord;
 $("formPanel").scrollIntoView({behavior:"smooth"});
 }
 
-function editRecord(rid){
-const record=db[current].find(x=>x.id===rid);
+function editRecord(id){
+const record=db[currentModule].find(x=>x.id===id);
 if(!record)return;
-editing=rid;
-$("formArea").innerHTML=formHTML(current,record);
+editing=id;
+$("formArea").innerHTML=formHTML(currentModule,record);
 $("dataForm").onsubmit=saveRecord;
 $("formPanel").scrollIntoView({behavior:"smooth"});
 }
 
 function cancelForm(){
-editing=null;$("formArea").innerHTML="";
+editing=null;
+$("formArea").innerHTML="";
 }
 
-function validateRecord(kind,r){
-if(kind==="ferias"&&r.fim<r.inicio)return "A data final não pode ser anterior à inicial.";
-if(kind==="ponto"){
-const a=minutes(r.entrada),b=minutes(r.saida);
-if(b<a)return "A saída deve ocorrer depois da entrada neste registro.";
-if((r.saidaIntervalo&&!r.voltaIntervalo)||(!r.saidaIntervalo&&r.voltaIntervalo))
+function validate(id,r){
+if(["ferias","escalas"].includes(id)&&r.inicio&&r.fim&&r.fim<r.inicio)
+return "A data final não pode ser anterior à inicial.";
+
+if(id==="ponto"){
+if(r.saida<r.entrada)
+return "Esta versão não suporta jornadas que atravessam a meia-noite.";
+if(Boolean(r.inicioIntervalo)!==Boolean(r.fimIntervalo))
 return "Informe os dois horários do intervalo.";
+if(r.inicioIntervalo&&
+(r.inicioIntervalo<r.entrada||
+r.fimIntervalo<r.inicioIntervalo||
+r.fimIntervalo>r.saida))
+return "Confira os horários do intervalo.";
 }
-if(kind==="folha"&&Number(r.salario)<0)return "Salário inválido.";
-if(kind==="avaliacoes"&&(Number(r.nota)<0||Number(r.nota)>10))return "A nota deve estar entre 0 e 10.";
+
+if(id==="avaliacoes"&&(Number(r.nota)<0||Number(r.nota)>10))
+return "A nota deve ficar entre 0 e 10.";
+
+if(id==="metas"&&(Number(r.progresso)<0||Number(r.progresso)>100))
+return "O progresso deve ficar entre 0 e 100%.";
+
+if(id==="funcionarios"&&r.cpf){
+const digits=r.cpf.replace(/\D/g,"");
+if(digits.length!==11)return "O CPF deve conter 11 dígitos.";
+}
+
 return "";
 }
 
-function saveRecord(e){
-e.preventDefault();
-const kind=current;
-const values=Object.fromEntries(new FormData(e.target));
-const error=validateRecord(kind,values);
+function saveRecord(ev){
+ev.preventDefault();
+const id=currentModule;
+const values=Object.fromEntries(new FormData(ev.target));
+const error=validate(id,values);
 if(error)return alert(error);
-const previous=db[kind].find(x=>x.id===editing);
+
+const previous=db[id].find(x=>x.id===editing);
 values.id=editing||uid();
 values.criadoEm=previous?.criadoEm||new Date().toISOString();
 
-if(commit(()=>{
-if(editing)db[kind]=db[kind].map(x=>x.id===editing?values:x);
-else db[kind].unshift(values);
-},(editing?"Editou":"Criou")+" registro em "+moduleName(kind))){
-editing=null;renderList();
-}
+const before=JSON.stringify(db[id]);
+if(editing)db[id]=db[id].map(x=>x.id===editing?values:x);
+else db[id].unshift(values);
+
+if(!saveDB((editing?"Editou":"Criou")+" registro em "+itemNames[id])){
+db[id]=JSON.parse(before);
+return;
 }
 
-function deleteRecord(rid){
-const kind=current;
-if(kind==="funcionarios"){
-const linked=Object.keys(db).some(k=>
-k!=="funcionarios"&&k!=="logs"&&
-Array.isArray(db[k])&&db[k].some(x=>x.funcionario===rid));
-if(linked)return alert("Este funcionário possui registros vinculados. Altere sua situação para Desligado em vez de excluir.");
-}
-if(!confirm("Excluir este registro?"))return;
-if(commit(()=>db[kind]=db[kind].filter(x=>x.id!==rid),"Excluiu registro em "+moduleName(kind)))renderList();
+editing=null;
+renderModule();
 }
 
-function detail(rid){
-const item=db[current].find(x=>x.id===rid);
-if(!item)return;
-const fields=SCHEMA[current];
-$("formArea").innerHTML=`<div class="panel">
-<div class="sectionhead"><h3>Ficha detalhada</h3>
-<button class="btn secondary" onclick="cancelForm()">Fechar</button></div>
-<div class="form">${fields.map(f=>f.heading?
-`<div class="divider">${esc(f.heading)}</div>`:
-`<div class="field"><label>${esc(f.label)}</label><div>${esc(displayValue(f,item[f.key])||"—")}</div></div>`
-).join("")}</div>
-</div>`;
+function deleteRecord(id){
+const module=currentModule;
+if(module==="funcionarios"){
+const linked=ids.some(k=>k!=="funcionarios"&&db[k].some(x=>x.funcionario===id));
+if(linked)return alert("Este colaborador possui registros vinculados. Prefira alterar sua situação para Desligado.");
+}
+if(!confirm("Deseja excluir este registro?"))return;
+
+const before=JSON.stringify(db[module]);
+db[module]=db[module].filter(x=>x.id!==id);
+if(!saveDB("Excluiu registro em "+itemNames[module])){
+db[module]=JSON.parse(before);
+return;
+}
+renderModule();
+}
+
+function viewRecord(id){
+const r=db[currentModule].find(x=>x.id===id);
+if(!r)return;
+$("formArea").innerHTML=`
+<div class="panel">
+<div class="sectionhead">
+<h3>Ficha detalhada</h3>
+<button class="btn light" onclick="cancelForm()">Fechar</button>
+</div>
+<div class="form">
+${schema(currentModule).map(f=>f.section?
+`<div class="heading">${safe(f.section)}</div>`:
+`<div class="field"><label>${safe(f.label)}</label><div>${safe(displayField(f,r[f.key])||"—")}</div></div>`
+).join("")}
+</div></div>`;
 $("formArea").scrollIntoView({behavior:"smooth"});
 }
 
-/* ===============================
-   CONTROLE DE PONTO
-================================ */
+/* ===================================
+   CONTROLES ESPECÍFICOS
+=================================== */
 
-function minutes(t){
+function mins(t){
 if(!t)return 0;
 const [h,m]=t.split(":").map(Number);
 return h*60+m;
 }
 
-function workedMinutes(p){
-let total=minutes(p.saida)-minutes(p.entrada);
-if(p.saidaIntervalo&&p.voltaIntervalo){
-total-=Math.max(0,minutes(p.voltaIntervalo)-minutes(p.saidaIntervalo));
-}
+function worked(p){
+let total=mins(p.saida)-mins(p.entrada);
+if(p.inicioIntervalo&&p.fimIntervalo)
+total-=mins(p.fimIntervalo)-mins(p.inicioIntervalo);
 return Math.max(0,total);
 }
 
-function pointSummary(){
-const total=db.ponto.reduce((s,p)=>s+workedMinutes(p),0);
-return `<div class="panel"><h3>Resumo de jornadas registradas</h3>
+function pointPanel(){
+const total=db.ponto.reduce((s,x)=>s+worked(x),0);
+return `<div class="panel">
+<h3>Resumo do ponto</h3>
 <div class="stats" style="grid-template-columns:repeat(2,1fr)">
 <div class="stat"><small>Registros</small><strong>${db.ponto.length}</strong></div>
 <div class="stat"><small>Horas registradas</small><strong>${(total/60).toFixed(2)} h</strong></div>
-</div><div class="notice">Este controle é administrativo e demonstrativo. Não substitui um sistema de registro eletrônico de ponto que cumpra os requisitos legais aplicáveis. Jornadas noturnas e que atravessam a meia-noite exigem tratamento adicional.</div></div>`;
-}
-
-function payrollNotice(){
-return `<div class="panel"><h3>Sobre a folha gerencial</h3>
-<div class="notice">Os valores são lançamentos informados pelo usuário. O sistema não calcula automaticamente INSS, IRRF, FGTS, férias, 13º salário ou verbas rescisórias e não gera folha oficial. Esses cálculos exigem regras atualizadas e validação contábil.</div></div>`;
-}
-
-/* ===============================
-   RELATÓRIOS
-================================ */
-
-function renderReports(){
-$("app").innerHTML=`
-<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
-<div class="hero"><div><small>BUSINESS PRO ANALYTICS</small>
-<h2>📊 Relatórios de Recursos Humanos</h2>
-<p>Indicadores calculados com os registros cadastrados nesta demonstração.</p></div></div>
-${statCards()}
-<div class="panel"><h3>Indicadores adicionais</h3>
-<div class="stats">
-<div class="stat"><small>Total de colaboradores</small><strong>${db.funcionarios.length}</strong></div>
-<div class="stat"><small>Treinamentos concluídos</small><strong>${db.treinamentos.filter(x=>x.status==="Concluído").length}</strong></div>
-<div class="stat"><small>Vagas em andamento</small><strong>${db.recrutamento.filter(x=>x.status!=="Encerrada").length}</strong></div>
-<div class="stat"><small>Registros de ponto</small><strong>${db.ponto.length}</strong></div>
-</div></div>
-<div class="panel"><h3>Exportações por departamento</h3>
-<div class="toolbar">
-${MODULES.filter(x=>!SPECIAL.has(x[0])).map(m=>`<button class="btn secondary" onclick="exportCSV('${m[0]}')">${m[1]} ${m[2]} CSV</button>`).join("")}
-</div></div>
-<div class="panel"><h3>Backup dos dados locais</h3>
-<div class="toolbar">
-<button class="btn" onclick="backup()">Baixar backup JSON</button>
-<button class="btn secondary" onclick="$('restoreInput').click()">Restaurar backup</button>
-<input id="restoreInput" type="file" accept=".json" hidden onchange="restore(this)">
 </div>
-<div class="notice">O backup é um arquivo de dados local. Guarde-o com segurança, pois pode conter informações pessoais de colaboradores.</div></div>`;
+<div class="notice">
+Cálculo simples para jornadas no mesmo dia. Não é registro eletrônico de ponto regulamentado nem calcula automaticamente horas extras, adicional noturno ou banco de horas.
+</div></div>`;
 }
 
-function rows(kind){
-const fields=SCHEMA[kind].filter(x=>!x.heading);
-return [
-fields.map(x=>x.label),
-...db[kind].map(r=>fields.map(f=>displayValue(f,r[f.key])))
+function payrollPanel(){
+const total=db.folha.reduce((s,r)=>
+s+Number(r.salario||0)+Number(r.adicionais||0)-Number(r.descontos||0),0);
+
+return `<div class="panel">
+<h3>Resumo gerencial da folha</h3>
+<div class="stat">
+<small>Saldo agregado dos lançamentos cadastrados</small>
+<strong>${money(total)}</strong>
+</div>
+<div class="notice" style="margin-top:15px">
+Não é folha oficial. Os valores são informados manualmente e podem abranger competências diferentes. INSS, FGTS, IRRF, 13º, férias e rescisões não são calculados automaticamente.
+</div></div>`;
+}
+
+function leavePanel(){
+const approved=db.ferias.filter(x=>x.status==="Aprovado").length;
+return `<div class="panel">
+<h3>Controle de ausências</h3>
+<div class="stat"><small>Solicitações aprovadas</small><strong>${approved}</strong></div>
+<div class="notice" style="margin-top:15px">
+Os períodos aquisitivos e saldos legais de férias ainda não são calculados automaticamente.
+</div></div>`;
+}
+
+/* ===================================
+   PAINÉIS ESPECIAIS
+=================================== */
+
+function specialPage(id){
+if(id==="backup"){backup();return openArea("indicadores")}
+if(id==="exportacoes")return exportPage();
+if(id==="auditoria")return auditPage();
+if(id==="hierarquia")return hierarchyPage();
+if(id==="aniversarios")return birthdaysPage();
+if(id==="espelho")return pointReport();
+if(id==="calendarioAusencias")return absencePage();
+return dashboardPage(id);
+}
+
+function reportHeader(name){
+return `<button class="back" onclick="openArea('${currentArea}')">← Voltar</button>
+<div class="hero"><div><small>CENTRAL RH PRO / RELATÓRIOS</small>
+<h2>📊 ${safe(name)}</h2>
+<p>Informações baseadas nos dados cadastrados nesta versão local.</p>
+</div></div>`;
+}
+
+function dashboardPage(id){
+const people=db.funcionarios.length;
+const active=db.funcionarios.filter(x=>x.situacao==="Ativo").length;
+const dismissed=db.funcionarios.filter(x=>x.situacao==="Desligado").length;
+const trainings=db.treinamentos.filter(x=>x.status==="Concluído").length;
+const total=db.folha.reduce((s,x)=>s+Number(x.salario||0)+Number(x.adicionais||0)-Number(x.descontos||0),0);
+
+const cards=[
+["Total cadastrado",people],
+["Colaboradores ativos",active],
+["Desligados cadastrados",dismissed],
+["Treinamentos concluídos",trainings]
 ];
+
+$("app").innerHTML=`
+${reportHeader(itemNames[id])}
+<div class="stats">
+${cards.map(x=>`<div class="stat"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join("")}
+</div>
+<div class="panel">
+<h3>Distribuição por departamento</h3>
+${departmentChart()}
+</div>
+<div class="panel">
+<h3>Indicadores adicionais</h3>
+<div class="subgrid">
+<div class="subcard"><b>Vagas abertas</b><strong>${db.vagas.filter(x=>x.status==="Aberta").length}</strong></div>
+<div class="subcard"><b>Férias aprovadas</b><strong>${db.ferias.filter(x=>x.status==="Aprovado").length}</strong></div>
+<div class="subcard"><b>Registros de ponto</b><strong>${db.ponto.length}</strong></div>
+<div class="subcard"><b>Lançamentos gerenciais de folha</b><strong>${money(total)}</strong></div>
+</div>
+</div>
+<div class="notice">
+Os indicadores são contagens e somas simples. Taxas como turnover e absenteísmo exigem períodos, denominadores e dados históricos consistentes; não serão apresentadas como calculadas sem essas informações.
+</div>`;
 }
 
-function exportCSV(kind){
-const content=rows(kind).map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(";")).join("\r\n");
-download("RH-"+kind+".csv","\ufeff"+content,"text/csv;charset=utf-8");
+function departmentChart(){
+const counts={};
+db.funcionarios.forEach(x=>{
+const key=x.departamento||"Não informado";
+counts[key]=(counts[key]||0)+1;
+});
+const entries=Object.entries(counts);
+if(!entries.length)return `<div class="empty">Cadastre colaboradores para visualizar o gráfico.</div>`;
+const max=Math.max(...entries.map(x=>x[1]),1);
+return `<div class="chart">${entries.slice(0,12).map(x=>`
+<div class="barbox">
+<div>${x[1]}</div>
+<div class="bar" style="height:${Math.max(5,x[1]/max*120)}px"></div>
+<div style="overflow-wrap:anywhere;margin-top:8px">${safe(x[0])}</div>
+</div>`).join("")}</div>`;
 }
 
-function exportExcel(kind){
-const html=`<html><head><meta charset="UTF-8"></head><body><table border="1">
-${rows(kind).map(r=>`<tr>${r.map(v=>`<td>${esc(v)}</td>`).join("")}</tr>`).join("")}
-</table></body></html>`;
-download("RH-"+kind+".xls","\ufeff"+html,"application/vnd.ms-excel");
+function auditPage(){
+$("app").innerHTML=`
+${reportHeader("Auditoria local")}
+<div class="panel"><h3>Histórico de operações</h3>
+${db.logs.map(x=>`
+<div style="padding:12px;border-bottom:1px solid var(--line)">
+<small class="muted">${safe(new Date(x.date).toLocaleString("pt-BR"))}</small>
+<div>${safe(x.description)}</div></div>`).join("")||'<div class="empty">Nenhuma operação registrada.</div>'}
+</div>
+<div class="notice">Este histórico pode ser alterado por quem controla o navegador. Não é auditoria segura em servidor.</div>`;
+}
+
+function hierarchyPage(){
+const departments=[...new Set(db.funcionarios.map(x=>x.departamento||"Não informado"))];
+$("app").innerHTML=`
+${reportHeader("Estrutura organizacional")}
+${departments.map(dep=>`
+<div class="panel">
+<h3>${safe(dep)}</h3>
+<div class="people">
+${db.funcionarios.filter(x=>(x.departamento||"Não informado")===dep).map(x=>`
+<div class="person">
+<div class="avatar">${safe(x.nome?.charAt(0)||"?")}</div>
+<h4>${safe(x.nome)}</h4>
+<p>${safe(x.cargo)}</p>
+<p>Gestor informado: ${safe(x.gestor||"—")}</p>
+</div>`).join("")}
+</div></div>`).join("")||'<div class="panel empty">Nenhum colaborador cadastrado.</div>'}`;
+}
+
+function birthdaysPage(){
+const people=db.funcionarios.filter(x=>x.nascimento)
+.sort((a,b)=>a.nascimento.slice(5).localeCompare(b.nascimento.slice(5)));
+$("app").innerHTML=`
+${reportHeader("Datas importantes")}
+<div class="panel">
+<h3>Aniversários cadastrados</h3>
+${people.map(x=>`<p>${safe(x.nome)} — ${safe(x.nascimento.slice(8,10)+"/"+x.nascimento.slice(5,7))}</p>`).join("")||'<div class="empty">Nenhuma data cadastrada.</div>'}
+</div>`;
+}
+
+function pointReport(){
+$("app").innerHTML=`
+${reportHeader("Espelho administrativo de ponto")}
+<div class="panel">
+<div class="toolbar"><button class="btn light" onclick="exportCSV('ponto')">Exportar CSV</button><button class="btn light" onclick="window.print()">Imprimir</button></div>
+<div class="tablewrap"><table>
+<thead><tr><th>Funcionário</th><th>Data</th><th>Entrada</th><th>Saída</th><th>Horas</th></tr></thead>
+<tbody>
+${db.ponto.map(x=>`<tr>
+<td>${safe(employeeName(x.funcionario))}</td>
+<td>${safe(dateBR(x.data))}</td>
+<td>${safe(x.entrada)}</td>
+<td>${safe(x.saida)}</td>
+<td>${(worked(x)/60).toFixed(2)}</td>
+</tr>`).join("")}
+</tbody></table></div>
+</div>
+<div class="notice">Relatório administrativo simples, não espelho de ponto oficial.</div>`;
+}
+
+function absencePage(){
+const entries=db.ferias.slice().sort((a,b)=>(a.inicio||"").localeCompare(b.inicio||""));
+$("app").innerHTML=`
+${reportHeader("Calendário de ausências")}
+<div class="panel">
+<h3>Períodos cadastrados</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Colaborador</th><th>Início</th><th>Fim</th><th>Situação</th></tr></thead>
+<tbody>
+${entries.map(x=>`<tr><td>${safe(employeeName(x.funcionario))}</td>
+<td>${safe(dateBR(x.inicio))}</td><td>${safe(dateBR(x.fim))}</td>
+<td>${safe(x.status)}</td></tr>`).join("")}
+</tbody></table></div>
+</div>`;
+}
+
+function exportPage(){
+$("app").innerHTML=`
+${reportHeader("Central de exportações")}
+<div class="panel"><h3>Exportar registros por ferramenta</h3>
+<div class="toolbar">
+${ids.map(id=>`<button class="btn light" onclick="exportCSV('${id}')">${safe(itemNames[id])}</button>`).join("")}
+</div></div>`;
+}
+
+/* ===================================
+   EXPORTAÇÃO E BACKUP
+=================================== */
+
+function exportCSV(id){
+if(!db[id])return;
+const fields=schema(id).filter(x=>!x.section);
+const records=[
+fields.map(f=>f.label),
+...db[id].map(r=>fields.map(f=>displayField(f,r[f.key])))
+];
+const csv=records.map(row=>row.map(v=>
+'"'+String(v??"").replaceAll('"','""')+'"'
+).join(";")).join("\r\n");
+
+download("RH-"+id+".csv","\ufeff"+csv,"text/csv;charset=utf-8");
 }
 
 function backup(){
-download("backup-central-rh.json",JSON.stringify({version:1,data:db},null,2),"application/json");
+download(
+"MEU-NEGOCIO-RH-V2-BACKUP.json",
+JSON.stringify({version:2,data:db},null,2),
+"application/json"
+);
 }
 
-async function restore(input){
-const file=input.files?.[0];if(!file)return;
-if(file.size>5*1024*1024){alert("Arquivo muito grande.");return}
+async function restoreBackup(input){
+const file=input.files?.[0];
+if(!file)return;
+if(file.size>5*1024*1024){
+alert("O backup excede o limite de 5 MB desta demonstração.");
+input.value="";
+return;
+}
 try{
 const parsed=JSON.parse(await file.text());
-if(parsed.version!==1||!parsed.data||!Array.isArray(parsed.data.funcionarios))throw Error();
-if(!confirm("Substituir todos os dados locais pelo backup?"))return;
-const next=fresh();
-for(const k of Object.keys(next)){
-if(Array.isArray(parsed.data[k]))next[k]=parsed.data[k];
+if(parsed.version!==2||!parsed.data||!Array.isArray(parsed.data.funcionarios))
+throw new Error("Formato inválido");
+
+if(!confirm("Substituir todos os dados locais atuais pelos dados do backup?")){
+input.value="";
+return;
 }
-if(commit(()=>db=next,"Restaurou backup local"))renderReports();
-}catch(e){alert("Backup inválido ou incompatível.");}
+
+const next=emptyDB();
+Object.keys(next).forEach(k=>{
+if(Array.isArray(parsed.data[k]))next[k]=parsed.data[k];
+});
+
+const previous=db;
+db=next;
+if(!saveDB("Restaurou backup")){
+db=previous;
+}else{
+alert("Backup restaurado.");
+rh();
+}
+}catch(e){
+alert("Arquivo de backup inválido ou incompatível.");
+}
 input.value="";
 }
 
-/* ===============================
-   ORGANOGRAMA E AUDITORIA
-================================ */
+/* ===================================
+   INICIALIZAÇÃO
+=================================== */
 
-function renderOrg(){
-$("app").innerHTML=`
-<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
-<div class="hero"><div><h2>🏢 Organograma empresarial</h2>
-<p>Visualização dos colaboradores agrupados por departamento.</p></div></div>
-${[...new Set(db.funcionarios.map(x=>x.departamento||"Sem departamento"))].map(dep=>`
-<div class="panel"><h3>${esc(dep)}</h3>
-<div class="employeegrid">${db.funcionarios.filter(x=>(x.departamento||"Sem departamento")===dep).map(e=>`
-<div class="employee"><div class="avatar">${esc(e.nome?.[0]||"?")}</div>
-<h4>${esc(e.nome)}</h4><p>${esc(e.cargo)}</p><p>Gestor: ${esc(e.gestor||"Não informado")}</p></div>
-`).join("")}</div></div>`).join("")||'<div class="panel empty">Cadastre colaboradores para montar a estrutura.</div>'}`;
-}
+rh();
 
-function renderAudit(){
-$("app").innerHTML=`
-<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
-<div class="hero"><div><h2>🔐 Histórico de operações</h2>
-<p>Alterações registradas neste navegador.</p></div></div>
-<div class="panel"><h3>Eventos recentes</h3>
-${db.logs.map(x=>`<p style="border-bottom:1px solid #e3eaf3;padding:12px 0">
-<small class="muted">${esc(new Date(x.data).toLocaleString("pt-BR"))}</small><br>
-${esc(x.descricao)}</p>`).join("")||'<p class="empty">Nenhuma operação registrada.</p>'}
-</div><div class="notice">Este histórico local pode ser alterado por quem tem acesso ao navegador. Não substitui auditoria segura em servidor.</div>`;
-}
-
-show("rh");
 </script>
 </body>
 </html>
