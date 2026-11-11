@@ -4,869 +4,884 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1930">
-<title>MEU NEGÓCIO PRO V3</title>
+<meta name="theme-color" content="#08172d">
+<title>MEU NEGÓCIO PRO | Central RH</title>
 <style>
 :root{
---navy:#0b1930;--navy2:#142c4a;--blue:#2563eb;
---bg:#f3f6fb;--white:#fff;--text:#17263d;
---muted:#64748b;--border:#e1e8f2;
+--navy:#09182e;--navy2:#112b4b;--blue:#2563eb;
+--sky:#60a5fa;--bg:#f3f6fb;--card:#fff;
+--line:#e3eaf3;--text:#17263d;--muted:#64748b;
 --green:#059669;--red:#dc3545;--orange:#d97706
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:14px system-ui,Arial,sans-serif}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text)}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-button:disabled{opacity:.5;cursor:not-allowed}
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .layout{display:flex;min-height:100vh}
-.sidebar{width:255px;background:linear-gradient(180deg,#122b4a,#081729);color:white;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0;padding:20px 12px}
-.logo{padding:15px 12px 28px;font-size:22px;font-weight:900;letter-spacing:-.7px}
-.logo span{color:#65adff}
-.logo small{display:block;font-size:10px;color:#9ebbd9;letter-spacing:2px;margin-top:6px}
-.nav{width:100%;border:0;text-align:left;background:transparent;color:#bfd1e5;border-radius:11px;padding:13px 14px;margin-bottom:4px}
+.sidebar{width:255px;background:linear-gradient(180deg,#122c4c,#08172d);color:white;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0;padding:23px 14px}
+.brand{font-size:21px;font-weight:900;letter-spacing:-.7px;padding:8px 12px 30px}
+.brand span{color:#60a5fa}
+.brand small{display:block;color:#9cb9d9;font-size:10px;letter-spacing:2px;margin-top:7px}
+.navtitle{font-size:10px;color:#799abf;letter-spacing:2px;margin:18px 12px 10px}
+.nav{width:100%;text-align:left;border:0;background:transparent;color:#c3d5e8;padding:13px;border-radius:10px;margin-bottom:4px}
 .nav:hover,.nav.active{background:#2563eb;color:white}
-.main{flex:1;min-width:0;padding:25px 30px 90px;max-width:1800px;margin:auto}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
-.top h1{font-size:26px;margin:3px 0}
+.sidefoot{font-size:11px;color:#91aac8;padding:20px 12px}
+.main{flex:1;min-width:0;padding:25px 30px 85px;max-width:1800px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}
+.top h1{font-size:25px;margin:4px 0}
 .muted{color:var(--muted)}
-.tag{border:1px solid var(--border);background:white;border-radius:30px;padding:9px 13px;color:#475569;font-size:12px}
-.hero{background:linear-gradient(115deg,#10365e,#2367c5 75%,#4c9cff);color:white;padding:29px;border-radius:19px;margin-bottom:20px;box-shadow:0 10px 25px #245cb722}
-.hero h2{font-size:25px;margin:0 0 8px}
-.hero p{margin:0;color:#d8e9ff;line-height:1.6}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:18px 0}
-.stat,.panel,.module,.kanban-col{background:white;border:1px solid var(--border);border-radius:16px;box-shadow:0 3px 13px #16345808}
+.small{font-size:12px}
+.pill{border:1px solid var(--line);background:white;border-radius:30px;padding:10px 14px;font-size:12px}
+.hero{background:linear-gradient(115deg,#0d3056,#1d58ac 70%,#4091f4);border-radius:20px;padding:31px;color:white;display:flex;justify-content:space-between;gap:20px;align-items:center;box-shadow:0 13px 30px #1b54a525}
+.hero h2{font-size:29px;margin:8px 0}
+.hero p{color:#d7e8ff;line-height:1.6;max-width:720px}
+.heroicon{font-size:70px;opacity:.8}
+.btn{border:0;background:var(--blue);color:white;border-radius:10px;padding:11px 16px;font-weight:700}
+.btn:hover{filter:brightness(.95)}
+.btn.secondary{background:#eaf1fc;color:#1c4b84}
+.btn.green{background:#d1fae5;color:#065f46}
+.btn.red{background:#fee2e2;color:#991b1b}
+.btn.dark{background:#17385e;color:white}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0}
+.stat,.panel,.feature,.employee,.item{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 16px #142d4d08}
 .stat{padding:20px}
 .stat small{color:var(--muted)}
-.stat strong{display:block;font-size:23px;margin:11px 0 4px;overflow-wrap:anywhere}
+.stat strong{display:block;font-size:27px;margin:12px 0 6px}
 .stat em{font-size:11px;color:var(--muted);font-style:normal}
-.panel{padding:22px;margin:17px 0}
-.panel h3{margin:0 0 15px;font-size:18px}
-.modules{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
-.module{padding:20px;text-align:left;min-height:138px;color:var(--text);transition:.2s}
-.module:hover{transform:translateY(-4px);border-color:#93c5fd;box-shadow:0 10px 25px #1c4d9220}
-.module .ico{font-size:28px}
-.module b{display:block;margin:12px 0 6px}
-.module small{color:var(--muted)}
-.btn{border:0;background:var(--blue);color:white;border-radius:10px;padding:11px 16px;font-weight:700}
-.btn:hover{filter:brightness(.94)}
-.btn.secondary{background:#e8f0fc;color:#194578}
-.btn.danger{background:#fee2e2;color:#991b1b}
-.btn.green{background:#d1fae5;color:#065f46}
-.btn.dark{background:#17385c;color:white}
-.toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:14px 0}
-.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.field{display:flex;flex-direction:column;gap:6px;min-width:0}
-.field label{font-size:12px;color:#506b88;font-weight:650}
-.field input,.field select,.field textarea,.search{
-width:100%;min-height:44px;border:1px solid #d7e1ee;background:#f9fbff;
-color:#17263d;padding:11px;border-radius:9px
-}
-.field textarea{min-height:105px;resize:vertical}
+.panel{padding:23px;margin:18px 0}
+.panel h3{margin:0 0 16px;font-size:19px}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:27px 0 14px}
+.sectionhead h2{font-size:20px;margin:0}
+.features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.feature{padding:20px;text-align:left;min-height:150px;transition:.18s;color:var(--text);position:relative}
+.feature:hover{transform:translateY(-4px);border-color:#93c5fd;box-shadow:0 13px 28px #164c9220}
+.feature .icon{font-size:29px}
+.feature b{display:block;font-size:14px;margin:14px 0 7px}
+.feature small{display:block;color:var(--muted);line-height:1.5}
+.feature .count{position:absolute;top:16px;right:15px;font-size:11px;color:#2563eb;background:#eff6ff;padding:5px 8px;border-radius:20px}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0}
+.search,input,select,textarea{border:1px solid #d8e2ef;background:#f9fbff;border-radius:10px;padding:11px;color:var(--text);max-width:100%}
+.search{width:100%;min-height:45px}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:12px;color:#496684;font-weight:700}
+.field input,.field select,.field textarea{width:100%;min-height:44px}
+.field textarea{min-height:95px;resize:vertical}
 .full{grid-column:1/-1}
-.section{grid-column:1/-1;border-bottom:1px solid var(--border);padding:12px 0 8px;color:#1d4f89;font-weight:800;font-size:15px}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:630px}
-th,td{text-align:left;padding:13px 10px;border-bottom:1px solid var(--border);vertical-align:top}
-th{color:#55708f;font-size:12px}
-td{overflow-wrap:anywhere}
-.action{border:0;background:#e9f1ff;color:#194a88;padding:7px 10px;border-radius:7px;margin:2px}
-.empty{padding:24px;color:var(--muted);text-align:center}
-.chart{display:flex;align-items:end;gap:12px;height:200px;border-bottom:1px solid var(--border);padding:10px}
-.chart-group{flex:1;display:flex;align-items:end;justify-content:center;gap:4px;height:100%;position:relative;padding-bottom:22px}
-.bar{width:38%;min-height:2px;border-radius:5px 5px 0 0}
-.bar.in{background:#2563eb}.bar.out{background:#f59e0b}
-.chart-group small{position:absolute;bottom:0;font-size:11px;color:var(--muted)}
-.legend{display:flex;gap:18px;color:var(--muted);font-size:12px;margin:12px 0}
-.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}
-.kanban{display:grid;grid-template-columns:repeat(4,minmax(230px,1fr));gap:12px;overflow-x:auto}
-.kanban-col{padding:13px;min-height:180px}
-.kanban-col h4{margin:0 0 12px}
-.lead{background:#f3f7ff;border:1px solid #dce7f5;border-radius:10px;padding:13px;margin:9px 0}
-.lead b{display:block;margin-bottom:7px}
-.lead small{color:var(--muted)}
-.lead select{width:100%;padding:8px;margin-top:10px;border:1px solid #d4e0ef;border-radius:7px}
-.paper{background:white;max-width:794px;min-height:700px;margin:auto;padding:55px;box-shadow:0 10px 35px #142b4b22;color:#202d3b;font:15px/1.65 Arial}
-.paper h1{text-align:center;font-size:24px;margin:45px 0}
-.paper .docbody{min-height:250px;outline:none;white-space:pre-wrap}
-.paper .docbody:focus{outline:1px dashed #93c5fd}
-.paper .dochead{border-bottom:3px solid #2563eb;padding-bottom:18px}
-.paper .signature{text-align:center;margin-top:70px}
-.paperwrap{background:#dfe7f1;padding:18px;border-radius:12px;overflow:auto}
-.editor-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:15px}
-.editor-tools{background:white;border:1px solid var(--border);border-radius:12px;padding:15px}
-.editor-tools .field{margin-bottom:12px}
-.notice{background:#eff6ff;border:1px solid #bfdbfe;padding:15px;border-radius:11px;line-height:1.6;color:#245081}
-.alert{color:#b45309}
-.mobile{display:none}
-@media(max-width:1150px){.modules{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:800px){
-.sidebar{display:none}.main{padding:15px 12px 85px}
-.modules{grid-template-columns:repeat(2,1fr)}
-.form,.editor-grid{grid-template-columns:1fr}
-.hero{padding:20px}.hero h2{font-size:21px}
-.stat{padding:14px}.stat strong{font-size:19px}
-.panel{padding:15px}.paper{padding:25px;min-height:500px;font-size:13px}
-.mobile{display:flex;position:fixed;bottom:0;left:0;right:0;background:#0b1930;justify-content:space-around;padding:10px;z-index:50}
-.mobile button{background:none;border:0;color:white;padding:8px;font-size:12px}
+.divider{grid-column:1/-1;font-size:14px;font-weight:800;color:#1e5794;border-bottom:1px solid var(--line);padding:12px 0 8px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th{color:#59728e;font-size:12px}
+.action{background:#eaf1fc;color:#20518b;border:0;border-radius:8px;padding:8px 10px;margin:2px}
+.action.danger{background:#fee2e2;color:#991b1b}
+.back{background:transparent;border:0;color:#2563eb;font-weight:750;padding:10px 0;margin-bottom:10px}
+.empty{text-align:center;padding:35px;color:var(--muted)}
+.notice{background:#eff6ff;border:1px solid #bfdbfe;color:#235384;padding:15px;border-radius:12px;line-height:1.6}
+.employeegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.employee{padding:18px}
+.avatar{background:#dbeafe;color:#1d4ed8;border-radius:13px;width:45px;height:45px;display:grid;place-items:center;font-size:20px;font-weight:800}
+.employee h4{margin:12px 0 5px}
+.employee p{font-size:12px;color:var(--muted);margin:4px 0}
+.badge{display:inline-block;background:#dcfce7;color:#166534;padding:5px 9px;border-radius:20px;font-size:11px}
+.emptyicon{font-size:44px;opacity:.6}
+.bottomnav{display:none}
+@media(max-width:1200px){.features{grid-template-columns:repeat(3,1fr)}.employeegrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.sidebar{width:215px}.main{padding:20px}.features{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){
+.sidebar{display:none}.main{padding:15px 12px 90px}
+.top h1{font-size:20px}.pill{font-size:10px}
+.hero{padding:21px}.hero h2{font-size:23px}.heroicon{display:none}
+.features{gap:10px}.feature{padding:15px;min-height:145px}.feature b{font-size:13px}
+.feature small{font-size:11px}
+.stats{gap:10px}.stat{padding:14px}.stat strong{font-size:21px}
+.panel{padding:15px}.form,.employeegrid{grid-template-columns:1fr}
+.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#0b1d35;padding:10px;justify-content:space-around;z-index:30}
+.bottomnav button{background:transparent;border:0;color:white;font-size:12px;padding:8px}
 }
 @media print{
-body.print-doc .layout,body.print-doc .mobile{display:none!important}
-body.print-doc #printHost{display:block!important;position:absolute;inset:0;background:white}
-body.print-doc #printHost .paper{box-shadow:none;max-width:none}
-@page{size:A4;margin:0}
+.sidebar,.top,.bottomnav,.toolbar,.back,.action,.btn{display:none!important}
+.main{padding:0}.panel{box-shadow:none;border:0}
+body{background:white}
 }
-#printHost{display:none}
 </style>
 </head>
 <body>
+
 <div class="layout">
 <aside class="sidebar">
-<div class="logo">MEU <span>NEGÓCIO</span><small>BUSINESS PRO • V3</small></div>
-<div id="navigation"></div>
+<div class="brand">MEU <span>NEGÓCIO</span><small>BUSINESS PRO • RH</small></div>
+<div class="navtitle">PLATAFORMA</div>
+<button class="nav" onclick="show('home')">⌂ Painel principal</button>
+<button class="nav active" onclick="show('rh')">👥 Central RH PRO</button>
+<div class="navtitle">RECURSOS HUMANOS</div>
+<button class="nav" onclick="openModule('funcionarios')">👤 Colaboradores</button>
+<button class="nav" onclick="openModule('ponto')">🕒 Controle de ponto</button>
+<button class="nav" onclick="openModule('ferias')">🏖️ Férias e licenças</button>
+<button class="nav" onclick="openModule('folha')">💰 Folha gerencial</button>
+<button class="nav" onclick="openModule('recrutamento')">🎯 Recrutamento</button>
+<button class="nav" onclick="openModule('avaliacoes')">📈 Desempenho</button>
+<button class="nav" onclick="openModule('treinamentos')">🎓 Treinamentos</button>
+<button class="nav" onclick="openModule('documentos')">📄 Documentos RH</button>
+<button class="nav" onclick="openModule('relatorios')">📊 Relatórios RH</button>
+<div class="sidefoot">Versão de demonstração local.<br>Dados salvos neste navegador.</div>
 </aside>
+
 <main class="main">
 <header class="top">
-<div><div class="muted">Plataforma empresarial integrada</div><h1 id="pageTitle">Visão geral</h1></div>
-<span class="tag">🔒 Ambiente de teste local</span>
+<div>
+<div class="muted small">BUSINESS PRO / MEU NEGÓCIO</div>
+<h1 id="pageTitle">Central RH PRO</h1>
+</div>
+<span class="pill">🔒 Teste local</span>
 </header>
 <div id="app"></div>
 </main>
 </div>
-<div class="mobile">
-<button onclick="go('home')">⌂ Início</button>
-<button onclick="go('vendas')">🛒 Vendas</button>
-<button onclick="go('financeiro')">💳 Caixa</button>
-<button onclick="go('documentos')">📄 Office</button>
-<button onclick="go('relatorios')">📊 Dados</button>
+
+<div class="bottomnav">
+<button onclick="show('home')">⌂ Início</button>
+<button onclick="show('rh')">👥 RH</button>
+<button onclick="openModule('funcionarios')">👤 Equipe</button>
+<button onclick="openModule('ponto')">🕒 Ponto</button>
+<button onclick="openModule('relatorios')">📊 Dados</button>
 </div>
-<div id="printHost"></div>
 
 <script>
 "use strict";
 
-const NAV=[
-["home","⌂","Visão geral","Dashboard executivo"],
-["gestao","🏢","Gestão","Empresa e fornecedores"],
-["financeiro","💳","Financeiro","Contas e fluxo de caixa"],
-["vendas","🛒","Vendas","Clientes, CRM e pedidos"],
-["documentos","📄","Documentos","Central Office"],
-["rh","👥","RH","Pessoas e equipes"],
-["estoque","📦","Estoque","Produtos e movimentações"],
-["fiscal","🧾","Fiscal","Controle documental"],
-["operacoes","📋","Operações","Projetos e tarefas"],
-["relatorios","📊","Relatórios","Indicadores e backup"],
-["ia","✨","BUSINESS IA","Assistente gerencial"]
+/* ===============================
+   CONFIGURAÇÃO E ARMAZENAMENTO
+================================ */
+
+const KEY="meu_negocio_rh_pro_demo_v1";
+
+const MODULES=[
+["funcionarios","👥","Colaboradores","Cadastro e ficha profissional"],
+["admissoes","📝","Admissões","Processos de contratação"],
+["desligamentos","🚪","Desligamentos","Controle de desligamentos"],
+["ponto","🕒","Ponto eletrônico","Registro de entradas e saídas"],
+["bancoHoras","⏱️","Banco de horas","Créditos e débitos de horas"],
+["escalas","📅","Escalas e jornadas","Turnos e horários"],
+["ferias","🏖️","Férias e licenças","Planejamento e solicitações"],
+["folha","💰","Folha gerencial","Lançamentos remuneratórios"],
+["holerites","🧾","Holerites","Demonstrativos internos"],
+["beneficios","🎁","Benefícios","Auxílios e vantagens"],
+["recrutamento","🎯","Recrutamento","Vagas e processos seletivos"],
+["candidatos","📋","Candidatos","Banco de talentos"],
+["avaliacoes","📈","Avaliações","Desempenho profissional"],
+["metas","🏆","Metas e PDI","Desenvolvimento individual"],
+["treinamentos","🎓","Treinamentos","Cursos e capacitações"],
+["certificados","📜","Certificados","Controle de qualificações"],
+["saude","🩺","Saúde ocupacional","Exames e acompanhamento"],
+["epis","🦺","EPIs e segurança","Equipamentos e entregas"],
+["documentos","📄","Documentos RH","Arquivos e documentos"],
+["assinaturas","✍️","Assinaturas","Solicitações de assinatura"],
+["portal","📱","Portal do colaborador","Solicitações internas"],
+["solicitacoes","📨","Solicitações","Pedidos e aprovações"],
+["comunicados","📢","Comunicados","Avisos corporativos"],
+["clima","💬","Pesquisa de clima","Opiniões e questionários"],
+["organograma","🏢","Organograma","Estrutura organizacional"],
+["cargos","💼","Cargos e salários","Estrutura de remuneração"],
+["auditoria","🔐","Auditoria RH","Histórico de alterações"],
+["relatorios","📊","Relatórios RH","Indicadores e exportações"]
 ];
 
-const STORAGE="meu_negocio_v3_local";
-const initial=()=>({
-empresa:{},clientes:[],fornecedores:[],funcionarios:[],
-produtos:[],contas:[],vendas:[],leads:[],
-tarefas:[],projetos:[],fiscais:[],
-movimentos:[],documentos:[],bancos:[],
-ferias:[],auditoria:[]
-});
+const SPECIAL=new Set(["relatorios","auditoria","organograma"]);
 
-let db=initial(),page="home",formOpen="",editId=null;
-let saleItems=[],draftDocument=null;
+function fresh(){
+return {
+funcionarios:[],logs:[],
+...Object.fromEntries(MODULES.filter(m=>!SPECIAL.has(m[0])&&m[0]!=="funcionarios").map(m=>[m[0],[]]))
+};
+}
+
+let db=fresh(),current="rh",editing=null,filterText="";
 
 try{
-const saved=JSON.parse(localStorage.getItem(STORAGE)||"null");
+const saved=JSON.parse(localStorage.getItem(KEY)||"null");
 if(saved&&typeof saved==="object"){
 for(const k of Object.keys(db)){
-if(k==="empresa"&&saved[k]&&!Array.isArray(saved[k]))db[k]=saved[k];
-else if(Array.isArray(db[k])&&Array.isArray(saved[k]))db[k]=saved[k];
+if(Array.isArray(saved[k]))db[k]=saved[k];
 }
 }
-}catch(e){}
+}catch(e){console.warn("Dados locais inválidos",e)}
 
 const $=id=>document.getElementById(id);
-const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({
 "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
-const money=n=>Number(n||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const uid=()=>globalThis.crypto?.randomUUID?.()||
+Date.now()+"-"+Math.random().toString(36).slice(2);
 const today=()=>new Date().toLocaleDateString("en-CA");
-const id=()=>crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random();
-const num=x=>Number(x||0);
-const sum=a=>a.reduce((s,n)=>s+num(n),0);
+const money=v=>Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const moduleName=k=>MODULES.find(x=>x[0]===k)?.[2]||k;
 
-function persist(){
-try{localStorage.setItem(STORAGE,JSON.stringify(db));return true}
-catch(e){alert("Não foi possível salvar. Verifique o armazenamento.");return false}
-}
-function change(action,description){
+function commit(fn,desc){
 const old=JSON.stringify(db);
-action();
-db.auditoria.unshift({id:id(),data:new Date().toISOString(),descricao:description});
-db.auditoria=db.auditoria.slice(0,500);
-if(!persist()){db=JSON.parse(old);return false}
-return true;
+fn();
+db.logs.unshift({id:uid(),data:new Date().toISOString(),descricao:desc});
+db.logs=db.logs.slice(0,1000);
+try{localStorage.setItem(KEY,JSON.stringify(db));return true}
+catch(e){db=JSON.parse(old);alert("Não foi possível salvar. Verifique o armazenamento.");return false}
 }
-function file(name,text,type){
-const url=URL.createObjectURL(new Blob([text],{type}));
+
+function download(name,content,type){
+const url=URL.createObjectURL(new Blob([content],{type}));
 const a=document.createElement("a");
 a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
 setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
-function F(k,l,t="text",req=false,opts=[]){return {k,l,t,req,opts}}
-function H(t){return {heading:t}}
 
-const SC={
-clientes:{name:"Clientes",fields:[
-H("Identificação"),F("nome","Nome / razão social","text",true),
-F("tipo","Tipo","select",false,["Pessoa física","Pessoa jurídica"]),
-F("documento","CPF / CNPJ"),F("fantasia","Nome fantasia"),
-H("Contato"),F("telefone","Telefone"),F("whatsapp","WhatsApp"),
-F("email","E-mail","email"),F("responsavel","Responsável"),
-H("Localização"),F("cep","CEP"),F("endereco","Endereço"),
-F("cidade","Cidade"),F("uf","UF"),
-H("Relacionamento"),F("origem","Origem do cliente"),
-F("segmento","Segmento"),F("status","Situação","select",false,["Ativo","Prospect","Inativo"]),
-F("observacoes","Observações","textarea")
-]},
-fornecedores:{name:"Fornecedores",fields:[
-H("Empresa"),F("nome","Razão social","text",true),F("fantasia","Nome fantasia"),
-F("documento","CPF / CNPJ"),F("categoria","Categoria"),
-H("Contato"),F("responsavel","Contato principal"),F("telefone","Telefone"),
-F("email","E-mail","email"),F("cidade","Cidade"),F("uf","UF"),
-H("Fornecimento"),F("produtos","O que fornece","textarea",true),
-F("marcas","Marcas"),F("prazo","Prazo de entrega (dias)","number"),
-F("pedidoMinimo","Pedido mínimo (R$)","number"),
-F("pagamento","Condições de pagamento"),
-F("garantia","Garantia e devoluções"),
-F("avaliacao","Avaliação","select",false,["Não avaliado","Excelente","Bom","Regular","Ruim"]),
-F("observacoes","Observações","textarea")
-]},
-funcionarios:{name:"Funcionários",fields:[
-H("Identificação"),F("nome","Nome completo","text",true),
-F("cpf","CPF"),F("nascimento","Nascimento","date"),
-F("email","E-mail","email"),F("telefone","Telefone"),
-H("Trabalho"),F("matricula","Matrícula"),F("cargo","Cargo","text",true),
-F("departamento","Departamento"),F("gestor","Gestor"),
-F("admissao","Admissão","date"),F("vinculo","Vínculo","select",false,["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"]),
-F("situacao","Situação","select",false,["Ativo","Férias","Afastado","Desligado"]),
-H("Remuneração e jornada"),F("salario","Salário (R$)","number"),
-F("jornada","Horas semanais","number"),F("escala","Escala"),
-F("beneficios","Benefícios","textarea"),F("treinamentos","Treinamentos","textarea"),
-F("observacoes","Observações","textarea")
-]},
-produtos:{name:"Produtos e serviços",fields:[
-H("Identificação"),F("nome","Produto / serviço","text",true),
-F("sku","SKU"),F("codigo","Código de barras"),
-F("tipo","Tipo","select",false,["Produto","Serviço"]),
-F("categoria","Categoria"),F("marca","Marca"),
-F("descricao","Descrição","textarea"),
-H("Valores"),F("preco","Preço de venda (R$)","number",true),
-F("custo","Custo (R$)","number"),
-H("Estoque"),F("quantidade","Quantidade atual","number"),
-F("minimo","Estoque mínimo","number"),
-F("unidade","Unidade","select",false,["UN","KG","CX","L","M","M²","HORA"]),
-F("local","Localização"),F("lote","Lote"),
-F("validade","Validade","date"),F("fornecedor","Fornecedor")
-]},
-contas:{name:"Contas financeiras",fields:[
-H("Lançamento"),F("descricao","Descrição","text",true),
-F("tipo","Tipo","select",true,["Receita","Despesa"]),
-F("categoria","Categoria"),F("pessoa","Cliente / fornecedor"),
-F("centro","Centro de custo"),F("referencia","Referência"),
-H("Valores"),F("valor","Valor (R$)","number",true),
-F("desconto","Desconto (R$)","number"),
-F("juros","Juros (R$)","number"),
-H("Datas"),F("emissao","Emissão","date"),
-F("vencimento","Vencimento","date",true),
-F("pagamento","Data de pagamento","date"),
-F("status","Situação","select",true,["Pendente","Pago","Cancelado"]),
-F("forma","Forma de pagamento","select",false,["Não definida","Pix","Dinheiro","Cartão","Boleto","Transferência"]),
-F("banco","Conta bancária"),
-F("observacoes","Observações","textarea")
-]},
-bancos:{name:"Contas bancárias",fields:[
-F("nome","Identificação da conta","text",true),
-F("banco","Instituição"),F("agencia","Agência"),
-F("numero","Número da conta"),F("tipo","Tipo","select",false,["Corrente","Poupança","Caixa interno"]),
-F("saldoInicial","Saldo inicial (R$)","number"),
-F("observacoes","Observações","textarea")
-]},
-leads:{name:"Oportunidades CRM",fields:[
-F("nome","Oportunidade","text",true),
-F("cliente","Cliente"),F("responsavel","Vendedor"),
-F("valor","Valor previsto (R$)","number"),
-F("etapa","Etapa","select",false,["Novo","Contato","Proposta","Negociação","Ganho","Perdido"]),
-F("proximo","Próximo contato","date"),
-F("observacoes","Observações","textarea")
-]},
-tarefas:{name:"Tarefas e ordens de serviço",fields:[
-F("titulo","Título","text",true),
-F("tipo","Tipo","select",false,["Tarefa","Ordem de serviço","Manutenção","Inspeção"]),
-F("cliente","Cliente"),F("projeto","Projeto"),
-F("responsavel","Responsável"),F("inicio","Início","date"),
-F("prazo","Prazo","date"),
-F("prioridade","Prioridade","select",false,["Baixa","Média","Alta","Urgente"]),
-F("status","Situação","select",false,["Pendente","Em andamento","Concluído","Cancelado"]),
-F("custo","Custo estimado (R$)","number"),
-F("materiais","Materiais","textarea"),F("descricao","Descrição","textarea")
-]},
-projetos:{name:"Projetos",fields:[
-F("nome","Projeto","text",true),F("cliente","Cliente"),
-F("responsavel","Responsável"),F("inicio","Início","date"),
-F("fim","Prazo final","date"),F("orcamento","Orçamento (R$)","number"),
-F("progresso","Progresso (%)","number"),
-F("status","Situação","select",false,["Planejado","Em andamento","Pausado","Concluído"]),
-F("descricao","Objetivo e escopo","textarea")
-]},
-fiscais:{name:"Registros fiscais",fields:[
-F("numero","Número do documento","text",true),
-F("tipo","Tipo","select",false,["NF-e","NFS-e","NFC-e","CT-e","Outro"]),
-F("chave","Chave de acesso"),F("emissor","Emissor"),
-F("destinatario","Destinatário"),F("valor","Valor (R$)","number"),
-F("emissao","Emissão","date"),F("competencia","Competência"),
-F("status","Situação","select",false,["Pendente","Conferido","Arquivado"]),
-F("contador","Contador"),F("prazo","Prazo","date"),
-F("observacoes","Observações","textarea")
-]},
-ferias:{name:"Férias e afastamentos",fields:[
-F("funcionario","Funcionário","text",true),
-F("tipo","Tipo","select",false,["Férias","Afastamento","Licença"]),
-F("inicio","Início","date",true),F("fim","Fim","date",true),
-F("status","Situação","select",false,["Planejado","Aprovado","Concluído"]),
-F("observacoes","Observações","textarea")
-]}
-};
+/* ===============================
+   DEFINIÇÃO DOS FORMULÁRIOS
+================================ */
 
-const companyFields=[
-H("Identificação"),F("razao","Razão social","text",true),
-F("fantasia","Nome fantasia"),F("cnpj","CNPJ"),
-F("porte","Porte","select",false,["MEI","ME","EPP","Média","Grande"]),
-F("regime","Regime tributário","select",false,["Não informado","Simples Nacional","Lucro Presumido","Lucro Real"]),
-F("cnae","CNAE"),F("atividade","Atividade principal"),
-F("abertura","Data de abertura","date"),
-F("ie","Inscrição estadual"),F("im","Inscrição municipal"),
-H("Responsáveis"),F("responsavel","Responsável legal"),
-F("email","E-mail","email"),F("telefone","Telefone"),
-F("site","Site"),
-H("Endereço"),F("cep","CEP"),F("endereco","Logradouro"),
-F("numero","Número"),F("bairro","Bairro"),
-F("cidade","Cidade"),F("uf","UF"),
-H("Planejamento"),F("missao","Missão da empresa","textarea"),
-F("metas","Metas empresariais","textarea"),
-F("observacoes","Observações","textarea")
+const f=(key,label,type="text",required=false,options=[])=>({key,label,type,required,options});
+const h=label=>({heading:label});
+
+const employeeFields=[
+h("Identificação pessoal"),
+f("nome","Nome completo","text",true),
+f("matricula","Matrícula"),
+f("cpf","CPF"),f("nascimento","Nascimento","date"),
+f("email","E-mail","email"),f("telefone","Telefone"),
+f("endereco","Endereço"),f("cidade","Cidade"),
+h("Vínculo profissional"),
+f("cargo","Cargo","text",true),
+f("departamento","Departamento"),
+f("gestor","Gestor"),
+f("admissao","Data de admissão","date"),
+f("vinculo","Tipo de vínculo","select",false,["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"]),
+f("situacao","Situação","select",false,["Ativo","Férias","Afastado","Desligado"]),
+h("Remuneração e jornada"),
+f("salario","Salário-base informado (R$)","number"),
+f("horas","Jornada semanal (horas)","number"),
+f("escala","Escala"),
+f("beneficios","Benefícios","textarea"),
+h("Informações adicionais"),
+f("habilidades","Habilidades","textarea"),
+f("formacao","Formação"),
+f("observacoes","Observações","textarea")
 ];
 
-function input(f,v="",prefix="f"){
-const key=prefix+"_"+f.k;
-let control="";
-if(f.t==="select"){
-control=`<select name="${esc(f.k)}" id="${key}" ${f.req?"required":""}>
-${f.opts.map(o=>`<option value="${esc(o)}" ${v===o?"selected":""}>${esc(o)}</option>`).join("")}
-</select>`;
-}else if(f.t==="textarea"){
-control=`<textarea name="${esc(f.k)}" id="${key}" ${f.req?"required":""}>${esc(v)}</textarea>`;
-}else{
-control=`<input id="${key}" name="${esc(f.k)}" type="${f.t}" value="${esc(v)}"
-${f.req?"required":""} ${f.t==="number"?'step="any"':""}>`;
+const common=[
+f("funcionario","Funcionário","employee",true),
+f("data","Data","date",true),
+f("status","Situação","select",false,["Pendente","Em andamento","Aprovado","Concluído","Cancelado"]),
+f("descricao","Descrição","textarea")
+];
+
+const SCHEMA={
+funcionarios:employeeFields,
+admissoes:[
+...common,
+f("cargo","Cargo"),f("inicio","Data prevista de início","date"),
+f("etapa","Etapa","select",false,["Documentação","Exame admissional","Contrato","Integração","Concluído"]),
+f("responsavel","Responsável")
+],
+desligamentos:[
+...common,f("motivo","Motivo"),f("dataSaida","Data de saída","date"),
+f("tipo","Tipo de desligamento"),f("responsavel","Responsável")
+],
+ponto:[
+f("funcionario","Funcionário","employee",true),
+f("data","Data","date",true),
+f("entrada","Entrada","time",true),
+f("saidaIntervalo","Início do intervalo","time"),
+f("voltaIntervalo","Fim do intervalo","time"),
+f("saida","Saída","time",true),
+f("observacoes","Observações","textarea")
+],
+bancoHoras:[
+...common,
+f("tipo","Movimento","select",false,["Crédito","Débito"]),
+f("horas","Horas (decimal)","number",true),
+f("motivo","Motivo")
+],
+escalas:[
+f("funcionario","Funcionário","employee",true),
+f("inicio","Início","date",true),
+f("fim","Fim","date",true),
+f("turno","Turno"),f("entrada","Entrada","time"),
+f("saida","Saída","time"),f("folgas","Folgas"),f("descricao","Observações","textarea")
+],
+ferias:[
+f("funcionario","Funcionário","employee",true),
+f("tipo","Tipo","select",false,["Férias","Licença","Afastamento"]),
+f("inicio","Início","date",true),
+f("fim","Fim","date",true),
+f("status","Situação","select",false,["Solicitado","Aprovado","Rejeitado","Concluído"]),
+f("aprovador","Responsável pela aprovação"),
+f("observacoes","Observações","textarea")
+],
+folha:[
+f("funcionario","Funcionário","employee",true),
+f("competencia","Competência (AAAA-MM)","month",true),
+f("salario","Salário-base (R$)","number",true),
+f("adicionais","Adicionais informados (R$)","number"),
+f("descontos","Descontos informados (R$)","number"),
+f("status","Situação","select",false,["Rascunho","Conferido","Fechado"]),
+f("observacoes","Observações","textarea")
+],
+holerites:[
+f("funcionario","Funcionário","employee",true),
+f("competencia","Competência","month",true),
+f("proventos","Proventos informados (R$)","number"),
+f("descontos","Descontos informados (R$)","number"),
+f("observacoes","Observações","textarea")
+],
+beneficios:[
+...common,f("beneficio","Benefício","text",true),
+f("valor","Valor mensal (R$)","number"),
+f("fornecedor","Fornecedor")
+],
+recrutamento:[
+f("titulo","Título da vaga","text",true),
+f("departamento","Departamento"),
+f("local","Localidade"),
+f("modelo","Modelo","select",false,["Presencial","Remoto","Híbrido"]),
+f("tipo","Vínculo"),
+f("salario","Remuneração prevista (R$)","number"),
+f("abertura","Abertura","date"),
+f("prazo","Prazo","date"),
+f("status","Situação","select",false,["Aberta","Triagem","Entrevistas","Encerrada"]),
+f("requisitos","Requisitos","textarea"),
+f("descricao","Descrição da vaga","textarea")
+],
+candidatos:[
+f("nome","Nome","text",true),
+f("email","E-mail","email"),
+f("telefone","Telefone"),
+f("vaga","Vaga pretendida"),
+f("formacao","Formação"),
+f("experiencia","Experiência","textarea"),
+f("etapa","Etapa","select",false,["Inscrito","Triagem","Entrevista","Teste","Aprovado","Reprovado"]),
+f("observacoes","Observações","textarea")
+],
+avaliacoes:[
+...common,f("avaliador","Avaliador"),
+f("nota","Nota (0 a 10)","number"),
+f("competencias","Competências avaliadas","textarea"),
+f("feedback","Feedback","textarea")
+],
+metas:[
+...common,f("meta","Meta","text",true),
+f("prazo","Prazo","date"),
+f("progresso","Progresso (%)","number"),
+f("acoes","Plano de desenvolvimento","textarea")
+],
+treinamentos:[
+f("titulo","Treinamento","text",true),
+f("funcionario","Participante","employee",true),
+f("instrutor","Instrutor"),
+f("inicio","Início","date"),
+f("fim","Fim","date"),
+f("carga","Carga horária","number"),
+f("status","Situação","select",false,["Planejado","Em andamento","Concluído"]),
+f("descricao","Conteúdo","textarea")
+],
+certificados:[
+...common,f("curso","Curso / certificação","text",true),
+f("instituicao","Instituição"),
+f("validade","Validade","date"),
+f("carga","Carga horária","number")
+],
+saude:[
+f("funcionario","Funcionário","employee",true),
+f("tipo","Tipo de exame / ação","text",true),
+f("data","Data","date",true),
+f("validade","Próxima data","date"),
+f("status","Situação","select",false,["Agendado","Realizado","Pendente"]),
+f("observacoes","Observações administrativas","textarea")
+],
+epis:[
+...common,f("equipamento","Equipamento","text",true),
+f("quantidade","Quantidade","number"),
+f("ca","Certificado de aprovação (CA)"),
+f("devolucao","Data prevista de devolução","date")
+],
+documentos:[
+...common,f("tipo","Tipo de documento","text",true),
+f("referencia","Número / referência"),
+f("validade","Validade","date"),
+f("local","Local de armazenamento / referência")
+],
+assinaturas:[
+...common,f("documento","Documento","text",true),
+f("signatario","Signatário"),
+f("prazo","Prazo","date")
+],
+portal:[
+...common,f("assunto","Assunto","text",true),
+f("resposta","Resposta","textarea")
+],
+solicitacoes:[
+...common,f("tipo","Tipo de solicitação","text",true),
+f("responsavel","Responsável"),
+f("prazo","Prazo","date")
+],
+comunicados:[
+f("titulo","Título","text",true),
+f("data","Data","date",true),
+f("publico","Público-alvo"),
+f("mensagem","Comunicado","textarea",true)
+],
+clima:[
+f("titulo","Pesquisa / questão","text",true),
+f("departamento","Departamento"),
+f("data","Data","date"),
+f("nota","Nota agregada (0 a 10)","number"),
+f("comentario","Comentário não identificável","textarea")
+],
+cargos:[
+f("nome","Cargo","text",true),
+f("departamento","Departamento"),
+f("nivel","Nível"),
+f("faixaMin","Faixa salarial mínima (R$)","number"),
+f("faixaMax","Faixa salarial máxima (R$)","number"),
+f("requisitos","Requisitos","textarea"),
+f("responsabilidades","Responsabilidades","textarea")
+]
+};
+
+/* ===============================
+   PAINEL PRINCIPAL
+================================ */
+
+function stats(){
+const employees=db.funcionarios;
+const active=employees.filter(x=>x.situacao==="Ativo").length;
+const vacation=db.ferias.filter(x=>x.status==="Aprovado").length;
+const vacancies=db.recrutamento.filter(x=>x.status==="Aberta").length;
+const pending=db.solicitacoes.filter(x=>x.status==="Pendente").length;
+return [
+["Colaboradores ativos",active,"Pessoas ativas"],
+["Férias aprovadas",vacation,"Registros de férias"],
+["Vagas abertas",vacancies,"Processos seletivos"],
+["Solicitações pendentes",pending,"Aguardando análise"]
+];
 }
-return `<div class="field"><label for="${key}">${esc(f.l)}${f.req?" *":""}</label>${control}</div>`;
+
+function statCards(){
+return `<div class="stats">${stats().map(s=>`
+<div class="stat"><small>${s[0]}</small><strong>${s[1]}</strong><em>${s[2]}</em></div>
+`).join("")}</div>`;
 }
-function fields(arr,values={},prefix="f"){
-return arr.map(f=>f.heading?`<div class="section">${esc(f.heading)}</div>`:
-input(f,values[f.k]??"",prefix)).join("");
+
+function show(p){
+current=p;editing=null;filterText="";
+$("pageTitle").textContent=p==="home"?"MEU NEGÓCIO PRO":"Central RH PRO";
+document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+if(p==="home"){
+$("app").innerHTML=`
+<div class="hero">
+<div><small>BUSINESS PRO</small>
+<h2>Bem-vindo ao MEU NEGÓCIO</h2>
+<p>Seu ambiente empresarial integrado. Acesse o departamento de Recursos Humanos para gerenciar pessoas, processos e indicadores.</p>
+<button class="btn" onclick="show('rh')">Entrar na Central RH PRO →</button>
+</div><div class="heroicon">🏢</div></div>
+<div class="sectionhead"><h2>Departamentos</h2></div>
+<div class="features">
+${[
+["👥","Recursos Humanos","Central RH completa","rh"],
+["💰","Financeiro","Departamento do sistema principal",null],
+["🛒","Vendas","Departamento do sistema principal",null],
+["📄","Documentos","Departamento do sistema principal",null],
+["📦","Estoque","Departamento do sistema principal",null],
+["🧾","Fiscal","Departamento do sistema principal",null],
+["⚙️","Operações","Departamento do sistema principal",null],
+["📊","Relatórios","Departamento do sistema principal",null],
+["🏢","Gestão","Departamento do sistema principal",null],
+["✨","BUSINESS IA","Departamento do sistema principal",null]
+].map(x=>`<button class="feature" onclick="${x[3]?"show('rh')":"otherDepartment()"}">
+<span class="icon">${x[0]}</span><b>${x[1]}</b><small>${x[2]}</small></button>`).join("")}
+</div>`;
+return;
 }
-function hero(title,desc){
-return `<div class="hero"><h2>${title}</h2><p>${desc}</p></div>`;
+renderRH();
 }
-function stat(title,value,sub=""){
-return `<div class="stat"><small>${title}</small><strong>${value}</strong><em>${sub}</em></div>`;
+
+function otherDepartment(){
+alert("Este index é o protótipo da Central RH. Os outros departamentos permanecem no projeto principal e não estão implementados neste arquivo.");
 }
-function accountValue(x){
-return num(x.valor)-num(x.desconto)+num(x.juros);
-}
-function accountSum(type,status){
-return sum(db.contas.filter(x=>x.tipo===type&&x.status===status).map(accountValue));
-}
-function metrics(){
-const income=accountSum("Receita","Pago");
-const expense=accountSum("Despesa","Pago");
-const receive=accountSum("Receita","Pendente");
-const pay=accountSum("Despesa","Pendente");
-return {income,expense,receive,pay,balance:income-expense};
-}
-function statsHTML(){
-const m=metrics();
-return `<div class="stats">
-${stat("Faturamento recebido",money(m.income),"Receitas realizadas")}
-${stat("Despesas pagas",money(m.expense),"Saídas realizadas")}
-${stat("Saldo realizado",money(m.balance),"Receitas menos despesas")}
-${stat("A receber",money(m.receive),"Cobranças pendentes")}
-${stat("A pagar",money(m.pay),"Contas pendentes")}
-${stat("Clientes",db.clientes.length,"Total cadastrado")}
-${stat("Funcionários",db.funcionarios.length,"Registros de RH")}
-${stat("Produtos",db.produtos.length,"Catálogo")}
+
+function renderRH(){
+$("app").innerHTML=`
+<div class="hero">
+<div>
+<small>GESTÃO DE PESSOAS • BUSINESS PRO</small>
+<h2>👥 Central RH PRO</h2>
+<p>Um departamento completo, com colaboradores, ponto, férias, folha gerencial, recrutamento, desempenho, segurança e relatórios.</p>
+<div class="toolbar">
+<button class="btn" style="background:white;color:#17477e" onclick="openModule('funcionarios')">＋ Novo colaborador</button>
+<button class="btn" style="background:#153a67" onclick="openModule('relatorios')">Ver indicadores</button>
+</div></div><div class="heroicon">👥</div>
+</div>
+${statCards()}
+<div class="panel">
+<div class="sectionhead"><h3>Encontre qualquer função</h3><span class="muted small">28 áreas</span></div>
+<input class="search" id="moduleSearch" placeholder="Pesquisar ponto, férias, folha, recrutamento, benefícios..." oninput="searchModules(this.value)">
+</div>
+<div class="sectionhead"><h2>Todos os recursos de RH</h2><span class="muted small">Selecione uma área</span></div>
+<div class="features" id="featureGrid">
+${MODULES.map(m=>featureCard(m)).join("")}
+</div>
+<div class="panel">
+<h3>Como o departamento funciona</h3>
+<div class="notice">Cada opção abre sua própria tela. Você pode criar registros, consultar, editar, excluir e exportar dados. Os recursos desta demonstração são locais e não equivalem a folha oficial, ponto eletrônico regulamentado, assinatura eletrônica ou integração eSocial.</div>
 </div>`;
 }
-function chart(){
-const months=[];
-const now=new Date();
-for(let i=5;i>=0;i--){
-const d=new Date(now.getFullYear(),now.getMonth()-i,1);
-const key=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
-const a=db.contas.filter(x=>x.status==="Pago"&&(x.pagamento||x.emissao||"").startsWith(key));
-months.push({
-name:d.toLocaleDateString("pt-BR",{month:"short"}),
-in:sum(a.filter(x=>x.tipo==="Receita").map(accountValue)),
-out:sum(a.filter(x=>x.tipo==="Despesa").map(accountValue))
+
+function featureCard(m){
+const n=(db[m[0]]||[]).length;
+return `<button class="feature" data-search="${esc((m[2]+" "+m[3]).toLowerCase())}" onclick="openModule('${m[0]}')">
+<span class="icon">${m[1]}</span>
+<span class="count">${SPECIAL.has(m[0])?"Painel":n+" registros"}</span>
+<b>${m[2]}</b><small>${m[3]}</small>
+</button>`;
+}
+
+function searchModules(q){
+document.querySelectorAll("#featureGrid .feature").forEach(el=>{
+el.style.display=el.dataset.search.includes(q.toLowerCase())?"":"none";
 });
 }
-const max=Math.max(1,...months.flatMap(x=>[x.in,x.out]));
-return `<div class="panel"><h3>Fluxo financeiro — últimos 6 meses</h3>
-<div class="legend"><span><i class="dot" style="background:#2563eb"></i>Receitas pagas</span>
-<span><i class="dot" style="background:#f59e0b"></i>Despesas pagas</span></div>
-<div class="chart">${months.map(x=>`<div class="chart-group">
-<div class="bar in" title="${money(x.in)}" style="height:${x.in/max*100}%"></div>
-<div class="bar out" title="${money(x.out)}" style="height:${x.out/max*100}%"></div>
-<small>${esc(x.name)}</small></div>`).join("")}</div></div>`;
+
+/* ===============================
+   FORMULÁRIOS E REGISTROS
+================================ */
+
+function inputField(field,value=""){
+const name=esc(field.key);
+let html="";
+if(field.type==="select"){
+html=`<select name="${name}" ${field.required?"required":""}>
+${field.options.map(o=>`<option value="${esc(o)}" ${value===o?"selected":""}>${esc(o)}</option>`).join("")}
+</select>`;
+}else if(field.type==="employee"){
+html=`<select name="${name}" ${field.required?"required":""}>
+<option value="">Selecione o colaborador</option>
+${db.funcionarios.map(e=>`<option value="${esc(e.id)}" ${value===e.id?"selected":""}>${esc(e.nome)} — ${esc(e.cargo)}</option>`).join("")}
+</select>`;
+}else if(field.type==="textarea"){
+html=`<textarea name="${name}" ${field.required?"required":""}>${esc(value)}</textarea>`;
+}else{
+html=`<input name="${name}" type="${field.type}" value="${esc(value)}"
+${field.required?"required":""} ${field.type==="number"?'step="any"':""}>`;
 }
-function dashboard(){
-const overdue=db.contas.filter(x=>x.status==="Pendente"&&x.vencimento&&x.vencimento<today()).length;
-const low=db.produtos.filter(x=>x.tipo!=="Serviço"&&num(x.quantidade)<=num(x.minimo)).length;
-return hero("Seu negócio, sob controle.","Acompanhe finanças, vendas, estoque e equipes com dados do próprio sistema.")+
-statsHTML()+chart()+
-`<div class="panel"><h3>Central de alertas</h3>
-<p>⚠️ Contas vencidas: <b>${overdue}</b></p>
-<p>📦 Produtos com estoque baixo: <b>${low}</b></p>
-<p>📋 Tarefas pendentes: <b>${db.tarefas.filter(x=>x.status==="Pendente").length}</b></p>
-</div><h2>Departamentos</h2>
-<div class="modules">${NAV.slice(1).map(n=>`<button class="module" onclick="go('${n[0]}')">
-<span class="ico">${n[1]}</span><b>${n[2]}</b><small>${n[3]}</small></button>`).join("")}</div>`;
+return `<div class="field"><label>${esc(field.label)}${field.required?" *":""}</label>${html}</div>`;
 }
-function go(p){
-page=p;formOpen="";editId=null;
-$("pageTitle").textContent=NAV.find(x=>x[0]===p)?.[2]||p;
-document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.p===p));
-render();window.scrollTo(0,0);
-}
-function company(){
-return `<div class="panel"><h3>Perfil completo da empresa</h3>
-<form class="form" id="companyForm">${fields(companyFields,db.empresa,"co")}
-<div class="full"><button class="btn">Salvar dados da empresa</button></div></form></div>`;
-}
-function saveCompany(e){
-e.preventDefault();
-const values=Object.fromEntries(new FormData(e.target));
-if(change(()=>db.empresa=values,"Atualizou dados da empresa")){
-alert("Dados empresariais salvos.");render();
-}
-}
-function listing(kind){
-const s=SC[kind],arr=db[kind];
-const cols=s.fields.filter(x=>!x.heading).slice(0,4);
-return `<div class="panel"><h3>${s.name} (${arr.length})</h3>
-<div class="toolbar">
-<button class="btn" onclick="newRecord('${kind}')">＋ Novo registro</button>
-<button class="btn secondary" onclick="csv('${kind}')">Exportar CSV</button>
-<button class="btn secondary" onclick="excel('${kind}')">Exportar Excel</button>
-</div>
-<input class="search" placeholder="Pesquisar ${s.name.toLowerCase()}" oninput="filterRows('${kind}',this.value)">
-<div id="form_${kind}"></div>
-<div class="table-wrap"><table id="table_${kind}"><thead><tr>
-${cols.map(c=>`<th>${esc(c.l)}</th>`).join("")}<th>Ações</th></tr></thead>
-<tbody>${arr.map(x=>`<tr>${cols.map(c=>`<td>${esc(c.t==="number"&&["valor","preco","custo","salario"].includes(c.k)?money(x[c.k]):x[c.k])}</td>`).join("")}
-<td><button class="action" onclick="detail('${kind}','${x.id}')">Ver</button>
-<button class="action" onclick="editRecord('${kind}','${x.id}')">Editar</button>
-<button class="action" onclick="deleteRecord('${kind}','${x.id}')">Excluir</button></td></tr>`).join("")||
-`<tr><td colspan="${cols.length+1}" class="empty">Nenhum registro cadastrado.</td></tr>`}
-</tbody></table></div><div id="detail_${kind}"></div></div>`;
-}
-function filterRows(kind,q){
-document.querySelectorAll(`#table_${kind} tbody tr`).forEach(r=>{
-r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?"":"none";
-});
-}
-function newRecord(kind){editId=null;showForm(kind,{})}
-function editRecord(kind,rid){
-const item=db[kind].find(x=>x.id===rid);if(!item)return;
-editId=rid;showForm(kind,item);
-}
-function showForm(kind,item){
-$("form_"+kind).innerHTML=`<div class="panel" style="background:#f8fbff">
-<h3>${editId?"Editar":"Novo"} — ${SC[kind].name}</h3>
-<form class="form" id="recordForm">
-${fields(SC[kind].fields,item,kind)}
-<div class="full toolbar"><button class="btn">Salvar</button>
-<button type="button" class="btn secondary" onclick="$('form_${kind}').innerHTML=''">Cancelar</button>
+
+function formHTML(kind,record={}){
+return `<div class="panel" id="formPanel">
+<h3>${editing?"Editar registro":"Novo registro"} — ${esc(moduleName(kind))}</h3>
+<form id="dataForm" class="form">
+${SCHEMA[kind].map(f=>f.heading?`<div class="divider">${esc(f.heading)}</div>`:inputField(f,record[f.key]??"")).join("")}
+<div class="full toolbar">
+<button class="btn" type="submit">Salvar registro</button>
+<button class="btn secondary" type="button" onclick="cancelForm()">Cancelar</button>
 </div></form></div>`;
-$("recordForm").onsubmit=e=>saveRecord(e,kind);
-$("form_"+kind).scrollIntoView({behavior:"smooth"});
 }
-function saveRecord(e,kind){
-e.preventDefault();
-const values=Object.fromEntries(new FormData(e.target));
-const previous=db[kind].find(x=>x.id===editId);
-values.id=editId||id();
-values.createdAt=previous?.createdAt||new Date().toISOString();
-if(kind==="produtos"&&previous&&num(previous.quantidade)!==num(values.quantidade)){
-return alert("Para alterar o estoque de um produto existente, utilize a movimentação de estoque.");
-}
-if(change(()=>{
-if(editId)db[kind]=db[kind].map(x=>x.id===editId?values:x);
-else db[kind].unshift(values);
-},"Salvou registro em "+kind)){
-editId=null;render();
-}
-}
-function deleteRecord(kind,rid){
-if(!confirm("Excluir este registro?"))return;
-if(change(()=>db[kind]=db[kind].filter(x=>x.id!==rid),"Excluiu registro de "+kind))render();
-}
-function detail(kind,rid){
-const item=db[kind].find(x=>x.id===rid);if(!item)return;
-$("detail_"+kind).innerHTML=`<div class="panel" style="background:#f8fbff">
-<div class="toolbar"><h3 style="flex:1">Ficha detalhada</h3>
-<button class="btn secondary" onclick="this.closest('.panel').remove()">Fechar</button></div>
-<div class="form">${SC[kind].fields.map(f=>f.heading?
-`<div class="section">${esc(f.heading)}</div>`:
-`<div class="field"><label>${esc(f.l)}</label><div>${esc(item[f.k]||"—")}</div></div>`).join("")}</div></div>`;
-}
-function rows(kind){
-const fs=SC[kind].fields.filter(x=>!x.heading);
-return [fs.map(x=>x.l),...db[kind].map(x=>fs.map(f=>String(x[f.k]??"")))];
-}
-function csv(kind){
-const text=rows(kind).map(r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(";")).join("\r\n");
-file(kind+".csv","\ufeff"+text,"text/csv;charset=utf-8");
-}
-function spreadsheet(name,rs){
-const html=`<html><head><meta charset="UTF-8"></head><body><table border="1">
-${rs.map(r=>`<tr>${r.map(v=>`<td>${esc(v)}</td>`).join("")}</tr>`).join("")}
-</table></body></html>`;
-file(name+".xls","\ufeff"+html,"application/vnd.ms-excel");
-}
-function excel(kind){spreadsheet(kind,rows(kind))}
 
-function stockMove(){
-return `<div class="panel"><h3>Movimentação de estoque</h3>
-<form id="stockForm" class="form">
-<div class="field"><label>Produto</label><select name="produto" required>
-${db.produtos.filter(x=>x.tipo!=="Serviço").map(x=>`<option value="${x.id}">${esc(x.nome)} — ${esc(x.quantidade)} unidades</option>`).join("")}
-</select></div>
-${input(F("quantidade","Quantidade","number",true),"","st")}
-<div class="field"><label>Operação</label><select name="tipo">
-<option>Entrada</option><option>Saída</option></select></div>
-${input(F("motivo","Motivo","text",true),"","st")}
-<div class="full"><button class="btn">Registrar movimentação</button></div></form>
-<h3 style="margin-top:22px">Histórico</h3>
-<div class="table-wrap"><table><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Motivo</th></tr></thead>
-<tbody>${db.movimentos.slice(0,100).map(m=>`<tr><td>${esc(m.data)}</td><td>${esc(m.nome)}</td>
-<td>${esc(m.tipo)}</td><td>${esc(m.quantidade)}</td><td>${esc(m.motivo)}</td></tr>`).join("")}</tbody></table></div></div>`;
+function employeeName(eid){
+return db.funcionarios.find(x=>x.id===eid)?.nome||"Colaborador não encontrado";
 }
-function saveStock(e){
-e.preventDefault();
-const v=Object.fromEntries(new FormData(e.target));
-const p=db.produtos.find(x=>x.id===v.produto),q=num(v.quantidade);
-if(!p||!Number.isInteger(q)||q<=0)return alert("Produto ou quantidade inválidos.");
-if(v.tipo==="Saída"&&num(p.quantidade)<q)return alert("Estoque insuficiente.");
-if(change(()=>{
-p.quantidade=num(p.quantidade)+(v.tipo==="Entrada"?q:-q);
-db.movimentos.unshift({id:id(),produto:p.id,nome:p.nome,tipo:v.tipo,quantidade:q,motivo:v.motivo,data:new Date().toLocaleString("pt-BR")});
-},"Movimentação de estoque"))render();
+
+function displayValue(field,value){
+if(field.type==="employee")return employeeName(value);
+if(field.type==="number"&&["salario","valor","adicionais","descontos","proventos","faixaMin","faixaMax"].includes(field.key))return money(value);
+return String(value??"");
 }
-function crm(){
-const stages=["Novo","Contato","Proposta","Negociação","Ganho","Perdido"];
-return `<div class="panel"><h3>Funil comercial</h3>
-<div class="toolbar"><button class="btn" onclick="newRecord('leads')">＋ Nova oportunidade</button></div>
-<div id="form_leads"></div>
-<div class="kanban">${stages.map(stage=>`<div class="kanban-col"><h4>${stage} (${db.leads.filter(x=>x.etapa===stage).length})</h4>
-${db.leads.filter(x=>x.etapa===stage).map(l=>`<div class="lead">
-<b>${esc(l.nome)}</b><small>${esc(l.cliente)} • ${money(l.valor)}</small>
-<select aria-label="Mover oportunidade" onchange="moveLead('${l.id}',this.value)">
-${stages.map(s=>`<option ${s===stage?"selected":""}>${s}</option>`).join("")}</select>
-<button class="action" onclick="editRecord('leads','${l.id}')">Editar</button>
-</div>`).join("")}</div>`).join("")}</div></div>`;
+
+function openModule(kind){
+current=kind;editing=null;filterText="";
+$("pageTitle").textContent=moduleName(kind);
+if(kind==="relatorios")return renderReports();
+if(kind==="auditoria")return renderAudit();
+if(kind==="organograma")return renderOrg();
+renderList();
 }
-function moveLead(rid,stage){
-if(change(()=>{
-const x=db.leads.find(x=>x.id===rid);if(x)x.etapa=stage;
-},"Alterou etapa CRM"))render();
+
+function renderList(){
+const kind=current;
+const m=MODULES.find(x=>x[0]===kind);
+if(!m||!SCHEMA[kind])return;
+const arr=db[kind]||[];
+const cols=SCHEMA[kind].filter(x=>!x.heading).slice(0,4);
+$("app").innerHTML=`
+<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
+<div class="hero">
+<div><small>CENTRAL RH PRO</small>
+<h2>${m[1]} ${m[2]}</h2><p>${m[3]}. Gerencie os registros com pesquisa, edição, histórico e exportação.</p></div>
+<div class="heroicon">${m[1]}</div></div>
+<div class="panel">
+<div class="toolbar">
+<button class="btn" onclick="newRecord()">＋ Novo registro</button>
+<button class="btn secondary" onclick="exportCSV('${kind}')">Exportar CSV</button>
+<button class="btn secondary" onclick="exportExcel('${kind}')">Excel compatível</button>
+<button class="btn secondary" onclick="window.print()">Imprimir</button>
+</div>
+<input class="search" id="recordSearch" placeholder="Pesquisar registros..." oninput="searchRecords(this.value)">
+</div>
+<div id="formArea"></div>
+<div class="panel">
+<div class="sectionhead"><h3>Registros (${arr.length})</h3></div>
+${kind==="funcionarios"?employeeCards(arr):recordTable(kind,arr,cols)}
+</div>
+${kind==="ponto"?pointSummary():""}
+${kind==="folha"?payrollNotice():""}
+${kind==="saude"?'<div class="notice">Evite cadastrar diagnósticos e dados médicos sensíveis nesta demonstração local. Um módulo de saúde ocupacional real exige controles específicos de privacidade.</div>':""}
+`;
 }
-function sales(){
-return `<div class="panel"><h3>Registrar venda integrada</h3>
-<p class="muted">A confirmação gera conta a receber e reduz o estoque dos produtos físicos.</p>
-<form id="saleForm" class="form">
-<div class="field"><label>Cliente *</label><select name="cliente" required>
-<option value="">Selecione um cliente</option>
-${db.clientes.map(x=>`<option value="${esc(x.nome)}">${esc(x.nome)}</option>`).join("")}
-</select></div>
-${input(F("data","Data","date",true),today(),"sale")}
-<div class="section">Adicionar produtos</div>
-<div class="field"><label>Produto</label><select id="saleProduct">
-${db.produtos.map(x=>`<option value="${x.id}">${esc(x.nome)} — ${money(x.preco)}</option>`).join("")}
-</select></div>
-${input(F("qtd","Quantidade","number"),1,"sale")}
-<div class="full"><button type="button" class="btn secondary" onclick="addSaleItem()">Adicionar item</button></div>
-<div id="saleItems" class="full"></div>
-<div class="section">Pagamento</div>
-${input(F("vencimento","Vencimento","date",true),today(),"sale")}
-<div class="field"><label>Situação financeira</label><select name="status">
-<option>Pendente</option><option>Pago</option></select></div>
-<div class="full"><button class="btn">Confirmar venda</button></div>
-</form></div>
-<div class="panel"><h3>Histórico de vendas (${db.vendas.length})</h3>
-<div class="table-wrap"><table><thead><tr><th>Data</th><th>Cliente</th><th>Itens</th><th>Total</th></tr></thead><tbody>
-${db.vendas.map(v=>`<tr><td>${esc(v.data)}</td><td>${esc(v.cliente)}</td>
-<td>${v.itens.length}</td><td>${money(v.total)}</td></tr>`).join("")}</tbody></table></div></div>`;
+
+function employeeCards(arr){
+if(!arr.length)return `<div class="empty"><div class="emptyicon">👥</div><p>Nenhum colaborador cadastrado.</p></div>`;
+return `<div class="employeegrid" id="recordGrid">${arr.map(e=>`
+<div class="employee" data-search="${esc(JSON.stringify(e).toLowerCase())}">
+<div class="avatar">${esc((e.nome||"?").slice(0,1).toUpperCase())}</div>
+<h4>${esc(e.nome)}</h4>
+<p>${esc(e.cargo)} • ${esc(e.departamento)}</p>
+<p>Matrícula: ${esc(e.matricula||"Não informada")}</p>
+<span class="badge">${esc(e.situacao||"Ativo")}</span>
+<div class="toolbar">
+<button class="action" onclick="detail('${e.id}')">Ficha</button>
+<button class="action" onclick="editRecord('${e.id}')">Editar</button>
+<button class="action danger" onclick="deleteRecord('${e.id}')">Excluir</button>
+</div></div>`).join("")}</div>`;
 }
-function addSaleItem(){
-const p=db.produtos.find(x=>x.id===$("saleProduct").value);
-const q=num($("sale_qtd").value);
-if(!p||!Number.isInteger(q)||q<=0)return alert("Selecione produto e quantidade válida.");
-const existing=saleItems.find(x=>x.produto===p.id);
-const requested=q+(existing?.quantidade||0);
-if(p.tipo!=="Serviço"&&requested>num(p.quantidade))return alert("Estoque insuficiente.");
-if(existing)existing.quantidade=requested;
-else saleItems.push({produto:p.id,nome:p.nome,quantidade:q,preco:num(p.preco),tipo:p.tipo});
-renderSaleItems();
+
+function recordTable(kind,arr,cols){
+return `<div class="tablewrap"><table><thead><tr>
+${cols.map(f=>`<th>${esc(f.label)}</th>`).join("")}
+<th>Ações</th></tr></thead><tbody id="recordRows">
+${arr.map(r=>`<tr data-search="${esc(JSON.stringify(r).toLowerCase()+" "+employeeName(r.funcionario).toLowerCase())}">
+${cols.map(f=>`<td>${esc(displayValue(f,r[f.key]))}</td>`).join("")}
+<td><button class="action" onclick="detail('${r.id}')">Ver</button>
+<button class="action" onclick="editRecord('${r.id}')">Editar</button>
+<button class="action danger" onclick="deleteRecord('${r.id}')">Excluir</button></td>
+</tr>`).join("")||`<tr><td colspan="${cols.length+1}" class="empty">Nenhum registro cadastrado.</td></tr>`}
+</tbody></table></div>`;
 }
-function renderSaleItems(){
-if(!$("saleItems"))return;
-$("saleItems").innerHTML=`<div class="table-wrap"><table><thead><tr>
-<th>Item</th><th>Qtd.</th><th>Preço</th><th>Total</th><th>Ação</th></tr></thead><tbody>
-${saleItems.map((x,i)=>`<tr><td>${esc(x.nome)}</td><td>${x.quantidade}</td>
-<td>${money(x.preco)}</td><td>${money(x.preco*x.quantidade)}</td>
-<td><button type="button" class="action" onclick="saleItems.splice(${i},1);renderSaleItems()">Remover</button></td></tr>`).join("")}
-</tbody></table></div><h3>Total: ${money(sum(saleItems.map(x=>x.preco*x.quantidade)))}</h3>`;
-}
-function saveSale(e){
-e.preventDefault();
-const v=Object.fromEntries(new FormData(e.target));
-if(!saleItems.length)return alert("Adicione produtos à venda.");
-for(const item of saleItems){
-const p=db.produtos.find(x=>x.id===item.produto);
-if(!p)return alert("Um produto não existe mais.");
-if(item.tipo!=="Serviço"&&num(p.quantidade)<item.quantidade)return alert("Estoque insuficiente: "+p.nome);
-}
-const total=sum(saleItems.map(x=>x.quantidade*x.preco));
-const venda={id:id(),cliente:v.cliente,data:v.data,total,itens:saleItems.map(x=>({...x}))};
-if(change(()=>{
-db.vendas.unshift(venda);
-for(const item of saleItems){
-const p=db.produtos.find(x=>x.id===item.produto);
-if(item.tipo!=="Serviço"){
-p.quantidade=num(p.quantidade)-item.quantidade;
-db.movimentos.unshift({id:id(),produto:p.id,nome:p.nome,tipo:"Saída",quantidade:item.quantidade,motivo:"Venda "+venda.id,data:new Date().toLocaleString("pt-BR")});
-}
-}
-db.contas.unshift({
-id:id(),descricao:"Venda para "+v.cliente,tipo:"Receita",
-valor:total,status:v.status,emissao:v.data,
-vencimento:v.vencimento,pagamento:v.status==="Pago"?v.data:"",
-pessoa:v.cliente,referencia:venda.id,categoria:"Vendas"
+
+function searchRecords(q){
+document.querySelectorAll("[data-search]").forEach(el=>{
+el.style.display=el.dataset.search.includes(q.toLowerCase())?"":"none";
 });
-},"Venda confirmada e integrada")){
-saleItems=[];render();alert("Venda registrada, estoque e financeiro atualizados.");
+}
+
+function newRecord(){
+editing=null;
+$("formArea").innerHTML=formHTML(current);
+$("dataForm").onsubmit=saveRecord;
+$("formPanel").scrollIntoView({behavior:"smooth"});
+}
+
+function editRecord(rid){
+const record=db[current].find(x=>x.id===rid);
+if(!record)return;
+editing=rid;
+$("formArea").innerHTML=formHTML(current,record);
+$("dataForm").onsubmit=saveRecord;
+$("formPanel").scrollIntoView({behavior:"smooth"});
+}
+
+function cancelForm(){
+editing=null;$("formArea").innerHTML="";
+}
+
+function validateRecord(kind,r){
+if(kind==="ferias"&&r.fim<r.inicio)return "A data final não pode ser anterior à inicial.";
+if(kind==="ponto"){
+const a=minutes(r.entrada),b=minutes(r.saida);
+if(b<a)return "A saída deve ocorrer depois da entrada neste registro.";
+if((r.saidaIntervalo&&!r.voltaIntervalo)||(!r.saidaIntervalo&&r.voltaIntervalo))
+return "Informe os dois horários do intervalo.";
+}
+if(kind==="folha"&&Number(r.salario)<0)return "Salário inválido.";
+if(kind==="avaliacoes"&&(Number(r.nota)<0||Number(r.nota)>10))return "A nota deve estar entre 0 e 10.";
+return "";
+}
+
+function saveRecord(e){
+e.preventDefault();
+const kind=current;
+const values=Object.fromEntries(new FormData(e.target));
+const error=validateRecord(kind,values);
+if(error)return alert(error);
+const previous=db[kind].find(x=>x.id===editing);
+values.id=editing||uid();
+values.criadoEm=previous?.criadoEm||new Date().toISOString();
+
+if(commit(()=>{
+if(editing)db[kind]=db[kind].map(x=>x.id===editing?values:x);
+else db[kind].unshift(values);
+},(editing?"Editou":"Criou")+" registro em "+moduleName(kind))){
+editing=null;renderList();
 }
 }
 
-const templates={
-"Recibo":"RECEBI de [CLIENTE] a quantia de R$ [VALOR], referente a [DESCRIÇÃO].",
-"Declaração":"DECLARO, para os devidos fins, que [CONTEÚDO DA DECLARAÇÃO].",
-"Contrato":"CONTRATO PARTICULAR\n\nPARTES: [IDENTIFICAR AS PARTES]\n\nOBJETO: [DESCREVER]\n\nVALOR E PAGAMENTO: [DEFINIR]\n\nPRAZO: [DEFINIR]\n\nOBRIGAÇÕES: [DEFINIR]\n\nRESCISÃO: [DEFINIR]\n\nFORO: [DEFINIR]\n\nMinuta sujeita a revisão jurídica.",
-"Proposta":"PROPOSTA COMERCIAL\n\nCliente: [CLIENTE]\n\nServiços ou produtos: [DESCRIÇÃO]\n\nValor: R$ [VALOR]\n\nPrazo: [PRAZO]\n\nCondições: [CONDIÇÕES]",
-"Ata":"ATA DE REUNIÃO\n\nParticipantes: [NOMES]\n\nPauta: [ASSUNTO]\n\nDeliberações: [DECISÕES]\n\nResponsáveis e prazos: [DEFINIR]",
-"Carta":"Prezado(a) [DESTINATÁRIO],\n\n[ESCREVA SUA MENSAGEM]\n\nAtenciosamente,",
-"Ordem de serviço":"ORDEM DE SERVIÇO\n\nCliente: [CLIENTE]\n\nServiço: [DESCRIÇÃO]\n\nMateriais: [LISTA]\n\nPrazo: [DATA]\n\nValor: R$ [VALOR]",
-"Requerimento":"À autoridade ou instituição competente,\n\nEu, [NOME], venho requerer [PEDIDO], pelos seguintes motivos:\n\n[FUNDAMENTAÇÃO]"
-};
-function documents(){
-return hero("Central Office","Crie documentos empresariais, edite o conteúdo e exporte para formatos compatíveis.")+
-`<div class="panel"><h3>Editor de documentos</h3>
-<div class="toolbar">
-${Object.keys(templates).map(t=>`<button class="btn secondary" onclick="loadTemplate('${t}')">${t}</button>`).join("")}
-</div>
-<div class="editor-grid">
-<div class="editor-tools">
-${input(F("titulo","Título do documento"),"DOCUMENTO","doc")}
-${input(F("numero","Número"),"DOC-"+Date.now().toString().slice(-6),"doc")}
-${input(F("destinatario","Destinatário"),"","doc")}
-${input(F("data","Data","date"),today(),"doc")}
-<div class="field"><label>Ferramentas</label>
-<div class="toolbar">
-<button class="btn secondary" onclick="formatDoc('bold')">Negrito</button>
-<button class="btn secondary" onclick="formatDoc('italic')">Itálico</button>
-<button class="btn secondary" onclick="formatDoc('underline')">Sublinhar</button>
-<button class="btn secondary" onclick="insertDocTable()">Tabela</button>
+function deleteRecord(rid){
+const kind=current;
+if(kind==="funcionarios"){
+const linked=Object.keys(db).some(k=>
+k!=="funcionarios"&&k!=="logs"&&
+Array.isArray(db[k])&&db[k].some(x=>x.funcionario===rid));
+if(linked)return alert("Este funcionário possui registros vinculados. Altere sua situação para Desligado em vez de excluir.");
+}
+if(!confirm("Excluir este registro?"))return;
+if(commit(()=>db[kind]=db[kind].filter(x=>x.id!==rid),"Excluiu registro em "+moduleName(kind)))renderList();
+}
+
+function detail(rid){
+const item=db[current].find(x=>x.id===rid);
+if(!item)return;
+const fields=SCHEMA[current];
+$("formArea").innerHTML=`<div class="panel">
+<div class="sectionhead"><h3>Ficha detalhada</h3>
+<button class="btn secondary" onclick="cancelForm()">Fechar</button></div>
+<div class="form">${fields.map(f=>f.heading?
+`<div class="divider">${esc(f.heading)}</div>`:
+`<div class="field"><label>${esc(f.label)}</label><div>${esc(displayValue(f,item[f.key])||"—")}</div></div>`
+).join("")}</div>
+</div>`;
+$("formArea").scrollIntoView({behavior:"smooth"});
+}
+
+/* ===============================
+   CONTROLE DE PONTO
+================================ */
+
+function minutes(t){
+if(!t)return 0;
+const [h,m]=t.split(":").map(Number);
+return h*60+m;
+}
+
+function workedMinutes(p){
+let total=minutes(p.saida)-minutes(p.entrada);
+if(p.saidaIntervalo&&p.voltaIntervalo){
+total-=Math.max(0,minutes(p.voltaIntervalo)-minutes(p.saidaIntervalo));
+}
+return Math.max(0,total);
+}
+
+function pointSummary(){
+const total=db.ponto.reduce((s,p)=>s+workedMinutes(p),0);
+return `<div class="panel"><h3>Resumo de jornadas registradas</h3>
+<div class="stats" style="grid-template-columns:repeat(2,1fr)">
+<div class="stat"><small>Registros</small><strong>${db.ponto.length}</strong></div>
+<div class="stat"><small>Horas registradas</small><strong>${(total/60).toFixed(2)} h</strong></div>
+</div><div class="notice">Este controle é administrativo e demonstrativo. Não substitui um sistema de registro eletrônico de ponto que cumpra os requisitos legais aplicáveis. Jornadas noturnas e que atravessam a meia-noite exigem tratamento adicional.</div></div>`;
+}
+
+function payrollNotice(){
+return `<div class="panel"><h3>Sobre a folha gerencial</h3>
+<div class="notice">Os valores são lançamentos informados pelo usuário. O sistema não calcula automaticamente INSS, IRRF, FGTS, férias, 13º salário ou verbas rescisórias e não gera folha oficial. Esses cálculos exigem regras atualizadas e validação contábil.</div></div>`;
+}
+
+/* ===============================
+   RELATÓRIOS
+================================ */
+
+function renderReports(){
+$("app").innerHTML=`
+<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
+<div class="hero"><div><small>BUSINESS PRO ANALYTICS</small>
+<h2>📊 Relatórios de Recursos Humanos</h2>
+<p>Indicadores calculados com os registros cadastrados nesta demonstração.</p></div></div>
+${statCards()}
+<div class="panel"><h3>Indicadores adicionais</h3>
+<div class="stats">
+<div class="stat"><small>Total de colaboradores</small><strong>${db.funcionarios.length}</strong></div>
+<div class="stat"><small>Treinamentos concluídos</small><strong>${db.treinamentos.filter(x=>x.status==="Concluído").length}</strong></div>
+<div class="stat"><small>Vagas em andamento</small><strong>${db.recrutamento.filter(x=>x.status!=="Encerrada").length}</strong></div>
+<div class="stat"><small>Registros de ponto</small><strong>${db.ponto.length}</strong></div>
 </div></div>
+<div class="panel"><h3>Exportações por departamento</h3>
 <div class="toolbar">
-<button class="btn" onclick="saveDocument()">Salvar</button>
-<button class="btn secondary" onclick="word()">Word</button>
-<button class="btn secondary" onclick="documentExcel()">Excel</button>
-<button class="btn dark" onclick="pdf()">PDF</button>
+${MODULES.filter(x=>!SPECIAL.has(x[0])).map(m=>`<button class="btn secondary" onclick="exportCSV('${m[0]}')">${m[1]} ${m[2]} CSV</button>`).join("")}
+</div></div>
+<div class="panel"><h3>Backup dos dados locais</h3>
+<div class="toolbar">
+<button class="btn" onclick="backup()">Baixar backup JSON</button>
+<button class="btn secondary" onclick="$('restoreInput').click()">Restaurar backup</button>
+<input id="restoreInput" type="file" accept=".json" hidden onchange="restore(this)">
 </div>
-</div>
-<div class="paperwrap"><article class="paper" id="documentPaper">
-<div class="dochead"><h2>${esc(db.empresa.fantasia||db.empresa.razao||"SUA EMPRESA")}</h2>
-<small>${esc(db.empresa.cnpj||"")} • ${esc(db.empresa.email||"")}</small></div>
-<h1 id="documentHeading">DOCUMENTO</h1>
-<div id="documentBody" class="docbody" contenteditable="true" aria-label="Conteúdo do documento">Selecione um modelo ou escreva aqui.</div>
-<div class="signature">____________________________________<br>Assinatura do responsável</div>
-</article></div></div></div>
-<div class="panel"><h3>Documentos salvos (${db.documentos.length})</h3>
-${db.documentos.map(d=>`<div class="toolbar" style="border-bottom:1px solid #e2e8f0;padding:8px">
-<b style="flex:1">${esc(d.titulo)}</b>
-<button class="action" onclick="openDocument('${d.id}')">Abrir</button>
-<button class="action" onclick="removeDocument('${d.id}')">Excluir</button>
-</div>`).join("")||'<p class="muted">Nenhum documento salvo.</p>'}</div>`;
+<div class="notice">O backup é um arquivo de dados local. Guarde-o com segurança, pois pode conter informações pessoais de colaboradores.</div></div>`;
 }
-function loadTemplate(t){
-$("doc_titulo").value=t.toUpperCase();
-$("documentHeading").textContent=t.toUpperCase();
-$("documentBody").textContent=templates[t];
+
+function rows(kind){
+const fields=SCHEMA[kind].filter(x=>!x.heading);
+return [
+fields.map(x=>x.label),
+...db[kind].map(r=>fields.map(f=>displayValue(f,r[f.key])))
+];
 }
-function formatDoc(cmd){
-$("documentBody").focus();
-document.execCommand(cmd,false,null);
+
+function exportCSV(kind){
+const content=rows(kind).map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(";")).join("\r\n");
+download("RH-"+kind+".csv","\ufeff"+content,"text/csv;charset=utf-8");
 }
-function insertDocTable(){
-$("documentBody").focus();
-document.execCommand("insertHTML",false,
-'<table border="1" cellpadding="8" style="border-collapse:collapse;width:100%"><tr><th>Descrição</th><th>Valor</th></tr><tr><td>Item</td><td>R$ 0,00</td></tr></table><p></p>');
-}
-function docData(){
-return {
-titulo:$("doc_titulo").value,
-numero:$("doc_numero").value,
-destinatario:$("doc_destinatario").value,
-data:$("doc_data").value,
-html:$("documentBody").innerHTML
-};
-}
-function saveDocument(){
-const d=docData();
-if(!d.titulo.trim())return alert("Informe o título.");
-if(change(()=>db.documentos.unshift({...d,id:id()}),"Salvou documento")){
-render();alert("Documento salvo.");
-}
-}
-function openDocument(rid){
-const d=db.documentos.find(x=>x.id===rid);if(!d)return;
-$("doc_titulo").value=d.titulo;
-$("doc_numero").value=d.numero;
-$("doc_destinatario").value=d.destinatario;
-$("doc_data").value=d.data;
-$("documentHeading").textContent=d.titulo;
-$("documentBody").innerHTML=d.html;
-window.scrollTo(0,0);
-}
-function removeDocument(rid){
-if(!confirm("Excluir documento?"))return;
-if(change(()=>db.documentos=db.documentos.filter(x=>x.id!==rid),"Excluiu documento"))render();
-}
-function officeHTML(){
-$("documentHeading").textContent=$("doc_titulo").value||"DOCUMENTO";
-return $("documentPaper").outerHTML;
-}
-function word(){
-const html=`<html><head><meta charset="UTF-8"></head><body>${officeHTML()}</body></html>`;
-file("documento.doc","\ufeff"+html,"application/msword");
-}
-function documentExcel(){
-const d=docData();
-spreadsheet("documento",[["Campo","Conteúdo"],["Título",d.titulo],
-["Número",d.numero],["Destinatário",d.destinatario],
-["Data",d.data],["Texto",$("documentBody").innerText]]);
-}
-function pdf(){
-$("printHost").innerHTML=officeHTML();
-document.body.classList.add("print-doc");
-const cleanup=()=>{document.body.classList.remove("print-doc");$("printHost").innerHTML=""};
-window.addEventListener("afterprint",cleanup,{once:true});
-window.print();setTimeout(cleanup,2000);
+
+function exportExcel(kind){
+const html=`<html><head><meta charset="UTF-8"></head><body><table border="1">
+${rows(kind).map(r=>`<tr>${r.map(v=>`<td>${esc(v)}</td>`).join("")}</tr>`).join("")}
+</table></body></html>`;
+download("RH-"+kind+".xls","\ufeff"+html,"application/vnd.ms-excel");
 }
 
 function backup(){
-file("backup-meu-negocio-v3.json",JSON.stringify({version:3,data:db},null,2),"application/json");
+download("backup-central-rh.json",JSON.stringify({version:1,data:db},null,2),"application/json");
 }
+
 async function restore(input){
-const f=input.files?.[0];if(!f)return;
-if(f.size>5e6)return alert("Backup muito grande.");
+const file=input.files?.[0];if(!file)return;
+if(file.size>5*1024*1024){alert("Arquivo muito grande.");return}
 try{
-const parsed=JSON.parse(await f.text());
-if(parsed.version!==3||!parsed.data||!Array.isArray(parsed.data.clientes))throw Error();
-if(!confirm("Substituir todos os dados locais por este backup?"))return;
-const next=initial();
+const parsed=JSON.parse(await file.text());
+if(parsed.version!==1||!parsed.data||!Array.isArray(parsed.data.funcionarios))throw Error();
+if(!confirm("Substituir todos os dados locais pelo backup?"))return;
+const next=fresh();
 for(const k of Object.keys(next)){
-if(k==="empresa"&&parsed.data[k]&&!Array.isArray(parsed.data[k]))next[k]=parsed.data[k];
-else if(Array.isArray(next[k])&&Array.isArray(parsed.data[k]))next[k]=parsed.data[k];
+if(Array.isArray(parsed.data[k]))next[k]=parsed.data[k];
 }
-if(change(()=>db=next,"Restaurou backup"))render();
-}catch(e){alert("Arquivo de backup inválido.");}
+if(commit(()=>db=next,"Restaurou backup local"))renderReports();
+}catch(e){alert("Backup inválido ou incompatível.");}
 input.value="";
 }
-function reports(){
-return hero("Relatórios e indicadores","Informações gerenciais calculadas a partir dos registros.")+
-statsHTML()+chart()+
-`<div class="panel"><h3>Exportações</h3>
-<div class="toolbar">
-${Object.keys(SC).map(k=>`<button class="btn secondary" onclick="excel('${k}')">Excel — ${SC[k].name}</button>`).join("")}
-<button class="btn" onclick="backup()">Backup JSON</button>
-<button class="btn secondary" onclick="$('restoreFile').click()">Restaurar backup</button>
-<input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this)">
-</div></div>
-<div class="panel"><h3>Histórico de operações</h3>
-${db.auditoria.slice(0,50).map(x=>`<p>${esc(new Date(x.data).toLocaleString("pt-BR"))} — ${esc(x.descricao)}</p>`).join("")||'<p>Sem operações registradas.</p>'}
-</div>`;
+
+/* ===============================
+   ORGANOGRAMA E AUDITORIA
+================================ */
+
+function renderOrg(){
+$("app").innerHTML=`
+<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
+<div class="hero"><div><h2>🏢 Organograma empresarial</h2>
+<p>Visualização dos colaboradores agrupados por departamento.</p></div></div>
+${[...new Set(db.funcionarios.map(x=>x.departamento||"Sem departamento"))].map(dep=>`
+<div class="panel"><h3>${esc(dep)}</h3>
+<div class="employeegrid">${db.funcionarios.filter(x=>(x.departamento||"Sem departamento")===dep).map(e=>`
+<div class="employee"><div class="avatar">${esc(e.nome?.[0]||"?")}</div>
+<h4>${esc(e.nome)}</h4><p>${esc(e.cargo)}</p><p>Gestor: ${esc(e.gestor||"Não informado")}</p></div>
+`).join("")}</div></div>`).join("")||'<div class="panel empty">Cadastre colaboradores para montar a estrutura.</div>'}`;
 }
-function ai(){
-const m=metrics();
-const alerts=[
-db.contas.filter(x=>x.status==="Pendente"&&x.vencimento<today()).length+" contas pendentes vencidas",
-db.produtos.filter(x=>x.tipo!=="Serviço"&&num(x.quantidade)<=num(x.minimo)).length+" produtos com estoque baixo",
-db.tarefas.filter(x=>x.status==="Pendente").length+" tarefas pendentes"
-];
-return hero("BUSINESS IA — Central gerencial","Resumo automático local, sem conexão com modelo de inteligência artificial.")+
-`<div class="panel"><h3>Diagnóstico empresarial</h3>
-<p>Saldo realizado: <b>${money(m.balance)}</b></p>
-<p>Contas a receber: <b>${money(m.receive)}</b></p>
-<p>Contas a pagar: <b>${money(m.pay)}</b></p>
-${alerts.map(x=>`<p>• ${esc(x)}</p>`).join("")}
-<div class="notice">Para implementar uma IA real com acesso controlado aos registros, será necessário um backend seguro, autenticação, permissões e provedor de IA.</div>
-</div>`;
+
+function renderAudit(){
+$("app").innerHTML=`
+<button class="back" onclick="show('rh')">← Voltar para Central RH</button>
+<div class="hero"><div><h2>🔐 Histórico de operações</h2>
+<p>Alterações registradas neste navegador.</p></div></div>
+<div class="panel"><h3>Eventos recentes</h3>
+${db.logs.map(x=>`<p style="border-bottom:1px solid #e3eaf3;padding:12px 0">
+<small class="muted">${esc(new Date(x.data).toLocaleString("pt-BR"))}</small><br>
+${esc(x.descricao)}</p>`).join("")||'<p class="empty">Nenhuma operação registrada.</p>'}
+</div><div class="notice">Este histórico local pode ser alterado por quem tem acesso ao navegador. Não substitui auditoria segura em servidor.</div>`;
 }
-function render(){
-let html="";
-switch(page){
-case "home":html=dashboard();break;
-case "gestao":html=hero("Gestão empresarial","Dados da empresa e rede de fornecedores.")+company()+listing("fornecedores");break;
-case "financeiro":html=hero("Financeiro","Contas a pagar e receber, contas bancárias e indicadores.")+
-statsHTML()+listing("bancos")+listing("contas");break;
-case "vendas":html=hero("Vendas e CRM","Clientes, oportunidades e vendas integradas.")+
-crm()+sales()+listing("clientes");break;
-case "documentos":html=documents();break;
-case "rh":html=hero("Recursos humanos","Equipe, benefícios, jornadas, férias e afastamentos.")+
-listing("funcionarios")+listing("ferias");break;
-case "estoque":html=hero("Estoque e compras","Produtos, custos, quantidades e movimentações.")+
-listing("produtos")+stockMove();break;
-case "fiscal":html=hero("Fiscal e contábil","Controle interno. Não emite notas fiscais oficiais.")+
-listing("fiscais");break;
-case "operacoes":html=hero("Operações","Projetos, tarefas e ordens de serviço.")+
-listing("projetos")+listing("tarefas");break;
-case "relatorios":html=reports();break;
-case "ia":html=ai();break;
-}
-$("app").innerHTML=html;
-if($("companyForm"))$("companyForm").onsubmit=saveCompany;
-if($("stockForm"))$("stockForm").onsubmit=saveStock;
-if($("saleForm")){
-$("saleForm").onsubmit=saveSale;
-renderSaleItems();
-}
-}
-NAV.forEach(n=>{
-const b=document.createElement("button");
-b.className="nav";b.dataset.p=n[0];
-b.textContent=n[1]+" "+n[2];b.onclick=()=>go(n[0]);
-$("navigation").append(b);
-});
-go("home");
+
+show("rh");
 </script>
 </body>
 </html>
