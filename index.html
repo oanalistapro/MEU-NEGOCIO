@@ -4,1233 +4,672 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071426">
 <title>MEU NEGÓCIO PRO | BUSINESS PRO</title>
 <style>
 :root{
-  --bg:#071426;--side:#0b1b30;--card:#11243b;
-  --card2:#172d48;--line:#2a405a;--txt:#edf5ff;
-  --muted:#9cb0c9;--accent:#4b9cff;
-  --ok:#45d5aa;--danger:#ff7585
+--bg:#071321;--panel:#10243b;--line:#29435f;
+--text:#eff6ff;--muted:#a7bdd7;--blue:#489aff;
+--green:#3ed5a1;--red:#ff8292
 }
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--txt);
-  font:14px system-ui,Arial,sans-serif
-}
+body{margin:0;background:var(--bg);color:var(--text);font:14px Arial,sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-button:focus-visible,input:focus-visible,
-select:focus-visible,textarea:focus-visible{
-  outline:2px solid var(--accent);outline-offset:2px
-}
 .app{display:flex;min-height:100vh}
-.side{
-  width:238px;flex-shrink:0;background:var(--side);
-  border-right:1px solid var(--line);padding:22px 12px;
-  position:sticky;top:0;height:100vh;overflow:auto
-}
-.brand{
-  padding:8px 10px 24px;font-weight:900;
-  font-size:21px;letter-spacing:-.5px
-}
-.brand span{color:var(--accent)}
-.brand small{
-  display:block;color:var(--muted);font-size:10px;
-  letter-spacing:2px;margin-top:5px
-}
-.nav{
-  display:block;width:100%;border:0;border-radius:10px;
-  background:transparent;color:var(--muted);
-  padding:12px;text-align:left;margin:2px 0
-}
-.nav:hover,.nav.active{background:#1b3c62;color:#fff}
-.main{
-  min-width:0;flex:1;padding:24px;
-  max-width:1550px;margin:auto
-}
-.head{
-  display:flex;justify-content:space-between;
-  gap:12px;align-items:center;margin-bottom:20px
-}
-.head h1{margin:4px 0;font-size:25px}
-.muted{color:var(--muted)}
-.pill{
-  border:1px solid #386493;color:#b9d7ff;
-  border-radius:30px;padding:8px 11px;font-size:11px
-}
-.hero{
-  background:linear-gradient(110deg,#174c88,#10263f);
-  border:1px solid #315b88;border-radius:20px;
-  padding:25px;margin-bottom:18px
-}
-.hero h2{font-size:25px;margin:0 0 8px}
-.hero p{color:#bfd4ec;margin:0;line-height:1.5}
-.stats{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;margin:16px 0
-}
-.stat,.panel,.tile{
-  background:var(--card);border:1px solid var(--line);
-  border-radius:15px;padding:17px
-}
+aside{width:240px;background:#0b1c30;padding:20px 12px;border-right:1px solid var(--line);flex-shrink:0}
+.logo{font-size:23px;font-weight:900;padding:10px}
+.logo span{color:var(--blue)}
+.logo small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:8px}
+.nav{display:block;width:100%;padding:13px;text-align:left;background:none;color:var(--muted);border:0;border-radius:10px;margin:3px 0}
+.nav:hover,.nav.active{background:#1c416a;color:white}
+main{flex:1;min-width:0;padding:24px}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px}
+h1{font-size:24px}
+.hero{background:linear-gradient(110deg,#205b9c,#10243b);padding:24px;border-radius:18px;margin:18px 0;border:1px solid #356a9e}
+.hero h2{margin:0 0 8px;font-size:24px}
+.hero p{color:#d0e0f3}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}
+.card,.stat,.tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px;margin-bottom:12px}
+.tile{color:white;text-align:left;min-height:112px}
+.tile:hover{border-color:var(--blue)}
+.tile .emoji{display:block;font-size:28px;margin-bottom:12px}
+.tile small{display:block;color:var(--muted);margin-top:8px}
 .stat small{color:var(--muted)}
-.stat strong{display:block;font-size:22px;margin-top:9px}
-.modules{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:12px
-}
-.tile{
-  text-align:left;color:var(--txt);min-height:116px;
-  display:flex;flex-direction:column;gap:9px
-}
-.tile:hover{
-  border-color:var(--accent);transform:translateY(-2px)
-}
-.tile i{font-style:normal;font-size:27px}
-.tile small{color:var(--muted)}
-.section{margin:25px 0 12px;font-size:19px}
-.toolbar{
-  display:flex;flex-wrap:wrap;align-items:center;
-  gap:9px;margin:15px 0
-}
-.btn{
-  border:0;border-radius:10px;padding:11px 15px;
-  background:var(--accent);color:#071426;font-weight:800
-}
-.btn.secondary{
-  background:var(--card2);border:1px solid var(--line);
-  color:var(--txt)
-}
-.btn.danger{background:#512c3d;color:#ffc0ca}
-.panel{margin:12px 0}
-.panel h3{margin:0 0 14px}
-.form{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:13px
-}
+.stat strong{display:block;font-size:22px;margin-top:10px}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
 .field{display:flex;flex-direction:column;gap:6px}
-.field label{color:var(--muted);font-size:12px}
+.field label{color:#b7d1ef;font-size:12px}
 .field input,.field select,.field textarea,.search{
-  width:100%;border:1px solid #3b5370;border-radius:9px;
-  padding:12px;background:#0a1b30;color:var(--txt)
+width:100%;padding:12px;background:#091a2d;
+border:1px solid #365371;border-radius:9px;color:white
 }
-.wide{grid-column:1/-1}
-.records{overflow-x:auto}
-.records table{
-  width:100%;border-collapse:collapse;min-width:590px
-}
-.records th{
-  text-align:left;color:var(--muted);
-  font-weight:500;font-size:12px
-}
-.records td,.records th{
-  padding:12px;border-bottom:1px solid var(--line)
-}
-.records td:last-child{text-align:right}
-.mini{
-  padding:7px 9px;border:1px solid var(--line);
-  background:var(--card2);color:var(--txt);
-  border-radius:8px;margin:2px
-}
-.empty{padding:18px;color:var(--muted);text-align:center}
-.note{
-  padding:13px;background:#142d46;
-  border:1px solid #2d5176;border-radius:10px;
-  color:#bcd4ee;font-size:12px;line-height:1.6
-}
-.toast{
-  position:fixed;bottom:18px;right:18px;
-  padding:13px 18px;background:#235b4e;
-  border-radius:10px;z-index:5;display:none
-}
-.view{display:none}
-.view.active{display:block}
-.mobile-nav{display:none}
+.field textarea{min-height:100px}
+.full{grid-column:1/-1}
+.btn{background:var(--blue);border:0;color:#071321;padding:11px 16px;border-radius:10px;font-weight:bold}
+.btn.alt{background:#1a3655;color:white;border:1px solid var(--line)}
+.btn.danger{background:#633044;color:white}
+.bar{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.table{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:570px}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted)}
+.mini{background:#1c3b5b;color:white;border:1px solid var(--line);border-radius:7px;padding:7px;margin:2px}
+.note{background:#193652;padding:13px;border-radius:10px;color:#c7d9ed;line-height:1.5}
+.doc{background:white;color:#172234;padding:30px;border-radius:10px;line-height:1.8}
+.doc h2{text-align:center}
+.mobile{display:none}
 @media(max-width:1100px){
-  .modules{grid-template-columns:repeat(3,1fr)}
-  .stats{grid-template-columns:repeat(2,1fr)}
+.grid{grid-template-columns:repeat(3,1fr)}
+.stats{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:750px){
-  .side{display:none}
-  .main{padding:15px 15px 80px}
-  .modules{grid-template-columns:repeat(2,1fr);gap:9px}
-  .tile{padding:13px;min-height:105px}
-  .stat{padding:12px}
-  .stat strong{font-size:17px}
-  .hero{padding:19px}
-  .hero h2{font-size:22px}
-  .form{grid-template-columns:1fr}
-  .mobile-nav{
-    display:flex;position:fixed;bottom:0;left:0;right:0;
-    background:#0b1b30;border-top:1px solid var(--line);
-    padding:8px;justify-content:space-around;z-index:4
-  }
-  .mobile-nav button{
-    background:transparent;border:0;color:#bcd4ee;
-    padding:8px;font-size:12px
-  }
-  .head h1{font-size:21px}
+aside{display:none}
+main{padding:14px 12px 80px}
+.grid{grid-template-columns:repeat(2,1fr);gap:9px}
+.stats{gap:9px}
+.stat strong{font-size:17px}
+.form{grid-template-columns:1fr}
+.hero{padding:18px}
+.mobile{display:flex;position:fixed;bottom:0;left:0;right:0;background:#0b1c30;justify-content:space-around;padding:10px;border-top:1px solid var(--line)}
+.mobile button{background:none;color:white;border:0}
 }
 @media print{
-  body{background:#fff;color:#111}
-  .side,.mobile-nav,.head,.toolbar,.btn,.note,.no-print{
-    display:none!important
-  }
-  .main{padding:0}
-  .panel,.stat{
-    border:1px solid #aaa;background:#fff;color:#111
-  }
-  .view:not(.active){display:none!important}
-  .records th,.muted{color:#333}
-  .records td{color:#111}
+aside,.mobile,header,.hero,.bar,.btn,.note{display:none!important}
+body{background:white;color:black}
+main{padding:0}
+.card,.doc{background:white;color:black;border:0}
 }
 </style>
 </head>
 <body>
+
 <div class="app">
-  <aside class="side">
-    <div class="brand">
-      MEU <span>NEGÓCIO</span>
-      <small>BUSINESS PRO • TESTE</small>
-    </div>
-    <nav id="sideNav"></nav>
-  </aside>
-
-  <main class="main">
-    <header class="head">
-      <div>
-        <div class="muted">
-          Sistema empresarial integrado • 2026
-        </div>
-        <h1 id="pageTitle">Visão geral</h1>
-      </div>
-      <span class="pill">🔒 TESTE LOCAL</span>
-    </header>
-
-    <section id="home" class="view active">
-      <div class="hero">
-        <h2>Seu negócio. Tudo em um lugar.</h2>
-        <p>
-          Cadastre sua empresa, gerencie departamentos e
-          crie documentos. Dados locais de teste,
-          sem publicação na nuvem.
-        </p>
-      </div>
-
-      <div class="stats" id="stats"></div>
-
-      <h3 class="section">Departamentos</h3>
-      <div class="modules" id="moduleGrid"></div>
-
-      <div class="panel">
-        <h3>Comece por aqui</h3>
-        <p class="muted">
-          1. Cadastre sua empresa em Gestão.
-          2. Cadastre clientes e produtos.
-          3. Crie orçamentos e acompanhe o financeiro.
-        </p>
-        <button class="btn" data-go="gestao">
-          Configurar empresa
-        </button>
-      </div>
-    </section>
-
-    <section id="workspace" class="view">
-      <div class="hero">
-        <h2 id="moduleTitle"></h2>
-        <p id="moduleDesc"></p>
-      </div>
-      <div id="moduleBody"></div>
-    </section>
-
-    <footer class="muted" style="text-align:center;margin:25px 0;font-size:12px">
-      MEU NEGÓCIO • BUSINESS PRO • Ambiente local de desenvolvimento
-      • Não é sistema fiscal oficial
-    </footer>
-  </main>
+<aside>
+<div class="logo">MEU <span>NEGÓCIO</span><small>BUSINESS PRO</small></div>
+<nav id="menu"></nav>
+</aside>
+<main>
+<header>
+<div>
+<small style="color:#a7bdd7">Sistema empresarial integrado</small>
+<h1 id="title">Visão geral</h1>
+</div>
+<small style="color:#a7bdd7">🔒 TESTE LOCAL</small>
+</header>
+<div id="content"></div>
+</main>
 </div>
 
-<div class="mobile-nav">
-  <button data-go="home">⌂ Início</button>
-  <button data-go="vendas">👥 Clientes</button>
-  <button data-go="financeiro">💳 Caixa</button>
-  <button data-go="documentos">📄 Docs</button>
+<div class="mobile">
+<button onclick="go('home')">⌂ Início</button>
+<button onclick="go('vendas')">👥 Vendas</button>
+<button onclick="go('financeiro')">💳 Caixa</button>
+<button onclick="go('documentos')">📄 Docs</button>
 </div>
-
-<div id="toast" class="toast" role="status"></div>
 
 <script>
 "use strict";
 
-const MODULES = [
-  ["gestao","🏢","Gestão","Empresa, filiais e fornecedores"],
-  ["financeiro","💳","Financeiro","Receitas, despesas e caixa"],
-  ["vendas","🛒","Vendas","Clientes, propostas e pedidos"],
-  ["documentos","📄","Documentos","Contratos, recibos e modelos"],
-  ["rh","👥","RH","Funcionários e equipes"],
-  ["estoque","📦","Estoque","Produtos, compras e inventário"],
-  ["fiscal","🧾","Fiscal","Organização de documentos fiscais"],
-  ["operacoes","📋","Operações","Tarefas e ordens de serviço"],
-  ["relatorios","📊","Relatórios","Indicadores e exportações"],
-  ["ia","✨","BUSINESS IA","Assistente e automações futuras"]
+const MODS=[
+["home","⌂","Visão geral"],
+["gestao","🏢","Gestão empresarial"],
+["financeiro","💳","Financeiro"],
+["vendas","🛒","Vendas"],
+["documentos","📄","Documentos"],
+["rh","👥","Recursos humanos"],
+["estoque","📦","Estoque"],
+["fiscal","🧾","Fiscal"],
+["operacoes","📋","Operações"],
+["relatorios","📊","Relatórios"],
+["ia","✨","BUSINESS IA"]
 ];
 
-const SCHEMAS = {
-  clientes:{
-    label:"Clientes",
-    fields:[
-      ["nome","Nome / razão social","text",true],
-      ["contato","Telefone","tel"],
-      ["email","E-mail","email"],
-      ["documento","CPF/CNPJ (opcional)","text"]
-    ]
-  },
-  fornecedores:{
-    label:"Fornecedores",
-    fields:[
-      ["nome","Fornecedor","text",true],
-      ["contato","Contato","text"],
-      ["email","E-mail","email"]
-    ]
-  },
-  produtos:{
-    label:"Produtos / Serviços",
-    fields:[
-      ["nome","Produto ou serviço","text",true],
-      ["codigo","Código / SKU","text"],
-      ["preco","Preço (R$)","money",true],
-      ["quantidade","Estoque atual","number",true]
-    ]
-  },
-  financeiro:{
-    label:"Lançamentos",
-    fields:[
-      ["descricao","Descrição","text",true],
-      ["tipo","Tipo","choice:Receita|Despesa",true],
-      ["valor","Valor (R$)","money",true],
-      ["data","Data","date",true],
-      ["categoria","Categoria","text"]
-    ]
-  },
-  funcionarios:{
-    label:"Funcionários",
-    fields:[
-      ["nome","Nome","text",true],
-      ["cargo","Cargo","text",true],
-      ["admissao","Data de admissão","date"],
-      ["situacao","Situação","choice:Ativo|Afastado|Desligado"]
-    ]
-  },
-  tarefas:{
-    label:"Tarefas e operações",
-    fields:[
-      ["titulo","Atividade","text",true],
-      ["responsavel","Responsável","text"],
-      ["prazo","Prazo","date"],
-      ["status","Status","choice:Pendente|Em andamento|Concluído"],
-      ["detalhes","Detalhes","text"]
-    ]
-  },
-  orcamentos:{
-    label:"Orçamentos",
-    fields:[
-      ["numero","Número","text",true],
-      ["cliente","Cliente","text",true],
-      ["descricao","Descrição do serviço / produto","text",true],
-      ["valor","Valor total (R$)","money",true],
-      ["validade","Validade","date"],
-      ["status","Status","choice:Rascunho|Enviado|Aprovado|Recusado"]
-    ]
-  },
-  documentos:{
-    label:"Documentos internos",
-    fields:[
-      ["titulo","Título","text",true],
-      ["tipo","Tipo","choice:Contrato|Recibo|Declaração|Ata|Outro"],
-      ["conteudo","Conteúdo / observações","textarea",true],
-      ["data","Data","date"]
-    ]
-  },
-  fiscais:{
-    label:"Controle fiscal",
-    fields:[
-      ["numero","Número da nota / documento","text",true],
-      ["tipo","Tipo","choice:NF-e|NFS-e|NFC-e|Outro"],
-      ["emissor","Emissor / fornecedor","text"],
-      ["valor","Valor (R$)","money"],
-      ["data","Data de emissão","date"],
-      ["situacao","Situação","choice:Recebido|Pendente|Conferido"]
-    ]
-  }
-};
+const KEY="meu_negocio_pro_integrado_2026";
 
-const KEY = "businesspro_meunegocio_erp_teste_v2";
-
-const empty = () => ({
-  empresa:{
-    nome:"",cnpj:"",email:"",telefone:"",endereco:""
-  },
-  clientes:[],
-  fornecedores:[],
-  produtos:[],
-  financeiro:[],
-  funcionarios:[],
-  tarefas:[],
-  orcamentos:[],
-  documentos:[],
-  fiscais:[]
+const blank=()=>({
+empresa:{},
+clientes:[],fornecedores:[],produtos:[],
+financeiro:[],funcionarios:[],tarefas:[],
+orcamentos:[],documentos:[],fiscais:[],
+movimentos:[]
 });
 
-let db = empty();
-let current = "home";
-
-const $ = id => document.getElementById(id);
-const safe = x => String(x ?? "");
-const fmt = v => Number(v || 0).toLocaleString("pt-BR",{
-  style:"currency",currency:"BRL"
-});
-
-const dateNow = () => {
-  const d = new Date();
-  return [
-    d.getFullYear(),
-    String(d.getMonth()+1).padStart(2,"0"),
-    String(d.getDate()).padStart(2,"0")
-  ].join("-");
-};
-
-const uid = () =>
-  globalThis.crypto?.randomUUID?.() ||
-  `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-
-function notify(t){
-  $("toast").textContent = t;
-  $("toast").style.display = "block";
-  clearTimeout(notify.t);
-  notify.t = setTimeout(() => {
-    $("toast").style.display = "none";
-  },3000);
-}
+let db=blank();
+let current="home";
+let editing=null;
+let budgetItems=[];
 
 try{
-  const raw = JSON.parse(localStorage.getItem(KEY) || "null");
-  if(raw && typeof raw === "object"){
-    const base = empty();
-    for(const k of Object.keys(base)){
-      if(k === "empresa" && raw[k] && typeof raw[k] === "object"){
-        base[k] = {...base[k],...raw[k]};
-      }else if(Array.isArray(base[k]) && Array.isArray(raw[k])){
-        base[k] = raw[k];
-      }
-    }
-    db = base;
-  }
-}catch(e){
-  notify("Não foi possível ler os dados salvos.");
+const saved=JSON.parse(localStorage.getItem(KEY)||"null");
+if(saved&&typeof saved==="object"){
+const base=blank();
+for(const k of Object.keys(base)){
+if(k==="empresa"&&saved.empresa&&typeof saved.empresa==="object")base.empresa=saved.empresa;
+else if(Array.isArray(base[k])&&Array.isArray(saved[k]))base[k]=saved[k];
 }
+db=base;
+}
+}catch(e){}
+
+const $=id=>document.getElementById(id);
+const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now()+"-"+Math.random();
+const money=v=>Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const today=()=>new Date().toLocaleDateString("en-CA");
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 function save(){
-  try{
-    localStorage.setItem(KEY,JSON.stringify(db));
-    return true;
-  }catch(e){
-    alert("Falha ao salvar. Armazenamento indisponível ou cheio.");
-    return false;
-  }
+try{localStorage.setItem(KEY,JSON.stringify(db));return true}
+catch(e){alert("Erro ao salvar dados neste navegador.");return false}
 }
 
-function el(tag,text,cls){
-  const n = document.createElement(tag);
-  if(text !== undefined) n.textContent = text;
-  if(cls) n.className = cls;
-  return n;
+function change(fn){
+const previous=JSON.stringify(db);
+fn();
+if(!save()){db=JSON.parse(previous);return false}
+return true;
 }
 
-function button(text,fn,cls="mini"){
-  const b = el("button",text,cls);
-  b.type = "button";
-  b.addEventListener("click",fn);
-  return b;
+function download(name,text,type){
+const url=URL.createObjectURL(new Blob([text],{type}));
+const a=document.createElement("a");
+a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 
-function field(name,label,type,required,value){
-  const wrap = el("div",undefined,"field");
-  const lab = el("label",label);
-  let input;
-
-  if(type === "textarea"){
-    input = el("textarea");
-    input.rows = 4;
-  }else if(type.startsWith("choice:")){
-    input = el("select");
-    type.slice(7).split("|").forEach(o => {
-      const opt = el("option",o);
-      opt.value = o;
-      input.append(opt);
-    });
-  }else{
-    input = el("input");
-    input.type = type === "money" ? "number" : type;
-
-    if(type === "money"){
-      input.step = "0.01";
-      input.min = "0";
-    }
-    if(type === "number"){
-      input.step = "1";
-      input.min = "0";
-    }
-  }
-
-  input.name = name;
-  input.required = !!required;
-  input.value = value ?? (type === "date" ? dateNow() : "");
-  lab.htmlFor = "f_" + name;
-  input.id = "f_" + name;
-  wrap.append(lab,input);
-  return wrap;
+function field(k,label,type="text",value="",required=false,opts=[]){
+const id="f_"+k;
+let input;
+if(type==="select"){
+input=`<select id="${id}" name="${k}" ${required?"required":""}>${opts.map(x=>`<option value="${esc(x)}" ${value===x?"selected":""}>${esc(x)}</option>`).join("")}</select>`;
+}else if(type==="textarea"){
+input=`<textarea id="${id}" name="${k}">${esc(value)}</textarea>`;
+}else{
+input=`<input id="${id}" name="${k}" type="${type==="money"?"number":type}" value="${esc(value)}" ${required?"required":""} ${type==="money"?'min="0" step="0.01"':""}>`;
+}
+return `<div class="field"><label for="${id}">${label}</label>${input}</div>`;
 }
 
-function renderHome(){
-  const sum = type => db.financeiro
-    .filter(x => x.tipo === type)
-    .reduce((a,x) => a + Number(x.valor || 0),0);
-
-  const income = sum("Receita");
-  const expense = sum("Despesa");
-
-  $("stats").replaceChildren();
-
-  [
-    ["Saldo",fmt(income-expense)],
-    ["Receitas",fmt(income)],
-    ["Despesas",fmt(expense)],
-    ["Clientes",String(db.clientes.length)]
-  ].forEach(([k,v]) => {
-    const c = el("div",undefined,"stat");
-    c.append(el("small",k),el("strong",v));
-    $("stats").append(c);
-  });
-
-  $("moduleGrid").replaceChildren();
-
-  MODULES.forEach(([id,icon,title,desc]) => {
-    const t = el("button",undefined,"tile");
-    t.append(
-      el("i",icon),
-      el("strong",title),
-      el("small",desc)
-    );
-    t.onclick = () => go(id);
-    $("moduleGrid").append(t);
-  });
+function hero(title,subtitle){
+return `<div class="hero"><h2>${title}</h2><p>${subtitle}</p></div>`;
 }
+
+function stat(label,value){
+return `<div class="stat"><small>${label}</small><strong>${value}</strong></div>`;
+}
+
+function totals(type,status="Pago"){
+return db.financeiro.filter(x=>x.tipo===type&&x.status===status)
+.reduce((s,x)=>s+Number(x.valor||0),0);
+}
+
+const SCHEMAS={
+clientes:{
+title:"Clientes",
+fields:[
+["nome","Nome / razão social","text",true],
+["tipo","Tipo","select",false,["Pessoa física","Pessoa jurídica"]],
+["documento","CPF / CNPJ"],
+["telefone","Telefone","tel"],
+["email","E-mail","email"],
+["cidade","Cidade"],
+["endereco","Endereço"],
+["observacoes","Observações","textarea"]
+]},
+fornecedores:{
+title:"Fornecedores",
+fields:[
+["nome","Nome / razão social","text",true],
+["cnpj","CPF / CNPJ"],
+["telefone","Telefone","tel"],
+["email","E-mail","email"],
+["categoria","Categoria"]
+]},
+funcionarios:{
+title:"Funcionários",
+fields:[
+["nome","Nome completo","text",true],
+["cargo","Cargo","text",true],
+["departamento","Departamento"],
+["salario","Salário (R$)","money"],
+["admissao","Admissão","date"],
+["jornada","Jornada semanal"],
+["status","Situação","select",false,["Ativo","Férias","Afastado","Desligado"]]
+]},
+financeiro:{
+title:"Contas a pagar e receber",
+fields:[
+["descricao","Descrição","text",true],
+["tipo","Tipo","select",true,["Receita","Despesa"]],
+["valor","Valor (R$)","money",true],
+["vencimento","Vencimento","date",true],
+["status","Situação","select",true,["Pendente","Pago"]],
+["categoria","Categoria"],
+["observacoes","Observações","textarea"]
+]},
+tarefas:{
+title:"Tarefas e serviços",
+fields:[
+["titulo","Título","text",true],
+["responsavel","Responsável"],
+["prioridade","Prioridade","select",false,["Baixa","Média","Alta","Urgente"]],
+["prazo","Prazo","date"],
+["status","Situação","select",false,["Pendente","Em andamento","Concluído"]],
+["descricao","Descrição","textarea"]
+]},
+fiscais:{
+title:"Documentos fiscais recebidos",
+fields:[
+["numero","Número do documento","text",true],
+["tipo","Tipo","select",false,["NF-e","NFS-e","NFC-e","Outro"]],
+["emissor","Emissor"],
+["valor","Valor (R$)","money"],
+["data","Emissão","date"],
+["status","Situação","select",false,["Pendente","Conferido","Arquivado"]]
+]},
+produtos:{
+title:"Produtos e serviços",
+fields:[
+["nome","Nome","text",true],
+["sku","Código / SKU"],
+["tipo","Tipo","select",false,["Produto","Serviço"]],
+["preco","Preço de venda","money",true],
+["custo","Custo","money"],
+["qtd","Quantidade atual","number"],
+["minimo","Estoque mínimo","number"],
+["unidade","Unidade","select",false,["UN","KG","CX","M","L","HORA"]],
+["categoria","Categoria"]
+]}
+};
 
 function go(id){
-  current = id;
-
-  document.querySelectorAll(".view").forEach(v => {
-    v.classList.toggle(
-      "active",
-      v.id === (id === "home" ? "home" : "workspace")
-    );
-  });
-
-  document.querySelectorAll(".nav").forEach(b => {
-    b.classList.toggle("active",b.dataset.go === id);
-  });
-
-  $("pageTitle").textContent =
-    id === "home"
-    ? "Visão geral"
-    : MODULES.find(m => m[0] === id)?.[2] || id;
-
-  if(id === "home") renderHome();
-  else renderModule(id);
-
-  window.scrollTo(0,0);
+current=id;editing=null;
+$("title").textContent=MODS.find(m=>m[0]===id)?.[2]||id;
+document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+render();
+window.scrollTo(0,0);
 }
 
-document.addEventListener("click",e => {
-  const b = e.target.closest("[data-go]");
-  if(b) go(b.dataset.go);
+function dashboard(){
+const income=totals("Receita"),expense=totals("Despesa");
+return hero("Bem-vindo ao MEU NEGÓCIO PRO","Sua empresa, clientes, vendas, documentos e finanças em uma única plataforma.")+
+`<div class="stats">
+${stat("Saldo realizado",money(income-expense))}
+${stat("Receitas",money(income))}
+${stat("Despesas",money(expense))}
+${stat("Clientes",db.clientes.length)}
+</div>
+<h2>Departamentos</h2>
+<div class="grid">${MODS.slice(1).map(m=>`
+<button class="tile" onclick="go('${m[0]}')">
+<span class="emoji">${m[1]}</span>
+<strong>${m[2]}</strong>
+<small>Abrir departamento</small>
+</button>`).join("")}</div>`;
+}
+
+const companyFields=[
+["razao","Razão social","text",true],
+["fantasia","Nome fantasia"],
+["cnpj","CNPJ"],
+["tipo","Porte","select",false,["MEI","ME","EPP","Médio porte","Grande porte"]],
+["regime","Regime tributário","select",false,["Não informado","Simples Nacional","Lucro Presumido","Lucro Real"]],
+["cnae","CNAE principal"],
+["abertura","Data de abertura","date"],
+["responsavel","Responsável legal"],
+["email","E-mail","email"],
+["telefone","Telefone","tel"],
+["site","Site"],
+["cep","CEP"],
+["endereco","Logradouro"],
+["numero","Número"],
+["bairro","Bairro"],
+["cidade","Cidade"],
+["uf","Estado / UF"],
+["missao","Descrição da empresa","textarea"]
+];
+
+function company(){
+return hero("🏢 Gestão empresarial","Configure sua empresa para reutilizar seus dados em documentos e relatórios.")+
+`<div class="card"><h3>Cadastro empresarial completo</h3>
+<form id="companyForm" class="form">
+${companyFields.map(([k,l,t,r,o])=>field(k,l,t||"text",db.empresa[k]||"",r,o||[])).join("")}
+<div class="full"><button class="btn">Salvar empresa</button></div>
+</form></div>`+crud("fornecedores");
+}
+
+function crud(kind){
+const s=SCHEMAS[kind];
+const item=editing?.kind===kind?db[kind].find(x=>x.id===editing.id)||{}:null;
+return `<div class="card">
+<h3>${s.title} (${db[kind].length})</h3>
+<div class="bar">
+<button class="btn" onclick="openForm('${kind}')">＋ Novo cadastro</button>
+<button class="btn alt" onclick="exportCSV('${kind}')">Exportar CSV</button>
+</div>
+<input class="search" placeholder="Pesquisar ${s.title.toLowerCase()}" oninput="filterRows(this,'${kind}')">
+<div id="form_${kind}">${item?formHTML(kind,item):""}</div>
+<div class="table">
+<table id="table_${kind}">
+<thead><tr>${s.fields.slice(0,4).map(f=>`<th>${f[1]}</th>`).join("")}<th>Ações</th></tr></thead>
+<tbody>${db[kind].map(x=>`<tr>
+${s.fields.slice(0,4).map(f=>`<td>${esc(f[2]==="money"?money(x[f[0]]):x[f[0]])}</td>`).join("")}
+<td>
+<button class="mini" onclick="editRecord('${kind}','${x.id}')">Editar</button>
+<button class="mini" onclick="removeRecord('${kind}','${x.id}')">Excluir</button>
+</td></tr>`).join("")||`<tr><td colspan="5">Nenhum registro cadastrado.</td></tr>`}</tbody>
+</table></div></div>`;
+}
+
+function formHTML(kind,item={}){
+return `<div class="card"><h3>${item.id?"Editar":"Novo"} registro</h3>
+<form class="form" id="formRecord_${kind}">
+${SCHEMAS[kind].fields.map(([k,l,t,r,o])=>field(k,l,t||"text",item[k]??"",r,o||[])).join("")}
+<div class="full bar">
+<button class="btn">Salvar registro</button>
+<button class="btn alt" type="button" onclick="closeForm('${kind}')">Cancelar</button>
+</div></form></div>`;
+}
+
+function openForm(kind){
+editing={kind,id:null};
+$("form_"+kind).innerHTML=formHTML(kind);
+bindForm(kind);
+$("form_"+kind).scrollIntoView({behavior:"smooth"});
+}
+
+function editRecord(kind,id){
+editing={kind,id};
+$("form_"+kind).innerHTML=formHTML(kind,db[kind].find(x=>x.id===id));
+bindForm(kind);
+$("form_"+kind).scrollIntoView({behavior:"smooth"});
+}
+
+function closeForm(kind){
+editing=null;$("form_"+kind).innerHTML="";
+}
+
+function bindForm(kind){
+const f=$("formRecord_"+kind);
+if(!f)return;
+f.onsubmit=e=>{
+e.preventDefault();
+const data=Object.fromEntries(new FormData(f));
+const old=editing?.id;
+data.id=old||uid();
+for(const [k,l,t] of SCHEMAS[kind].fields){
+if(t==="money"||t==="number")data[k]=Number(data[k]||0);
+}
+if(change(()=>{
+if(old){
+db[kind]=db[kind].map(x=>x.id===old?data:x);
+}else db[kind].unshift(data);
+})){
+editing=null;render();alert("Registro salvo com sucesso.");
+}
+};
+}
+
+function removeRecord(kind,id){
+if(!confirm("Deseja excluir este registro?"))return;
+if(change(()=>db[kind]=db[kind].filter(x=>x.id!==id)))render();
+}
+
+function filterRows(input,kind){
+const term=input.value.toLowerCase();
+document.querySelectorAll(`#table_${kind} tbody tr`).forEach(row=>{
+row.style.display=row.textContent.toLowerCase().includes(term)?"":"none";
 });
-
-const nav = $("sideNav");
-
-const homeButton = button(
-  "⌂  Visão geral",() => go("home"),"nav active"
-);
-homeButton.dataset.go = "home";
-nav.append(homeButton);
-
-MODULES.forEach(([id,icon,name]) => {
-  const b = button(icon+"  "+name,() => go(id),"nav");
-  b.dataset.go = id;
-  nav.append(b);
-});
-
-function panel(title){
-  const p = el("div",undefined,"panel");
-  p.append(el("h3",title));
-  return p;
-}
-
-function renderModule(id){
-  const meta = MODULES.find(m => m[0] === id);
-
-  $("moduleTitle").textContent = meta[1]+" "+meta[2];
-  $("moduleDesc").textContent = meta[3];
-
-  const body = $("moduleBody");
-  body.replaceChildren();
-
-  if(id === "gestao"){
-    renderCompany(body);
-    addCrud(body,"fornecedores");
-  }
-
-  if(id === "financeiro"){
-    addCrud(body,"financeiro");
-  }
-
-  if(id === "vendas"){
-    addCrud(body,"clientes");
-    addCrud(body,"orcamentos");
-  }
-
-  if(id === "documentos"){
-    addCrud(body,"documentos");
-
-    const p = panel("Modelos rápidos");
-    p.append(
-      button(
-        "Gerar contrato de prestação de serviços",
-        () => makeDocument("contrato"),
-        "btn secondary"
-      ),
-      document.createTextNode(" "),
-      button(
-        "Gerar recibo",
-        () => makeDocument("recibo"),
-        "btn secondary"
-      )
-    );
-    body.append(p);
-  }
-
-  if(id === "rh") addCrud(body,"funcionarios");
-  if(id === "estoque") addCrud(body,"produtos");
-
-  if(id === "fiscal"){
-    const p = panel("Documentos fiscais");
-    p.append(el(
-      "p",
-      "Organize os documentos recebidos. Esta versão não emite notas fiscais oficiais nem envia obrigações ao governo.",
-      "note"
-    ));
-    body.append(p);
-    addCrud(body,"fiscais");
-  }
-
-  if(id === "operacoes") addCrud(body,"tarefas");
-  if(id === "relatorios") renderReports(body);
-
-  if(id === "ia"){
-    const p = panel("BUSINESS IA");
-
-    p.append(el(
-      "p",
-      "Integração com modelo de IA ainda não configurada. Nenhuma resposta será simulada como se viesse de uma IA real.",
-      "note"
-    ));
-
-    p.append(button(
-      "Criar resumo financeiro local",
-      () => {
-        const income = db.financeiro
-          .filter(x => x.tipo === "Receita")
-          .reduce((s,x) => s + Number(x.valor || 0),0);
-
-        const expense = db.financeiro
-          .filter(x => x.tipo === "Despesa")
-          .reduce((s,x) => s + Number(x.valor || 0),0);
-
-        alert(
-          `Resumo calculado localmente:\n`+
-          `Receitas: ${fmt(income)}\n`+
-          `Despesas: ${fmt(expense)}\n`+
-          `Saldo: ${fmt(income-expense)}`
-        );
-      },
-      "btn"
-    ));
-
-    body.append(p);
-  }
-}
-
-function renderCompany(body){
-  const p = panel("Dados da empresa");
-  const form = el("form",undefined,"form");
-
-  [
-    ["nome","Nome da empresa","text"],
-    ["cnpj","CNPJ (opcional)","text"],
-    ["email","E-mail","email"],
-    ["telefone","Telefone","tel"],
-    ["endereco","Endereço","text"]
-  ].forEach(([k,l,t]) => {
-    form.append(field(k,l,t,k === "nome",db.empresa[k]));
-  });
-
-  const actions = el("div",undefined,"wide");
-  const submit = el("button","Salvar empresa","btn");
-  submit.type = "submit";
-  actions.append(submit);
-  form.append(actions);
-
-  form.onsubmit = e => {
-    e.preventDefault();
-    const old = {...db.empresa};
-
-    for(const [k,v] of new FormData(form)){
-      db.empresa[k] = String(v).trim();
-    }
-
-    if(!save()){
-      db.empresa = old;
-      return;
-    }
-
-    notify("Dados da empresa salvos");
-  };
-
-  p.append(form);
-  body.append(p);
-}
-
-function addCrud(body,kind){
-  const schema = SCHEMAS[kind];
-  const p = panel(schema.label);
-
-  const bar = el("div",undefined,"toolbar");
-
-  bar.append(
-    button("＋ Novo cadastro",() => showForm(),"btn"),
-    button("Exportar CSV",() => exportCSV(kind),"btn secondary")
-  );
-
-  const q = el("input");
-  q.className = "search";
-  q.placeholder = "Pesquisar "+schema.label.toLowerCase();
-  q.setAttribute("aria-label","Pesquisar "+schema.label);
-
-  bar.append(q);
-  p.append(bar);
-
-  const formHost = el("div");
-  p.append(formHost);
-
-  const table = el("div",undefined,"records");
-  p.append(table);
-
-  function update(){
-    table.replaceChildren();
-
-    const items = db[kind].filter(x =>
-      Object.values(x).some(v =>
-        safe(v).toLowerCase().includes(q.value.toLowerCase())
-      )
-    );
-
-    if(!items.length){
-      table.append(el(
-        "div","Nenhum registro encontrado.","empty"
-      ));
-      return;
-    }
-
-    const t = el("table");
-    const head = el("tr");
-
-    schema.fields.slice(0,3).forEach(f =>
-      head.append(el("th",f[1]))
-    );
-
-    head.append(el("th","Ações"));
-
-    const thead = el("thead");
-    thead.append(head);
-    t.append(thead);
-
-    const tb = el("tbody");
-
-    items.forEach(item => {
-      const row = el("tr");
-
-      schema.fields.slice(0,3).forEach(([k,l,type]) => {
-        row.append(el(
-          "td",
-          type === "money" ? fmt(item[k]) : safe(item[k])
-        ));
-      });
-
-      const acts = el("td");
-
-      acts.append(
-        button("Editar",() => showForm(item.id)),
-        button("Excluir",() => remove(item.id))
-      );
-
-      if(kind === "orcamentos" || kind === "documentos"){
-        acts.append(button(
-          "Imprimir",() => printRecord(kind,item)
-        ));
-      }
-
-      row.append(acts);
-      tb.append(row);
-    });
-
-    t.append(tb);
-    table.append(t);
-  }
-
-  q.oninput = update;
-  body.append(p);
-  update();
-
-  function showForm(id){
-    formHost.replaceChildren();
-
-    const item = id
-      ? db[kind].find(x => x.id === id)
-      : null;
-
-    const box = panel(
-      item ? "Editar registro" : "Novo registro"
-    );
-
-    const form = el("form",undefined,"form");
-
-    schema.fields.forEach(([key,label,type,required]) => {
-      form.append(field(
-        key,label,type,required,item?.[key]
-      ));
-    });
-
-    const actions = el("div",undefined,"wide toolbar");
-    const submit = el("button","Salvar","btn");
-    submit.type = "submit";
-
-    actions.append(
-      submit,
-      button(
-        "Cancelar",
-        () => formHost.replaceChildren(),
-        "btn secondary"
-      )
-    );
-
-    form.append(actions);
-
-    form.onsubmit = e => {
-      e.preventDefault();
-
-      const obj = {id:item?.id || uid()};
-
-      for(const [key,value] of new FormData(form)){
-        const type = schema.fields.find(f => f[0] === key)?.[2];
-
-        obj[key] =
-          type === "money" || type === "number"
-          ? Number(value)
-          : String(value).trim();
-      }
-
-      const invalid = schema.fields.some(
-        ([key,label,type,required]) =>
-          required && (
-            obj[key] === "" ||
-            obj[key] === null ||
-            !Number.isFinite(
-              type === "money" || type === "number"
-              ? obj[key] : 0
-            )
-          )
-      );
-
-      if(invalid){
-        alert("Preencha os campos obrigatórios.");
-        return;
-      }
-
-      const previous = db[kind].slice();
-
-      if(item){
-        db[kind] = db[kind].map(x =>
-          x.id === id ? obj : x
-        );
-      }else{
-        db[kind].unshift(obj);
-      }
-
-      if(!save()){
-        db[kind] = previous;
-        return;
-      }
-
-      formHost.replaceChildren();
-      update();
-      renderHome();
-      notify("Registro salvo com sucesso");
-    };
-
-    box.append(form);
-    formHost.append(box);
-
-    formHost.scrollIntoView({
-      behavior:"smooth",block:"nearest"
-    });
-  }
-
-  function remove(id){
-    if(!confirm("Excluir este registro?")) return;
-
-    const old = db[kind].slice();
-
-    db[kind] = db[kind].filter(x => x.id !== id);
-
-    if(!save()){
-      db[kind] = old;
-      return;
-    }
-
-    update();
-    renderHome();
-    notify("Registro excluído");
-  }
 }
 
 function exportCSV(kind){
-  const rows = [
-    SCHEMAS[kind].fields.map(f => f[1]),
-    ...db[kind].map(x =>
-      SCHEMAS[kind].fields.map(f => safe(x[f[0]]))
-    )
-  ];
-
-  const csv = rows.map(r =>
-    r.map(v =>
-      '"' + v.replaceAll('"','""') + '"'
-    ).join(";")
-  ).join("\r\n");
-
-  download(
-    kind+".csv",
-    "\ufeff"+csv,
-    "text/csv;charset=utf-8"
-  );
+const fields=SCHEMAS[kind].fields;
+const lines=[
+fields.map(f=>f[1]),
+...db[kind].map(x=>fields.map(f=>String(x[f[0]]??"")))
+];
+const csv=lines.map(row=>row.map(v=>'"'+v.replaceAll('"','""')+'"').join(";")).join("\r\n");
+download(kind+".csv","\ufeff"+csv,"text/csv;charset=utf-8");
 }
 
-function download(name,content,mime){
-  const blob = new Blob([content],{type:mime});
-  const url = URL.createObjectURL(blob);
-  const a = el("a");
-
-  a.href = url;
-  a.download = name;
-  document.body.append(a);
-  a.click();
-  a.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url),1500);
+function productPage(){
+return hero("📦 Estoque inteligente","Produtos, serviços, quantidades e controle de estoque mínimo.")+
+`<div class="stats">
+${stat("Produtos",db.produtos.length)}
+${stat("Estoque baixo",db.produtos.filter(p=>p.tipo!=="Serviço"&&Number(p.qtd)<=Number(p.minimo)).length)}
+${stat("Unidades",db.produtos.reduce((s,p)=>s+Number(p.qtd||0),0))}
+${stat("Valor de custo",money(db.produtos.reduce((s,p)=>s+Number(p.qtd||0)*Number(p.custo||0),0)))}
+</div>`+crud("produtos");
 }
 
-function escapeHTML(v){
-  return safe(v).replace(/[&<>"']/g,c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[c]));
+function budgetPage(){
+return `<div class="card"><h3>Orçamento profissional</h3>
+<form id="budgetForm" class="form">
+${field("cliente","Cliente","select","",true,db.clientes.map(x=>x.nome))}
+${field("validade","Validade","date",today())}
+${field("observacoes","Observações","textarea")}
+<div class="full"><h3>Itens do orçamento</h3>
+<div class="bar">
+<select id="budgetProduct" class="search">
+${db.produtos.map(p=>`<option value="${p.id}">${esc(p.nome)} — ${money(p.preco)}</option>`).join("")}
+</select>
+<input id="budgetQty" type="number" min="1" value="1" style="width:90px;padding:10px">
+<button type="button" class="btn alt" onclick="addBudgetItem()">Adicionar item</button>
+</div>
+<div id="budgetList"></div></div>
+<div class="full"><button class="btn">Salvar orçamento</button></div>
+</form></div>
+<div class="card"><h3>Orçamentos salvos (${db.orcamentos.length})</h3>
+<div class="table"><table><thead><tr><th>Cliente</th><th>Data</th><th>Total</th><th>Ações</th></tr></thead><tbody>
+${db.orcamentos.map(o=>`<tr><td>${esc(o.cliente)}</td><td>${esc(o.data)}</td><td>${money(o.total)}</td><td><button class="mini" onclick="printBudget('${o.id}')">Imprimir</button><button class="mini" onclick="deleteBudget('${o.id}')">Excluir</button></td></tr>`).join("")||'<tr><td colspan="4">Nenhum orçamento salvo.</td></tr>'}
+</tbody></table></div></div>`;
 }
 
-function printRecord(kind,item){
-  const name = SCHEMAS[kind].label;
-
-  const body = SCHEMAS[kind].fields.map(
-    ([key,label,type]) =>
-      `<p><b>${escapeHTML(label)}:</b> ${
-        escapeHTML(
-          type === "money"
-          ? fmt(item[key])
-          : safe(item[key])
-        )
-      }</p>`
-  ).join("");
-
-  printHTML(`
-    <h1>${escapeHTML(name)}</h1>
-    <h2>${escapeHTML(
-      db.empresa.nome || "Empresa não cadastrada"
-    )}</h2>
-    ${body}
-  `);
+function addBudgetItem(){
+const id=$("budgetProduct")?.value;
+const p=db.produtos.find(x=>x.id===id);
+const qty=Number($("budgetQty").value);
+if(!p||!Number.isInteger(qty)||qty<1)return alert("Selecione um produto e quantidade válida.");
+budgetItems.push({nome:p.nome,quantidade:qty,preco:Number(p.preco)});
+renderBudgetItems();
 }
 
-function printHTML(content){
-  const w = window.open("","_blank");
-
-  if(!w){
-    alert("Permita janelas pop-up para imprimir.");
-    return;
-  }
-
-  w.document.write(`
-    <!doctype html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <title>Documento • Meu Negócio</title>
-      <style>
-        body{
-          font:15px Arial;max-width:760px;
-          margin:50px auto;padding:20px;line-height:1.7
-        }
-        h1{color:#174c88}
-        p{border-bottom:1px solid #ddd;padding:5px 0}
-        footer{margin-top:70px;color:#666}
-      </style>
-    </head>
-    <body>
-      ${content}
-      <footer>
-        Gerado em ${new Date().toLocaleDateString("pt-BR")}
-        • Documento de teste
-      </footer>
-    </body>
-    </html>
-  `);
-
-  w.document.close();
-  w.focus();
-  setTimeout(() => w.print(),250);
+function renderBudgetItems(){
+const host=$("budgetList");if(!host)return;
+const total=budgetItems.reduce((s,x)=>s+x.preco*x.quantidade,0);
+host.innerHTML=`<div class="table"><table><thead><tr><th>Item</th><th>Quantidade</th><th>Subtotal</th><th>Ação</th></tr></thead><tbody>
+${budgetItems.map((x,i)=>`<tr><td>${esc(x.nome)}</td><td>${x.quantidade}</td><td>${money(x.preco*x.quantidade)}</td><td><button type="button" class="mini" onclick="budgetItems.splice(${i},1);renderBudgetItems()">Remover</button></td></tr>`).join("")}
+</tbody></table></div><h3>Total: ${money(total)}</h3>`;
 }
 
-function makeDocument(type){
-  const company =
-    db.empresa.nome || "EMPRESA NÃO CADASTRADA";
-
-  if(type === "recibo"){
-    const name = prompt("Nome de quem pagou:");
-    if(name === null) return;
-
-    const amount = prompt(
-      "Valor recebido em R$ (ex.: 150.00):"
-    );
-    if(amount === null) return;
-
-    const number = Number(amount.replace(",","."));
-
-    if(!Number.isFinite(number) || number <= 0){
-      alert("Valor inválido");
-      return;
-    }
-
-    const reason = prompt("Referente a quê?") || "Pagamento";
-
-    printHTML(`
-      <h1>RECIBO</h1>
-      <h2>${escapeHTML(company)}</h2>
-      <p>
-        Recebemos de <b>${escapeHTML(name)}</b>
-        a quantia de <b>${escapeHTML(fmt(number))}</b>,
-        referente a ${escapeHTML(reason)}.
-      </p>
-      <p>Data: ${new Date().toLocaleDateString("pt-BR")}</p>
-      <br>
-      <p>Assinatura: __________________________________</p>
-    `);
-  }else{
-    const client = prompt("Nome do contratante:");
-    if(client === null) return;
-
-    const service = prompt("Descrição do serviço:");
-    if(service === null) return;
-
-    const price = prompt("Valor contratado (R$):");
-    if(price === null) return;
-
-    const number = Number(price.replace(",","."));
-
-    if(!Number.isFinite(number) || number < 0){
-      alert("Valor inválido");
-      return;
-    }
-
-    printHTML(`
-      <h1>MINUTA DE CONTRATO DE PRESTAÇÃO DE SERVIÇOS</h1>
-      <p><b>Contratada:</b> ${escapeHTML(company)}</p>
-      <p><b>Contratante:</b> ${escapeHTML(client)}</p>
-      <p><b>Objeto:</b> ${escapeHTML(service)}</p>
-      <p><b>Valor:</b> ${escapeHTML(fmt(number))}</p>
-      <p>
-        As partes deverão definir e revisar prazos,
-        forma de pagamento, obrigações, responsabilidades,
-        rescisão, foro e demais cláusulas aplicáveis
-        antes da assinatura.
-      </p>
-      <p>
-        <b>ATENÇÃO:</b> Minuta simplificada de demonstração;
-        exige revisão antes de uso jurídico.
-      </p>
-      <br>
-      <p>
-        Contratante: _____________________
-        Contratada: _____________________
-      </p>
-    `);
-  }
+function saveBudget(e){
+e.preventDefault();
+if(!budgetItems.length)return alert("Adicione pelo menos um item.");
+const f=Object.fromEntries(new FormData(e.target));
+const data={
+id:uid(),cliente:f.cliente,validade:f.validade,
+observacoes:f.observacoes,data:today(),
+itens:budgetItems.map(x=>({...x})),
+total:budgetItems.reduce((s,x)=>s+x.preco*x.quantidade,0)
+};
+if(change(()=>db.orcamentos.unshift(data))){
+budgetItems=[];render();alert("Orçamento salvo.");
+}
 }
 
-function renderReports(body){
-  const p = panel("Indicadores da empresa");
-
-  const income = db.financeiro
-    .filter(x => x.tipo === "Receita")
-    .reduce((s,x) => s + Number(x.valor || 0),0);
-
-  const expense = db.financeiro
-    .filter(x => x.tipo === "Despesa")
-    .reduce((s,x) => s + Number(x.valor || 0),0);
-
-  const grid = el("div",undefined,"stats");
-
-  [
-    ["Receitas",fmt(income)],
-    ["Despesas",fmt(expense)],
-    ["Saldo",fmt(income-expense)],
-    ["Clientes",db.clientes.length],
-    ["Produtos",db.produtos.length],
-    ["Funcionários",db.funcionarios.length],
-    ["Tarefas",db.tarefas.length],
-    ["Orçamentos",db.orcamentos.length]
-  ].forEach(([k,v]) => {
-    const s = el("div",undefined,"stat");
-    s.append(el("small",k),el("strong",safe(v)));
-    grid.append(s);
-  });
-
-  p.append(grid);
-
-  const tools = el("div",undefined,"toolbar");
-
-  tools.append(
-    button(
-      "Imprimir relatório",
-      () => window.print(),
-      "btn"
-    ),
-    button(
-      "Baixar backup JSON",
-      () => download(
-        "backup-meu-negocio.json",
-        JSON.stringify({version:2,data:db},null,2),
-        "application/json"
-      ),
-      "btn secondary"
-    )
-  );
-
-  const inp = el("input");
-  inp.type = "file";
-  inp.accept = ".json,application/json";
-  inp.style.display = "none";
-
-  inp.onchange = async () => {
-    const f = inp.files?.[0];
-    if(!f) return;
-
-    if(f.size > 5000000){
-      alert("Arquivo muito grande.");
-      return;
-    }
-
-    try{
-      const parsed = JSON.parse(await f.text());
-
-      if(
-        parsed.version !== 2 ||
-        !parsed.data ||
-        !Array.isArray(parsed.data.clientes) ||
-        !Array.isArray(parsed.data.financeiro)
-      ){
-        alert("Backup inválido.");
-        return;
-      }
-
-      if(!confirm(
-        "Substituir TODOS os dados locais pelos dados do backup?"
-      )) return;
-
-      const old = db;
-      const base = empty();
-
-      for(const k of Object.keys(base)){
-        if(
-          k === "empresa" &&
-          parsed.data.empresa &&
-          typeof parsed.data.empresa === "object"
-        ){
-          base.empresa = {
-            ...base.empresa,
-            ...parsed.data.empresa
-          };
-        }else if(
-          Array.isArray(base[k]) &&
-          Array.isArray(parsed.data[k])
-        ){
-          base[k] = parsed.data[k];
-        }
-      }
-
-      db = base;
-
-      if(!save()){
-        db = old;
-        return;
-      }
-
-      renderModule("relatorios");
-      notify("Backup restaurado");
-    }catch(e){
-      alert("Não foi possível ler o backup.");
-    }
-  };
-
-  tools.append(
-    button(
-      "Restaurar backup",
-      () => inp.click(),
-      "btn secondary"
-    ),
-    inp
-  );
-
-  p.append(
-    tools,
-    el(
-      "p",
-      "Os indicadores são gerenciais e não substituem escrituração ou demonstrações contábeis oficiais.",
-      "note"
-    )
-  );
-
-  body.append(p);
+function deleteBudget(id){
+if(!confirm("Excluir orçamento?"))return;
+if(change(()=>db.orcamentos=db.orcamentos.filter(x=>x.id!==id)))render();
 }
+
+function printHTML(html){
+const w=window.open("","_blank");
+if(!w)return alert("Permita janelas pop-up para imprimir.");
+w.document.write(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Documento</title><style>body{font:15px Arial;max-width:800px;margin:40px auto;padding:20px;line-height:1.7}table{width:100%;border-collapse:collapse}td,th{padding:9px;border-bottom:1px solid #ddd}h1{color:#174b83}</style></head><body>${html}</body></html>`);
+w.document.close();w.focus();setTimeout(()=>w.print(),300);
+}
+
+function printBudget(id){
+const o=db.orcamentos.find(x=>x.id===id);if(!o)return;
+printHTML(`<h1>ORÇAMENTO COMERCIAL</h1>
+<h2>${esc(db.empresa.fantasia||db.empresa.razao||"Empresa")}</h2>
+<p><b>Cliente:</b> ${esc(o.cliente)}</p>
+<p><b>Data:</b> ${esc(o.data)} | <b>Validade:</b> ${esc(o.validade)}</p>
+<table><tr><th>Descrição</th><th>Qtd.</th><th>Unitário</th><th>Subtotal</th></tr>
+${o.itens.map(x=>`<tr><td>${esc(x.nome)}</td><td>${x.quantidade}</td><td>${money(x.preco)}</td><td>${money(x.preco*x.quantidade)}</td></tr>`).join("")}</table>
+<h2>Total: ${money(o.total)}</h2><p>${esc(o.observacoes)}</p>`);
+}
+
+function documentPage(){
+return hero("📄 Central de documentos","Crie documentos sem janelas de perguntas do navegador.")+
+`<div class="card"><h3>Editor de documentos</h3>
+<form id="docForm" class="form">
+${field("tipo","Tipo","select","Recibo",true,["Recibo","Declaração","Contrato simplificado","Carta comercial"])}
+${field("destinatario","Destinatário","text","",true)}
+${field("assunto","Assunto / serviço","text","",true)}
+${field("valor","Valor (R$)","money")}
+${field("data","Data","date",today())}
+${field("texto","Texto e observações","textarea")}
+<div class="full bar">
+<button type="button" class="btn alt" onclick="previewDoc()">Pré-visualizar</button>
+<button class="btn">Salvar documento</button>
+<button type="button" class="btn alt" onclick="printDoc()">Imprimir / PDF</button>
+</div></form>
+<h3>Pré-visualização</h3><div id="preview" class="doc">Preencha o formulário para visualizar.</div>
+</div>
+<div class="card"><h3>Documentos salvos (${db.documentos.length})</h3>
+${db.documentos.map(d=>`<p>${esc(d.tipo)} — ${esc(d.destinatario)} <button class="mini" onclick="printSavedDoc('${d.id}')">Imprimir</button> <button class="mini" onclick="removeDoc('${d.id}')">Excluir</button></p>`).join("")||'<p>Nenhum documento salvo.</p>'}</div>`;
+}
+
+function docData(){
+const f=$("docForm");
+return Object.fromEntries(new FormData(f));
+}
+
+function docHTML(d){
+const company=esc(db.empresa.fantasia||db.empresa.razao||"Empresa não cadastrada");
+let text;
+if(d.tipo==="Recibo"){
+text=`Recebemos de <b>${esc(d.destinatario)}</b> a importância de <b>${money(d.valor)}</b>, referente a ${esc(d.assunto)}.`;
+}else if(d.tipo==="Contrato simplificado"){
+text=`<b>Contratada:</b> ${company}<br><b>Contratante:</b> ${esc(d.destinatario)}<br><b>Objeto:</b> ${esc(d.assunto)}<br><b>Valor:</b> ${money(d.valor)}<p>${esc(d.texto)}</p><p><i>Minuta simplificada sujeita a revisão jurídica.</i></p>`;
+}else{
+text=`<b>Destinatário:</b> ${esc(d.destinatario)}<br><b>Assunto:</b> ${esc(d.assunto)}<p>${esc(d.texto)}</p>`;
+}
+return `<h2>${esc(d.tipo.toUpperCase())}</h2><h3>${company}</h3><p>${text}</p><p>Data: ${esc(d.data)}</p><br><p>____________________________________<br>Assinatura</p>`;
+}
+
+function previewDoc(){
+const f=$("docForm");if(!f.reportValidity())return;
+$("preview").innerHTML=docHTML(docData());
+}
+
+function printDoc(){
+const f=$("docForm");if(!f.reportValidity())return;
+printHTML(docHTML(docData()));
+}
+
+function saveDoc(e){
+e.preventDefault();
+const d={...docData(),id:uid()};
+if(change(()=>db.documentos.unshift(d))){render();alert("Documento salvo.");}
+}
+
+function printSavedDoc(id){
+const d=db.documentos.find(x=>x.id===id);
+if(d)printHTML(docHTML(d));
+}
+
+function removeDoc(id){
+if(!confirm("Excluir documento?"))return;
+if(change(()=>db.documentos=db.documentos.filter(x=>x.id!==id)))render();
+}
+
+function reports(){
+const income=totals("Receita"),expense=totals("Despesa");
+const pending=db.financeiro.filter(x=>x.status==="Pendente");
+return hero("📊 Relatórios empresariais","Indicadores calculados com os registros cadastrados.")+
+`<div class="stats">
+${stat("Saldo",money(income-expense))}
+${stat("A receber",money(pending.filter(x=>x.tipo==="Receita").reduce((s,x)=>s+Number(x.valor),0)))}
+${stat("A pagar",money(pending.filter(x=>x.tipo==="Despesa").reduce((s,x)=>s+Number(x.valor),0)))}
+${stat("Orçamentos",db.orcamentos.length)}
+${stat("Clientes",db.clientes.length)}
+${stat("Funcionários",db.funcionarios.length)}
+${stat("Produtos",db.produtos.length)}
+${stat("Tarefas",db.tarefas.length)}
+</div>
+<div class="card"><h3>Backup e exportação</h3>
+<p class="note">Seus dados estão neste navegador. Faça backups para não perdê-los.</p>
+<div class="bar">
+<button class="btn" onclick="backup()">Baixar backup</button>
+<button class="btn alt" onclick="$('restoreFile').click()">Restaurar backup</button>
+<input id="restoreFile" type="file" accept=".json" hidden onchange="restore(this)">
+<button class="btn alt" onclick="window.print()">Imprimir relatório</button>
+</div></div>`;
+}
+
+function backup(){
+download("backup-meu-negocio.json",JSON.stringify({version:1,data:db},null,2),"application/json");
+}
+
+async function restore(input){
+const f=input.files[0];if(!f)return;
+if(f.size>5000000)return alert("Arquivo muito grande.");
+try{
+const parsed=JSON.parse(await f.text());
+if(parsed.version!==1||!parsed.data||!Array.isArray(parsed.data.clientes)||!Array.isArray(parsed.data.financeiro))throw Error();
+if(!confirm("Substituir TODOS os dados locais?"))return;
+const base=blank();
+for(const k of Object.keys(base)){
+if(k==="empresa"&&parsed.data.empresa&&typeof parsed.data.empresa==="object")base.empresa=parsed.data.empresa;
+else if(Array.isArray(base[k])&&Array.isArray(parsed.data[k]))base[k]=parsed.data[k];
+}
+if(change(()=>db=base)){render();alert("Backup restaurado.");}
+}catch(e){alert("Backup inválido.");}
+input.value="";
+}
+
+function render(){
+const c=$("content");
+if(current==="home")c.innerHTML=dashboard();
+if(current==="gestao")c.innerHTML=company();
+if(current==="financeiro"){
+c.innerHTML=hero("💳 Financeiro","Controle receitas, despesas e vencimentos.")+
+`<div class="stats">${stat("Recebido",money(totals("Receita")))}${stat("Pago",money(totals("Despesa")))}${stat("Saldo",money(totals("Receita")-totals("Despesa")))}${stat("Pendentes",db.financeiro.filter(x=>x.status==="Pendente").length)}</div>`+crud("financeiro");
+}
+if(current==="vendas")c.innerHTML=hero("🛒 Vendas","Clientes e orçamentos com vários itens.")+crud("clientes")+budgetPage();
+if(current==="documentos")c.innerHTML=documentPage();
+if(current==="rh")c.innerHTML=hero("👥 Recursos humanos","Funcionários, salários, cargos e jornadas.")+crud("funcionarios");
+if(current==="estoque")c.innerHTML=productPage();
+if(current==="fiscal")c.innerHTML=hero("🧾 Fiscal","Organização interna de documentos fiscais. Não emite notas oficiais.")+crud("fiscais");
+if(current==="operacoes")c.innerHTML=hero("📋 Operações","Tarefas, responsáveis e prazos.")+crud("tarefas");
+if(current==="relatorios")c.innerHTML=reports();
+if(current==="ia")c.innerHTML=hero("✨ BUSINESS IA","Integração externa ainda não configurada.")+`<div class="card"><h3>Resumo gerencial</h3><p class="note">Este resumo usa cálculos locais, sem inteligência artificial externa.</p><button class="btn" onclick="alert('Clientes: '+db.clientes.length+' | Produtos: '+db.produtos.length+' | Saldo: '+money(totals('Receita')-totals('Despesa')))">Gerar resumo local</button></div>`;
+
+if(current==="gestao"){
+$("companyForm").onsubmit=e=>{
+e.preventDefault();
+const data=Object.fromEntries(new FormData(e.target));
+if(change(()=>db.empresa=data))alert("Empresa salva.");
+};
+}
+if(current==="vendas"){
+$("budgetForm").onsubmit=saveBudget;
+renderBudgetItems();
+}
+if(current==="documentos")$("docForm").onsubmit=saveDoc;
+}
+
+const menu=$("menu");
+MODS.forEach(m=>{
+const b=document.createElement("button");
+b.className="nav";
+b.dataset.page=m[0];
+b.textContent=m[1]+" "+m[2];
+b.onclick=()=>go(m[0]);
+menu.append(b);
+});
 
 go("home");
 </script>
