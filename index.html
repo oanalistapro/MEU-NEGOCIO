@@ -1,47 +1,1238 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#081629"><title>MEU NEGÓCIO • BUSINESS PRO | Prévia 2026</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>MEU NEGÓCIO PRO | BUSINESS PRO</title>
 <style>
-:root{--bg:#071321;--side:#0b1b2d;--panel:#10243a;--panel2:#142c45;--line:#25415c;--txt:#f3f8ff;--muted:#96aec5;--blue:#448fff;--cyan:#52d6e9;--green:#3fe1a8;--red:#ff7387;--gold:#ffcc75}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 system-ui,-apple-system,Segoe UI,Arial}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}.app{display:flex;min-height:100vh}.sidebar{width:248px;position:sticky;top:0;height:100vh;background:var(--side);border-right:1px solid var(--line);padding:23px 14px;flex-shrink:0;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:8px 9px 22px}.mark{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#2271f2,#4cd7e4);font-size:23px;box-shadow:0 8px 24px #0d6af440}.brand strong{font-size:17px;letter-spacing:.3px}.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:1.4px}.navlabel{padding:18px 12px 8px;color:#728da7;font-size:10px;font-weight:800;letter-spacing:1.6px}.navbtn{width:100%;display:flex;align-items:center;gap:11px;background:transparent;color:#a9bed1;border:0;border-radius:12px;text-align:left;padding:11px 12px;margin:2px 0}.navbtn:hover,.navbtn.active{background:#193756;color:#fff}.navbtn.active{box-shadow:inset 3px 0 var(--blue)}.navbtn .ico{font-size:18px;width:22px;text-align:center}.sidebar-bottom{margin-top:auto;padding:14px;border:1px solid var(--line);border-radius:14px;background:#10283e}.sidebar-bottom small{color:var(--muted)}.main{flex:1;min-width:0;padding:27px clamp(16px,3vw,44px);max-width:1700px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:15px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.topbar h1{font-size:clamp(22px,2.3vw,30px);margin:4px 0}.muted{color:var(--muted)}.topright{display:flex;align-items:center;gap:10px}.pill{padding:8px 12px;border-radius:50px;border:1px solid #34618a;background:#143251;color:#b9dcff;font-size:11px;font-weight:700}.avatar{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:#234c76;font-weight:800}.hero{margin:23px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:29px;border-radius:22px;border:1px solid #2b5b8a;background:radial-gradient(circle at 85% 10%,#2477b76b,transparent 40%),linear-gradient(120deg,#12365b,#10243c)}.hero h2{font-size:clamp(23px,3vw,35px);line-height:1.15;margin:8px 0}.hero p{color:#bdd2e9;max-width:550px;margin:0}.hero-icon{font-size:70px;opacity:.8}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.stat,.panel,.tile{background:var(--panel);border:1px solid var(--line);border-radius:17px}.stat{padding:19px}.stat .stat-head{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}.stat .stat-icon{font-size:20px}.stat strong{font-size:clamp(19px,2vw,26px);display:block;margin:12px 0 2px;overflow-wrap:anywhere}.stat small{color:#83a0b8;font-size:11px}.green{color:var(--green)}.red{color:var(--red)}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:28px 0 14px}.section-head h2{font-size:19px;margin:0}.section-head small{color:var(--muted)}.modules{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}.tile{padding:18px;text-align:left;color:var(--txt);min-height:148px;display:flex;flex-direction:column;align-items:flex-start;transition:transform .18s,border-color .18s}.tile:hover{transform:translateY(-3px);border-color:var(--blue)}.tile .symbol{font-size:26px;background:#1b3b5b;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;margin-bottom:auto}.tile strong{margin-top:13px}.tile small{color:var(--muted);font-size:11px}.tile.featured{background:linear-gradient(145deg,#174777,#122b47);border-color:#347cc2}.twocol{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:17px}.panel{padding:20px}.panel h3{margin:0 0 13px;font-size:16px}.activity{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.activity:last-child{border-bottom:0}.activity small{display:block;color:var(--muted)}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick button{border:1px solid var(--line);border-radius:12px;background:#193450;color:#e9f5ff;padding:14px;text-align:left}.quick button:hover{border-color:var(--blue)}.view{display:none}.view.active{display:block}.back{border:0;background:none;color:#a9d3ff;padding:0;margin:18px 0}.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field label{color:var(--muted);font-size:12px}.field input,.field select{width:100%;border:1px solid #365671;background:#091b2c;color:white;border-radius:10px;padding:12px}.wide{grid-column:1/-1}.btn{border:0;border-radius:11px;background:var(--blue);color:white;padding:12px 17px;font-weight:750}.btn.secondary{background:#193b5a;border:1px solid #355e81}.btn.danger{background:#512535;color:#ffb2bc}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.empty{color:var(--muted);font-size:13px;padding:18px 0}.rowentry{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.rowentry:last-child{border-bottom:0}.rowentry small{display:block;color:var(--muted)}.rowentry button{border:0;background:#4d2637;color:#ffb7c3;padding:7px 10px;border-radius:9px}.notice{border:1px solid #466383;border-radius:12px;background:#183450;padding:13px;color:#bed5e9;font-size:12px;margin:16px 0}.feature-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:17px}.feature{background:#152f48;border:1px solid var(--line);padding:14px;border-radius:11px;color:#d7e8f9}.feature:before{content:'✓';color:var(--green);margin-right:10px}.footer{padding:30px 0 10px;text-align:center;color:#6d8ba5;font-size:11px}.mobile-nav{display:none}@media(max-width:1100px){.modules{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:750px){.sidebar{display:none}.main{padding:16px 14px 90px}.hero{padding:21px;margin:18px 0}.hero-icon{display:none}.modules{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{min-height:136px;padding:13px}.twocol{grid-template-columns:1fr}.stat{padding:14px}.stat strong{font-size:19px}.pill{font-size:9px;padding:7px}.mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#0c1e31f5;border-top:1px solid var(--line);justify-content:space-around;padding:8px 4px max(8px,env(safe-area-inset-bottom));z-index:10}.mobile-nav button{border:0;background:transparent;color:#a9c1d8;display:flex;flex-direction:column;align-items:center;font-size:10px;gap:3px;padding:5px 12px}.mobile-nav span{font-size:21px}.feature-list{grid-template-columns:1fr}.form{grid-template-columns:1fr}.wide{grid-column:auto}}
+:root{
+  --bg:#071426;--side:#0b1b30;--card:#11243b;
+  --card2:#172d48;--line:#2a405a;--txt:#edf5ff;
+  --muted:#9cb0c9;--accent:#4b9cff;
+  --ok:#45d5aa;--danger:#ff7585
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--txt);
+  font:14px system-ui,Arial,sans-serif
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,
+select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px
+}
+.app{display:flex;min-height:100vh}
+.side{
+  width:238px;flex-shrink:0;background:var(--side);
+  border-right:1px solid var(--line);padding:22px 12px;
+  position:sticky;top:0;height:100vh;overflow:auto
+}
+.brand{
+  padding:8px 10px 24px;font-weight:900;
+  font-size:21px;letter-spacing:-.5px
+}
+.brand span{color:var(--accent)}
+.brand small{
+  display:block;color:var(--muted);font-size:10px;
+  letter-spacing:2px;margin-top:5px
+}
+.nav{
+  display:block;width:100%;border:0;border-radius:10px;
+  background:transparent;color:var(--muted);
+  padding:12px;text-align:left;margin:2px 0
+}
+.nav:hover,.nav.active{background:#1b3c62;color:#fff}
+.main{
+  min-width:0;flex:1;padding:24px;
+  max-width:1550px;margin:auto
+}
+.head{
+  display:flex;justify-content:space-between;
+  gap:12px;align-items:center;margin-bottom:20px
+}
+.head h1{margin:4px 0;font-size:25px}
+.muted{color:var(--muted)}
+.pill{
+  border:1px solid #386493;color:#b9d7ff;
+  border-radius:30px;padding:8px 11px;font-size:11px
+}
+.hero{
+  background:linear-gradient(110deg,#174c88,#10263f);
+  border:1px solid #315b88;border-radius:20px;
+  padding:25px;margin-bottom:18px
+}
+.hero h2{font-size:25px;margin:0 0 8px}
+.hero p{color:#bfd4ec;margin:0;line-height:1.5}
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin:16px 0
+}
+.stat,.panel,.tile{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:15px;padding:17px
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font-size:22px;margin-top:9px}
+.modules{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:12px
+}
+.tile{
+  text-align:left;color:var(--txt);min-height:116px;
+  display:flex;flex-direction:column;gap:9px
+}
+.tile:hover{
+  border-color:var(--accent);transform:translateY(-2px)
+}
+.tile i{font-style:normal;font-size:27px}
+.tile small{color:var(--muted)}
+.section{margin:25px 0 12px;font-size:19px}
+.toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:9px;margin:15px 0
+}
+.btn{
+  border:0;border-radius:10px;padding:11px 15px;
+  background:var(--accent);color:#071426;font-weight:800
+}
+.btn.secondary{
+  background:var(--card2);border:1px solid var(--line);
+  color:var(--txt)
+}
+.btn.danger{background:#512c3d;color:#ffc0ca}
+.panel{margin:12px 0}
+.panel h3{margin:0 0 14px}
+.form{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px
+}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{color:var(--muted);font-size:12px}
+.field input,.field select,.field textarea,.search{
+  width:100%;border:1px solid #3b5370;border-radius:9px;
+  padding:12px;background:#0a1b30;color:var(--txt)
+}
+.wide{grid-column:1/-1}
+.records{overflow-x:auto}
+.records table{
+  width:100%;border-collapse:collapse;min-width:590px
+}
+.records th{
+  text-align:left;color:var(--muted);
+  font-weight:500;font-size:12px
+}
+.records td,.records th{
+  padding:12px;border-bottom:1px solid var(--line)
+}
+.records td:last-child{text-align:right}
+.mini{
+  padding:7px 9px;border:1px solid var(--line);
+  background:var(--card2);color:var(--txt);
+  border-radius:8px;margin:2px
+}
+.empty{padding:18px;color:var(--muted);text-align:center}
+.note{
+  padding:13px;background:#142d46;
+  border:1px solid #2d5176;border-radius:10px;
+  color:#bcd4ee;font-size:12px;line-height:1.6
+}
+.toast{
+  position:fixed;bottom:18px;right:18px;
+  padding:13px 18px;background:#235b4e;
+  border-radius:10px;z-index:5;display:none
+}
+.view{display:none}
+.view.active{display:block}
+.mobile-nav{display:none}
+@media(max-width:1100px){
+  .modules{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:750px){
+  .side{display:none}
+  .main{padding:15px 15px 80px}
+  .modules{grid-template-columns:repeat(2,1fr);gap:9px}
+  .tile{padding:13px;min-height:105px}
+  .stat{padding:12px}
+  .stat strong{font-size:17px}
+  .hero{padding:19px}
+  .hero h2{font-size:22px}
+  .form{grid-template-columns:1fr}
+  .mobile-nav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    background:#0b1b30;border-top:1px solid var(--line);
+    padding:8px;justify-content:space-around;z-index:4
+  }
+  .mobile-nav button{
+    background:transparent;border:0;color:#bcd4ee;
+    padding:8px;font-size:12px
+  }
+  .head h1{font-size:21px}
+}
+@media print{
+  body{background:#fff;color:#111}
+  .side,.mobile-nav,.head,.toolbar,.btn,.note,.no-print{
+    display:none!important
+  }
+  .main{padding:0}
+  .panel,.stat{
+    border:1px solid #aaa;background:#fff;color:#111
+  }
+  .view:not(.active){display:none!important}
+  .records th,.muted{color:#333}
+  .records td{color:#111}
+}
 </style>
 </head>
 <body>
-<div class="app"><aside class="sidebar"><div class="brand"><div class="mark">◆</div><div><strong>MEU NEGÓCIO</strong><small>BUSINESS PRO</small></div></div><div class="navlabel">PAINEL</div><button class="navbtn active" data-view="home"><span class="ico">⌂</span>Visão geral</button><div class="navlabel">DEPARTAMENTOS</div><div id="sideModules"></div><div class="sidebar-bottom"><strong>🔒 Ambiente de teste</strong><br><small>Sem publicação de dados na nuvem. Versão de demonstração.</small></div></aside>
-<main class="main"><header class="topbar"><div><div class="eyebrow">Sistema empresarial • 2026</div><h1 id="pageTitle">Visão geral</h1><div class="muted" style="font-size:12px">Gestão integrada para empresas de todos os tamanhos</div></div><div class="topright"><span class="pill">● PRÉVIA PRIVADA</span><div class="avatar">BP</div></div></header>
-<section class="view active" id="home"><div class="hero"><div><div class="eyebrow">Bem-vindo ao futuro da sua gestão</div><h2>Sua empresa inteira.<br>Em um só lugar.</h2><p>De clientes e orçamentos ao financeiro, estoque, documentos e equipes. Uma experiência conectada, simples e profissional.</p></div><div class="hero-icon">◈</div></div><div class="stats"><div class="stat"><div class="stat-head">Saldo financeiro <span class="stat-icon">💳</span></div><strong id="homeBalance">R$ 0,00</strong><small>Dados de demonstração local</small></div><div class="stat"><div class="stat-head">Receitas <span class="stat-icon">↗</span></div><strong class="green" id="homeIncome">R$ 0,00</strong><small>Valores registrados</small></div><div class="stat"><div class="stat-head">Despesas <span class="stat-icon">↘</span></div><strong class="red" id="homeExpense">R$ 0,00</strong><small>Valores registrados</small></div><div class="stat"><div class="stat-head">Clientes <span class="stat-icon">👥</span></div><strong id="homeClients">0</strong><small>Cadastros locais</small></div></div><div class="section-head"><h2>Departamentos da empresa</h2><small>10 áreas integradas</small></div><div class="modules" id="moduleGrid"></div><div class="twocol"><div class="panel"><h3>📋 Atividade recente</h3><div id="recent"></div></div><div class="panel"><h3>⚡ Acesso rápido</h3><div class="quick"><button data-view="financeiro">＋ Nova movimentação</button><button data-view="vendas">＋ Novo cliente</button><button data-view="documentos">📄 Documentos</button><button data-view="relatorios">📊 Indicadores</button></div><div class="notice">Este é um protótipo navegável. Somente Financeiro e cadastro de clientes salvam dados localmente. Os demais módulos mostram o planejamento.</div></div></div></section>
-<section class="view" id="financeiro"><button class="back" data-view="home">← Voltar ao painel</button><div class="hero"><div><div class="eyebrow">Departamento financeiro</div><h2>Controle financeiro</h2><p>Registre entradas e saídas. Acompanhe seu saldo em tempo real.</p></div><div class="hero-icon">💳</div></div><div class="stats"><div class="stat"><div class="stat-head">Saldo</div><strong id="finBalance">R$ 0,00</strong></div><div class="stat"><div class="stat-head">Receitas</div><strong class="green" id="finIncome">R$ 0,00</strong></div><div class="stat"><div class="stat-head">Despesas</div><strong class="red" id="finExpense">R$ 0,00</strong></div><div class="stat"><div class="stat-head">Lançamentos</div><strong id="finCount">0</strong></div></div><div class="twocol"><div class="panel"><h3>Novo lançamento</h3><form class="form" id="financeForm"><div class="field"><label for="ftype">Tipo</label><select id="ftype"><option value="income">Receita</option><option value="expense">Despesa</option></select></div><div class="field"><label for="fvalue">Valor (R$)</label><input id="fvalue" type="number" min="0.01" max="999999999" step="0.01" required placeholder="150.00"></div><div class="field wide"><label for="fdesc">Descrição</label><input id="fdesc" required maxlength="100" placeholder="Ex.: Pagamento de cliente"></div><div class="field"><label for="fdate">Data</label><input id="fdate" type="date" required></div><div class="field" style="justify-content:end"><button class="btn" type="submit">Salvar lançamento</button></div></form></div><div class="panel"><h3>Histórico</h3><div id="financeHistory"></div><div class="buttons"><button class="btn secondary" id="exportBtn">Exportar CSV</button></div></div></div><div class="notice">Os registros ficam somente neste navegador. Não use dados financeiros reais nesta demonstração.</div></section>
-<section class="view" id="vendas"><button class="back" data-view="home">← Voltar ao painel</button><div class="hero"><div><div class="eyebrow">Vendas e clientes</div><h2>Relacionamentos que geram resultados.</h2><p>Cadastre clientes e organize os contatos. CRM, pedidos e propostas serão adicionados na versão completa.</p></div><div class="hero-icon">🛍️</div></div><div class="twocol"><div class="panel"><h3>Novo cliente</h3><form id="clientForm" class="form"><div class="field wide"><label for="cname">Nome do cliente</label><input id="cname" maxlength="100" required placeholder="Nome ou razão social"></div><div class="field"><label for="cphone">Telefone</label><input id="cphone" maxlength="30" placeholder="(00) 00000-0000"></div><div class="field"><label for="cemail">E-mail</label><input id="cemail" type="email" maxlength="120" placeholder="cliente@empresa.com"></div><div class="wide"><button class="btn" type="submit">Cadastrar cliente</button></div></form></div><div class="panel"><h3>Clientes cadastrados</h3><div id="clientHistory"></div></div></div><div class="notice">Cadastro local para demonstração. Não insira dados pessoais reais de terceiros.</div></section>
-<section class="view" id="generic"><button class="back" data-view="home">← Voltar ao painel</button><div class="hero"><div><div class="eyebrow">Departamento empresarial</div><h2 id="genericTitle"></h2><p id="genericDesc"></p></div><div class="hero-icon" id="genericIcon"></div></div><div class="panel"><h3>Funcionalidades previstas para este departamento</h3><div class="feature-list" id="genericFeatures"></div><div class="notice">Prévia de planejamento. Estas funções ainda não estão implementadas.</div></div></section>
-<footer class="footer">MEU NEGÓCIO • BUSINESS PRO © 2026 — Protótipo de testes • Sem integração com sistemas oficiais</footer></main></div><nav class="mobile-nav"><button data-view="home"><span>⌂</span>Início</button><button data-view="financeiro"><span>💳</span>Financeiro</button><button data-view="vendas"><span>👥</span>Clientes</button><button data-view="documentos"><span>📄</span>Docs</button></nav>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      MEU <span>NEGÓCIO</span>
+      <small>BUSINESS PRO • TESTE</small>
+    </div>
+    <nav id="sideNav"></nav>
+  </aside>
+
+  <main class="main">
+    <header class="head">
+      <div>
+        <div class="muted">
+          Sistema empresarial integrado • 2026
+        </div>
+        <h1 id="pageTitle">Visão geral</h1>
+      </div>
+      <span class="pill">🔒 TESTE LOCAL</span>
+    </header>
+
+    <section id="home" class="view active">
+      <div class="hero">
+        <h2>Seu negócio. Tudo em um lugar.</h2>
+        <p>
+          Cadastre sua empresa, gerencie departamentos e
+          crie documentos. Dados locais de teste,
+          sem publicação na nuvem.
+        </p>
+      </div>
+
+      <div class="stats" id="stats"></div>
+
+      <h3 class="section">Departamentos</h3>
+      <div class="modules" id="moduleGrid"></div>
+
+      <div class="panel">
+        <h3>Comece por aqui</h3>
+        <p class="muted">
+          1. Cadastre sua empresa em Gestão.
+          2. Cadastre clientes e produtos.
+          3. Crie orçamentos e acompanhe o financeiro.
+        </p>
+        <button class="btn" data-go="gestao">
+          Configurar empresa
+        </button>
+      </div>
+    </section>
+
+    <section id="workspace" class="view">
+      <div class="hero">
+        <h2 id="moduleTitle"></h2>
+        <p id="moduleDesc"></p>
+      </div>
+      <div id="moduleBody"></div>
+    </section>
+
+    <footer class="muted" style="text-align:center;margin:25px 0;font-size:12px">
+      MEU NEGÓCIO • BUSINESS PRO • Ambiente local de desenvolvimento
+      • Não é sistema fiscal oficial
+    </footer>
+  </main>
+</div>
+
+<div class="mobile-nav">
+  <button data-go="home">⌂ Início</button>
+  <button data-go="vendas">👥 Clientes</button>
+  <button data-go="financeiro">💳 Caixa</button>
+  <button data-go="documentos">📄 Docs</button>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
 <script>
-'use strict';
-const modules=[
-{id:'gestao',icon:'🏢',title:'Gestão',desc:'Empresas e departamentos',features:['Cadastro empresarial e filiais','Departamentos e permissões','Fornecedores e parceiros','Planejamento e metas','Aprovações e auditoria','Gestão de contratos']},
-{id:'financeiro',icon:'💳',title:'Financeiro',desc:'Caixa, contas e cobranças',features:[]},
-{id:'vendas',icon:'🛍️',title:'Vendas e CRM',desc:'Clientes e propostas',features:[]},
-{id:'documentos',icon:'📄',title:'Documentos',desc:'Contratos e arquivos',features:['Contratos e aditivos','Recibos e declarações','Propostas e orçamentos','Modelos editáveis','PDF e assinatura integrada','Histórico de versões']},
-{id:'rh',icon:'👥',title:'Recursos Humanos',desc:'Pessoas e equipes',features:['Cadastro de funcionários','Admissão e desligamento','Ponto e escalas','Férias e afastamentos','Documentos trabalhistas','Integrações autorizadas']},
-{id:'estoque',icon:'📦',title:'Estoque e Compras',desc:'Produtos e fornecedores',features:['Produtos e categorias','Entrada e saída','Estoque mínimo','Inventário','Cotações e compras','Lotes e validade']},
-{id:'fiscal',icon:'🧾',title:'Fiscal e Contábil',desc:'Notas e obrigações',features:['Organização de notas XML','Calendário tributário','Documentos para contador','Relatórios fiscais','Integrações de emissão autorizadas','Adequação tributária 2026']},
-{id:'operacoes',icon:'📋',title:'Operações',desc:'Tarefas e serviços',features:['Ordens de serviço','Tarefas e responsáveis','Projetos e cronogramas','Checklists','Manutenção e ocorrências','Alertas e prazos']},
-{id:'relatorios',icon:'📊',title:'Relatórios',desc:'Dados e indicadores',features:['Painel de faturamento','Vendas por período','Fluxo de caixa','Produtividade','Relatórios de estoque','Exportação de dados']},
-{id:'ia',icon:'✨',title:'BUSINESS IA',desc:'Assistente empresarial',features:['Rascunhos de documentos','Resumo de relatórios','Ajuda contextual','Sugestões de tarefas','Pesquisa em arquivos autorizados','Análises com revisão humana']}
+"use strict";
+
+const MODULES = [
+  ["gestao","🏢","Gestão","Empresa, filiais e fornecedores"],
+  ["financeiro","💳","Financeiro","Receitas, despesas e caixa"],
+  ["vendas","🛒","Vendas","Clientes, propostas e pedidos"],
+  ["documentos","📄","Documentos","Contratos, recibos e modelos"],
+  ["rh","👥","RH","Funcionários e equipes"],
+  ["estoque","📦","Estoque","Produtos, compras e inventário"],
+  ["fiscal","🧾","Fiscal","Organização de documentos fiscais"],
+  ["operacoes","📋","Operações","Tarefas e ordens de serviço"],
+  ["relatorios","📊","Relatórios","Indicadores e exportações"],
+  ["ia","✨","BUSINESS IA","Assistente e automações futuras"]
 ];
-const $=id=>document.getElementById(id);const money=n=>(n/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});const KEY='businesspro_meunegocio_preview_2026';let store={finance:[],clients:[]};try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');if(Array.isArray(s.finance))store.finance=s.finance;if(Array.isArray(s.clients))store.clients=s.clients}catch(e){}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(store));return true}catch(e){alert('Não foi possível salvar neste navegador.');return false}}
-function node(tag,cls,txt){const el=document.createElement(tag);if(cls)el.className=cls;if(txt!==undefined)el.textContent=txt;return el}
-function openView(id){const mod=modules.find(m=>m.id===id);const page=(id==='home'||id==='financeiro'||id==='vendas')?id:'generic';document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===page));$('pageTitle').textContent=id==='home'?'Visão geral':mod?.title||'Departamento';document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(page==='generic'&&mod){$('genericTitle').textContent=mod.title;$('genericDesc').textContent=mod.desc;$('genericIcon').textContent=mod.icon;const wrap=$('genericFeatures');wrap.replaceChildren(...mod.features.map(t=>node('div','feature',t)))}render();window.scrollTo(0,0)}
-modules.forEach(m=>{const b=node('button','navbtn');b.dataset.view=m.id;b.append(node('span','ico',m.icon),document.createTextNode(m.title));$('sideModules').append(b);const tile=node('button','tile'+(['financeiro','vendas'].includes(m.id)?' featured':''));tile.dataset.view=m.id;tile.append(node('span','symbol',m.icon),node('strong','',m.title),node('small','',m.desc));$('moduleGrid').append(tile)});
-document.addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)openView(b.dataset.view)});
-const d=new Date();$('fdate').value=[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
-$('financeForm').addEventListener('submit',e=>{e.preventDefault();const val=Math.round(Number($('fvalue').value)*100);const desc=$('fdesc').value.trim();if(!Number.isSafeInteger(val)||val<=0||!desc)return;const old=store.finance.slice();store.finance.unshift({id:crypto.randomUUID?.()||String(Date.now()+Math.random()),type:$('ftype').value,cents:val,desc,date:$('fdate').value});if(!persist()){store.finance=old;return}e.target.reset();$('fdate').value=new Date().toLocaleDateString('en-CA');render()});
-$('clientForm').addEventListener('submit',e=>{e.preventDefault();const name=$('cname').value.trim();if(!name)return;const old=store.clients.slice();store.clients.unshift({id:crypto.randomUUID?.()||String(Date.now()+Math.random()),name,phone:$('cphone').value.trim(),email:$('cemail').value.trim()});if(!persist()){store.clients=old;return}e.target.reset();render()});
-function deleteItem(kind,id){if(!confirm('Excluir este registro?'))return;const old=store[kind].slice();store[kind]=store[kind].filter(x=>x.id!==id);if(!persist())store[kind]=old;render()}
-function render(){const income=store.finance.filter(x=>x.type==='income').reduce((s,x)=>s+x.cents,0);const expense=store.finance.filter(x=>x.type==='expense').reduce((s,x)=>s+x.cents,0);$('homeBalance').textContent=$('finBalance').textContent=money(income-expense);$('homeIncome').textContent=$('finIncome').textContent=money(income);$('homeExpense').textContent=$('finExpense').textContent=money(expense);$('homeClients').textContent=store.clients.length;$('finCount').textContent=store.finance.length;
-const hist=$('financeHistory');hist.replaceChildren();if(!store.finance.length)hist.append(node('div','empty','Nenhum lançamento ainda.'));store.finance.forEach(x=>{const row=node('div','rowentry'),left=node('div'),right=node('div');left.append(node('strong','',x.desc),node('small','',x.date+' • '+(x.type==='income'?'Receita':'Despesa')));right.style.textAlign='right';right.append(node('strong',x.type==='income'?'green':'red',(x.type==='income'?'+ ':'− ')+money(x.cents)));const del=node('button','','Excluir');del.style.display='block';del.style.marginTop='7px';del.addEventListener('click',()=>deleteItem('finance',x.id));right.append(del);row.append(left,right);hist.append(row)});
-const clients=$('clientHistory');clients.replaceChildren();if(!store.clients.length)clients.append(node('div','empty','Nenhum cliente cadastrado.'));store.clients.forEach(x=>{const row=node('div','rowentry'),left=node('div');left.append(node('strong','',x.name),node('small','',[x.phone,x.email].filter(Boolean).join(' • ')||'Sem contato'));const del=node('button','','Excluir');del.addEventListener('click',()=>deleteItem('clients',x.id));row.append(left,del);clients.append(row)});
-const recent=$('recent');recent.replaceChildren();const events=[...store.finance.map(x=>({label:x.desc,detail:x.type==='income'?'Receita registrada':'Despesa registrada',date:x.date})),...store.clients.map(x=>({label:x.name,detail:'Cliente cadastrado',date:''}))].slice(0,5);if(!events.length)recent.append(node('div','empty','Sua atividade aparecerá aqui depois de cadastrar clientes ou lançamentos.'));events.forEach(x=>{const row=node('div','activity'),left=node('div');left.append(node('strong','',x.label),node('small','',x.detail));row.append(left,node('small','muted',x.date));recent.append(row)})}
-$('exportBtn').addEventListener('click',()=>{if(!store.finance.length){alert('Cadastre um lançamento primeiro.');return}const rows=[['Data','Tipo','Descrição','Valor (R$)'],...store.finance.map(x=>[x.date,x.type==='income'?'Receita':'Despesa',x.desc,(x.cents/100).toFixed(2).replace('.',',')])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(';')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=node('a');a.href=url;a.download='meu-negocio-financeiro.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)});render();
+
+const SCHEMAS = {
+  clientes:{
+    label:"Clientes",
+    fields:[
+      ["nome","Nome / razão social","text",true],
+      ["contato","Telefone","tel"],
+      ["email","E-mail","email"],
+      ["documento","CPF/CNPJ (opcional)","text"]
+    ]
+  },
+  fornecedores:{
+    label:"Fornecedores",
+    fields:[
+      ["nome","Fornecedor","text",true],
+      ["contato","Contato","text"],
+      ["email","E-mail","email"]
+    ]
+  },
+  produtos:{
+    label:"Produtos / Serviços",
+    fields:[
+      ["nome","Produto ou serviço","text",true],
+      ["codigo","Código / SKU","text"],
+      ["preco","Preço (R$)","money",true],
+      ["quantidade","Estoque atual","number",true]
+    ]
+  },
+  financeiro:{
+    label:"Lançamentos",
+    fields:[
+      ["descricao","Descrição","text",true],
+      ["tipo","Tipo","choice:Receita|Despesa",true],
+      ["valor","Valor (R$)","money",true],
+      ["data","Data","date",true],
+      ["categoria","Categoria","text"]
+    ]
+  },
+  funcionarios:{
+    label:"Funcionários",
+    fields:[
+      ["nome","Nome","text",true],
+      ["cargo","Cargo","text",true],
+      ["admissao","Data de admissão","date"],
+      ["situacao","Situação","choice:Ativo|Afastado|Desligado"]
+    ]
+  },
+  tarefas:{
+    label:"Tarefas e operações",
+    fields:[
+      ["titulo","Atividade","text",true],
+      ["responsavel","Responsável","text"],
+      ["prazo","Prazo","date"],
+      ["status","Status","choice:Pendente|Em andamento|Concluído"],
+      ["detalhes","Detalhes","text"]
+    ]
+  },
+  orcamentos:{
+    label:"Orçamentos",
+    fields:[
+      ["numero","Número","text",true],
+      ["cliente","Cliente","text",true],
+      ["descricao","Descrição do serviço / produto","text",true],
+      ["valor","Valor total (R$)","money",true],
+      ["validade","Validade","date"],
+      ["status","Status","choice:Rascunho|Enviado|Aprovado|Recusado"]
+    ]
+  },
+  documentos:{
+    label:"Documentos internos",
+    fields:[
+      ["titulo","Título","text",true],
+      ["tipo","Tipo","choice:Contrato|Recibo|Declaração|Ata|Outro"],
+      ["conteudo","Conteúdo / observações","textarea",true],
+      ["data","Data","date"]
+    ]
+  },
+  fiscais:{
+    label:"Controle fiscal",
+    fields:[
+      ["numero","Número da nota / documento","text",true],
+      ["tipo","Tipo","choice:NF-e|NFS-e|NFC-e|Outro"],
+      ["emissor","Emissor / fornecedor","text"],
+      ["valor","Valor (R$)","money"],
+      ["data","Data de emissão","date"],
+      ["situacao","Situação","choice:Recebido|Pendente|Conferido"]
+    ]
+  }
+};
+
+const KEY = "businesspro_meunegocio_erp_teste_v2";
+
+const empty = () => ({
+  empresa:{
+    nome:"",cnpj:"",email:"",telefone:"",endereco:""
+  },
+  clientes:[],
+  fornecedores:[],
+  produtos:[],
+  financeiro:[],
+  funcionarios:[],
+  tarefas:[],
+  orcamentos:[],
+  documentos:[],
+  fiscais:[]
+});
+
+let db = empty();
+let current = "home";
+
+const $ = id => document.getElementById(id);
+const safe = x => String(x ?? "");
+const fmt = v => Number(v || 0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
+});
+
+const dateNow = () => {
+  const d = new Date();
+  return [
+    d.getFullYear(),
+    String(d.getMonth()+1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
+  ].join("-");
+};
+
+const uid = () =>
+  globalThis.crypto?.randomUUID?.() ||
+  `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+function notify(t){
+  $("toast").textContent = t;
+  $("toast").style.display = "block";
+  clearTimeout(notify.t);
+  notify.t = setTimeout(() => {
+    $("toast").style.display = "none";
+  },3000);
+}
+
+try{
+  const raw = JSON.parse(localStorage.getItem(KEY) || "null");
+  if(raw && typeof raw === "object"){
+    const base = empty();
+    for(const k of Object.keys(base)){
+      if(k === "empresa" && raw[k] && typeof raw[k] === "object"){
+        base[k] = {...base[k],...raw[k]};
+      }else if(Array.isArray(base[k]) && Array.isArray(raw[k])){
+        base[k] = raw[k];
+      }
+    }
+    db = base;
+  }
+}catch(e){
+  notify("Não foi possível ler os dados salvos.");
+}
+
+function save(){
+  try{
+    localStorage.setItem(KEY,JSON.stringify(db));
+    return true;
+  }catch(e){
+    alert("Falha ao salvar. Armazenamento indisponível ou cheio.");
+    return false;
+  }
+}
+
+function el(tag,text,cls){
+  const n = document.createElement(tag);
+  if(text !== undefined) n.textContent = text;
+  if(cls) n.className = cls;
+  return n;
+}
+
+function button(text,fn,cls="mini"){
+  const b = el("button",text,cls);
+  b.type = "button";
+  b.addEventListener("click",fn);
+  return b;
+}
+
+function field(name,label,type,required,value){
+  const wrap = el("div",undefined,"field");
+  const lab = el("label",label);
+  let input;
+
+  if(type === "textarea"){
+    input = el("textarea");
+    input.rows = 4;
+  }else if(type.startsWith("choice:")){
+    input = el("select");
+    type.slice(7).split("|").forEach(o => {
+      const opt = el("option",o);
+      opt.value = o;
+      input.append(opt);
+    });
+  }else{
+    input = el("input");
+    input.type = type === "money" ? "number" : type;
+
+    if(type === "money"){
+      input.step = "0.01";
+      input.min = "0";
+    }
+    if(type === "number"){
+      input.step = "1";
+      input.min = "0";
+    }
+  }
+
+  input.name = name;
+  input.required = !!required;
+  input.value = value ?? (type === "date" ? dateNow() : "");
+  lab.htmlFor = "f_" + name;
+  input.id = "f_" + name;
+  wrap.append(lab,input);
+  return wrap;
+}
+
+function renderHome(){
+  const sum = type => db.financeiro
+    .filter(x => x.tipo === type)
+    .reduce((a,x) => a + Number(x.valor || 0),0);
+
+  const income = sum("Receita");
+  const expense = sum("Despesa");
+
+  $("stats").replaceChildren();
+
+  [
+    ["Saldo",fmt(income-expense)],
+    ["Receitas",fmt(income)],
+    ["Despesas",fmt(expense)],
+    ["Clientes",String(db.clientes.length)]
+  ].forEach(([k,v]) => {
+    const c = el("div",undefined,"stat");
+    c.append(el("small",k),el("strong",v));
+    $("stats").append(c);
+  });
+
+  $("moduleGrid").replaceChildren();
+
+  MODULES.forEach(([id,icon,title,desc]) => {
+    const t = el("button",undefined,"tile");
+    t.append(
+      el("i",icon),
+      el("strong",title),
+      el("small",desc)
+    );
+    t.onclick = () => go(id);
+    $("moduleGrid").append(t);
+  });
+}
+
+function go(id){
+  current = id;
+
+  document.querySelectorAll(".view").forEach(v => {
+    v.classList.toggle(
+      "active",
+      v.id === (id === "home" ? "home" : "workspace")
+    );
+  });
+
+  document.querySelectorAll(".nav").forEach(b => {
+    b.classList.toggle("active",b.dataset.go === id);
+  });
+
+  $("pageTitle").textContent =
+    id === "home"
+    ? "Visão geral"
+    : MODULES.find(m => m[0] === id)?.[2] || id;
+
+  if(id === "home") renderHome();
+  else renderModule(id);
+
+  window.scrollTo(0,0);
+}
+
+document.addEventListener("click",e => {
+  const b = e.target.closest("[data-go]");
+  if(b) go(b.dataset.go);
+});
+
+const nav = $("sideNav");
+
+const homeButton = button(
+  "⌂  Visão geral",() => go("home"),"nav active"
+);
+homeButton.dataset.go = "home";
+nav.append(homeButton);
+
+MODULES.forEach(([id,icon,name]) => {
+  const b = button(icon+"  "+name,() => go(id),"nav");
+  b.dataset.go = id;
+  nav.append(b);
+});
+
+function panel(title){
+  const p = el("div",undefined,"panel");
+  p.append(el("h3",title));
+  return p;
+}
+
+function renderModule(id){
+  const meta = MODULES.find(m => m[0] === id);
+
+  $("moduleTitle").textContent = meta[1]+" "+meta[2];
+  $("moduleDesc").textContent = meta[3];
+
+  const body = $("moduleBody");
+  body.replaceChildren();
+
+  if(id === "gestao"){
+    renderCompany(body);
+    addCrud(body,"fornecedores");
+  }
+
+  if(id === "financeiro"){
+    addCrud(body,"financeiro");
+  }
+
+  if(id === "vendas"){
+    addCrud(body,"clientes");
+    addCrud(body,"orcamentos");
+  }
+
+  if(id === "documentos"){
+    addCrud(body,"documentos");
+
+    const p = panel("Modelos rápidos");
+    p.append(
+      button(
+        "Gerar contrato de prestação de serviços",
+        () => makeDocument("contrato"),
+        "btn secondary"
+      ),
+      document.createTextNode(" "),
+      button(
+        "Gerar recibo",
+        () => makeDocument("recibo"),
+        "btn secondary"
+      )
+    );
+    body.append(p);
+  }
+
+  if(id === "rh") addCrud(body,"funcionarios");
+  if(id === "estoque") addCrud(body,"produtos");
+
+  if(id === "fiscal"){
+    const p = panel("Documentos fiscais");
+    p.append(el(
+      "p",
+      "Organize os documentos recebidos. Esta versão não emite notas fiscais oficiais nem envia obrigações ao governo.",
+      "note"
+    ));
+    body.append(p);
+    addCrud(body,"fiscais");
+  }
+
+  if(id === "operacoes") addCrud(body,"tarefas");
+  if(id === "relatorios") renderReports(body);
+
+  if(id === "ia"){
+    const p = panel("BUSINESS IA");
+
+    p.append(el(
+      "p",
+      "Integração com modelo de IA ainda não configurada. Nenhuma resposta será simulada como se viesse de uma IA real.",
+      "note"
+    ));
+
+    p.append(button(
+      "Criar resumo financeiro local",
+      () => {
+        const income = db.financeiro
+          .filter(x => x.tipo === "Receita")
+          .reduce((s,x) => s + Number(x.valor || 0),0);
+
+        const expense = db.financeiro
+          .filter(x => x.tipo === "Despesa")
+          .reduce((s,x) => s + Number(x.valor || 0),0);
+
+        alert(
+          `Resumo calculado localmente:\n`+
+          `Receitas: ${fmt(income)}\n`+
+          `Despesas: ${fmt(expense)}\n`+
+          `Saldo: ${fmt(income-expense)}`
+        );
+      },
+      "btn"
+    ));
+
+    body.append(p);
+  }
+}
+
+function renderCompany(body){
+  const p = panel("Dados da empresa");
+  const form = el("form",undefined,"form");
+
+  [
+    ["nome","Nome da empresa","text"],
+    ["cnpj","CNPJ (opcional)","text"],
+    ["email","E-mail","email"],
+    ["telefone","Telefone","tel"],
+    ["endereco","Endereço","text"]
+  ].forEach(([k,l,t]) => {
+    form.append(field(k,l,t,k === "nome",db.empresa[k]));
+  });
+
+  const actions = el("div",undefined,"wide");
+  const submit = el("button","Salvar empresa","btn");
+  submit.type = "submit";
+  actions.append(submit);
+  form.append(actions);
+
+  form.onsubmit = e => {
+    e.preventDefault();
+    const old = {...db.empresa};
+
+    for(const [k,v] of new FormData(form)){
+      db.empresa[k] = String(v).trim();
+    }
+
+    if(!save()){
+      db.empresa = old;
+      return;
+    }
+
+    notify("Dados da empresa salvos");
+  };
+
+  p.append(form);
+  body.append(p);
+}
+
+function addCrud(body,kind){
+  const schema = SCHEMAS[kind];
+  const p = panel(schema.label);
+
+  const bar = el("div",undefined,"toolbar");
+
+  bar.append(
+    button("＋ Novo cadastro",() => showForm(),"btn"),
+    button("Exportar CSV",() => exportCSV(kind),"btn secondary")
+  );
+
+  const q = el("input");
+  q.className = "search";
+  q.placeholder = "Pesquisar "+schema.label.toLowerCase();
+  q.setAttribute("aria-label","Pesquisar "+schema.label);
+
+  bar.append(q);
+  p.append(bar);
+
+  const formHost = el("div");
+  p.append(formHost);
+
+  const table = el("div",undefined,"records");
+  p.append(table);
+
+  function update(){
+    table.replaceChildren();
+
+    const items = db[kind].filter(x =>
+      Object.values(x).some(v =>
+        safe(v).toLowerCase().includes(q.value.toLowerCase())
+      )
+    );
+
+    if(!items.length){
+      table.append(el(
+        "div","Nenhum registro encontrado.","empty"
+      ));
+      return;
+    }
+
+    const t = el("table");
+    const head = el("tr");
+
+    schema.fields.slice(0,3).forEach(f =>
+      head.append(el("th",f[1]))
+    );
+
+    head.append(el("th","Ações"));
+
+    const thead = el("thead");
+    thead.append(head);
+    t.append(thead);
+
+    const tb = el("tbody");
+
+    items.forEach(item => {
+      const row = el("tr");
+
+      schema.fields.slice(0,3).forEach(([k,l,type]) => {
+        row.append(el(
+          "td",
+          type === "money" ? fmt(item[k]) : safe(item[k])
+        ));
+      });
+
+      const acts = el("td");
+
+      acts.append(
+        button("Editar",() => showForm(item.id)),
+        button("Excluir",() => remove(item.id))
+      );
+
+      if(kind === "orcamentos" || kind === "documentos"){
+        acts.append(button(
+          "Imprimir",() => printRecord(kind,item)
+        ));
+      }
+
+      row.append(acts);
+      tb.append(row);
+    });
+
+    t.append(tb);
+    table.append(t);
+  }
+
+  q.oninput = update;
+  body.append(p);
+  update();
+
+  function showForm(id){
+    formHost.replaceChildren();
+
+    const item = id
+      ? db[kind].find(x => x.id === id)
+      : null;
+
+    const box = panel(
+      item ? "Editar registro" : "Novo registro"
+    );
+
+    const form = el("form",undefined,"form");
+
+    schema.fields.forEach(([key,label,type,required]) => {
+      form.append(field(
+        key,label,type,required,item?.[key]
+      ));
+    });
+
+    const actions = el("div",undefined,"wide toolbar");
+    const submit = el("button","Salvar","btn");
+    submit.type = "submit";
+
+    actions.append(
+      submit,
+      button(
+        "Cancelar",
+        () => formHost.replaceChildren(),
+        "btn secondary"
+      )
+    );
+
+    form.append(actions);
+
+    form.onsubmit = e => {
+      e.preventDefault();
+
+      const obj = {id:item?.id || uid()};
+
+      for(const [key,value] of new FormData(form)){
+        const type = schema.fields.find(f => f[0] === key)?.[2];
+
+        obj[key] =
+          type === "money" || type === "number"
+          ? Number(value)
+          : String(value).trim();
+      }
+
+      const invalid = schema.fields.some(
+        ([key,label,type,required]) =>
+          required && (
+            obj[key] === "" ||
+            obj[key] === null ||
+            !Number.isFinite(
+              type === "money" || type === "number"
+              ? obj[key] : 0
+            )
+          )
+      );
+
+      if(invalid){
+        alert("Preencha os campos obrigatórios.");
+        return;
+      }
+
+      const previous = db[kind].slice();
+
+      if(item){
+        db[kind] = db[kind].map(x =>
+          x.id === id ? obj : x
+        );
+      }else{
+        db[kind].unshift(obj);
+      }
+
+      if(!save()){
+        db[kind] = previous;
+        return;
+      }
+
+      formHost.replaceChildren();
+      update();
+      renderHome();
+      notify("Registro salvo com sucesso");
+    };
+
+    box.append(form);
+    formHost.append(box);
+
+    formHost.scrollIntoView({
+      behavior:"smooth",block:"nearest"
+    });
+  }
+
+  function remove(id){
+    if(!confirm("Excluir este registro?")) return;
+
+    const old = db[kind].slice();
+
+    db[kind] = db[kind].filter(x => x.id !== id);
+
+    if(!save()){
+      db[kind] = old;
+      return;
+    }
+
+    update();
+    renderHome();
+    notify("Registro excluído");
+  }
+}
+
+function exportCSV(kind){
+  const rows = [
+    SCHEMAS[kind].fields.map(f => f[1]),
+    ...db[kind].map(x =>
+      SCHEMAS[kind].fields.map(f => safe(x[f[0]]))
+    )
+  ];
+
+  const csv = rows.map(r =>
+    r.map(v =>
+      '"' + v.replaceAll('"','""') + '"'
+    ).join(";")
+  ).join("\r\n");
+
+  download(
+    kind+".csv",
+    "\ufeff"+csv,
+    "text/csv;charset=utf-8"
+  );
+}
+
+function download(name,content,mime){
+  const blob = new Blob([content],{type:mime});
+  const url = URL.createObjectURL(blob);
+  const a = el("a");
+
+  a.href = url;
+  a.download = name;
+  document.body.append(a);
+  a.click();
+  a.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url),1500);
+}
+
+function escapeHTML(v){
+  return safe(v).replace(/[&<>"']/g,c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+function printRecord(kind,item){
+  const name = SCHEMAS[kind].label;
+
+  const body = SCHEMAS[kind].fields.map(
+    ([key,label,type]) =>
+      `<p><b>${escapeHTML(label)}:</b> ${
+        escapeHTML(
+          type === "money"
+          ? fmt(item[key])
+          : safe(item[key])
+        )
+      }</p>`
+  ).join("");
+
+  printHTML(`
+    <h1>${escapeHTML(name)}</h1>
+    <h2>${escapeHTML(
+      db.empresa.nome || "Empresa não cadastrada"
+    )}</h2>
+    ${body}
+  `);
+}
+
+function printHTML(content){
+  const w = window.open("","_blank");
+
+  if(!w){
+    alert("Permita janelas pop-up para imprimir.");
+    return;
+  }
+
+  w.document.write(`
+    <!doctype html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Documento • Meu Negócio</title>
+      <style>
+        body{
+          font:15px Arial;max-width:760px;
+          margin:50px auto;padding:20px;line-height:1.7
+        }
+        h1{color:#174c88}
+        p{border-bottom:1px solid #ddd;padding:5px 0}
+        footer{margin-top:70px;color:#666}
+      </style>
+    </head>
+    <body>
+      ${content}
+      <footer>
+        Gerado em ${new Date().toLocaleDateString("pt-BR")}
+        • Documento de teste
+      </footer>
+    </body>
+    </html>
+  `);
+
+  w.document.close();
+  w.focus();
+  setTimeout(() => w.print(),250);
+}
+
+function makeDocument(type){
+  const company =
+    db.empresa.nome || "EMPRESA NÃO CADASTRADA";
+
+  if(type === "recibo"){
+    const name = prompt("Nome de quem pagou:");
+    if(name === null) return;
+
+    const amount = prompt(
+      "Valor recebido em R$ (ex.: 150.00):"
+    );
+    if(amount === null) return;
+
+    const number = Number(amount.replace(",","."));
+
+    if(!Number.isFinite(number) || number <= 0){
+      alert("Valor inválido");
+      return;
+    }
+
+    const reason = prompt("Referente a quê?") || "Pagamento";
+
+    printHTML(`
+      <h1>RECIBO</h1>
+      <h2>${escapeHTML(company)}</h2>
+      <p>
+        Recebemos de <b>${escapeHTML(name)}</b>
+        a quantia de <b>${escapeHTML(fmt(number))}</b>,
+        referente a ${escapeHTML(reason)}.
+      </p>
+      <p>Data: ${new Date().toLocaleDateString("pt-BR")}</p>
+      <br>
+      <p>Assinatura: __________________________________</p>
+    `);
+  }else{
+    const client = prompt("Nome do contratante:");
+    if(client === null) return;
+
+    const service = prompt("Descrição do serviço:");
+    if(service === null) return;
+
+    const price = prompt("Valor contratado (R$):");
+    if(price === null) return;
+
+    const number = Number(price.replace(",","."));
+
+    if(!Number.isFinite(number) || number < 0){
+      alert("Valor inválido");
+      return;
+    }
+
+    printHTML(`
+      <h1>MINUTA DE CONTRATO DE PRESTAÇÃO DE SERVIÇOS</h1>
+      <p><b>Contratada:</b> ${escapeHTML(company)}</p>
+      <p><b>Contratante:</b> ${escapeHTML(client)}</p>
+      <p><b>Objeto:</b> ${escapeHTML(service)}</p>
+      <p><b>Valor:</b> ${escapeHTML(fmt(number))}</p>
+      <p>
+        As partes deverão definir e revisar prazos,
+        forma de pagamento, obrigações, responsabilidades,
+        rescisão, foro e demais cláusulas aplicáveis
+        antes da assinatura.
+      </p>
+      <p>
+        <b>ATENÇÃO:</b> Minuta simplificada de demonstração;
+        exige revisão antes de uso jurídico.
+      </p>
+      <br>
+      <p>
+        Contratante: _____________________
+        Contratada: _____________________
+      </p>
+    `);
+  }
+}
+
+function renderReports(body){
+  const p = panel("Indicadores da empresa");
+
+  const income = db.financeiro
+    .filter(x => x.tipo === "Receita")
+    .reduce((s,x) => s + Number(x.valor || 0),0);
+
+  const expense = db.financeiro
+    .filter(x => x.tipo === "Despesa")
+    .reduce((s,x) => s + Number(x.valor || 0),0);
+
+  const grid = el("div",undefined,"stats");
+
+  [
+    ["Receitas",fmt(income)],
+    ["Despesas",fmt(expense)],
+    ["Saldo",fmt(income-expense)],
+    ["Clientes",db.clientes.length],
+    ["Produtos",db.produtos.length],
+    ["Funcionários",db.funcionarios.length],
+    ["Tarefas",db.tarefas.length],
+    ["Orçamentos",db.orcamentos.length]
+  ].forEach(([k,v]) => {
+    const s = el("div",undefined,"stat");
+    s.append(el("small",k),el("strong",safe(v)));
+    grid.append(s);
+  });
+
+  p.append(grid);
+
+  const tools = el("div",undefined,"toolbar");
+
+  tools.append(
+    button(
+      "Imprimir relatório",
+      () => window.print(),
+      "btn"
+    ),
+    button(
+      "Baixar backup JSON",
+      () => download(
+        "backup-meu-negocio.json",
+        JSON.stringify({version:2,data:db},null,2),
+        "application/json"
+      ),
+      "btn secondary"
+    )
+  );
+
+  const inp = el("input");
+  inp.type = "file";
+  inp.accept = ".json,application/json";
+  inp.style.display = "none";
+
+  inp.onchange = async () => {
+    const f = inp.files?.[0];
+    if(!f) return;
+
+    if(f.size > 5000000){
+      alert("Arquivo muito grande.");
+      return;
+    }
+
+    try{
+      const parsed = JSON.parse(await f.text());
+
+      if(
+        parsed.version !== 2 ||
+        !parsed.data ||
+        !Array.isArray(parsed.data.clientes) ||
+        !Array.isArray(parsed.data.financeiro)
+      ){
+        alert("Backup inválido.");
+        return;
+      }
+
+      if(!confirm(
+        "Substituir TODOS os dados locais pelos dados do backup?"
+      )) return;
+
+      const old = db;
+      const base = empty();
+
+      for(const k of Object.keys(base)){
+        if(
+          k === "empresa" &&
+          parsed.data.empresa &&
+          typeof parsed.data.empresa === "object"
+        ){
+          base.empresa = {
+            ...base.empresa,
+            ...parsed.data.empresa
+          };
+        }else if(
+          Array.isArray(base[k]) &&
+          Array.isArray(parsed.data[k])
+        ){
+          base[k] = parsed.data[k];
+        }
+      }
+
+      db = base;
+
+      if(!save()){
+        db = old;
+        return;
+      }
+
+      renderModule("relatorios");
+      notify("Backup restaurado");
+    }catch(e){
+      alert("Não foi possível ler o backup.");
+    }
+  };
+
+  tools.append(
+    button(
+      "Restaurar backup",
+      () => inp.click(),
+      "btn secondary"
+    ),
+    inp
+  );
+
+  p.append(
+    tools,
+    el(
+      "p",
+      "Os indicadores são gerenciais e não substituem escrituração ou demonstrações contábeis oficiais.",
+      "note"
+    )
+  );
+
+  body.append(p);
+}
+
+go("home");
 </script>
-</body></html>
+</body>
+</html>
