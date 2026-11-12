@@ -1,0 +1,5485 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080e18">
+<title>MEU NEGÓCIO PRO | Enterprise 3D</title>
+<style>
+:root{
+  --bg:#080e18;
+  --side:#0c1421;
+  --card:#121e2e;
+  --card2:#162537;
+  --line:#29394e;
+  --text:#edf6ff;
+  --muted:#91a5bb;
+  --cyan:#39e5d2;
+  --orange:#ff914d;
+  --blue:#539dff;
+  --green:#45dca1;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font:14px/1.5 system-ui,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+input,select{
+  background:#0c1725;
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:white;
+  padding:11px;
+  min-width:0;
+}
+input:focus,select:focus{
+  outline:2px solid var(--cyan);
+}
+.hidden{display:none!important}
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  width:245px;
+  flex-shrink:0;
+  background:var(--side);
+  border-right:1px solid var(--line);
+  padding:22px 12px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow:auto;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:5px 9px 28px;
+}
+.logo-icon{
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  background:linear-gradient(135deg,#48ffe2,#218bbd);
+  color:#06151c;
+  border-radius:12px;
+  font-size:23px;
+  font-weight:900;
+  box-shadow:0 0 28px #36dfcf55;
+}
+.logo strong{font-size:15px}
+.logo strong span{color:var(--cyan)}
+.logo small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:2px;
+}
+.nav-title{
+  font-size:10px;
+  letter-spacing:1.6px;
+  color:#71879e;
+  padding:18px 12px 8px;
+}
+.nav{
+  width:100%;
+  border:1px solid transparent;
+  background:transparent;
+  color:#b4c4d5;
+  border-radius:10px;
+  padding:12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-align:left;
+  margin:2px 0;
+}
+.nav:hover{background:#1a2a3d}
+.nav.active{
+  color:#72ffee;
+  background:linear-gradient(90deg,#164343,#112732);
+  border-color:#2d7778;
+}
+.nav .ico{
+  font-size:17px;
+  width:22px;
+  text-align:center;
+}
+.main{
+  flex:1;
+  min-width:0;
+  padding:22px;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+.topright{
+  display:flex;
+  gap:9px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.btn{
+  background:#1a2b3d;
+  color:var(--text);
+  border:1px solid #345068;
+  border-radius:10px;
+  padding:10px 14px;
+  font-weight:650;
+}
+.btn:hover{border-color:var(--cyan)}
+.btn.primary{
+  background:linear-gradient(120deg,#24b9b3,#45edda);
+  border:0;
+  color:#062122;
+}
+.btn.orange{
+  background:linear-gradient(120deg,#ffae64,#ff7a39);
+  border:0;
+  color:#25140b;
+}
+h1{
+  margin:0;
+  font-size:27px;
+  letter-spacing:-.8px;
+}
+h2{font-size:16px;margin:0}
+p{color:var(--muted)}
+.pagehead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.pagehead p{margin:3px 0}
+.hero{
+  height:320px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 75% 50%,#17454b,#0b1b2c 55%,#0a1421);
+  border:1px solid #2a6869;
+  border-radius:20px;
+  margin-bottom:16px;
+}
+#threeMount{
+  position:absolute;
+  inset:0;
+  z-index:1;
+}
+#threeMount canvas{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:36px;
+  max-width:57%;
+  pointer-events:none;
+}
+.hero-content h2{
+  font-size:clamp(26px,3.5vw,44px);
+  letter-spacing:-1.5px;
+  line-height:1.13;
+  margin:13px 0;
+}
+.hero-content p{
+  max-width:440px;
+  color:#bdd1df;
+}
+.hero-buttons{
+  display:flex;
+  gap:9px;
+  margin-top:22px;
+  flex-wrap:wrap;
+  pointer-events:auto;
+}
+.eyebrow{
+  color:var(--cyan);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.webgl-badge{
+  position:absolute;
+  right:17px;
+  bottom:14px;
+  z-index:2;
+  color:#89f5e7;
+  font-size:10px;
+  border:1px solid #267b78;
+  background:#071a22d9;
+  padding:7px 11px;
+  border-radius:30px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:14px;
+}
+.stat,.panel{
+  background:linear-gradient(145deg,#152335,#101b29);
+  border:1px solid var(--line);
+  border-radius:13px;
+}
+.stat{
+  padding:17px;
+  min-height:125px;
+  transition:transform .2s,border-color .2s;
+}
+.stat:hover{
+  transform:translateY(-4px);
+  border-color:#3c9897;
+}
+.stat-label{
+  color:#acbfd0;
+  font-size:11px;
+}
+.stat-value{
+  font-size:27px;
+  font-weight:850;
+  margin:9px 0 3px;
+}
+.stat-foot{
+  font-size:10px;
+  color:var(--green);
+}
+.grid-main{
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(260px,1fr);
+  gap:13px;
+  margin-bottom:13px;
+}
+.grid-bottom{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;
+}
+.panel{
+  padding:18px;
+  min-width:0;
+}
+.panelhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+.panelhead small{color:var(--muted)}
+.chart{
+  display:block;
+  width:100%;
+  height:250px;
+}
+.bar{
+  display:grid;
+  grid-template-columns:100px 1fr 28px;
+  gap:9px;
+  align-items:center;
+  font-size:11px;
+  margin:16px 0;
+}
+.track{
+  height:10px;
+  border-radius:7px;
+  background:#29384a;
+  overflow:hidden;
+}
+.fill{
+  height:100%;
+  border-radius:7px;
+  background:linear-gradient(90deg,#2586bb,var(--cyan));
+}
+.donut-layout{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  min-height:185px;
+}
+.donut{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  position:relative;
+  flex-shrink:0;
+}
+.donut:after{
+  content:"";
+  position:absolute;
+  inset:32px;
+  border-radius:50%;
+  background:#111b29;
+}
+.legend{display:grid;gap:9px;font-size:11px}
+.legend span{color:#aebed0}
+.activity{
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+}
+.activity:last-child{border:0}
+.activity small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;
+}
+.card3d{
+  background:#142235;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+  min-height:130px;
+  transform-style:preserve-3d;
+  transition:transform .15s,border-color .2s;
+  position:relative;
+  overflow:hidden;
+}
+.card3d:hover{border-color:var(--cyan)}
+.card3d strong{
+  display:block;
+  margin:12px 0 5px;
+}
+.card3d small{color:var(--muted)}
+.card3d .symbol{
+  color:var(--cyan);
+  font-size:23px;
+}
+.notice{
+  padding:13px;
+  background:#102c36;
+  border:1px solid #2b5b67;
+  border-radius:10px;
+  margin:12px 0;
+  color:#c1dce4;
+}
+.table-scroll{overflow:auto}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:580px;
+  text-align:left;
+}
+th,td{
+  padding:13px 10px;
+  border-bottom:1px solid var(--line);
+}
+th{
+  color:#8ca4b8;
+  font-size:11px;
+}
+td{font-size:12px}
+.tag{
+  background:#20463f;
+  color:#7cf3c5;
+  padding:4px 9px;
+  border-radius:20px;
+  font-size:11px;
+}
+.auth-screen{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:radial-gradient(circle at 65% 25%,#164247,#080e18 65%);
+}
+.auth-card{
+  width:min(430px,100%);
+  background:#132132;
+  border:1px solid #315466;
+  border-radius:18px;
+  padding:30px;
+}
+.auth-card .btn{width:100%;margin-top:15px}
+.dialog-bg{
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  padding:15px;
+}
+.dialog{
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#152435;
+  border:1px solid #426174;
+  border-radius:16px;
+  padding:23px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+  margin:17px 0;
+}
+.form-grid label{
+  display:grid;
+  gap:6px;
+  font-size:12px;
+  color:#aec4d4;
+}
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:150;
+  background:#1c3c43;
+  border:1px solid #4a9b8f;
+  border-radius:10px;
+  padding:13px 17px;
+}
+@media(max-width:1200px){
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .grid-bottom{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .sidebar{width:70px;padding:15px 5px}
+  .logo .brand-text,.nav-title,.nav-text{display:none}
+  .nav{justify-content:center}
+  .grid-main{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .layout{display:block}
+  .sidebar{
+    width:100%;
+    height:60px;
+    position:fixed;
+    top:auto;
+    bottom:0;
+    z-index:50;
+    display:flex;
+    padding:5px;
+    border-right:0;
+    border-top:1px solid var(--line);
+  }
+  .sidebar .logo{display:none}
+  #navigation{display:flex;gap:4px}
+  .nav{min-width:46px}
+  .main{padding:13px 11px 85px}
+  .topright{width:100%}
+  .topright select{flex:1}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .grid-bottom,.cards{grid-template-columns:1fr}
+  .hero{height:350px}
+  .hero-content{padding:22px;max-width:95%}
+  .hero-content h2{font-size:29px}
+  #threeMount{opacity:.6}
+  .form-grid{grid-template-columns:1fr}
+  .donut-layout{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    transition:none!important;
+    animation:none!important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="eyebrow">ENTERPRISE PLATFORM • WEBGL</div>
+    <h1>MEU NEGÓCIO <span style="color:var(--cyan)">PRO</span></h1>
+    <p>Gestão empresarial com visualização tridimensional.</p>
+    <button class="btn primary" id="loginBtn">Entrar com Google</button>
+    <p id="authError" role="alert"></p>
+  </div>
+</div>
+
+<div id="appScreen" class="layout hidden">
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">M</div>
+      <div class="brand-text">
+        <strong>MEU <span>NEGÓCIO</span></strong>
+        <small>PRO ENTERPRISE</small>
+      </div>
+    </div>
+    <nav id="navigation"></nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>◈ MEU NEGÓCIO / <span id="breadcrumb">ENTERPRISE</span></div>
+      <div class="topright">
+        <select id="companySelect" aria-label="Empresa ativa"></select>
+        <button class="btn" id="addCompany">＋ Empresa</button>
+        <button class="btn" id="refreshBtn">↻</button>
+        <button class="btn" id="logoutBtn">Sair</button>
+      </div>
+    </header>
+
+    <div class="pagehead">
+      <div>
+        <h1 id="pageTitle">Painel executivo</h1>
+        <p id="pageSubtitle">Visão geral da empresa</p>
+      </div>
+    </div>
+
+    <div id="view"></div>
+  </main>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script type="module">
+
+/* =========================================
+   MEU NEGÓCIO PRO ENTERPRISE
+   PARTE 2 — FIREBASE E ESTRUTURA
+========================================= */
+
+import * as THREE from
+"https://esm.sh/three@0.170.0";
+
+import {initializeApp} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  query,
+  where,
+  writeBatch,
+  serverTimestamp,
+  runTransaction
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+/* =========================================
+   FIREBASE DE TESTE
+   NÃO ALTERAR O PROJETO OFICIAL
+========================================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB-IiVlnzc_RESH_10MDmZsfnJ3iGm9zqw",
+  authDomain: "meu-negocio-enterprise-teste.firebaseapp.com",
+  projectId: "meu-negocio-enterprise-teste",
+  storageBucket: "meu-negocio-enterprise-teste.firebasestorage.app",
+  messagingSenderId: "1083026433106",
+  appId: "1:1083026433106:web:9041a8eb3959a9a101eb8b",
+  measurementId: "G-BW9N9QCFJ7"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+
+const provider = new GoogleAuthProvider();
+
+provider.setCustomParameters({
+  prompt: "select_account"
+});
+
+/* =========================================
+   ESTADO GLOBAL
+========================================= */
+
+const $ = id => document.getElementById(id);
+
+const S = {
+  user: null,
+  companies: [],
+  companyId: "",
+  role: "",
+  page: "dashboard",
+
+  employees: [],
+  departments: [],
+  leaves: [],
+  members: [],
+  vacancies: [],
+  candidates: [],
+  attendance: [],
+  payroll: [],
+
+  finance: [],
+  sales: [],
+  stock: [],
+  purchases: [],
+  benefits: [],
+  sst: [],
+  training: [],
+  performance: [],
+  documents: [],
+  projects: [],
+  positions: [],
+  support: []
+};
+
+/* =========================================
+   PROTEÇÃO DE TEXTO
+========================================= */
+
+function esc(value) {
+  return String(value ?? "").replace(
+    /[&<>"']/g,
+    character => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[character]
+  );
+}
+
+/* =========================================
+   PERMISSÕES
+========================================= */
+
+function isAdmin() {
+  return ["owner", "admin", "hr"].includes(S.role);
+}
+
+function isOwner() {
+  return S.role === "owner";
+}
+
+function canReadHR() {
+  return isAdmin() ||
+    ["manager", "auditor"].includes(S.role);
+}
+
+function canManageBusiness() {
+  return ["owner", "admin"].includes(S.role);
+}
+
+/* =========================================
+   COLEÇÕES DO FIRESTORE
+========================================= */
+
+const collections = [
+  "employees",
+  "departments",
+  "leaves",
+  "members",
+  "vacancies",
+  "candidates",
+  "attendance",
+  "payroll",
+  "finance",
+  "sales",
+  "stock",
+  "purchases",
+  "benefits",
+  "sst",
+  "training",
+  "performance",
+  "documents",
+  "projects",
+  "positions",
+  "support"
+];
+
+function companyCollection(name) {
+  if (!S.companyId) {
+    throw new Error("Selecione uma empresa.");
+  }
+
+  return collection(
+    db,
+    "companies",
+    S.companyId,
+    name
+  );
+}
+
+function companyDoc(name, id) {
+  if (!S.companyId) {
+    throw new Error("Selecione uma empresa.");
+  }
+
+  return doc(
+    db,
+    "companies",
+    S.companyId,
+    name,
+    id
+  );
+}
+
+/* =========================================
+   MENSAGENS
+========================================= */
+
+let toastTimeout;
+
+function toast(message) {
+  clearTimeout(toastTimeout);
+
+  $("toastRoot").innerHTML = `
+    <div class="toast" role="status">
+      ${esc(message)}
+    </div>
+  `;
+
+  toastTimeout = setTimeout(() => {
+    $("toastRoot").innerHTML = "";
+  }, 4500);
+}
+
+function errorText(error) {
+  console.error(error);
+
+  const code = error?.code || "";
+
+  if (code === "permission-denied") {
+    return "Permissão negada. Verifique as regras do Firestore.";
+  }
+
+  if (code === "auth/unauthorized-domain") {
+    return "O domínio do GitHub precisa ser autorizado no Firebase.";
+  }
+
+  if (code === "auth/popup-blocked") {
+    return "O navegador bloqueou a janela de login.";
+  }
+
+  if (code === "auth/popup-closed-by-user") {
+    return "A janela de login foi fechada.";
+  }
+
+  if (code === "auth/network-request-failed") {
+    return "Falha na conexão com a internet.";
+  }
+
+  return error?.message || "Ocorreu um erro.";
+}
+
+/* =========================================
+   FORMATAÇÃO
+========================================= */
+
+function money(value) {
+  return Number(value || 0).toLocaleString(
+    "pt-BR",
+    {
+      style: "currency",
+      currency: "BRL"
+    }
+  );
+}
+
+function today() {
+  const date = new Date();
+
+  const year = date.getFullYear();
+  const month = String(
+    date.getMonth() + 1
+  ).padStart(2, "0");
+
+  const day = String(
+    date.getDate()
+  ).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function formatDate(value) {
+  if (!value) return "—";
+
+  const match = String(value).match(
+    /^(\d{4})-(\d{2})-(\d{2})$/
+  );
+
+  if (match) {
+    return `${match[3]}/${match[2]}/${match[1]}`;
+  }
+
+  return String(value);
+}
+
+/* =========================================
+   COMPONENTES DE INTERFACE
+========================================= */
+
+function panel(title, content, action = "") {
+  return `
+    <section class="panel">
+      <div class="panelhead">
+        <h2>${esc(title)}</h2>
+        <div>${action}</div>
+      </div>
+
+      ${content}
+    </section>
+  `;
+}
+
+function stat(title, value, foot = "DADOS ATUAIS") {
+  return `
+    <div class="stat">
+      <div class="stat-label">
+        ${esc(title)}
+      </div>
+
+      <div class="stat-value">
+        ${esc(value)}
+      </div>
+
+      <div class="stat-foot">
+        ● ${esc(foot)}
+      </div>
+    </div>
+  `;
+}
+
+function table(headers, rows) {
+  return `
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            ${headers.map(
+              header => `<th>${esc(header)}</th>`
+            ).join("")}
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows.join("")}
+        </tbody>
+      </table>
+    </div>
+
+    ${
+      rows.length
+        ? ""
+        : "<p>Nenhum registro cadastrado.</p>"
+    }
+  `;
+}
+
+/* =========================================
+   CAMPOS DOS FORMULÁRIOS
+========================================= */
+
+function inputField(
+  label,
+  name,
+  value = "",
+  type = "text",
+  required = false
+) {
+  return `
+    <label>
+      ${esc(label)}
+
+      <input
+        name="${esc(name)}"
+        type="${esc(type)}"
+        value="${esc(value)}"
+        ${required ? "required" : ""}
+      >
+    </label>
+  `;
+}
+
+function selectField(
+  label,
+  name,
+  items,
+  value = ""
+) {
+  return `
+    <label>
+      ${esc(label)}
+
+      <select name="${esc(name)}">
+        ${items.map(item => {
+          const optionValue =
+            typeof item === "string"
+              ? item
+              : item.value;
+
+          const optionLabel =
+            typeof item === "string"
+              ? item
+              : item.label;
+
+          return `
+            <option
+              value="${esc(optionValue)}"
+              ${
+                String(optionValue) === String(value)
+                  ? "selected"
+                  : ""
+              }
+            >
+              ${esc(optionLabel)}
+            </option>
+          `;
+        }).join("")}
+      </select>
+    </label>
+  `;
+}
+
+/* =========================================
+   JANELAS DE CADASTRO
+========================================= */
+
+function modal(title, fields, onSave) {
+  $("modalRoot").innerHTML = `
+    <div class="dialog-bg">
+      <div
+        class="dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-label="${esc(title)}"
+      >
+        <h2>${esc(title)}</h2>
+
+        <form id="modalForm">
+          <div class="form-grid">
+            ${fields}
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button
+              class="btn primary"
+              type="submit"
+            >
+              Salvar
+            </button>
+
+            <button
+              class="btn"
+              type="button"
+              id="cancelModal"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+
+  $("cancelModal").onclick = () => {
+    $("modalRoot").innerHTML = "";
+  };
+
+  $("modalForm").onsubmit = async event => {
+    event.preventDefault();
+
+    const button = event.target.querySelector(
+      '[type="submit"]'
+    );
+
+    button.disabled = true;
+
+    try {
+      const data = Object.fromEntries(
+        new FormData(event.target)
+      );
+
+      await onSave(data);
+
+      $("modalRoot").innerHTML = "";
+
+      toast("Registro salvo com sucesso.");
+    } catch (error) {
+      toast(errorText(error));
+    } finally {
+      button.disabled = false;
+    }
+  };
+}
+
+/* =========================================
+   OPERAÇÕES DE CADASTRO
+========================================= */
+
+async function saveRecord(
+  collectionName,
+  data,
+  id = null
+) {
+  if (!S.user || !S.companyId) {
+    throw new Error("Faça login e selecione uma empresa.");
+  }
+
+  if (
+    !collections.includes(collectionName) ||
+    collectionName === "members"
+  ) {
+    throw new Error("Coleção não autorizada para cadastro genérico.");
+  }
+
+  if (id) {
+    await updateDoc(
+      companyDoc(collectionName, id),
+      {
+        ...data,
+        updatedAt: serverTimestamp(),
+        updatedBy: S.user.uid
+      }
+    );
+  } else {
+    await addDoc(
+      companyCollection(collectionName),
+      {
+        ...data,
+        createdAt: serverTimestamp(),
+        createdBy: S.user.uid
+      }
+    );
+  }
+}
+
+/* =========================================
+   CONSULTA DE DADOS
+========================================= */
+
+async function readCollection(name) {
+  try {
+    const snapshot = await getDocs(
+      companyCollection(name)
+    );
+
+    return snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+  } catch (error) {
+    if (error.code === "permission-denied") {
+      console.warn(
+        "Sem acesso à coleção:",
+        name
+      );
+
+      return [];
+    }
+
+    throw error;
+  }
+}
+
+/* =========================================
+   CARREGAMENTO DOS REGISTROS
+========================================= */
+
+async function reload() {
+  if (!S.companyId) return;
+
+  const restrictedHR = [
+    "employees",
+    "leaves",
+    "vacancies",
+    "candidates",
+    "attendance",
+    "payroll"
+  ];
+
+  const restrictedBusiness = [
+    "finance",
+    "sales",
+    "stock",
+    "purchases",
+    "benefits",
+    "sst",
+    "training",
+    "performance",
+    "documents",
+    "projects",
+    "positions",
+    "support"
+  ];
+
+  const results = await Promise.all(
+    collections.map(name => {
+      if (
+        restrictedHR.includes(name) &&
+        !canReadHR()
+      ) {
+        return Promise.resolve([]);
+      }
+
+      if (
+        name === "payroll" &&
+        !isAdmin()
+      ) {
+        return Promise.resolve([]);
+      }
+
+      if (
+        restrictedBusiness.includes(name) &&
+        !canManageBusiness()
+      ) {
+        return Promise.resolve([]);
+      }
+
+      return readCollection(name);
+    })
+  );
+
+  collections.forEach((name, index) => {
+    S[name] = results[index];
+  });
+
+  render();
+}
+
+/* =========================================
+   SELEÇÃO DE EMPRESA
+========================================= */
+
+async function selectCompany(companyId) {
+  const company = S.companies.find(
+    item => item.id === companyId
+  );
+
+  if (!company) {
+    throw new Error("Empresa não encontrada.");
+  }
+
+  const membership = await getDoc(
+    doc(
+      db,
+      "companies",
+      companyId,
+      "members",
+      S.user.uid
+    )
+  );
+
+  if (!membership.exists()) {
+    throw new Error(
+      "Sua conta não possui acesso a esta empresa."
+    );
+  }
+
+  S.companyId = companyId;
+  S.role = membership.data().role || "employee";
+  S.page = "dashboard";
+
+  sessionStorage.setItem(
+    "mn3d_company",
+    companyId
+  );
+
+  $("companySelect").value = companyId;
+
+  await reload();
+}
+
+/* =========================================
+   LISTA DE EMPRESAS
+========================================= */
+
+async function loadCompanies() {
+  const snapshot = await getDocs(
+    query(
+      collection(db, "companies"),
+      where(
+        "memberUids",
+        "array-contains",
+        S.user.uid
+      )
+    )
+  );
+
+  S.companies = snapshot.docs.map(item => ({
+    id: item.id,
+    ...item.data()
+  }));
+
+  $("companySelect").innerHTML =
+    S.companies.map(company => `
+      <option value="${esc(company.id)}">
+        ${esc(company.name)}
+      </option>
+    `).join("");
+
+  const savedCompany = sessionStorage.getItem(
+    "mn3d_company"
+  );
+
+  const selectedCompany =
+    S.companies.find(
+      item => item.id === savedCompany
+    )?.id ||
+    S.companies[0]?.id;
+
+  if (selectedCompany) {
+    await selectCompany(selectedCompany);
+    return;
+  }
+
+  S.companyId = "";
+  S.role = "";
+
+  $("pageTitle").textContent =
+    "Bem-vindo ao MEU NEGÓCIO PRO";
+
+  $("view").innerHTML = panel(
+    "Primeira configuração",
+    `
+      <p>
+        Cadastre sua primeira empresa
+        para começar a utilizar o sistema.
+      </p>
+
+      <button
+        class="btn primary"
+        id="firstCompany"
+      >
+        ＋ Criar empresa
+      </button>
+    `
+  );
+
+  $("firstCompany").onclick = companyForm;
+}
+
+/* =========================================
+   CADASTRO DE EMPRESA
+========================================= */
+
+function companyForm() {
+  modal(
+    "Cadastrar empresa",
+    `
+      ${inputField(
+        "Razão social ou nome",
+        "name",
+        "",
+        "text",
+        true
+      )}
+
+      ${inputField(
+        "Nome fantasia",
+        "tradeName"
+      )}
+
+      ${inputField(
+        "CNPJ",
+        "cnpj"
+      )}
+
+      ${inputField(
+        "Cidade",
+        "city"
+      )}
+
+      ${inputField(
+        "Estado",
+        "state"
+      )}
+    `,
+    async data => {
+      if (!S.user) {
+        throw new Error("Faça login primeiro.");
+      }
+
+      if (!data.name.trim()) {
+        throw new Error("Informe o nome da empresa.");
+      }
+
+      const companyRef = doc(
+        collection(db, "companies")
+      );
+
+      const batch = writeBatch(db);
+
+      batch.set(companyRef, {
+        ...data,
+        ownerUid: S.user.uid,
+        memberUids: [S.user.uid],
+        createdAt: serverTimestamp()
+      });
+
+      batch.set(
+        doc(
+          db,
+          "companies",
+          companyRef.id,
+          "members",
+          S.user.uid
+        ),
+        {
+          uid: S.user.uid,
+          email: S.user.email || "",
+          name: S.user.displayName || "",
+          role: "owner",
+          createdAt: serverTimestamp()
+        }
+      );
+
+      await batch.commit();
+
+      sessionStorage.setItem(
+        "mn3d_company",
+        companyRef.id
+      );
+
+      await loadCompanies();
+    }
+  );
+}
+
+/* =========================================
+   LOGIN GOOGLE
+========================================= */
+
+$("loginBtn").onclick = async () => {
+  $("authError").textContent = "";
+
+  $("loginBtn").disabled = true;
+
+  try {
+    await signInWithPopup(
+      auth,
+      provider
+    );
+  } catch (error) {
+    $("authError").textContent =
+      errorText(error);
+  } finally {
+    $("loginBtn").disabled = false;
+  }
+};
+
+$("logoutBtn").onclick = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    toast(errorText(error));
+  }
+};
+
+$("addCompany").onclick = companyForm;
+
+$("refreshBtn").onclick = () => {
+  if (S.companyId) {
+    reload().catch(error => {
+      toast(errorText(error));
+    });
+  } else {
+    loadCompanies().catch(error => {
+      toast(errorText(error));
+    });
+  }
+};
+
+$("companySelect").onchange = event => {
+  selectCompany(event.target.value)
+    .catch(error => {
+      toast(errorText(error));
+    });
+};
+
+/* =========================================
+   OBSERVAÇÃO
+   NÃO FECHAR O SCRIPT AQUI.
+   AS PRÓXIMAS PARTES CONTINUAM
+   DENTRO DESTE MESMO SCRIPT.
+========================================= */
+
+/* =========================================
+   MEU NEGÓCIO PRO ENTERPRISE
+   PARTE 3 — THREE.JS / NAVEGAÇÃO
+   CONTINUAÇÃO DA PARTE 2
+========================================= */
+
+/* =========================================
+   ESTILOS ADICIONAIS DO AMBIENTE 3D
+========================================= */
+
+const futuristicStyle = document.createElement("style");
+
+futuristicStyle.textContent = `
+  #global3D {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .48;
+  }
+
+  #global3D canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #appScreen {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+  }
+
+  #authScreen {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar {
+    background: rgba(7, 17, 31, .91);
+    backdrop-filter: blur(24px);
+    z-index: 5;
+  }
+
+  .panel,
+  .stat,
+  .card3d {
+    background:
+      linear-gradient(
+        145deg,
+        rgba(20, 39, 57, .87),
+        rgba(8, 19, 34, .9)
+      );
+    backdrop-filter: blur(18px);
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, .23),
+      inset 0 1px rgba(255, 255, 255, .035);
+  }
+
+  .panel,
+  .stat,
+  .card3d {
+    transition:
+      border-color .25s ease,
+      box-shadow .25s ease,
+      transform .25s ease;
+  }
+
+  .panel:hover,
+  .stat:hover,
+  .card3d:hover {
+    border-color: rgba(57, 229, 210, .48);
+    box-shadow:
+      0 18px 44px rgba(0, 0, 0, .34),
+      0 0 28px rgba(57, 229, 210, .08);
+  }
+
+  .future-banner {
+    position: relative;
+    overflow: hidden;
+    padding: 24px;
+    border-radius: 17px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(57, 229, 210, .28);
+    background:
+      radial-gradient(
+        ellipse at 80% 50%,
+        rgba(36, 160, 172, .23),
+        transparent 55%
+      ),
+      linear-gradient(
+        120deg,
+        rgba(11, 32, 49, .95),
+        rgba(8, 18, 33, .87)
+      );
+  }
+
+  .future-banner h2 {
+    font-size: clamp(21px, 3vw, 32px);
+    margin: 8px 0;
+  }
+
+  .future-banner p {
+    max-width: 640px;
+    margin: 0;
+  }
+
+  .future-chip {
+    display: inline-flex;
+    padding: 5px 10px;
+    border: 1px solid rgba(57, 229, 210, .36);
+    border-radius: 30px;
+    color: #77fff0;
+    background: rgba(11, 52, 60, .55);
+    font-size: 10px;
+    letter-spacing: 1.3px;
+    font-weight: 800;
+  }
+
+  .future-grid {
+    display: grid;
+    grid-template-columns:
+      repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .future-tile {
+    border: 1px solid rgba(57, 229, 210, .2);
+    border-radius: 15px;
+    background: rgba(13, 31, 49, .86);
+    color: var(--text);
+    padding: 19px;
+    text-align: left;
+    cursor: pointer;
+    transition: .25s ease;
+  }
+
+  .future-tile:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan);
+    box-shadow: 0 0 30px rgba(57, 229, 210, .1);
+  }
+
+  .future-tile strong {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 15px;
+  }
+
+  .future-tile small {
+    color: var(--muted);
+  }
+
+  .future-tile .symbol {
+    font-size: 27px;
+    color: var(--cyan);
+  }
+
+  .future-tile:focus-visible,
+  .nav:focus-visible,
+  .btn:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 650px) {
+    #navigation {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .nav {
+      flex-shrink: 0;
+    }
+
+    .future-banner {
+      padding: 17px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .future-tile,
+    .panel,
+    .stat,
+    .card3d {
+      transition: none;
+    }
+  }
+`;
+
+document.head.appendChild(futuristicStyle);
+
+/* =========================================
+   FUNDO GLOBAL 3D
+========================================= */
+
+const global3DMount = document.createElement("div");
+global3DMount.id = "global3D";
+global3DMount.setAttribute("aria-hidden", "true");
+
+document.body.prepend(global3DMount);
+
+let global3D = null;
+let global3DEnabled = true;
+
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+/* =========================================
+   OBJETOS 3D POR DEPARTAMENTO
+========================================= */
+
+const sceneThemes = {
+  dashboard:  {color: 0x39e5d2, shape: "core"},
+  hr:         {color: 0x539dff, shape: "sphere"},
+  employees:  {color: 0x539dff, shape: "sphere"},
+  departments:{color: 0x39e5d2, shape: "cube"},
+  leaves:     {color: 0xa67bfa, shape: "ring"},
+  attendance: {color: 0x39e5d2, shape: "ring"},
+  recruitment:{color: 0xff914d, shape: "core"},
+  payroll:    {color: 0xff914d, shape: "cube"},
+  companies:  {color: 0x39e5d2, shape: "cube"},
+  members:    {color: 0x539dff, shape: "sphere"},
+  catalog:    {color: 0xa67bfa, shape: "core"},
+  finance:    {color: 0x45dca1, shape: "ring"},
+  sales:      {color: 0xff914d, shape: "core"},
+  stock:      {color: 0x539dff, shape: "cube"},
+  purchases:  {color: 0xff914d, shape: "cube"},
+  benefits:   {color: 0x45dca1, shape: "sphere"},
+  sst:        {color: 0xff914d, shape: "sphere"},
+  training:   {color: 0xa67bfa, shape: "core"},
+  performance:{color: 0x39e5d2, shape: "ring"},
+  documents:  {color: 0x539dff, shape: "cube"},
+  projects:   {color: 0xa67bfa, shape: "cube"},
+  positions:  {color: 0xff914d, shape: "sphere"},
+  support:    {color: 0x39e5d2, shape: "ring"}
+};
+
+function geometryForTheme(shape) {
+  switch (shape) {
+    case "sphere":
+      return new THREE.IcosahedronGeometry(1.3, 2);
+
+    case "cube":
+      return new THREE.BoxGeometry(2.1, 2.1, 2.1);
+
+    case "ring":
+      return new THREE.TorusKnotGeometry(
+        .95, .3, 100, 12, 2, 3
+      );
+
+    default:
+      return new THREE.IcosahedronGeometry(1.3, 1);
+  }
+}
+
+/* =========================================
+   INICIAR THREE.JS GLOBAL
+========================================= */
+
+function startGlobal3D() {
+  if (global3D || !global3DEnabled) return;
+
+  let renderer;
+
+  try {
+    renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+      powerPreference: "default"
+    });
+
+    renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio || 1, 1.4)
+    );
+
+    renderer.setSize(
+      window.innerWidth,
+      window.innerHeight
+    );
+
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    global3DMount.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+      55,
+      window.innerWidth / window.innerHeight,
+      .1,
+      100
+    );
+
+    camera.position.set(0, 0, 12);
+
+    const ambient = new THREE.AmbientLight(
+      0x83bacc, 1.25
+    );
+
+    scene.add(ambient);
+
+    const cyanLight = new THREE.PointLight(
+      0x39e5d2, 55
+    );
+
+    cyanLight.position.set(4, 5, 5);
+    scene.add(cyanLight);
+
+    const orangeLight = new THREE.PointLight(
+      0xff914d, 42
+    );
+
+    orangeLight.position.set(-5, -4, 3);
+    scene.add(orangeLight);
+
+    const rig = new THREE.Group();
+    rig.position.set(3.8, 0, -4);
+    scene.add(rig);
+
+    const coreMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x39e5d2,
+      metalness: .65,
+      roughness: .22,
+      transparent: true,
+      opacity: .42,
+      flatShading: true,
+      clearcoat: 1
+    });
+
+    const core = new THREE.Mesh(
+      geometryForTheme("core"),
+      coreMaterial
+    );
+
+    rig.add(core);
+
+    const wire = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.7, 2),
+      new THREE.MeshBasicMaterial({
+        color: 0x7bffef,
+        wireframe: true,
+        transparent: true,
+        opacity: .35
+      })
+    );
+
+    rig.add(wire);
+
+    const rings = [];
+
+    for (let i = 0; i < 3; i++) {
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(
+          2.15 + i * .35,
+          .012,
+          8,
+          110
+        ),
+        new THREE.MeshBasicMaterial({
+          color: i === 1 ? 0xff914d : 0x39e5d2,
+          transparent: true,
+          opacity: .35
+        })
+      );
+
+      ring.rotation.x = i * .65 + .4;
+      ring.rotation.y = i * .3;
+
+      rig.add(ring);
+      rings.push(ring);
+    }
+
+    const count = window.innerWidth < 700
+      ? 180
+      : 500;
+
+    const positions = new Float32Array(count * 3);
+
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] =
+        (Math.random() - .5) * 32;
+
+      positions[i * 3 + 1] =
+        (Math.random() - .5) * 22;
+
+      positions[i * 3 + 2] =
+        (Math.random() - .5) * 20;
+    }
+
+    const particleGeometry =
+      new THREE.BufferGeometry();
+
+    particleGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+
+    const particles = new THREE.Points(
+      particleGeometry,
+      new THREE.PointsMaterial({
+        color: 0x79e9ff,
+        size: .035,
+        transparent: true,
+        opacity: .65
+      })
+    );
+
+    scene.add(particles);
+
+    const pointer = {x: 0, y: 0};
+    const target = {x: 0, y: 0};
+
+    function onPointer(event) {
+      target.x =
+        (event.clientX / window.innerWidth - .5) * 2;
+
+      target.y =
+        (event.clientY / window.innerHeight - .5) * 2;
+    }
+
+    window.addEventListener(
+      "pointermove",
+      onPointer,
+      {passive: true}
+    );
+
+    function onResize() {
+      camera.aspect =
+        window.innerWidth / window.innerHeight;
+
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+      );
+
+      rig.position.x =
+        window.innerWidth < 700 ? 1.5 : 3.8;
+    }
+
+    window.addEventListener("resize", onResize);
+    onResize();
+
+    const clock = new THREE.Clock();
+
+    global3D = {
+      renderer,
+      scene,
+      camera,
+      rig,
+      core,
+      wire,
+      rings,
+      particles,
+      coreMaterial,
+      pointer,
+      target,
+      clock,
+      onPointer,
+      onResize,
+      frame: 0
+    };
+
+    function animate() {
+      if (!global3D ||
+          global3D.renderer !== renderer) {
+        return;
+      }
+
+      const time = clock.getElapsedTime();
+
+      pointer.x +=
+        (target.x - pointer.x) * .04;
+
+      pointer.y +=
+        (target.y - pointer.y) * .04;
+
+      if (!reducedMotion) {
+        rig.rotation.y =
+          time * .12 + pointer.x * .2;
+
+        rig.rotation.x =
+          Math.sin(time * .2) * .1 -
+          pointer.y * .12;
+
+        core.rotation.x = time * .16;
+        core.rotation.y = time * .23;
+
+        wire.rotation.y = -time * .1;
+
+        rings.forEach((ring, i) => {
+          ring.rotation.z =
+            time * (.04 + i * .025);
+        });
+
+        particles.rotation.y = time * .002;
+      }
+
+      renderer.render(scene, camera);
+
+      if (!reducedMotion) {
+        global3D.frame =
+          requestAnimationFrame(animate);
+      }
+    }
+
+    animate();
+
+  } catch (error) {
+    console.warn("WebGL indisponível:", error);
+    renderer?.dispose();
+    renderer?.domElement?.remove();
+    global3DEnabled = false;
+  }
+}
+
+/* =========================================
+   TROCAR OBJETO 3D CONFORME A PÁGINA
+========================================= */
+
+function set3DTheme(page) {
+  if (!global3D) return;
+
+  const theme = sceneThemes[page] ||
+    sceneThemes.dashboard;
+
+  const oldGeometry = global3D.core.geometry;
+
+  global3D.core.geometry =
+    geometryForTheme(theme.shape);
+
+  oldGeometry.dispose();
+
+  global3D.coreMaterial.color.setHex(
+    theme.color
+  );
+
+  global3D.coreMaterial.needsUpdate = true;
+}
+
+/* =========================================
+   DESLIGAR THREE.JS GLOBAL
+========================================= */
+
+function stopGlobal3D() {
+  if (!global3D) return;
+
+  const t = global3D;
+  global3D = null;
+
+  cancelAnimationFrame(t.frame);
+
+  window.removeEventListener(
+    "pointermove",
+    t.onPointer
+  );
+
+  window.removeEventListener(
+    "resize",
+    t.onResize
+  );
+
+  t.scene.traverse(object => {
+    object.geometry?.dispose();
+
+    if (object.material) {
+      const materials =
+        Array.isArray(object.material)
+          ? object.material
+          : [object.material];
+
+      materials.forEach(material => {
+        material.dispose();
+      });
+    }
+  });
+
+  t.renderer.dispose();
+  t.renderer.domElement.remove();
+}
+
+/* =========================================
+   CONTROLE DO 3D
+========================================= */
+
+function toggleGlobal3D() {
+  global3DEnabled = !global3DEnabled;
+
+  if (global3DEnabled) {
+    startGlobal3D();
+    set3DTheme(S.page);
+  } else {
+    stopGlobal3D();
+  }
+
+  const button = $("global3DToggle");
+
+  if (button) {
+    button.textContent = global3DEnabled
+      ? "◉ 3D ativo"
+      : "○ Ativar 3D";
+  }
+}
+
+/* =========================================
+   MENU COMPLETO
+========================================= */
+
+const enterpriseMenuGroups = [
+  ["CENTRAL EXECUTIVA", [
+    ["dashboard", "◈", "Painel executivo"],
+    ["hr", "♙", "Central RH"]
+  ]],
+
+  ["RECURSOS HUMANOS", [
+    ["employees", "♧", "Colaboradores"],
+    ["departments", "▦", "Departamentos"],
+    ["leaves", "◷", "Férias e ausências"],
+    ["attendance", "▤", "Ponto e frequência"],
+    ["recruitment", "◇", "Recrutamento"],
+    ["payroll", "▣", "Folha administrativa"],
+    ["benefits", "✧", "Benefícios"],
+    ["sst", "⬡", "Saúde e segurança"],
+    ["training", "✦", "Treinamentos"],
+    ["performance", "◎", "Desempenho"],
+    ["positions", "◉", "Cargos e salários"]
+  ]],
+
+  ["GESTÃO EMPRESARIAL", [
+    ["finance", "◈", "Financeiro"],
+    ["sales", "◇", "CRM e vendas"],
+    ["stock", "▦", "Estoque"],
+    ["purchases", "▣", "Compras"],
+    ["documents", "▤", "Documentos"],
+    ["projects", "⬡", "Projetos"],
+    ["support", "◷", "Atendimentos"]
+  ]],
+
+  ["ADMINISTRAÇÃO", [
+    ["companies", "▧", "Empresas"],
+    ["members", "♙", "Acessos e perfis"],
+    ["catalog", "✧", "Módulos Enterprise"]
+  ]]
+];
+
+const enterprisePageInfo = {
+  dashboard: ["Painel executivo", "Visão geral da empresa"],
+  hr: ["Central RH", "Gestão de pessoas"],
+  employees: ["Colaboradores", "Equipe e admissões"],
+  departments: ["Departamentos", "Estrutura organizacional"],
+  leaves: ["Férias e ausências", "Solicitações e aprovações"],
+  attendance: ["Ponto e frequência", "Registros administrativos"],
+  recruitment: ["Recrutamento", "Vagas e candidatos"],
+  payroll: ["Folha administrativa", "Lançamentos internos"],
+  benefits: ["Benefícios", "Gestão de benefícios"],
+  sst: ["Saúde e segurança", "Registros de SST"],
+  training: ["Treinamentos", "Capacitação da equipe"],
+  performance: ["Desempenho", "Avaliações internas"],
+  positions: ["Cargos e salários", "Estrutura de cargos"],
+  finance: ["Financeiro", "Receitas e despesas"],
+  sales: ["CRM e vendas", "Relacionamento comercial"],
+  stock: ["Estoque", "Produtos e quantidades"],
+  purchases: ["Compras", "Pedidos e fornecedores"],
+  documents: ["Documentos", "Controle documental"],
+  projects: ["Projetos", "Gestão de atividades"],
+  support: ["Atendimentos", "Solicitações e chamados"],
+  companies: ["Empresas", "Unidades cadastradas"],
+  members: ["Acessos e perfis", "Usuários autorizados"],
+  catalog: ["Módulos Enterprise", "Ferramentas disponíveis"]
+};
+
+/* =========================================
+   PERMISSÕES DE NAVEGAÇÃO
+========================================= */
+
+function allowed(page) {
+  if (!enterprisePageInfo[page]) {
+    return false;
+  }
+
+  if ([
+    "employees",
+    "leaves",
+    "attendance",
+    "recruitment"
+  ].includes(page)) {
+    return canReadHR();
+  }
+
+  if ([
+    "payroll",
+    "benefits",
+    "sst",
+    "training",
+    "performance",
+    "positions"
+  ].includes(page)) {
+    return isAdmin();
+  }
+
+  if ([
+    "finance",
+    "sales",
+    "stock",
+    "purchases",
+    "documents",
+    "projects",
+    "support"
+  ].includes(page)) {
+    return canManageBusiness();
+  }
+
+  return true;
+}
+
+/* =========================================
+   CONSTRUIR MENU
+========================================= */
+
+function buildMenu() {
+  $("navigation").innerHTML =
+    enterpriseMenuGroups.map(group => `
+      <div class="nav-title">
+        ${esc(group[0])}
+      </div>
+
+      ${group[1]
+        .filter(item => allowed(item[0]))
+        .map(item => `
+          <button
+            type="button"
+            class="nav ${
+              S.page === item[0] ? "active" : ""
+            }"
+            data-page="${esc(item[0])}"
+            title="${esc(item[2])}"
+          >
+            <span class="ico">${item[1]}</span>
+            <span class="nav-text">
+              ${esc(item[2])}
+            </span>
+          </button>
+        `).join("")}
+    `).join("");
+
+  $("navigation").querySelectorAll(
+    "[data-page]"
+  ).forEach(button => {
+    button.onclick = () => {
+      navigate(button.dataset.page);
+    };
+  });
+}
+
+/* =========================================
+   NAVEGAR ENTRE MÓDULOS
+========================================= */
+
+function navigate(page) {
+  if (!allowed(page)) {
+    toast("Você não possui permissão.");
+    return;
+  }
+
+  if (!S.companyId) {
+    toast("Cadastre ou selecione uma empresa.");
+    return;
+  }
+
+  S.page = page;
+
+  set3DTheme(page);
+
+  render();
+
+  window.scrollTo({
+    top: 0,
+    behavior: reducedMotion ? "instant" : "smooth"
+  });
+}
+
+/* =========================================
+   CABEÇALHO TECNOLÓGICO DOS MÓDULOS
+========================================= */
+
+function futureBanner(page) {
+  const info = enterprisePageInfo[page] ||
+    enterprisePageInfo.dashboard;
+
+  return `
+    <section class="future-banner">
+      <span class="future-chip">
+        ◉ ENTERPRISE 2060 / SISTEMA ATIVO
+      </span>
+
+      <h2>${esc(info[0])}</h2>
+
+      <p>${esc(info[1])}</p>
+    </section>
+  `;
+}
+
+/* =========================================
+   CARTÕES QUE ABREM MÓDULOS
+========================================= */
+
+function moduleTile(page, icon, title, description) {
+  return `
+    <button
+      type="button"
+      class="future-tile"
+      data-module="${esc(page)}"
+    >
+      <span class="symbol">${esc(icon)}</span>
+      <strong>${esc(title)}</strong>
+      <small>${esc(description)}</small>
+    </button>
+  `;
+}
+
+function bindModuleTiles() {
+  document.querySelectorAll(
+    "[data-module]"
+  ).forEach(button => {
+    button.onclick = () => {
+      navigate(button.dataset.module);
+    };
+  });
+}
+
+/* =========================================
+   BOTÃO GLOBAL DO 3D
+========================================= */
+
+function install3DButton() {
+  if ($("global3DToggle")) return;
+
+  const button = document.createElement("button");
+
+  button.id = "global3DToggle";
+  button.type = "button";
+  button.className = "btn";
+  button.textContent = global3DEnabled
+    ? "◉ 3D ativo"
+    : "○ Ativar 3D";
+
+  button.onclick = toggleGlobal3D;
+
+  document.querySelector(
+    ".topright"
+  ).prepend(button);
+}
+
+/* =========================================
+   ATIVAR AMBIENTE
+========================================= */
+
+install3DButton();
+startGlobal3D();
+
+/* =========================================
+   FIM DA PARTE 3
+   NÃO ENCERRAR O SCRIPT AINDA
+   A PARTE 4 CONTINUA AQUI.
+========================================= */
+
+/* =========================================
+   MEU NEGÓCIO PRO ENTERPRISE 2060
+   PARTE 4 — DASHBOARD + RH
+   CONTINUAÇÃO DA PARTE 3
+========================================= */
+
+/* =========================================
+   GRÁFICO DE LINHA
+========================================= */
+
+function lineChart(values) {
+  const data = values.length ? values : [0];
+
+  const width = 780;
+  const height = 250;
+  const left = 45;
+  const top = 18;
+  const bottom = 35;
+
+  const max = Math.max(1, ...data);
+  const plotWidth = width - left - 20;
+  const plotHeight = height - top - bottom;
+
+  const points = data.map((value, index) => {
+    const x = left +
+      (data.length === 1
+        ? .5
+        : index / (data.length - 1)) * plotWidth;
+
+    const y = top +
+      plotHeight -
+      (Number(value) / max) * plotHeight;
+
+    return [x, y];
+  });
+
+  const path = points.map((point, index) =>
+    `${index ? "L" : "M"}${point[0]},${point[1]}`
+  ).join(" ");
+
+  const first = points[0];
+  const last = points[points.length - 1];
+
+  const area = `${path}
+    L${last[0]},${top + plotHeight}
+    L${first[0]},${top + plotHeight} Z`;
+
+  return `
+    <svg
+      class="chart"
+      viewBox="0 0 ${width} ${height}"
+      preserveAspectRatio="none"
+      role="img"
+      aria-label="Gráfico de evolução"
+    >
+      <defs>
+        <linearGradient
+          id="enterpriseChartFill"
+          x1="0" y1="0" x2="0" y2="1"
+        >
+          <stop
+            offset="0%"
+            stop-color="#39e5d2"
+            stop-opacity=".35"
+          />
+          <stop
+            offset="100%"
+            stop-color="#39e5d2"
+            stop-opacity="0"
+          />
+        </linearGradient>
+      </defs>
+
+      ${[0, .25, .5, .75, 1].map(step => {
+        const y = top + plotHeight * (1 - step);
+
+        return `
+          <line
+            x1="${left}"
+            y1="${y}"
+            x2="${width - 20}"
+            y2="${y}"
+            stroke="#294052"
+            stroke-dasharray="5 6"
+          />
+          <text
+            x="5"
+            y="${y + 4}"
+            fill="#91a5bb"
+            font-size="11"
+          >
+            ${Math.round(max * step)}
+          </text>
+        `;
+      }).join("")}
+
+      <path
+        d="${area}"
+        fill="url(#enterpriseChartFill)"
+      />
+
+      <path
+        d="${path}"
+        fill="none"
+        stroke="#39e5d2"
+        stroke-width="3"
+        stroke-linejoin="round"
+      />
+
+      ${points.map(point => `
+        <circle
+          cx="${point[0]}"
+          cy="${point[1]}"
+          r="4"
+          fill="#78fff0"
+        />
+      `).join("")}
+    </svg>
+  `;
+}
+
+/* =========================================
+   GRÁFICO DE BARRAS
+========================================= */
+
+function bars(items) {
+  if (!items.length) {
+    return "<p>Sem dados cadastrados.</p>";
+  }
+
+  const max = Math.max(
+    1,
+    ...items.map(item => Number(item.value) || 0)
+  );
+
+  return items.map(item => {
+    const value = Number(item.value) || 0;
+    const percentage = Math.max(
+      0,
+      Math.min(100, value / max * 100)
+    );
+
+    return `
+      <div class="bar">
+        <span>${esc(item.label)}</span>
+
+        <div class="track">
+          <div
+            class="fill"
+            style="width:${percentage}%"
+          ></div>
+        </div>
+
+        <b>${value}</b>
+      </div>
+    `;
+  }).join("");
+}
+
+/* =========================================
+   GRÁFICO DE DISTRIBUIÇÃO
+========================================= */
+
+function donut(items) {
+  const colors = [
+    "#539dff",
+    "#ff914d",
+    "#a67bfa",
+    "#39e5d2",
+    "#efc05b"
+  ];
+
+  const total = items.reduce(
+    (sum, item) => sum + Number(item.value || 0),
+    0
+  );
+
+  if (!total) {
+    return "<p>Sem dados cadastrados.</p>";
+  }
+
+  let offset = 0;
+
+  const stops = items.map((item, index) => {
+    const start = offset;
+    offset += Number(item.value || 0) / total * 100;
+
+    return `${
+      colors[index % colors.length]
+    } ${start}% ${offset}%`;
+  });
+
+  return `
+    <div class="donut-layout">
+      <div
+        class="donut"
+        style="background:conic-gradient(${stops.join(",")})"
+      ></div>
+
+      <div class="legend">
+        ${items.map((item, index) => `
+          <div>
+            <span style="color:${
+              colors[index % colors.length]
+            }">●</span>
+
+            ${esc(item.label)}
+
+            <strong>
+              ${Math.round(
+                Number(item.value || 0) / total * 100
+              )}%
+            </strong>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+/* =========================================
+   INDICADORES DE COLABORADORES
+========================================= */
+
+function admissionSeries() {
+  const result = [];
+  const now = new Date();
+
+  for (let i = 11; i >= 0; i--) {
+    const date = new Date(
+      now.getFullYear(),
+      now.getMonth() - i,
+      1
+    );
+
+    const prefix =
+      date.getFullYear() + "-" +
+      String(date.getMonth() + 1).padStart(2, "0");
+
+    result.push(
+      S.employees.filter(employee =>
+        String(employee.admission || "")
+          .startsWith(prefix)
+      ).length
+    );
+  }
+
+  return result;
+}
+
+function departmentData() {
+  const result = S.departments.map(department => ({
+    label: department.name,
+    value: S.employees.filter(employee =>
+      employee.departmentId === department.id
+    ).length
+  })).filter(item => item.value > 0);
+
+  const withoutDepartment = S.employees.filter(
+    employee =>
+      !employee.departmentId ||
+      !S.departments.some(
+        department =>
+          department.id === employee.departmentId
+      )
+  ).length;
+
+  if (withoutDepartment) {
+    result.push({
+      label: "Sem departamento",
+      value: withoutDepartment
+    });
+  }
+
+  return result;
+}
+
+function employeeName(id) {
+  return S.employees.find(
+    employee => employee.id === id
+  )?.name || "Não encontrado";
+}
+
+function departmentName(id) {
+  return S.departments.find(
+    department => department.id === id
+  )?.name || "Não definido";
+}
+
+/* =========================================
+   BOTÕES DO PAINEL
+========================================= */
+
+function dashboardQuickActions() {
+  const actions = [
+    ["hr", "♙", "Central RH", "Equipe e colaboradores"],
+    ["finance", "◈", "Financeiro", "Receitas e despesas"],
+    ["sales", "◇", "CRM", "Clientes e oportunidades"],
+    ["stock", "▦", "Estoque", "Produtos e controle"],
+    ["projects", "⬡", "Projetos", "Atividades e entregas"],
+    ["companies", "▧", "Empresas", "Unidades e gestão"]
+  ].filter(item => allowed(item[0]));
+
+  return `
+    <div class="future-grid">
+      ${actions.map(item =>
+        moduleTile(...item)
+      ).join("")}
+    </div>
+  `;
+}
+
+/* =========================================
+   PAINEL EXECUTIVO
+========================================= */
+
+function dashboard() {
+  const active = S.employees.filter(
+    employee => employee.status === "Ativo"
+  ).length;
+
+  const pending = S.leaves.filter(
+    leave => leave.status === "Pendente"
+  ).length;
+
+  const openVacancies = S.vacancies.filter(
+    vacancy => vacancy.status === "Aberta"
+  ).length;
+
+  const recent = [...S.employees]
+    .slice(-5)
+    .reverse();
+
+  $("view").innerHTML = `
+    ${futureBanner("dashboard")}
+
+    <div class="stats">
+      ${stat(
+        "Colaboradores ativos",
+        active,
+        "EQUIPE"
+      )}
+
+      ${stat(
+        "Departamentos",
+        S.departments.length,
+        "ESTRUTURA"
+      )}
+
+      ${stat(
+        "Solicitações pendentes",
+        pending,
+        "APROVAÇÕES"
+      )}
+
+      ${stat(
+        "Usuários autorizados",
+        S.members.length,
+        "ACESSOS"
+      )}
+
+      ${stat(
+        "Vagas abertas",
+        openVacancies,
+        "RECRUTAMENTO"
+      )}
+    </div>
+
+    <div class="grid-main">
+      ${panel(
+        "Evolução das admissões",
+        `
+          <p>Admissões registradas nos últimos 12 meses.</p>
+          ${lineChart(admissionSeries())}
+        `
+      )}
+
+      ${panel(
+        "Inteligência operacional",
+        `
+          <div class="activity">
+            <strong>◈ Estrutura empresarial</strong>
+            <small>
+              ${S.departments.length}
+              departamentos cadastrados
+            </small>
+          </div>
+
+          <div class="activity">
+            <strong>♙ Colaboradores ativos</strong>
+            <small>${active} registros ativos</small>
+          </div>
+
+          <div class="activity">
+            <strong>◷ Aprovações pendentes</strong>
+            <small>${pending} solicitações</small>
+          </div>
+
+          <div class="notice">
+            Indicadores calculados com os registros
+            disponíveis no Firebase.
+          </div>
+        `
+      )}
+    </div>
+
+    <div class="grid-bottom">
+      ${panel(
+        "Pessoas por departamento",
+        bars(departmentData())
+      )}
+
+      ${panel(
+        "Distribuição da equipe",
+        donut(departmentData())
+      )}
+
+      ${panel(
+        "Colaboradores recentes",
+        recent.length
+          ? recent.map(employee => `
+              <div class="activity">
+                <strong>${esc(employee.name)}</strong>
+                <small>
+                  ${esc(employee.role || "Cargo não definido")}
+                </small>
+              </div>
+            `).join("")
+          : "<p>Nenhum colaborador cadastrado.</p>"
+      )}
+    </div>
+
+    <h2 style="margin:25px 0 14px">
+      Acesso rápido aos módulos
+    </h2>
+
+    ${dashboardQuickActions()}
+  `;
+
+  bindModuleTiles();
+}
+
+/* =========================================
+   CENTRAL RH
+========================================= */
+
+function hrDashboard() {
+  const active = S.employees.filter(
+    employee => employee.status === "Ativo"
+  ).length;
+
+  const openVacancies = S.vacancies.filter(
+    vacancy => vacancy.status === "Aberta"
+  ).length;
+
+  const pendingLeaves = S.leaves.filter(
+    leave => leave.status === "Pendente"
+  ).length;
+
+  const actions = [
+    ["employees", "♙", "Colaboradores", "Admissões e cadastro"],
+    ["departments", "▦", "Departamentos", "Estrutura organizacional"],
+    ["leaves", "◷", "Férias e ausências", "Solicitações e aprovações"],
+    ["attendance", "▤", "Ponto", "Frequência administrativa"],
+    ["recruitment", "◇", "Recrutamento", "Vagas e candidatos"],
+    ["payroll", "▣", "Folha", "Lançamentos internos"],
+    ["benefits", "✧", "Benefícios", "Benefícios da equipe"],
+    ["training", "✦", "Treinamentos", "Capacitação"],
+    ["performance", "◎", "Desempenho", "Avaliações"]
+  ].filter(item => allowed(item[0]));
+
+  $("view").innerHTML = `
+    ${futureBanner("hr")}
+
+    <div class="stats">
+      ${stat("Funcionários ativos", active)}
+      ${stat("Vagas abertas", openVacancies)}
+      ${stat("Candidatos", S.candidates.length)}
+      ${stat("Departamentos", S.departments.length)}
+      ${stat("Ausências pendentes", pendingLeaves)}
+    </div>
+
+    <div class="grid-main">
+      ${panel(
+        "Evolução da equipe",
+        lineChart(admissionSeries())
+      )}
+
+      ${panel(
+        "Distribuição organizacional",
+        donut(departmentData())
+      )}
+    </div>
+
+    <h2 style="margin:24px 0 14px">
+      Operações de Recursos Humanos
+    </h2>
+
+    <div class="future-grid">
+      ${actions.map(item =>
+        moduleTile(...item)
+      ).join("")}
+    </div>
+
+    ${panel(
+      "Departamentos e equipes",
+      bars(departmentData())
+    )}
+  `;
+
+  bindModuleTiles();
+}
+
+/* =========================================
+   COLABORADORES
+========================================= */
+
+function employeesPage() {
+  $("view").innerHTML = `
+    ${futureBanner("employees")}
+
+    ${panel(
+      "Gestão de colaboradores",
+      table(
+        [
+          "Nome",
+          "Matrícula",
+          "Cargo",
+          "Departamento",
+          "Situação",
+          "Ação"
+        ],
+        S.employees.map(employee => `
+          <tr>
+            <td>
+              <strong>${esc(employee.name)}</strong>
+            </td>
+
+            <td>${esc(employee.registration || "—")}</td>
+            <td>${esc(employee.role || "—")}</td>
+            <td>${esc(departmentName(employee.departmentId))}</td>
+
+            <td>
+              <span class="tag">
+                ${esc(employee.status || "—")}
+              </span>
+            </td>
+
+            <td>
+              ${
+                isAdmin()
+                  ? `<button
+                       class="btn"
+                       data-edit-employee="${esc(employee.id)}"
+                     >Editar</button>`
+                  : "—"
+              }
+            </td>
+          </tr>
+        `)
+      ),
+      isAdmin()
+        ? `<button
+             class="btn primary"
+             id="addEmployee"
+           >＋ Admitir</button>`
+        : ""
+    )}
+  `;
+
+  if (isAdmin()) {
+    $("addEmployee").onclick = () => employeeForm();
+
+    document.querySelectorAll(
+      "[data-edit-employee]"
+    ).forEach(button => {
+      button.onclick = () => {
+        employeeForm(button.dataset.editEmployee);
+      };
+    });
+  }
+}
+
+function employeeForm(id = null) {
+  const employee = S.employees.find(
+    item => item.id === id
+  ) || {};
+
+  modal(
+    id ? "Editar colaborador" : "Admitir colaborador",
+    `
+      ${inputField(
+        "Nome completo",
+        "name",
+        employee.name,
+        "text",
+        true
+      )}
+
+      ${inputField(
+        "Matrícula",
+        "registration",
+        employee.registration
+      )}
+
+      ${inputField(
+        "E-mail",
+        "email",
+        employee.email,
+        "email"
+      )}
+
+      ${inputField(
+        "Cargo",
+        "role",
+        employee.role,
+        "text",
+        true
+      )}
+
+      ${selectField(
+        "Departamento",
+        "departmentId",
+        [
+          {value: "", label: "Não definido"},
+          ...S.departments.map(department => ({
+            value: department.id,
+            label: department.name
+          }))
+        ],
+        employee.departmentId
+      )}
+
+      ${inputField(
+        "Data de admissão",
+        "admission",
+        employee.admission,
+        "date"
+      )}
+
+      ${selectField(
+        "Situação",
+        "status",
+        ["Ativo", "Férias", "Afastado", "Desligado"],
+        employee.status || "Ativo"
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      await saveRecord("employees", data, id);
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   DEPARTAMENTOS
+========================================= */
+
+function departmentsPage() {
+  $("view").innerHTML = `
+    ${futureBanner("departments")}
+
+    ${panel(
+      "Estrutura de departamentos",
+      table(
+        [
+          "Nome",
+          "Código",
+          "Responsável",
+          "Colaboradores",
+          "Ação"
+        ],
+        S.departments.map(department => `
+          <tr>
+            <td>${esc(department.name)}</td>
+            <td>${esc(department.code || "—")}</td>
+            <td>${esc(department.manager || "—")}</td>
+
+            <td>
+              ${S.employees.filter(
+                employee =>
+                  employee.departmentId === department.id
+              ).length}
+            </td>
+
+            <td>
+              ${
+                isAdmin()
+                  ? `<button
+                       class="btn"
+                       data-edit-department="${esc(department.id)}"
+                     >Editar</button>`
+                  : "—"
+              }
+            </td>
+          </tr>
+        `)
+      ),
+      isAdmin()
+        ? `<button
+             class="btn primary"
+             id="addDepartment"
+           >＋ Departamento</button>`
+        : ""
+    )}
+  `;
+
+  if (isAdmin()) {
+    $("addDepartment").onclick = () => departmentForm();
+
+    document.querySelectorAll(
+      "[data-edit-department]"
+    ).forEach(button => {
+      button.onclick = () => {
+        departmentForm(button.dataset.editDepartment);
+      };
+    });
+  }
+}
+
+function departmentForm(id = null) {
+  const department = S.departments.find(
+    item => item.id === id
+  ) || {};
+
+  modal(
+    id ? "Editar departamento" : "Criar departamento",
+    `
+      ${inputField(
+        "Nome",
+        "name",
+        department.name,
+        "text",
+        true
+      )}
+
+      ${inputField(
+        "Código",
+        "code",
+        department.code
+      )}
+
+      ${inputField(
+        "Responsável",
+        "manager",
+        department.manager
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      await saveRecord("departments", data, id);
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   FÉRIAS E AUSÊNCIAS
+========================================= */
+
+function leavesPage() {
+  $("view").innerHTML = `
+    ${futureBanner("leaves")}
+
+    ${panel(
+      "Solicitações de férias e ausências",
+      table(
+        [
+          "Colaborador",
+          "Tipo",
+          "Início",
+          "Fim",
+          "Situação",
+          "Decisão"
+        ],
+        S.leaves.map(leave => `
+          <tr>
+            <td>${esc(employeeName(leave.employeeId))}</td>
+            <td>${esc(leave.type || "—")}</td>
+            <td>${esc(formatDate(leave.start))}</td>
+            <td>${esc(formatDate(leave.end))}</td>
+
+            <td>
+              <span class="tag">
+                ${esc(leave.status || "—")}
+              </span>
+            </td>
+
+            <td>
+              ${
+                isAdmin() && leave.status === "Pendente"
+                  ? `<button
+                       class="btn"
+                       data-approve-leave="${esc(leave.id)}"
+                     >Aprovar</button>`
+                  : "—"
+              }
+            </td>
+          </tr>
+        `)
+      ),
+      isAdmin()
+        ? `<button
+             class="btn primary"
+             id="addLeave"
+           >＋ Solicitação</button>`
+        : ""
+    )}
+  `;
+
+  if (!isAdmin()) return;
+
+  $("addLeave").onclick = leaveForm;
+
+  document.querySelectorAll(
+    "[data-approve-leave]"
+  ).forEach(button => {
+    button.onclick = async () => {
+      if (!confirm("Aprovar esta solicitação?")) {
+        return;
+      }
+
+      try {
+        await updateDoc(
+          companyDoc(
+            "leaves",
+            button.dataset.approveLeave
+          ),
+          {
+            status: "Aprovado",
+            decidedBy: S.user.uid,
+            decidedAt: serverTimestamp()
+          }
+        );
+
+        await reload();
+        toast("Solicitação aprovada.");
+      } catch (error) {
+        toast(errorText(error));
+      }
+    };
+  });
+}
+
+function leaveForm() {
+  if (!S.employees.length) {
+    toast("Cadastre um colaborador primeiro.");
+    return;
+  }
+
+  modal(
+    "Solicitar férias ou ausência",
+    `
+      ${selectField(
+        "Colaborador",
+        "employeeId",
+        S.employees.map(employee => ({
+          value: employee.id,
+          label: employee.name
+        }))
+      )}
+
+      ${selectField(
+        "Tipo",
+        "type",
+        ["Férias", "Licença", "Folga", "Afastamento"]
+      )}
+
+      ${inputField(
+        "Data inicial",
+        "start",
+        "",
+        "date",
+        true
+      )}
+
+      ${inputField(
+        "Data final",
+        "end",
+        "",
+        "date",
+        true
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      if (data.end < data.start) {
+        throw new Error("A data final é anterior à inicial.");
+      }
+
+      await saveRecord("leaves", {
+        ...data,
+        status: "Pendente"
+      });
+
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   PONTO E FREQUÊNCIA
+========================================= */
+
+function attendancePage() {
+  $("view").innerHTML = `
+    ${futureBanner("attendance")}
+
+    ${panel(
+      "Registros de frequência",
+      table(
+        [
+          "Colaborador",
+          "Data",
+          "Entrada",
+          "Saída",
+          "Intervalo"
+        ],
+        S.attendance.map(record => `
+          <tr>
+            <td>${esc(employeeName(record.employeeId))}</td>
+            <td>${esc(formatDate(record.date))}</td>
+            <td>${esc(record.start || "—")}</td>
+            <td>${esc(record.end || "—")}</td>
+            <td>${esc(record.breakMinutes || "0")} min</td>
+          </tr>
+        `)
+      ),
+      isAdmin()
+        ? `<button
+             class="btn primary"
+             id="addAttendance"
+           >＋ Registrar</button>`
+        : ""
+    )}
+
+    <div class="notice">
+      Registro administrativo manual.
+      Não substitui um sistema de ponto eletrônico
+      com os requisitos legais aplicáveis.
+    </div>
+  `;
+
+  if (isAdmin()) {
+    $("addAttendance").onclick = attendanceForm;
+  }
+}
+
+function attendanceForm() {
+  if (!S.employees.length) {
+    toast("Cadastre colaboradores primeiro.");
+    return;
+  }
+
+  modal(
+    "Registrar frequência",
+    `
+      ${selectField(
+        "Colaborador",
+        "employeeId",
+        S.employees.map(employee => ({
+          value: employee.id,
+          label: employee.name
+        }))
+      )}
+
+      ${inputField(
+        "Data",
+        "date",
+        today(),
+        "date",
+        true
+      )}
+
+      ${inputField(
+        "Entrada",
+        "start",
+        "",
+        "time",
+        true
+      )}
+
+      ${inputField(
+        "Saída",
+        "end",
+        "",
+        "time"
+      )}
+
+      ${inputField(
+        "Intervalo em minutos",
+        "breakMinutes",
+        "0",
+        "number"
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      if (Number(data.breakMinutes) < 0) {
+        throw new Error("Intervalo inválido.");
+      }
+
+      await saveRecord("attendance", data);
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   RECRUTAMENTO
+========================================= */
+
+function recruitmentPage() {
+  $("view").innerHTML = `
+    ${futureBanner("recruitment")}
+
+    ${panel(
+      "Vagas de emprego",
+      table(
+        ["Título", "Departamento", "Situação", "Ação"],
+        S.vacancies.map(vacancy => `
+          <tr>
+            <td>${esc(vacancy.title)}</td>
+            <td>${esc(departmentName(vacancy.departmentId))}</td>
+
+            <td>
+              <span class="tag">
+                ${esc(vacancy.status || "—")}
+              </span>
+            </td>
+
+            <td>
+              ${
+                isAdmin()
+                  ? `<button
+                       class="btn"
+                       data-edit-vacancy="${esc(vacancy.id)}"
+                     >Editar</button>`
+                  : "—"
+              }
+            </td>
+          </tr>
+        `)
+      ),
+      isAdmin()
+        ? `<button
+             class="btn primary"
+             id="addVacancy"
+           >＋ Abrir vaga</button>`
+        : ""
+    )}
+
+    <div style="height:14px"></div>
+
+    ${panel(
+      "Candidatos",
+      table(
+        ["Nome", "E-mail", "Vaga", "Etapa", "Ação"],
+        S.candidates.map(candidate => `
+          <tr>
+            <td>${esc(candidate.name)}</td>
+            <td>${esc(candidate.email || "—")}</td>
+
+            <td>
+              ${esc(
+                S.vacancies.find(
+                  vacancy => vacancy.id === candidate.vacancyId
+                )?.title || "—"
+              )}
+            </td>
+
+            <td>${esc(candidate.stage || "Inscrito")}</td>
+
+            <td>
+              ${
+                isAdmin()
+                  ? `<button
+                       class="btn"
+                       data-edit-candidate="${esc(candidate.id)}"
+                     >Editar</button>`
+                  : "—"
+              }
+            </td>
+          </tr>
+        `)
+      ),
+      isAdmin()
+        ? `<button
+             class="btn primary"
+             id="addCandidate"
+           >＋ Candidato</button>`
+        : ""
+    )}
+  `;
+
+  if (!isAdmin()) return;
+
+  $("addVacancy").onclick = () => vacancyForm();
+  $("addCandidate").onclick = () => candidateForm();
+
+  document.querySelectorAll(
+    "[data-edit-vacancy]"
+  ).forEach(button => {
+    button.onclick = () =>
+      vacancyForm(button.dataset.editVacancy);
+  });
+
+  document.querySelectorAll(
+    "[data-edit-candidate]"
+  ).forEach(button => {
+    button.onclick = () =>
+      candidateForm(button.dataset.editCandidate);
+  });
+}
+
+function vacancyForm(id = null) {
+  const vacancy = S.vacancies.find(
+    item => item.id === id
+  ) || {};
+
+  modal(
+    id ? "Editar vaga" : "Abrir vaga",
+    `
+      ${inputField(
+        "Título",
+        "title",
+        vacancy.title,
+        "text",
+        true
+      )}
+
+      ${selectField(
+        "Departamento",
+        "departmentId",
+        [
+          {value: "", label: "Não definido"},
+          ...S.departments.map(department => ({
+            value: department.id,
+            label: department.name
+          }))
+        ],
+        vacancy.departmentId
+      )}
+
+      ${selectField(
+        "Situação",
+        "status",
+        ["Aberta", "Pausada", "Concluída"],
+        vacancy.status || "Aberta"
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      await saveRecord("vacancies", data, id);
+      await reload();
+    }
+  );
+}
+
+function candidateForm(id = null) {
+  if (!S.vacancies.length) {
+    toast("Cadastre uma vaga primeiro.");
+    return;
+  }
+
+  const candidate = S.candidates.find(
+    item => item.id === id
+  ) || {};
+
+  modal(
+    id ? "Editar candidato" : "Cadastrar candidato",
+    `
+      ${inputField(
+        "Nome",
+        "name",
+        candidate.name,
+        "text",
+        true
+      )}
+
+      ${inputField(
+        "E-mail",
+        "email",
+        candidate.email,
+        "email"
+      )}
+
+      ${selectField(
+        "Vaga",
+        "vacancyId",
+        S.vacancies.map(vacancy => ({
+          value: vacancy.id,
+          label: vacancy.title
+        })),
+        candidate.vacancyId
+      )}
+
+      ${selectField(
+        "Etapa",
+        "stage",
+        [
+          "Inscrito",
+          "Triagem",
+          "Entrevista",
+          "Proposta",
+          "Contratado",
+          "Rejeitado"
+        ],
+        candidate.stage || "Inscrito"
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      await saveRecord("candidates", data, id);
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   FOLHA ADMINISTRATIVA
+========================================= */
+
+function payrollPage() {
+  const total = S.payroll.reduce((sum, record) => {
+    return sum +
+      Number(record.base || 0) +
+      Number(record.extra || 0) -
+      Number(record.deductions || 0);
+  }, 0);
+
+  $("view").innerHTML = `
+    ${futureBanner("payroll")}
+
+    <div class="stats">
+      ${stat(
+        "Lançamentos",
+        S.payroll.length,
+        "REGISTROS"
+      )}
+
+      ${stat(
+        "Total calculado",
+        money(total),
+        "CONTROLE INTERNO"
+      )}
+    </div>
+
+    ${panel(
+      "Lançamentos de folha",
+      table(
+        [
+          "Colaborador",
+          "Competência",
+          "Base",
+          "Adicionais",
+          "Descontos",
+          "Total",
+          "Ação"
+        ],
+        S.payroll.map(record => {
+          const amount =
+            Number(record.base || 0) +
+            Number(record.extra || 0) -
+            Number(record.deductions || 0);
+
+          return `
+            <tr>
+              <td>${esc(employeeName(record.employeeId))}</td>
+              <td>${esc(record.period || "—")}</td>
+              <td>${money(record.base)}</td>
+              <td>${money(record.extra)}</td>
+              <td>${money(record.deductions)}</td>
+              <td><strong>${money(amount)}</strong></td>
+
+              <td>
+                <button
+                  class="btn"
+                  data-edit-payroll="${esc(record.id)}"
+                >Editar</button>
+              </td>
+            </tr>
+          `;
+        })
+      ),
+      `<button
+         class="btn primary"
+         id="addPayroll"
+       >＋ Lançamento</button>`
+    )}
+
+    <div class="notice">
+      Esta folha é um controle administrativo interno.
+      Não calcula automaticamente INSS, FGTS, IRRF,
+      eSocial ou obrigações trabalhistas oficiais.
+    </div>
+  `;
+
+  $("addPayroll").onclick = () => payrollForm();
+
+  document.querySelectorAll(
+    "[data-edit-payroll]"
+  ).forEach(button => {
+    button.onclick = () =>
+      payrollForm(button.dataset.editPayroll);
+  });
+}
+
+function payrollForm(id = null) {
+  if (!S.employees.length) {
+    toast("Cadastre um colaborador primeiro.");
+    return;
+  }
+
+  const record = S.payroll.find(
+    item => item.id === id
+  ) || {};
+
+  modal(
+    id ? "Editar lançamento" : "Lançamento de folha",
+    `
+      ${selectField(
+        "Colaborador",
+        "employeeId",
+        S.employees.map(employee => ({
+          value: employee.id,
+          label: employee.name
+        })),
+        record.employeeId
+      )}
+
+      ${inputField(
+        "Competência (AAAA-MM)",
+        "period",
+        record.period ||
+          today().slice(0, 7),
+        "month",
+        true
+      )}
+
+      ${inputField(
+        "Valor base",
+        "base",
+        record.base || "0",
+        "number",
+        true
+      )}
+
+      ${inputField(
+        "Adicionais",
+        "extra",
+        record.extra || "0",
+        "number"
+      )}
+
+      ${inputField(
+        "Descontos",
+        "deductions",
+        record.deductions || "0",
+        "number"
+      )}
+    `,
+    async data => {
+      if (!isAdmin()) {
+        throw new Error("Sem permissão.");
+      }
+
+      for (const field of [
+        "base",
+        "extra",
+        "deductions"
+      ]) {
+        const value = Number(data[field] || 0);
+
+        if (!Number.isFinite(value) || value < 0) {
+          throw new Error(
+            "Informe valores válidos e não negativos."
+          );
+        }
+
+        data[field] = value;
+      }
+
+      await saveRecord("payroll", data, id);
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   FIM DA PARTE 4
+   NÃO FECHAR O SCRIPT AINDA.
+   A PARTE 5 CONTINUA AQUI.
+========================================= */
+
+/* =========================================
+   MEU NEGÓCIO PRO ENTERPRISE 2060
+   PARTE 5 — MÓDULOS EMPRESARIAIS
+   CONTINUAÇÃO DA PARTE 4
+========================================= */
+
+/* =========================================
+   CONFIGURAÇÃO DOS MÓDULOS
+========================================= */
+
+const enterpriseModules = {
+
+  finance: {
+    title: "Gestão Financeira",
+    description: "Receitas, despesas e controle financeiro.",
+    collection: "finance",
+    fields: [
+      {
+        name: "description",
+        label: "Descrição",
+        required: true
+      },
+      {
+        name: "type",
+        label: "Tipo",
+        type: "select",
+        options: ["Receita", "Despesa"]
+      },
+      {
+        name: "category",
+        label: "Categoria"
+      },
+      {
+        name: "amount",
+        label: "Valor (R$)",
+        type: "number",
+        required: true
+      },
+      {
+        name: "date",
+        label: "Data",
+        type: "date"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: ["Pendente", "Pago", "Recebido", "Cancelado"]
+      }
+    ],
+    columns: ["description", "type", "amount", "status"]
+  },
+
+  sales: {
+    title: "CRM e Vendas",
+    description: "Clientes, oportunidades e negociações.",
+    collection: "sales",
+    fields: [
+      {
+        name: "name",
+        label: "Cliente",
+        required: true
+      },
+      {
+        name: "email",
+        label: "E-mail",
+        type: "email"
+      },
+      {
+        name: "phone",
+        label: "Telefone"
+      },
+      {
+        name: "product",
+        label: "Produto ou serviço"
+      },
+      {
+        name: "amount",
+        label: "Valor da oportunidade",
+        type: "number"
+      },
+      {
+        name: "status",
+        label: "Etapa",
+        type: "select",
+        options: [
+          "Novo",
+          "Contato",
+          "Negociação",
+          "Proposta",
+          "Ganho",
+          "Perdido"
+        ]
+      }
+    ],
+    columns: ["name", "product", "amount", "status"]
+  },
+
+  stock: {
+    title: "Controle de Estoque",
+    description: "Produtos, quantidades e inventário.",
+    collection: "stock",
+    fields: [
+      {
+        name: "name",
+        label: "Produto",
+        required: true
+      },
+      {
+        name: "sku",
+        label: "Código SKU"
+      },
+      {
+        name: "category",
+        label: "Categoria"
+      },
+      {
+        name: "quantity",
+        label: "Quantidade",
+        type: "number"
+      },
+      {
+        name: "minimum",
+        label: "Estoque mínimo",
+        type: "number"
+      },
+      {
+        name: "price",
+        label: "Preço unitário",
+        type: "number"
+      }
+    ],
+    columns: ["name", "sku", "quantity", "price"]
+  },
+
+  purchases: {
+    title: "Gestão de Compras",
+    description: "Pedidos, fornecedores e aquisições.",
+    collection: "purchases",
+    fields: [
+      {
+        name: "description",
+        label: "Descrição",
+        required: true
+      },
+      {
+        name: "supplier",
+        label: "Fornecedor"
+      },
+      {
+        name: "amount",
+        label: "Valor",
+        type: "number"
+      },
+      {
+        name: "date",
+        label: "Data",
+        type: "date"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: [
+          "Solicitado",
+          "Aprovado",
+          "Comprado",
+          "Recebido",
+          "Cancelado"
+        ]
+      }
+    ],
+    columns: ["description", "supplier", "amount", "status"]
+  },
+
+  benefits: {
+    title: "Benefícios",
+    description: "Benefícios e auxílios dos colaboradores.",
+    collection: "benefits",
+    fields: [
+      {
+        name: "name",
+        label: "Benefício",
+        required: true
+      },
+      {
+        name: "employee",
+        label: "Colaborador"
+      },
+      {
+        name: "amount",
+        label: "Valor",
+        type: "number"
+      },
+      {
+        name: "date",
+        label: "Data",
+        type: "date"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: ["Ativo", "Suspenso", "Encerrado"]
+      }
+    ],
+    columns: ["name", "employee", "amount", "status"]
+  },
+
+  sst: {
+    title: "Saúde e Segurança",
+    description: "Controle administrativo de SST.",
+    collection: "sst",
+    fields: [
+      {
+        name: "description",
+        label: "Descrição",
+        required: true
+      },
+      {
+        name: "employee",
+        label: "Colaborador"
+      },
+      {
+        name: "type",
+        label: "Tipo",
+        type: "select",
+        options: [
+          "Treinamento",
+          "Inspeção",
+          "Exame",
+          "Ocorrência",
+          "EPI",
+          "Outro"
+        ]
+      },
+      {
+        name: "date",
+        label: "Data",
+        type: "date"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: ["Pendente", "Em andamento", "Concluído"]
+      }
+    ],
+    columns: ["description", "employee", "type", "status"]
+  },
+
+  training: {
+    title: "Treinamentos",
+    description: "Cursos e capacitações internas.",
+    collection: "training",
+    fields: [
+      {
+        name: "name",
+        label: "Treinamento",
+        required: true
+      },
+      {
+        name: "instructor",
+        label: "Instrutor"
+      },
+      {
+        name: "date",
+        label: "Data",
+        type: "date"
+      },
+      {
+        name: "hours",
+        label: "Carga horária",
+        type: "number"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: [
+          "Planejado",
+          "Em andamento",
+          "Concluído",
+          "Cancelado"
+        ]
+      }
+    ],
+    columns: ["name", "instructor", "date", "status"]
+  },
+
+  performance: {
+    title: "Avaliação de Desempenho",
+    description: "Avaliações e acompanhamento da equipe.",
+    collection: "performance",
+    fields: [
+      {
+        name: "employee",
+        label: "Colaborador",
+        required: true
+      },
+      {
+        name: "evaluator",
+        label: "Avaliador"
+      },
+      {
+        name: "score",
+        label: "Nota de 0 a 10",
+        type: "number"
+      },
+      {
+        name: "date",
+        label: "Data",
+        type: "date"
+      },
+      {
+        name: "comments",
+        label: "Observações"
+      }
+    ],
+    columns: ["employee", "evaluator", "score", "date"]
+  },
+
+  documents: {
+    title: "Gestão de Documentos",
+    description: "Controle de documentos e vencimentos.",
+    collection: "documents",
+    fields: [
+      {
+        name: "name",
+        label: "Documento",
+        required: true
+      },
+      {
+        name: "type",
+        label: "Tipo"
+      },
+      {
+        name: "number",
+        label: "Número ou referência"
+      },
+      {
+        name: "date",
+        label: "Data de emissão",
+        type: "date"
+      },
+      {
+        name: "expiry",
+        label: "Vencimento",
+        type: "date"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: ["Válido", "Pendente", "Vencido", "Arquivado"]
+      }
+    ],
+    columns: ["name", "type", "expiry", "status"]
+  },
+
+  projects: {
+    title: "Gestão de Projetos",
+    description: "Projetos, responsáveis e prazos.",
+    collection: "projects",
+    fields: [
+      {
+        name: "name",
+        label: "Projeto",
+        required: true
+      },
+      {
+        name: "manager",
+        label: "Responsável"
+      },
+      {
+        name: "start",
+        label: "Início",
+        type: "date"
+      },
+      {
+        name: "deadline",
+        label: "Prazo final",
+        type: "date"
+      },
+      {
+        name: "budget",
+        label: "Orçamento",
+        type: "number"
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: [
+          "Planejado",
+          "Em andamento",
+          "Concluído",
+          "Suspenso",
+          "Cancelado"
+        ]
+      }
+    ],
+    columns: ["name", "manager", "deadline", "status"]
+  },
+
+  positions: {
+    title: "Cargos e Salários",
+    description: "Estrutura interna de cargos.",
+    collection: "positions",
+    fields: [
+      {
+        name: "name",
+        label: "Cargo",
+        required: true
+      },
+      {
+        name: "department",
+        label: "Departamento"
+      },
+      {
+        name: "level",
+        label: "Nível",
+        type: "select",
+        options: [
+          "Júnior",
+          "Pleno",
+          "Sênior",
+          "Especialista",
+          "Gestão"
+        ]
+      },
+      {
+        name: "salary",
+        label: "Salário de referência",
+        type: "number"
+      },
+      {
+        name: "description",
+        label: "Descrição"
+      }
+    ],
+    columns: ["name", "department", "level", "salary"]
+  },
+
+  support: {
+    title: "Central de Atendimentos",
+    description: "Chamados, solicitações e acompanhamento.",
+    collection: "support",
+    fields: [
+      {
+        name: "subject",
+        label: "Assunto",
+        required: true
+      },
+      {
+        name: "requester",
+        label: "Solicitante"
+      },
+      {
+        name: "description",
+        label: "Descrição"
+      },
+      {
+        name: "priority",
+        label: "Prioridade",
+        type: "select",
+        options: ["Baixa", "Média", "Alta", "Urgente"]
+      },
+      {
+        name: "status",
+        label: "Situação",
+        type: "select",
+        options: [
+          "Aberto",
+          "Em atendimento",
+          "Resolvido",
+          "Encerrado"
+        ]
+      }
+    ],
+    columns: ["subject", "requester", "priority", "status"]
+  }
+
+};
+
+/* =========================================
+   FORMATAÇÃO DOS CAMPOS
+========================================= */
+
+function enterpriseFieldValue(field, value) {
+  if (value === null || value === undefined || value === "") {
+    return "—";
+  }
+
+  if ([
+    "amount",
+    "price",
+    "budget",
+    "salary"
+  ].includes(field.name)) {
+    return money(value);
+  }
+
+  if (field.type === "date") {
+    return formatDate(value);
+  }
+
+  return String(value);
+}
+
+/* =========================================
+   CAMPOS AUTOMÁTICOS DOS FORMULÁRIOS
+========================================= */
+
+function enterpriseFormFields(config, record = {}) {
+  return config.fields.map(field => {
+    const value = record[field.name] ?? "";
+
+    if (field.type === "select") {
+      return selectField(
+        field.label,
+        field.name,
+        field.options,
+        value
+      );
+    }
+
+    return inputField(
+      field.label,
+      field.name,
+      value,
+      field.type || "text",
+      field.required || false
+    );
+  }).join("");
+}
+
+/* =========================================
+   FORMULÁRIO UNIVERSAL
+========================================= */
+
+function enterpriseModuleForm(page, id = null) {
+  const config = enterpriseModules[page];
+
+  if (!config) {
+    toast("Módulo não encontrado.");
+    return;
+  }
+
+  if (!canEditEnterpriseModule(page)) {
+    toast("Você não possui permissão.");
+    return;
+  }
+
+  const records = S[config.collection] || [];
+
+  const record = records.find(
+    item => item.id === id
+  ) || {};
+
+  modal(
+    id
+      ? `Editar — ${config.title}`
+      : `Novo registro — ${config.title}`,
+
+    enterpriseFormFields(config, record),
+
+    async data => {
+      if (!canEditEnterpriseModule(page)) {
+        throw new Error("Sem permissão.");
+      }
+
+      for (const field of config.fields) {
+        if (
+          field.required &&
+          !String(data[field.name] ?? "").trim()
+        ) {
+          throw new Error(
+            `Preencha o campo: ${field.label}`
+          );
+        }
+
+        if (field.type === "number") {
+          const raw = data[field.name];
+
+          if (raw === "" || raw === undefined) {
+            data[field.name] = 0;
+          } else {
+            const number = Number(raw);
+
+            if (!Number.isFinite(number)) {
+              throw new Error(
+                `Número inválido: ${field.label}`
+              );
+            }
+
+            data[field.name] = number;
+          }
+        }
+      }
+
+      if (
+        page === "performance" &&
+        (data.score < 0 || data.score > 10)
+      ) {
+        throw new Error(
+          "A nota precisa estar entre 0 e 10."
+        );
+      }
+
+      if (
+        page === "projects" &&
+        data.start &&
+        data.deadline &&
+        data.deadline < data.start
+      ) {
+        throw new Error(
+          "O prazo final não pode ser anterior ao início."
+        );
+      }
+
+      await saveRecord(
+        config.collection,
+        data,
+        id
+      );
+
+      await reload();
+    }
+  );
+}
+
+/* =========================================
+   PESQUISA DE REGISTROS
+========================================= */
+
+function filterEnterpriseRecords(page, term) {
+  const config = enterpriseModules[page];
+
+  if (!config) return [];
+
+  const records = S[config.collection] || [];
+
+  const search = String(term || "")
+    .trim()
+    .toLocaleLowerCase("pt-BR");
+
+  if (!search) return records;
+
+  return records.filter(record =>
+    config.fields.some(field =>
+      String(record[field.name] ?? "")
+        .toLocaleLowerCase("pt-BR")
+        .includes(search)
+    )
+  );
+}
+
+/* =========================================
+   TABELA UNIVERSAL
+========================================= */
+
+function enterpriseTable(page, records) {
+  const config = enterpriseModules[page];
+
+  const fields = config.columns.map(name =>
+    config.fields.find(field => field.name === name)
+  ).filter(Boolean);
+
+  return table(
+    [
+      ...fields.map(field => field.label),
+      "Ações"
+    ],
+
+    records.map(record => `
+      <tr>
+        ${fields.map(field => `
+          <td>
+            ${esc(
+              enterpriseFieldValue(
+                field,
+                record[field.name]
+              )
+            )}
+          </td>
+        `).join("")}
+
+        <td>
+          <button
+            class="btn"
+            type="button"
+            data-enterprise-edit="${esc(record.id)}"
+          >
+            Editar
+          </button>
+        </td>
+      </tr>
+    `)
+  );
+}
+
+/* =========================================
+   INDICADORES FINANCEIROS
+========================================= */
+
+function financeSummary() {
+  const records = S.finance || [];
+
+  const received = records
+    .filter(record =>
+      record.type === "Receita" &&
+      record.status === "Recebido"
+    )
+    .reduce(
+      (sum, record) =>
+        sum + Number(record.amount || 0),
+      0
+    );
+
+  const paid = records
+    .filter(record =>
+      record.type === "Despesa" &&
+      record.status === "Pago"
+    )
+    .reduce(
+      (sum, record) =>
+        sum + Number(record.amount || 0),
+      0
+    );
+
+  const pending = records
+    .filter(record =>
+      record.status === "Pendente"
+    )
+    .length;
+
+  return `
+    <div class="stats">
+      ${stat("Receitas recebidas", money(received))}
+      ${stat("Despesas pagas", money(paid))}
+      ${stat("Saldo registrado", money(received - paid))}
+      ${stat("Pendências", pending)}
+      ${stat("Lançamentos", records.length)}
+    </div>
+  `;
+}
+
+/* =========================================
+   INDICADORES DE ESTOQUE
+========================================= */
+
+function stockSummary() {
+  const records = S.stock || [];
+
+  const lowStock = records.filter(record =>
+    Number(record.quantity || 0) <=
+    Number(record.minimum || 0)
+  ).length;
+
+  const totalItems = records.reduce(
+    (sum, record) =>
+      sum + Number(record.quantity || 0),
+    0
+  );
+
+  const estimatedValue = records.reduce(
+    (sum, record) =>
+      sum +
+      Number(record.quantity || 0) *
+      Number(record.price || 0),
+    0
+  );
+
+  return `
+    <div class="stats">
+      ${stat("Produtos", records.length)}
+      ${stat("Unidades", totalItems)}
+      ${stat("Estoque baixo", lowStock)}
+      ${stat("Valor estimado", money(estimatedValue))}
+    </div>
+  `;
+}
+
+/* =========================================
+   INDICADORES DE CRM
+========================================= */
+
+function salesSummary() {
+  const records = S.sales || [];
+
+  const won = records.filter(
+    record => record.status === "Ganho"
+  );
+
+  const totalWon = won.reduce(
+    (sum, record) =>
+      sum + Number(record.amount || 0),
+    0
+  );
+
+  const negotiation = records.filter(
+    record => record.status === "Negociação"
+  ).length;
+
+  return `
+    <div class="stats">
+      ${stat("Oportunidades", records.length)}
+      ${stat("Negociações", negotiation)}
+      ${stat("Vendas ganhas", won.length)}
+      ${stat("Valor ganho", money(totalWon))}
+    </div>
+  `;
+}
+
+/* =========================================
+   RESUMO DE CADA MÓDULO
+========================================= */
+
+function enterpriseSummary(page) {
+  switch (page) {
+    case "finance":
+      return financeSummary();
+
+    case "stock":
+      return stockSummary();
+
+    case "sales":
+      return salesSummary();
+
+    default: {
+      const config = enterpriseModules[page];
+      const records = S[config.collection] || [];
+
+      return `
+        <div class="stats">
+          ${stat(
+            "Registros cadastrados",
+            records.length,
+            "FIREBASE"
+          )}
+        </div>
+      `;
+    }
+  }
+}
+
+/* =========================================
+   TELA UNIVERSAL DOS MÓDULOS
+========================================= */
+
+function enterpriseModulePage(page) {
+  const config = enterpriseModules[page];
+
+  if (!config) {
+    $("view").innerHTML = panel(
+      "Módulo indisponível",
+      "<p>Este módulo não foi encontrado.</p>"
+    );
+    return;
+  }
+
+  if (!canEditEnterpriseModule(page)) {
+    $("view").innerHTML = panel(
+      "Acesso restrito",
+      "<p>Você não possui permissão para este módulo.</p>"
+    );
+    return;
+  }
+
+  $("view").innerHTML = `
+    ${futureBanner(page)}
+
+    ${enterpriseSummary(page)}
+
+    ${panel(
+      config.title,
+      `
+        <p>${esc(config.description)}</p>
+
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            margin:15px 0;
+            flex-wrap:wrap;
+          "
+        >
+          <input
+            id="enterpriseSearch"
+            type="search"
+            placeholder="Pesquisar registros..."
+            aria-label="Pesquisar registros"
+            style="flex:1;min-width:180px"
+          >
+
+          <button class="btn" id="enterpriseExport" type="button">↓ Exportar CSV</button>
+          <button
+            class="btn primary"
+            id="enterpriseNew"
+          >
+            ＋ Novo registro
+          </button>
+        </div>
+
+        <div id="enterpriseResults">
+          ${enterpriseTable(
+            page,
+            S[config.collection] || []
+          )}
+        </div>
+      `
+    )}
+  `;
+
+  $("enterpriseNew").onclick = () => {
+    enterpriseModuleForm(page);
+  };
+  $("enterpriseExport").onclick = () => exportEnterpriseCSV(page);
+
+  function bindEditButtons() {
+    document.querySelectorAll(
+      "[data-enterprise-edit]"
+    ).forEach(button => {
+      button.onclick = () => {
+        enterpriseModuleForm(
+          page,
+          button.dataset.enterpriseEdit
+        );
+      };
+    });
+  }
+
+  bindEditButtons();
+
+  $("enterpriseSearch").oninput = event => {
+    const records = filterEnterpriseRecords(
+      page,
+      event.target.value
+    );
+
+    $("enterpriseResults").innerHTML =
+      enterpriseTable(page, records);
+
+    bindEditButtons();
+  };
+}
+
+/* =========================================
+   CATÁLOGO DE MÓDULOS
+========================================= */
+
+function enterpriseCatalog() {
+  const modules = enterpriseMenuGroups
+    .flatMap(group => group[1])
+    .filter(item =>
+      allowed(item[0]) &&
+      item[0] !== "catalog"
+    );
+
+  $("view").innerHTML = `
+    ${futureBanner("catalog")}
+
+    <div class="notice">
+      Selecione um módulo para abrir
+      sua área de gerenciamento.
+    </div>
+
+    <div class="future-grid">
+      ${modules.map(item =>
+        moduleTile(
+          item[0],
+          item[1],
+          item[2],
+          enterprisePageInfo[item[0]]?.[1] || ""
+        )
+      ).join("")}
+    </div>
+  `;
+
+  bindModuleTiles();
+}
+
+/* =========================================
+   GERENCIAMENTO DE EMPRESAS
+========================================= */
+
+function companiesPage() {
+  $("view").innerHTML = `
+    ${futureBanner("companies")}
+
+    ${panel(
+      "Empresas disponíveis",
+      table(
+        [
+          "Empresa",
+          "Nome fantasia",
+          "Cidade",
+          "Estado",
+          "Ação"
+        ],
+
+        S.companies.map(company => `
+          <tr>
+            <td>
+              <strong>${esc(company.name)}</strong>
+            </td>
+
+            <td>${esc(company.tradeName || "—")}</td>
+            <td>${esc(company.city || "—")}</td>
+            <td>${esc(company.state || "—")}</td>
+
+            <td>
+              <button
+                class="btn"
+                data-select-company="${esc(company.id)}"
+              >
+                ${
+                  company.id === S.companyId
+                    ? "Selecionada"
+                    : "Selecionar"
+                }
+              </button>
+            </td>
+          </tr>
+        `)
+      ),
+
+      `<button
+         class="btn primary"
+         id="createCompanyPage"
+       >
+         ＋ Nova empresa
+       </button>`
+    )}
+  `;
+
+  $("createCompanyPage").onclick = companyForm;
+
+  document.querySelectorAll(
+    "[data-select-company]"
+  ).forEach(button => {
+    button.onclick = async () => {
+      try {
+        await selectCompany(
+          button.dataset.selectCompany
+        );
+
+        toast("Empresa selecionada.");
+      } catch (error) {
+        toast(errorText(error));
+      }
+    };
+  });
+}
+
+/* =========================================
+   USUÁRIOS E PERFIS
+========================================= */
+
+function membersPage() {
+  $("view").innerHTML = `
+    ${futureBanner("members")}
+
+    ${panel(
+      "Usuários com acesso à empresa",
+      table(
+        [
+          "Nome",
+          "E-mail",
+          "Perfil",
+          "Identificador"
+        ],
+
+        S.members.map(member => `
+          <tr>
+            <td>${esc(member.name || "—")}</td>
+            <td>${esc(member.email || "—")}</td>
+
+            <td>
+              <span class="tag">
+                ${esc(member.role || "employee")}
+              </span>
+            </td>
+
+            <td>
+              <code>${esc(member.uid || member.id)}</code>
+            </td>
+          </tr>
+        `)
+      )
+    )}
+
+    <div class="notice">
+      Esta tela consulta os usuários autorizados
+      da empresa. A inclusão e alteração de
+      permissões precisam seguir regras seguras
+      no Firebase.
+    </div>
+  `;
+}
+
+/* =========================================
+   ENTERPRISE PLUS — SEGURANÇA E EXPORTAÇÃO
+========================================= */
+function canEditEnterpriseModule(page) {
+  const hrModules = ["benefits", "sst", "training", "performance", "positions"];
+  return hrModules.includes(page) ? isAdmin() : canManageBusiness();
+}
+
+function exportEnterpriseCSV(page) {
+  const config = enterpriseModules[page];
+  if (!config || !canEditEnterpriseModule(page)) return;
+  const records = filterEnterpriseRecords(page, $("enterpriseSearch")?.value || "");
+  const columns = config.fields;
+  const csvCell = value => '"' + String(value ?? "")
+    .replace(/^[=+@\-\t\r]/, "'$&")
+    .replace(/"/g, '""') + '"';
+  const lines = [
+    columns.map(f => csvCell(f.label)).join(";"),
+    ...records.map(r => columns.map(f => csvCell(r[f.name])).join(";"))
+  ];
+  const blob = new Blob(["\uFEFF" + lines.join("\r\n")],
+    {type: "text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `meu-negocio-${page}-${today()}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  toast("Exportação CSV preparada.");
+}
+
+function installEnterprisePlus() {
+  const css = document.createElement("style");
+  css.textContent = `
+    :root{--cyan:#4df4e3;--orange:#ffa261}
+    .main{max-width:1800px;margin:auto}
+    .panel,.stat,.future-tile{box-shadow:0 10px 35px #0003}
+    .stat-value{overflow-wrap:anywhere;font-size:clamp(19px,2vw,27px)}
+    .future-tile{min-height:142px;touch-action:manipulation}
+    .btn,.nav{min-height:44px}
+    .panel{overflow:hidden}
+    .table-scroll{max-width:100%;-webkit-overflow-scrolling:touch}
+    .dialog-bg{z-index:200}
+    #global3D{opacity:.36}
+    #global3D canvas{filter:drop-shadow(0 0 25px #39e5d233)}
+    @media(max-width:900px){
+      .grid-main,.grid-bottom{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .topbar{align-items:flex-start}
+    }
+    @media(max-width:650px){
+      .main{padding:14px 12px 95px}
+      .topbar{gap:12px}
+      .topright{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,auto);gap:6px}
+      .topright select{min-width:0;width:100%}
+      .topright .btn{padding:9px}
+      .sidebar{height:72px;padding:5px 8px;overflow:hidden}
+      #navigation{height:62px;align-items:center;overflow-x:auto;overscroll-behavior-x:contain}
+      #navigation .nav{min-width:60px;max-width:70px;height:57px;display:flex;flex-direction:column;justify-content:center;gap:1px;padding:5px 3px;font-size:9px}
+      #navigation .nav .nav-text{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;text-align:center;font-size:9px}
+      #navigation .nav .ico{font-size:20px}
+      #navigation .nav-title{display:none}
+      .stats{gap:8px}.stat{min-height:105px;padding:12px}
+      .future-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+      .future-tile{padding:12px;min-height:132px}
+      .future-tile strong{font-size:13px}
+      .future-tile small{font-size:11px}
+      .panel{padding:13px}
+      .dialog{padding:16px}
+      .hero-content{max-width:100%}
+      #global3D{opacity:.20}
+    }
+    @media(max-width:360px){.future-grid{grid-template-columns:1fr}}
+  `;
+  document.head.appendChild(css);
+  // Controles 3D com suporte a toque e rotação por ponteiro.
+  const scene = document.getElementById("global3D");
+  if (scene) scene.setAttribute("aria-hidden", "true");
+}
+installEnterprisePlus();
+
+/* =========================================
+   ROTEADOR PRINCIPAL
+========================================= */
+
+function render() {
+  if (!S.companyId) {
+    return;
+  }
+
+  if (!allowed(S.page)) {
+    S.page = "dashboard";
+  }
+
+  const pageInfo = enterprisePageInfo[S.page] ||
+    enterprisePageInfo.dashboard;
+
+  $("pageTitle").textContent = pageInfo[0];
+  $("pageSubtitle").textContent = pageInfo[1];
+
+  $("breadcrumb").textContent =
+    pageInfo[0].toUpperCase();
+
+  buildMenu();
+  set3DTheme(S.page);
+
+  switch (S.page) {
+    case "dashboard":
+      dashboard();
+      break;
+
+    case "hr":
+      hrDashboard();
+      break;
+
+    case "employees":
+      employeesPage();
+      break;
+
+    case "departments":
+      departmentsPage();
+      break;
+
+    case "leaves":
+      leavesPage();
+      break;
+
+    case "attendance":
+      attendancePage();
+      break;
+
+    case "recruitment":
+      recruitmentPage();
+      break;
+
+    case "payroll":
+      payrollPage();
+      break;
+
+    case "companies":
+      companiesPage();
+      break;
+
+    case "members":
+      membersPage();
+      break;
+
+    case "catalog":
+      enterpriseCatalog();
+      break;
+
+    default:
+      if (enterpriseModules[S.page]) {
+        enterpriseModulePage(S.page);
+      } else {
+        $("view").innerHTML = panel(
+          "Página não encontrada",
+          "<p>O módulo solicitado não existe.</p>"
+        );
+      }
+  }
+}
+
+
+/* ===== ENTERPRISE V7: ferramentas operacionais ===== */
+const v7css=document.createElement('style');
+v7css.textContent=`.v7-tools{margin-top:16px}.v7-actions{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.v7-mini{padding:13px;border:1px solid var(--line);border-radius:12px;background:#102237;margin:8px 0}.v7-mini small{display:block;color:var(--muted)}.v7-scroll{max-height:280px;overflow:auto}.v7-tools input,.v7-tools select{max-width:100%}`;
+document.head.appendChild(v7css);
+function v7Num(v){const n=Number(v);return Number.isFinite(n)?n:0}
+function v7Month(v){return /^\d{4}-\d{2}/.test(String(v||''))?String(v).slice(0,7):''}
+function v7Financial(){
+ const now=new Date(), months=[];
+ for(let i=5;i>=0;i--){let d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`)}
+ const rows=months.map(m=>{const list=S.finance.filter(r=>v7Month(r.date)===m);const income=list.filter(r=>r.type==='Receita'&&r.status==='Recebido').reduce((a,r)=>a+v7Num(r.amount),0);const expense=list.filter(r=>r.type==='Despesa'&&r.status==='Pago').reduce((a,r)=>a+v7Num(r.amount),0);return {m,income,expense}});
+ const due=S.finance.filter(r=>r.status==='Pendente').sort((a,b)=>String(a.date||'').localeCompare(String(b.date||''))).slice(0,8);
+ return panel('Fluxo de caixa — últimos 6 meses',table(['Mês','Recebido','Pago','Saldo'],rows.map(r=>`<tr><td>${esc(r.m)}</td><td>${money(r.income)}</td><td>${money(r.expense)}</td><td>${money(r.income-r.expense)}</td></tr>`)))+panel('Pendências financeiras',table(['Descrição','Vencimento','Tipo','Valor'],due.map(r=>`<tr><td>${esc(r.description)}</td><td>${esc(formatDate(r.date))}</td><td>${esc(r.type)}</td><td>${money(r.amount)}</td></tr>`)));
+}
+function v7Extra(page){
+ if(page==='finance')return v7Financial();
+ if(page==='stock')return panel('Movimentação de estoque',`<p>Registre entradas e saídas com histórico por produto.</p><div class="v7-actions"><button class="btn primary" id="v7StockBtn">＋ Movimentar estoque</button></div><div id="v7StockHistory"></div>`);
+ if(page==='sales')return panel('Histórico de relacionamento',`<p>Registre contatos e próximos passos por oportunidade.</p><div class="v7-actions"><button class="btn primary" id="v7SaleBtn">＋ Registrar contato</button></div><div id="v7SaleHistory"></div>`);
+ if(page==='projects')return panel('Tarefas do projeto',`<p>Organize tarefas, responsáveis e conclusão.</p><div class="v7-actions"><button class="btn primary" id="v7TaskBtn">＋ Nova tarefa</button></div><div id="v7TaskHistory"></div>`);
+ if(page==='documents')return panel('Referências documentais',`<p>O módulo registra metadados e vencimentos. Não armazena arquivos físicos nesta versão.</p>`);
+ return '';
+}
+function v7Choose(items,label){return selectField(label,'recordId',items.map(x=>({value:x.id,label:x.name||x.description||x.subject||x.id})))}
+function v7History(page){
+ const root=$(page==='stock'?'v7StockHistory':page==='sales'?'v7SaleHistory':'v7TaskHistory');if(!root)return;
+ const source=page==='stock'?S.stock:page==='sales'?S.sales:S.projects;
+ const key=page==='stock'?'movements':page==='sales'?'interactions':'tasks';
+ root.innerHTML=source.map(item=>{
+ const list=Array.isArray(item[key])?item[key]:[];
+ return `<div class="v7-mini"><strong>${esc(item.name||item.description)}</strong><small>${list.length} registro(s)</small><div class="v7-scroll">${list.slice().reverse().slice(0,12).map(x=>`<div class="activity"><strong>${esc(x.label||x.title||x.type)}</strong><small>${esc(x.date||'')} · ${esc(x.note||x.owner||'')}${x.quantity!==undefined?' · '+esc(x.quantity)+' un.':''}${x.done?' · Concluída':''}</small>${page==='projects'&&!x.done?`<button class="btn" data-v7done="${esc(item.id)}" data-v7task="${esc(x.id)}">Concluir</button>`:''}</div>`).join('')}</div></div>`;
+ }).join('')||'<p>Nenhum registro.</p>';
+ if(page==='projects')root.querySelectorAll('[data-v7done]').forEach(b=>b.onclick=async()=>{
+  try{const id=b.dataset.v7done,tid=b.dataset.v7task;const ref=companyDoc('projects',id);await runTransaction(db,async tx=>{const snap=await tx.get(ref);if(!snap.exists())throw Error('Projeto não encontrado');const tasks=(snap.data().tasks||[]).map(t=>t.id===tid?{...t,done:true,finishedAt:new Date().toISOString()}:t);tx.update(ref,{tasks,updatedAt:serverTimestamp(),updatedBy:S.user.uid})});await reload();toast('Tarefa concluída')}catch(e){toast(errorText(e))}
+ });
+}
+function v7StockForm(){if(!S.stock.length){toast('Cadastre um produto primeiro.');return}modal('Entrada ou saída de estoque',`${v7Choose(S.stock,'Produto')}${selectField('Operação','type',['Entrada','Saída'])}${inputField('Quantidade','quantity','1','number',true)}${inputField('Motivo','note','','text',true)}`,async d=>{
+ const quantity=Number(d.quantity);if(!Number.isSafeInteger(quantity)||quantity<=0)throw Error('Quantidade deve ser um inteiro positivo.');const ref=companyDoc('stock',d.recordId);await runTransaction(db,async tx=>{const snap=await tx.get(ref);if(!snap.exists())throw Error('Produto não encontrado');const item=snap.data(),old=v7Num(item.quantity),next=old+(d.type==='Entrada'?quantity:-quantity);if(next<0)throw Error('Estoque insuficiente.');const movements=Array.isArray(item.movements)?item.movements:[];if(movements.length>=300)throw Error('Limite de 300 movimentos por produto atingido; exporte os dados antes de continuar.');tx.update(ref,{quantity:next,movements:[...movements,{id:crypto.randomUUID(),type:d.type,label:d.type,quantity,note:d.note,date:new Date().toISOString(),uid:S.user.uid}],updatedAt:serverTimestamp(),updatedBy:S.user.uid})});await reload()})}
+function v7SalesForm(){if(!S.sales.length){toast('Cadastre uma oportunidade primeiro.');return}modal('Registrar contato com cliente',`${v7Choose(S.sales,'Oportunidade')}${selectField('Canal','type',['Telefone','WhatsApp','E-mail','Reunião','Outro'])}${inputField('Resumo do contato','note','','text',true)}${inputField('Próximo contato','nextDate','','date')}`,async d=>{
+ const ref=companyDoc('sales',d.recordId);await runTransaction(db,async tx=>{const snap=await tx.get(ref);if(!snap.exists())throw Error('Oportunidade não encontrada');const arr=Array.isArray(snap.data().interactions)?snap.data().interactions:[];if(arr.length>=300)throw Error('Limite de histórico atingido.');tx.update(ref,{interactions:[...arr,{id:crypto.randomUUID(),label:d.type,note:d.note,nextDate:d.nextDate,date:new Date().toISOString(),uid:S.user.uid}],updatedAt:serverTimestamp(),updatedBy:S.user.uid})});await reload()})}
+function v7TaskForm(){if(!S.projects.length){toast('Cadastre um projeto primeiro.');return}modal('Nova tarefa',`${v7Choose(S.projects,'Projeto')}${inputField('Título da tarefa','title','','text',true)}${inputField('Responsável','owner')}${inputField('Prazo','deadline','','date')}`,async d=>{
+ const ref=companyDoc('projects',d.recordId);await runTransaction(db,async tx=>{const snap=await tx.get(ref);if(!snap.exists())throw Error('Projeto não encontrado');const arr=Array.isArray(snap.data().tasks)?snap.data().tasks:[];if(arr.length>=300)throw Error('Limite de tarefas atingido.');tx.update(ref,{tasks:[...arr,{id:crypto.randomUUID(),title:d.title,label:d.title,owner:d.owner,deadline:d.deadline,done:false,date:new Date().toISOString(),uid:S.user.uid}],updatedAt:serverTimestamp(),updatedBy:S.user.uid})});await reload()})}
+const v7OriginalModulePage=enterpriseModulePage;
+enterpriseModulePage=function(page){v7OriginalModulePage(page);if(!S.companyId||!canEditEnterpriseModule(page))return;const extra=v7Extra(page);if(!extra)return;const root=document.createElement('section');root.className='v7-tools';root.innerHTML=extra;$('view').appendChild(root);if(page==='stock'){$('v7StockBtn').onclick=v7StockForm;v7History(page)}if(page==='sales'){$('v7SaleBtn').onclick=v7SalesForm;v7History(page)}if(page==='projects'){$('v7TaskBtn').onclick=v7TaskForm;v7History(page)}};
+
+/* =========================================
+   INICIALIZAÇÃO DA AUTENTICAÇÃO
+========================================= */
+
+onAuthStateChanged(auth, async user => {
+  S.user = user;
+
+  if (!user) {
+    S.companies = [];
+    S.companyId = "";
+    S.role = "";
+    S.page = "dashboard";
+
+    stopGlobal3D();
+
+    $("authScreen").classList.remove("hidden");
+    $("appScreen").classList.add("hidden");
+
+    return;
+  }
+
+  $("authScreen").classList.add("hidden");
+  $("appScreen").classList.remove("hidden");
+
+  if (global3DEnabled) {
+    startGlobal3D();
+  }
+
+  try {
+    await loadCompanies();
+  } catch (error) {
+    toast(errorText(error));
+
+    $("view").innerHTML = panel(
+      "Não foi possível carregar os dados",
+      `
+        <p>${esc(errorText(error))}</p>
+
+        <button
+          class="btn primary"
+          id="retryLoad"
+        >
+          Tentar novamente
+        </button>
+      `
+    );
+
+    $("retryLoad").onclick = () => {
+      loadCompanies().catch(error => {
+        toast(errorText(error));
+      });
+    };
+  }
+});
+
+/* =========================================
+   FINAL DO JAVASCRIPT
+========================================= */
+
+/* V8: RH profissional — substitui somente telas de colaboradores. */
+const rhSections = [
+  {name:'Identificação',fields:[['name','Nome completo','text',1],['socialName','Nome social','text'],['registration','Matrícula','text'],['birthDate','Nascimento','date'],['cpf','CPF','text'],['rg','RG / documento','text'],['nationality','Nacionalidade','text'],['maritalStatus','Estado civil','select','Solteiro|Casado|União estável|Divorciado|Viúvo']]},
+  {name:'Contatos e endereço',fields:[['email','E-mail','email'],['phone','Celular','tel'],['emergencyName','Contato de emergência','text'],['emergencyPhone','Telefone de emergência','tel'],['zip','CEP','text'],['street','Logradouro','text'],['number','Número','text'],['complement','Complemento','text'],['district','Bairro','text'],['city','Cidade','text'],['state','UF','text']]},
+  {name:'Contrato',fields:[['role','Cargo','text',1],['departmentId','Departamento','department'],['admission','Admissão','date'],['contractType','Vínculo','select','CLT|Estágio|Aprendiz|Temporário|Autônomo|PJ|Outro'],['employmentType','Modalidade','select','Presencial|Híbrido|Remoto'],['workHours','Horas semanais','number'],['manager','Gestor imediato','text'],['workLocation','Local de trabalho','text'],['status','Situação','select','Ativo|Férias|Afastado|Desligado']]},
+  {name:'Remuneração',fields:[['salary','Salário-base (R$)','number'],['paymentFrequency','Periodicidade','select','Mensal|Quinzenal|Semanal|Por hora'],['costCenter','Centro de custo','text'],['bankName','Banco','text'],['bankAgency','Agência','text'],['bankAccount','Conta (uso restrito)','text'],['pixKey','Chave Pix (uso restrito)','text']]},
+  {name:'Dependentes e documentos',fields:[['dependents','Dependentes (descrição)','textarea'],['ctps','CTPS (referência)','text'],['pis','PIS/PASEP','text'],['documentNotes','Documentos pendentes / observações','textarea'],['expiryDate','Próximo vencimento documental','date']]},
+  {name:'Histórico',fields:[['notes','Observações administrativas','textarea'],['terminationDate','Data do desligamento','date'],['terminationReason','Motivo administrativo','textarea']]}
+];
+function rhField(f,v){const [key,label,type,extra]=f;const val=String(v??'');let control='';if(type==='textarea')control=`<textarea name="${key}" rows="3">${esc(val)}</textarea>`;else if(type==='department')control=`<select name="${key}"><option value="">Não definido</option>${S.departments.map(d=>`<option value="${esc(d.id)}" ${d.id===val?'selected':''}>${esc(d.name)}</option>`).join('')}</select>`;else if(type==='select')control=`<select name="${key}">${String(extra).split('|').map(opt=>`<option ${opt===val?'selected':''}>${esc(opt)}</option>`).join('')}</select>`;else control=`<input name="${key}" type="${type}" value="${esc(val)}" ${extra===1?'required':''} ${type==='number'?'step="0.01" min="0"':''}>`;return `<label class="rh-field">${esc(label)}${control}</label>`;}
+function rhStyle(){if(document.getElementById('rhV8Style'))return;const style=document.createElement('style');style.id='rhV8Style';style.textContent=`.rh-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.rh-toolbar input{flex:1;min-width:180px}.rh-tabs{display:flex;gap:7px;overflow:auto;padding:6px 0 12px}.rh-tab{white-space:nowrap;border:1px solid #38546b;background:#10263b;color:#d8eafa;border-radius:10px;padding:11px 14px}.rh-tab[aria-selected=true]{background:#1e696e;color:white;border-color:#43e2d5}.rh-modal{width:min(1050px,100%)}.rh-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:12px 0 20px}.rh-field{display:flex;flex-direction:column;gap:6px;color:#b7cbda}.rh-field input,.rh-field select,.rh-field textarea{width:100%;background:#0a1726;color:#f3faff;border:1px solid #36506b;border-radius:10px;padding:12px}.rh-field textarea{resize:vertical}.rh-profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rh-profile-grid div{padding:10px;background:#10263a;border-radius:9px}.rh-profile-grid small{display:block;color:#9bb0c3}.rh-profile-grid strong{overflow-wrap:anywhere}@media(max-width:650px){.rh-form-grid,.rh-profile-grid{grid-template-columns:1fr}.rh-modal{max-height:95dvh}.rh-toolbar button{flex:1}}`;document.head.appendChild(style);}
+function rhExport(){const columns=['name','registration','role','departmentId','admission','status','email'];const header=['Nome','Matrícula','Cargo','Departamento','Admissão','Situação','E-mail'];const csv=[header,...S.employees.map(e=>columns.map(c=>c==='departmentId'?departmentName(e[c]):e[c]??''))].map(row=>row.map(v=>'"'+String(v).replace(/^[=+@\-]/,'\u0027$&').replace(/"/g,'""')+'"').join(';')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='colaboradores-'+today()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+employeesPage = function(){rhStyle();const canEdit=isAdmin();const active=S.employees.filter(e=>e.status==='Ativo').length;const off=S.employees.filter(e=>e.status==='Desligado').length;$('view').innerHTML=`${futureBanner('employees')}<div class="stats">${stat('Total',S.employees.length)}${stat('Ativos',active)}${stat('Desligados',off)}${stat('Departamentos',S.departments.length)}</div>${panel('Gestão completa de pessoas',`<p>Prontuário administrativo, vínculo, contatos, remuneração e histórico. Informações pessoais exigem acesso restrito.</p><div class="rh-toolbar"><input id="rhSearch" placeholder="Buscar por nome, matrícula ou cargo" aria-label="Pesquisar colaboradores"><select id="rhStatus"><option value="">Todas as situações</option>${['Ativo','Férias','Afastado','Desligado'].map(s=>`<option>${s}</option>`).join('')}</select><button class="btn" id="rhCsv">Exportar CSV</button>${canEdit?'<button class="btn primary" id="rhAdd">＋ Admitir colaborador</button>':''}</div><div id="rhResults"></div>`)}<div class="notice">Este módulo organiza registros internos; não substitui eSocial, registro oficial de empregados, folha legal ou assessoria trabalhista.</div>`;const draw=()=>{const term=$('rhSearch').value.toLocaleLowerCase('pt-BR');const status=$('rhStatus').value;const records=S.employees.filter(e=>(!status||e.status===status)&&[e.name,e.registration,e.role].some(x=>String(x||'').toLocaleLowerCase('pt-BR').includes(term)));$('rhResults').innerHTML=table(['Colaborador','Matrícula','Cargo','Departamento','Admissão','Situação','Prontuário'],records.map(e=>`<tr><td><strong>${esc(e.name)}</strong><small style="display:block">${esc(e.email||'')}</small></td><td>${esc(e.registration||'—')}</td><td>${esc(e.role||'—')}</td><td>${esc(departmentName(e.departmentId))}</td><td>${esc(formatDate(e.admission))}</td><td><span class="tag">${esc(e.status||'—')}</span></td><td><button class="btn" data-rh-open="${esc(e.id)}">${canEdit?'Abrir / editar':'Consultar'}</button></td></tr>`));$('rhResults').querySelectorAll('[data-rh-open]').forEach(b=>b.onclick=()=>employeeForm(b.dataset.rhOpen));};$('rhSearch').oninput=draw;$('rhStatus').onchange=draw;$('rhCsv').onclick=rhExport;if(canEdit)$('rhAdd').onclick=()=>employeeForm();draw();};
+employeeForm = function(id=null){rhStyle();const original=S.employees.find(e=>e.id===id)||{};const canEdit=isAdmin();const values={...original};let current=0;const root=$('modalRoot');root.innerHTML=`<div class="dialog-bg"><section class="dialog rh-modal" role="dialog" aria-modal="true" aria-label="Prontuário do colaborador"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><div><h2>${id?'Prontuário do colaborador':'Admissão de colaborador'}</h2><p>${id?esc(original.name):'Cadastro em seis etapas — preencha os campos necessários'}</p></div><button class="btn" id="rhClose">Fechar</button></div><div class="rh-tabs" id="rhTabs" role="tablist"></div><form id="rhForm"><div id="rhFields" class="rh-form-grid"></div><div class="rh-toolbar"><button type="button" class="btn" id="rhPrev">Anterior</button><button type="button" class="btn" id="rhNext">Próxima etapa</button>${canEdit?'<button class="btn primary" type="submit" id="rhSave">Salvar prontuário</button>':''}</div></form><div class="notice">Dados pessoais e bancários: restrinja acesso por perfil, mantenha apenas o necessário e aplique medidas de proteção compatíveis com a LGPD.</div></section></div>`;const capture=()=>{root.querySelectorAll('#rhFields [name]').forEach(el=>{values[el.name]=el.value;});};const draw=()=>{root.querySelector('#rhTabs').innerHTML=rhSections.map((s,i)=>`<button type="button" class="rh-tab" data-rh-tab="${i}" aria-selected="${i===current}">${i+1}. ${esc(s.name)}</button>`).join('');root.querySelector('#rhFields').innerHTML=rhSections[current].fields.map(f=>rhField(f,values[f[0]])).join('');root.querySelector('#rhPrev').disabled=current===0;root.querySelector('#rhNext').disabled=current===rhSections.length-1;root.querySelectorAll('[data-rh-tab]').forEach(b=>b.onclick=()=>{capture();current=Number(b.dataset.rhTab);draw();});root.querySelectorAll('#rhFields input,#rhFields select,#rhFields textarea').forEach(el=>{el.disabled=!canEdit;});};root.querySelector('#rhClose').onclick=()=>root.innerHTML='';root.querySelector('#rhPrev').onclick=()=>{capture();current=Math.max(0,current-1);draw();};root.querySelector('#rhNext').onclick=()=>{capture();current=Math.min(rhSections.length-1,current+1);draw();};root.querySelector('#rhForm').onsubmit=async event=>{event.preventDefault();if(!canEdit)return;capture();if(!String(values.name||'').trim()||!String(values.role||'').trim()){toast('Informe nome completo e cargo.');current=0;draw();return;}if(values.cpf){const cpf=String(values.cpf).replace(/\D/g,'');if(cpf.length!==11){toast('CPF deve ter 11 dígitos.');return;}}if(values.terminationDate&&values.admission&&values.terminationDate<values.admission){toast('Desligamento anterior à admissão.');return;}const button=root.querySelector('#rhSave');button.disabled=true;try{const data={};for(const section of rhSections)for(const f of section.fields){const key=f[0];data[key]=values[key]??'';}await saveRecord('employees',data,id);root.innerHTML='';await reload();toast('Prontuário salvo com sucesso.');}catch(error){toast(errorText(error));}finally{button.disabled=false;}};draw();};
+
+
+/* ===== V9: gestão operacional aprofundada; preserva registros existentes ===== */
+const v9ExtraFields = {
+ finance:[['account','Conta / banco'],['costCenter','Centro de custo'],['dueDate','Vencimento','date'],['paymentDate','Data de liquidação','date'],['reference','Documento / referência'],['counterparty','Cliente / fornecedor'],['notes','Observações','textarea']],
+ sales:[['company','Empresa do cliente'],['document','CPF/CNPJ (referência)'],['address','Endereço'],['source','Origem do lead'],['owner','Responsável'],['nextContact','Próximo contato','date'],['expectedClose','Previsão de fechamento','date'],['notes','Histórico / observações','textarea']],
+ stock:[['barcode','Código de barras'],['unit','Unidade de medida'],['supplier','Fornecedor'],['location','Localização'],['batch','Lote'],['expiry','Validade','date'],['cost','Custo unitário','number'],['notes','Observações','textarea']],
+ purchases:[['requester','Solicitante'],['department','Departamento'],['orderNumber','Número do pedido'],['approval','Aprovação','select',['Pendente','Aprovada','Rejeitada']],['expectedDate','Previsão de entrega','date'],['receivedDate','Recebimento','date'],['costCenter','Centro de custo'],['notes','Justificativa / observações','textarea']],
+ benefits:[['type','Categoria'],['provider','Operadora / fornecedor'],['start','Início','date'],['end','Fim','date'],['costCenter','Centro de custo'],['notes','Observações','textarea']],
+ sst:[['responsible','Responsável'],['location','Local / setor'],['risk','Risco identificado'],['action','Ação corretiva','textarea'],['deadline','Prazo','date'],['evidence','Referência da evidência']],
+ training:[['department','Departamento'],['participants','Participantes'],['provider','Instituição'],['location','Local / link'],['cost','Custo','number'],['certificate','Certificado / referência'],['notes','Conteúdo programático','textarea']],
+ performance:[['period','Período'],['goals','Metas','textarea'],['strengths','Pontos fortes','textarea'],['improvements','Pontos a melhorar','textarea'],['developmentPlan','Plano de desenvolvimento','textarea'],['nextReview','Próxima avaliação','date']],
+ documents:[['owner','Responsável'],['department','Departamento'],['confidentiality','Classificação','select',['Interno','Restrito','Público']],['version','Versão'],['storageReference','Link autorizado ou referência do arquivo'],['notes','Observações','textarea']],
+ projects:[['client','Cliente / solicitante'],['department','Departamento'],['priority','Prioridade','select',['Baixa','Média','Alta','Crítica']],['description','Escopo / descrição','textarea'],['deliverables','Entregáveis','textarea'],['risk','Riscos','textarea'],['progress','Progresso (%)','number']],
+ positions:[['code','Código do cargo'],['responsibilities','Responsabilidades','textarea'],['requirements','Requisitos','textarea'],['workload','Carga horária'],['salaryMax','Faixa salarial máxima','number'],['status','Situação','select',['Ativo','Inativo']]],
+ support:[['channel','Canal','select',['E-mail','Telefone','WhatsApp','Presencial','Portal']],['assignedTo','Responsável'],['category','Categoria'],['openedAt','Abertura','date'],['deadline','Prazo','date'],['resolution','Resolução','textarea'],['notes','Observações','textarea']]
+};
+for (const [page,extras] of Object.entries(v9ExtraFields)) {
+ const config=enterpriseModules[page]; if(!config)continue;
+ const existing=new Set(config.fields.map(f=>f.name));
+ for(const [name,label,type,options] of extras){if(!existing.has(name))config.fields.push({name,label,type:type||'text',...(options?{options}:{})});}
+}
+const v9Style=document.createElement('style');
+v9Style.textContent=`.v9-form{width:min(1080px,100%)}.v9-tabs{display:flex;gap:8px;overflow-x:auto;padding:8px 0 16px}.v9-tabs button{white-space:nowrap;background:#14283b;border:1px solid #38536b;border-radius:10px;color:#dcecf8;padding:10px 14px}.v9-tabs button[aria-selected=true]{background:#17646a;border-color:#39e5d2}.v9-form textarea{width:100%;min-height:94px;resize:vertical;border:1px solid #38536b;border-radius:10px;background:#0c1725;color:white;padding:12px}.v9-filter{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.v9-filter select{min-width:170px}.v9-summary{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.v9-summary span{padding:8px 12px;border:1px solid #34546a;border-radius:10px;background:#10263a}.v9-badge{color:#7ff2e0}.v9-muted{opacity:.72}@media(max-width:650px){.v9-form{max-height:94dvh}.v9-filter>*{flex:1;min-width:0}}`;
+document.head.appendChild(v9Style);
+const v9OriginalModulePage=enterpriseModulePage;
+const v9OriginalModuleForm=enterpriseModuleForm;
+function v9Field(field,value){
+ if(field.type==='textarea')return `<label>${esc(field.label)}<textarea name="${esc(field.name)}">${esc(value??'')}</textarea></label>`;
+ if(field.type==='select')return selectField(field.label,field.name,field.options,value??'');
+ return inputField(field.label,field.name,value??'',field.type||'text',field.required||false).replace('<input','<input '+(field.type==='number'?'step="0.01" ':'') );
+}
+enterpriseModuleForm=function(page,id=null){
+ const config=enterpriseModules[page];if(!config||!canEditEnterpriseModule(page)){toast('Sem permissão para editar.');return;}
+ const record=(S[config.collection]||[]).find(r=>r.id===id)||{};
+ const values={...record};let tab=0;
+ const fields=config.fields;const groups=[];for(let i=0;i<fields.length;i+=5)groups.push(fields.slice(i,i+5));
+ const titles=['Dados principais','Detalhamento','Informações complementares'];
+ $('modalRoot').innerHTML=`<div class="dialog-bg"><section class="dialog v9-form" role="dialog" aria-modal="true" aria-label="${esc(config.title)}"><div class="panelhead"><h2>${id?'Editar':'Cadastrar'} — ${esc(config.title)}</h2><button type="button" class="btn" id="v9Close">Fechar</button></div><div class="v9-tabs" id="v9Tabs"></div><form id="v9Form"><div class="form-grid" id="v9Fields"></div><div class="v9-filter"><button class="btn" type="button" id="v9Prev">Anterior</button><button class="btn" type="button" id="v9Next">Próximo</button><button class="btn primary" type="submit" id="v9Save">Salvar registro</button></div></form><p>Os dados serão gravados na empresa selecionada. Nenhum registro anterior será excluído.</p></section></div>`;
+ const root=$('modalRoot');
+ const capture=()=>root.querySelectorAll('#v9Fields [name]').forEach(el=>values[el.name]=el.value);
+ const draw=()=>{
+  root.querySelector('#v9Tabs').innerHTML=groups.map((g,i)=>`<button type="button" data-v9-tab="${i}" aria-selected="${tab===i}">${titles[i]} (${g.length})</button>`).join('');
+  root.querySelector('#v9Fields').innerHTML=groups[tab].map(f=>v9Field(f,values[f.name])).join('');
+  root.querySelector('#v9Prev').disabled=tab===0;root.querySelector('#v9Next').disabled=tab===groups.length-1;
+  root.querySelectorAll('[data-v9-tab]').forEach(b=>b.onclick=()=>{capture();tab=Number(b.dataset.v9Tab);draw()});
+ };
+ root.querySelector('#v9Close').onclick=()=>root.innerHTML='';
+ root.querySelector('#v9Prev').onclick=()=>{capture();tab=Math.max(0,tab-1);draw()};
+ root.querySelector('#v9Next').onclick=()=>{capture();tab=Math.min(groups.length-1,tab+1);draw()};
+ root.querySelector('#v9Form').onsubmit=async e=>{
+  e.preventDefault();capture();
+  const data={};
+  for(const f of fields){let v=values[f.name]??'';
+   if(f.required&&!String(v).trim()){toast('Preencha: '+f.label);tab=Math.floor(fields.indexOf(f)/5);draw();return;}
+   if(f.type==='number'){v=v===''?0:Number(v);if(!Number.isFinite(v)){toast('Número inválido: '+f.label);return;}}
+   data[f.name]=v;
+  }
+  if(page==='performance'&&(data.score<0||data.score>10)){toast('Nota deve ser de 0 a 10');return;}
+  if(page==='projects'&&(data.progress<0||data.progress>100)){toast('Progresso deve ser de 0 a 100%');return;}
+  if(page==='projects'&&data.start&&data.deadline&&data.start>data.deadline){toast('Prazo anterior ao início');return;}
+  if(page==='stock'&&(!Number.isSafeInteger(data.quantity)||data.quantity<0)){toast('Quantidade precisa ser inteira e não negativa');return;}
+  const btn=root.querySelector('#v9Save');btn.disabled=true;
+  try{await saveRecord(config.collection,data,id);root.innerHTML='';await reload();toast('Registro salvo.');}
+  catch(err){toast(errorText(err));}finally{btn.disabled=false;}
+ };
+ draw();
+};
+enterpriseModulePage=function(page){
+ v9OriginalModulePage(page);
+ const config=enterpriseModules[page];if(!config||!canEditEnterpriseModule(page)||!S.companyId)return;
+ const root=$('view');const panelEl=root.querySelector('.panel');if(!panelEl)return;
+ const tool=document.createElement('div');tool.className='v9-filter';
+ const records=S[config.collection]||[];
+ const statuses=[...new Set(records.map(r=>r.status).filter(Boolean))].sort();
+ tool.innerHTML=`<select id="v9Status"><option value="">Todas as situações</option>${statuses.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('')}</select><select id="v9Sort"><option value="recent">Mais recentes</option><option value="az">Ordem alfabética</option><option value="za">Ordem inversa</option></select><button class="btn" id="v9Print">Imprimir / salvar PDF</button><button class="btn" id="v9FullCsv">Excel (CSV completo)</button>`;
+ const search=$('enterpriseSearch');search?.parentElement?.after(tool);
+ const draw=()=>{
+  const q=(search?.value||'').toLocaleLowerCase('pt-BR');const status=$('v9Status').value;
+  let items=records.filter(r=>(!status||r.status===status)&&config.fields.some(f=>String(r[f.name]??'').toLocaleLowerCase('pt-BR').includes(q)));
+  if($('v9Sort').value!=='recent')items.sort((a,b)=>String(a.name||a.description||a.subject||'').localeCompare(String(b.name||b.description||b.subject||''),'pt-BR')*($('v9Sort').value==='az'?1:-1));
+  $('enterpriseResults').innerHTML=enterpriseTable(page,items);
+  $('enterpriseResults').querySelectorAll('[data-enterprise-edit]').forEach(b=>b.onclick=()=>enterpriseModuleForm(page,b.dataset.enterpriseEdit));
+ };
+ search.oninput=draw;$('v9Status').onchange=draw;$('v9Sort').onchange=draw;
+ $('v9Print').onclick=()=>window.print();
+ $('v9FullCsv').onclick=()=>{
+  const fields=config.fields;const rows=[fields.map(f=>f.label),...records.map(r=>fields.map(f=>r[f.name]??''))];
+  const csv=rows.map(row=>row.map(v=>'"'+String(v).replace(/^[=+@\-]/,"'$&").replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  const url=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download='meu-negocio-'+page+'-'+today()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ };
+ draw();
+};
+
+
+/* ================================================
+   V10 - PROCESSOS REAIS E CONTROLES OPERACIONAIS
+   Complementa a V9 sem apagar registros existentes.
+================================================ */
+const v10css=document.createElement('style');
+v10css.textContent=`.v10-tools{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}.v10-tools .btn{min-height:43px}.v10-warning{padding:14px;border:1px solid #b7833b;background:#3c2b1b;color:#ffe1ad;border-radius:12px;margin:12px 0}.v10-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0}.v10-kpi>div{background:#14283a;border:1px solid #355068;border-radius:12px;padding:15px}.v10-kpi strong{display:block;font-size:21px;margin-top:8px}@media(max-width:650px){.v10-tools .btn{flex:1 1 130px}.v10-kpi{grid-template-columns:1fr 1fr}}@media print{.sidebar,.topbar,.v10-tools,.topright,#global3D{display:none!important}.main{padding:0}.panel{break-inside:avoid}}`;
+document.head.appendChild(v10css);
+function v10Num(x){const n=Number(x);return Number.isFinite(n)?n:0;}
+function v10SafeDate(d){return /^\d{4}-\d{2}-\d{2}$/.test(String(d||''));}
+function v10MonthShift(date,delta){const [y,m,d]=date.split('-').map(Number);const target=new Date(y,m-1+delta,1);const last=new Date(target.getFullYear(),target.getMonth()+1,0).getDate();return `${target.getFullYear()}-${String(target.getMonth()+1).padStart(2,'0')}-${String(Math.min(d,last)).padStart(2,'0')}`;}
+function v10CSV(name,headers,rows){const safe=x=>{let s=String(x??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};const csv=[headers,...rows].map(row=>row.map(safe).join(';')).join('\r\n');const url=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=name+'-'+today()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);}
+function v10Alerts(){const stock=S.stock.filter(x=>!x.archived&&v10Num(x.quantity)<=v10Num(x.minimum));const todayDate=today();const exp=S.documents.filter(x=>!x.archived&&v10SafeDate(x.expiry)&&x.expiry<=todayDate&&x.status!=='Arquivado');const overdue=S.finance.filter(x=>!x.archived&&x.status==='Pendente'&&v10SafeDate(x.dueDate||x.date)&&(x.dueDate||x.date)<todayDate);const tasks=S.projects.filter(x=>!x.archived&&x.status!=='Concluído'&&v10SafeDate(x.deadline)&&x.deadline<todayDate);return {stock,exp,overdue,tasks};}
+function v10AlertHTML(){const a=v10Alerts();return `<div class="v10-kpi"><div>Estoque baixo<strong>${a.stock.length}</strong></div><div>Documentos vencidos<strong>${a.exp.length}</strong></div><div>Contas vencidas<strong>${a.overdue.length}</strong></div><div>Projetos atrasados<strong>${a.tasks.length}</strong></div></div>${[...a.stock.map(x=>'Estoque: '+x.name),...a.exp.map(x=>'Documento: '+x.name),...a.overdue.map(x=>'Financeiro: '+x.description),...a.tasks.map(x=>'Projeto: '+x.name)].slice(0,12).map(t=>`<div class="activity">⚠ ${esc(t)}</div>`).join('')||'<p>Nenhum alerta operacional identificado nos registros carregados.</p>'}`;}
+const v10Dashboard=dashboard;
+dashboard=function(){v10Dashboard();if(!canManageBusiness())return;const view=$('view');if(view)view.insertAdjacentHTML('beforeend',panel('Central de alertas operacionais',v10AlertHTML()));};
+const v10OriginalModule=enterpriseModulePage;
+enterpriseModulePage=function(page){v10OriginalModule(page);if(!canEditEnterpriseModule(page))return;const config=enterpriseModules[page];if(!config)return;const view=$('view');if(!view)return;const tools=document.createElement('div');tools.className='v10-tools';tools.innerHTML=`<button class="btn" id="v10Export">Exportar relatório detalhado</button><button class="btn" id="v10ArchiveToggle">Ver arquivados</button>${page==='finance'?'<button class="btn primary" id="v10Recurring">Criar lançamentos recorrentes</button>':''}<button class="btn" id="v10Refresh">Atualizar dados</button>`;view.querySelector('.future-banner')?.after(tools);
+const records=S[config.collection]||[];let showArchived=false;
+function redraw(){const holder=$('enterpriseResults');if(!holder)return;const search=($('enterpriseSearch')?.value||'').toLocaleLowerCase('pt-BR');const status=$('v9Status')?.value||'';const items=records.filter(r=>Boolean(r.archived)===showArchived&&(!status||r.status===status)&&config.fields.some(f=>String(r[f.name]??'').toLocaleLowerCase('pt-BR').includes(search)));holder.innerHTML=enterpriseTable(page,items);holder.querySelectorAll('[data-enterprise-edit]').forEach(b=>b.onclick=()=>enterpriseModuleForm(page,b.dataset.enterpriseEdit));holder.querySelectorAll('tbody tr').forEach((tr,i)=>{const record=items[i];if(!record)return;const cell=tr.lastElementChild;const button=document.createElement('button');button.type='button';button.className='btn';button.style.marginLeft='6px';button.textContent=record.archived?'Restaurar':'Arquivar';button.onclick=async()=>{if(!confirm((record.archived?'Restaurar':'Arquivar')+' este registro?'))return;button.disabled=true;try{await updateDoc(companyDoc(config.collection,record.id),{archived:!Boolean(record.archived),updatedAt:serverTimestamp(),updatedBy:S.user.uid});await reload();toast('Situação atualizada.');}catch(e){button.disabled=false;toast(errorText(e));}};cell?.append(button);});}
+$('v10ArchiveToggle').onclick=()=>{showArchived=!showArchived;$('v10ArchiveToggle').textContent=showArchived?'Ver ativos':'Ver arquivados';redraw();};$('v10Refresh').onclick=()=>reload().catch(e=>toast(errorText(e)));$('v10Export').onclick=()=>{const active=records.filter(r=>!r.archived);v10CSV('relatorio-'+page,config.fields.map(f=>f.label),active.map(r=>config.fields.map(f=>r[f.name]??'')));};
+$('enterpriseSearch')?.addEventListener('input',()=>queueMicrotask(redraw));$('v9Status')?.addEventListener('change',()=>queueMicrotask(redraw));$('v9Sort')?.addEventListener('change',()=>queueMicrotask(redraw));redraw();
+if(page==='finance')$('v10Recurring').onclick=v10RecurringForm;
+};
+function v10RecurringForm(){if(!canManageBusiness())return;modal('Lançamentos financeiros recorrentes',`
+${inputField('Descrição','description','','text',true)}
+${selectField('Tipo','type',['Receita','Despesa'],'Despesa')}
+${inputField('Valor de cada lançamento (R$)','amount','','number',true)}
+${inputField('Primeiro vencimento','date',today(),'date',true)}
+${inputField('Quantidade de meses (1 a 24)','count','3','number',true)}
+${inputField('Categoria','category')}
+${inputField('Centro de custo','costCenter')}
+`,async data=>{if(!canManageBusiness())throw Error('Sem permissão.');const count=Number(data.count),amount=Number(data.amount);if(!Number.isSafeInteger(count)||count<1||count>24)throw Error('Escolha entre 1 e 24 meses.');if(!Number.isFinite(amount)||amount<=0)throw Error('Valor deve ser positivo.');if(!v10SafeDate(data.date))throw Error('Data inválida.');const groupId=crypto.randomUUID?crypto.randomUUID():String(Date.now());const batch=writeBatch(db);for(let i=0;i<count;i++){const due=v10MonthShift(data.date,i);const ref=doc(companyCollection('finance'));batch.set(ref,{description:data.description,type:data.type,amount,category:data.category||'',costCenter:data.costCenter||'',date:due,dueDate:due,status:'Pendente',recurrenceGroup:groupId,installment:i+1,installmentCount:count,createdBy:S.user.uid,createdAt:serverTimestamp()});}await batch.commit();await reload();});}
+/* V10 mantém lançamentos fiscais, folha legal, integrações bancárias e uploads fora do escopo: exigem serviços e validações próprios. */
+
+
+/* ===== V11: BAIXA FINANCEIRA AUDITÁVEL =====
+   Registra liquidações e estornos dentro do documento financeiro.
+   Não movimenta bancos nem emite documentos fiscais. */
+const v11style=document.createElement('style');
+v11style.textContent=`.v11-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.v11-ledger{overflow:auto;max-height:420px}.v11-ledger table{min-width:690px}.v11-small{font-size:12px;opacity:.78}.v11-action{min-height:38px}`;
+document.head.appendChild(v11style);
+function v11FinanceHistory(){
+ const rows=S.finance.filter(r=>!r.archived).flatMap(r=>(Array.isArray(r.settlementHistory)?r.settlementHistory:[]).map(h=>({r,h})))
+  .sort((a,b)=>String(b.h.at||'').localeCompare(String(a.h.at||'')));
+ return rows;
+}
+function v11FinancePanel(){
+ const pending=S.finance.filter(r=>!r.archived&&r.status==='Pendente');
+ const settled=S.finance.filter(r=>!r.archived&&['Pago','Recebido'].includes(r.status));
+ const income=settled.filter(r=>r.type==='Receita').reduce((sum,r)=>sum+v10Num(r.amount),0);
+ const expense=settled.filter(r=>r.type==='Despesa').reduce((sum,r)=>sum+v10Num(r.amount),0);
+ return panel('Baixas financeiras e trilha de alterações',`
+ <p>Confirme recebimentos ou pagamentos registrados fora do aplicativo. O lançamento é atualizado com data, método, referência e histórico de quem realizou a operação.</p>
+ <div class="v10-kpi"><div>Pendentes<strong>${pending.length}</strong></div><div>Liquidados<strong>${settled.length}</strong></div><div>Saldo realizado<strong>${money(income-expense)}</strong></div></div>
+ <div class="v11-actions"><button class="btn primary" id="v11Settle">Registrar baixa</button><button class="btn" id="v11Reverse">Estornar baixa</button><button class="btn" id="v11Export">Exportar histórico CSV</button></div>
+ <div class="v11-ledger" id="v11Ledger"></div>
+ <p class="v11-small">Histórico interno de alterações, não é extrato bancário nem trilha imutável. Permissões e integridade dependem das regras do Firestore.</p>`);
+}
+function v11DrawLedger(){
+ const holder=$('v11Ledger');if(!holder)return;
+ const rows=v11FinanceHistory().slice(0,150);
+ holder.innerHTML=table(['Data/hora','Lançamento','Ação','Valor','Método','Referência','Usuário'],rows.map(({r,h})=>`<tr><td>${esc(h.at||'')}</td><td>${esc(r.description||'')}</td><td>${esc(h.action||'')}</td><td>${money(h.amount)}</td><td>${esc(h.method||'—')}</td><td>${esc(h.reference||'—')}</td><td>${esc(h.uid||'')}</td></tr>`));
+}
+function v11SettleForm(reverse=false){
+ if(!canManageBusiness())return toast('Sem permissão para movimentar o financeiro.');
+ const options=S.finance.filter(r=>!r.archived&&(reverse?['Pago','Recebido'].includes(r.status):r.status==='Pendente'));
+ if(!options.length)return toast(reverse?'Não há baixas para estornar.':'Não há lançamentos pendentes.');
+ const choose=selectField('Lançamento','recordId',options.map(r=>({value:r.id,label:(r.description||'Sem descrição')+' — '+money(r.amount)+' — '+r.type})));
+ const fields=choose+(reverse?
+   inputField('Motivo do estorno','reason','','text',true):
+   inputField('Data da liquidação','settledOn',today(),'date',true)+
+   selectField('Forma de pagamento','method',['Pix','Transferência','Dinheiro','Cartão','Boleto','Outro'])+
+   inputField('Referência do comprovante (opcional)','reference')+
+   inputField('Observações','reason'));
+ modal(reverse?'Estornar baixa financeira':'Confirmar pagamento / recebimento',fields,async data=>{
+  if(!canManageBusiness())throw Error('Permissão insuficiente.');
+  const ref=companyDoc('finance',data.recordId);
+  const now=new Date().toISOString();
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(ref);
+   if(!snap.exists())throw Error('Lançamento não encontrado.');
+   const r=snap.data();
+   if(r.archived)throw Error('Registro arquivado.');
+   if(reverse&&!['Pago','Recebido'].includes(r.status))throw Error('A baixa já foi estornada ou alterada.');
+   if(!reverse&&r.status!=='Pendente')throw Error('Este lançamento já foi liquidado ou cancelado.');
+   const amount=Number(r.amount);
+   if(!Number.isFinite(amount)||amount<=0)throw Error('Valor do lançamento inválido.');
+   if(!reverse&&!v10SafeDate(data.settledOn))throw Error('Informe uma data válida.');
+   const history=Array.isArray(r.settlementHistory)?r.settlementHistory:[];
+   if(history.length>=150)throw Error('Limite de histórico atingido. Exporte os registros antes de prosseguir.');
+   const event={id:crypto.randomUUID(),action:reverse?'Estorno':'Baixa',at:now,uid:S.user.uid,
+    amount,method:reverse?'':data.method,reference:reverse?'':String(data.reference||'').slice(0,180),
+    reason:String(data.reason||'').slice(0,400),previousStatus:r.status};
+   tx.update(ref,{status:reverse?'Pendente':r.type==='Receita'?'Recebido':'Pago',
+    paymentDate:reverse?'':data.settledOn,
+    paymentMethod:reverse?'':data.method,
+    paymentReference:reverse?'':String(data.reference||'').slice(0,180),
+    settlementHistory:[...history,event],updatedAt:serverTimestamp(),updatedBy:S.user.uid});
+  });
+  await reload();
+  toast(reverse?'Baixa estornada.':'Baixa registrada.');
+ });
+}
+const v11OriginalModulePage=enterpriseModulePage;
+enterpriseModulePage=function(page){
+ v11OriginalModulePage(page);
+ if(page!=='finance'||!S.companyId||!canManageBusiness())return;
+ const section=document.createElement('section');
+ section.innerHTML=v11FinancePanel();
+ $('view').append(section);
+ $('v11Settle').onclick=()=>v11SettleForm(false);
+ $('v11Reverse').onclick=()=>v11SettleForm(true);
+ $('v11Export').onclick=()=>{
+  const rows=v11FinanceHistory();
+  v10CSV('historico-baixas-financeiras',
+   ['Data/hora','Descrição','Tipo','Ação','Valor','Método','Referência','Motivo','UID'],
+   rows.map(({r,h})=>[h.at,r.description,r.type,h.action,h.amount,h.method,h.reference,h.reason,h.uid]));
+ };
+ v11DrawLedger();
+};
+
+
+/* V12 — pedido de venda integrado ao estoque e financeiro.
+   Registra uma venda de UM produto por pedido, atomicamente.
+   Não emite nota fiscal nem confirma pagamento bancário. */
+function v12OrderPanel(){
+ const orders=S.sales.filter(x=>x.orderKind==='stock-sale'&&!x.archived);
+ return panel('Pedidos integrados: vendas + estoque + financeiro',`
+ <p>Registre a venda de um produto em estoque. A confirmação cria um pedido, desconta as unidades e gera uma conta a receber pendente, em uma única transação.</p>
+ <div class="v11-actions"><button class="btn primary" id="v12NewOrder">Nova venda integrada</button><button class="btn" id="v12OrdersCSV">Exportar pedidos</button></div>
+ <div class="v11-ledger">${table(['Pedido','Cliente','Produto','Qtd.','Total','Situação'],orders.map(o=>`<tr><td>${esc(o.orderNumber||o.id)}</td><td>${esc(o.name||'')}</td><td>${esc(o.product||'')}</td><td>${esc(o.orderQuantity||0)}</td><td>${money(o.amount)}</td><td>${esc(o.status||'')}</td></tr>`))}</div>
+ <p class="v11-small">Pedidos confirmados não podem ser cancelados pela edição genérica do CRM: use um processo de devolução controlado. Integração disponível somente a usuários autorizados pelas regras Firebase.</p>`);
+}
+function v12OrderForm(){
+ if(!canManageBusiness())return toast('Sem permissão.');
+ const products=S.stock.filter(p=>!p.archived&&Number.isSafeInteger(Number(p.quantity))&&Number(p.quantity)>0);
+ if(!products.length)return toast('Cadastre produtos com saldo positivo no estoque.');
+ const fields=inputField('Nome do cliente','customer','','text',true)+
+ inputField('E-mail do cliente (opcional)','email','','email')+
+ selectField('Produto do estoque','productId',products.map(p=>({value:p.id,label:(p.name||'Produto')+' — saldo '+p.quantity+' — '+money(p.price)})))+
+ inputField('Quantidade de unidades','quantity','1','number',true)+
+ inputField('Preço unitário negociado (R$)','unitPrice','','number',true)+
+ inputField('Vencimento da cobrança','dueDate',today(),'date',true)+
+ inputField('Observações','notes');
+ modal('Confirmar pedido integrado',fields,async d=>{
+  if(!canManageBusiness())throw Error('Permissão insuficiente.');
+  const qty=Number(d.quantity),unit=Number(d.unitPrice);
+  if(!Number.isSafeInteger(qty)||qty<=0||qty>1000000)throw Error('Quantidade inválida.');
+  if(!Number.isFinite(unit)||unit<=0||unit>100000000)throw Error('Preço inválido.');
+  if(!v10SafeDate(d.dueDate))throw Error('Vencimento inválido.');
+  const total=Math.round(qty*unit*100)/100;
+  if(!Number.isFinite(total)||total<=0||total>1e12)throw Error('Total inválido.');
+  const productRef=companyDoc('stock',d.productId);
+  const saleRef=doc(companyCollection('sales'));
+  const financeRef=companyDoc('finance','order-'+saleRef.id);
+  const now=new Date().toISOString();
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(productRef);
+   const financeSnap=await tx.get(financeRef);
+   if(!snap.exists())throw Error('Produto não encontrado.');
+   if(financeSnap.exists())throw Error('Pedido já processado.');
+   const item=snap.data(),available=Number(item.quantity);
+   if(item.archived||!Number.isSafeInteger(available)||available<qty)throw Error('Estoque insuficiente ou produto inativo.');
+   const movements=Array.isArray(item.movements)?item.movements:[];
+   if(movements.length>=300)throw Error('Histórico de estoque cheio; exporte antes de prosseguir.');
+   const movement={id:saleRef.id,type:'Saída',label:'Venda integrada',quantity:qty,note:'Pedido '+saleRef.id,date:now,uid:S.user.uid};
+   tx.update(productRef,{quantity:available-qty,movements:[...movements,movement],updatedAt:serverTimestamp(),updatedBy:S.user.uid});
+   tx.set(saleRef,{name:String(d.customer).trim().slice(0,160),email:String(d.email||'').slice(0,160),
+    product:String(item.name||'Produto').slice(0,160),productId:d.productId,orderQuantity:qty,
+    unitPrice:unit,amount:total,status:'Ganho',orderKind:'stock-sale',orderNumber:saleRef.id,
+    financeId:financeRef.id,notes:String(d.notes||'').slice(0,500),createdAt:serverTimestamp(),createdBy:S.user.uid});
+   tx.set(financeRef,{description:'Venda '+saleRef.id+' — '+String(d.customer).slice(0,100),
+    type:'Receita',category:'Vendas integradas',amount:total,date:today(),dueDate:d.dueDate,
+    status:'Pendente',saleId:saleRef.id,orderKind:'stock-sale',createdAt:serverTimestamp(),createdBy:S.user.uid});
+  });
+  await reload();toast('Pedido confirmado, estoque atualizado e cobrança criada.');
+ });
+}
+const v12PreviousModule=enterpriseModulePage;
+enterpriseModulePage=function(page){
+ v12PreviousModule(page);
+ if(page!=='sales'||!canManageBusiness()||!S.companyId)return;
+ const el=document.createElement('section');el.innerHTML=v12OrderPanel();$('view').append(el);
+ $('v12NewOrder').onclick=v12OrderForm;
+ $('v12OrdersCSV').onclick=()=>{
+  const orders=S.sales.filter(x=>x.orderKind==='stock-sale'&&!x.archived);
+  v10CSV('pedidos-integrados',['Pedido','Cliente','Produto','Quantidade','Preço unitário','Total','Financeiro','Situação'],
+   orders.map(x=>[x.orderNumber,x.name,x.product,x.orderQuantity,x.unitPrice,x.amount,x.financeId,x.status]));
+ };
+};
+
+
+/* V13 — Formulários especializados, campos e validações.
+   Não substitui integrações legais, folha oficial ou anexos. */
+const v13Extras={
+ finance:[['Conta bancária / caixa','account'],['Centro de custo','costCenter'],['Competência','period','month'],['Vencimento','dueDate','date'],['Forma prevista','paymentMethod','select','Pix|Boleto|Transferência|Dinheiro|Cartão|Outro'],['Fornecedor / cliente','counterparty'],['Número do documento','documentNumber'],['Observações','notes','textarea']],
+ sales:[['CPF/CNPJ do cliente','taxId'],['Empresa','company'],['Origem do contato','source','select','Site|Indicação|Telefone|WhatsApp|Redes sociais|Outro'],['Responsável comercial','owner'],['Próximo contato','nextDate','date'],['Probabilidade (%)','probability','number'],['Previsão de fechamento','closeDate','date'],['Endereço / cidade','location'],['Observações','notes','textarea']],
+ stock:[['Código de barras / GTIN','barcode'],['Unidade','unit','select','UN|KG|G|L|ML|CX|PCT|M|M2|M3'],['Fornecedor','supplier'],['Custo de aquisição','cost','number'],['Localização / prateleira','location'],['Lote','lot'],['Validade','expiry','date'],['Marca','brand'],['Descrição','description','textarea']],
+ purchases:[['CNPJ do fornecedor','supplierTaxId'],['Solicitante','requester'],['Centro de custo','costCenter'],['Número do pedido','orderNumber'],['Previsão de entrega','deliveryDate','date'],['Forma de pagamento','paymentMethod','select','Pix|Boleto|Transferência|Cartão|Outro'],['Condição de pagamento','paymentTerms'],['Responsável pela aprovação','approver'],['Justificativa / itens','notes','textarea']],
+ benefits:[['Tipo de benefício','benefitType','select','Vale-transporte|Vale-refeição|Vale-alimentação|Plano de saúde|Plano odontológico|Seguro de vida|Outro'],['Fornecedor / operadora','provider'],['Periodicidade','frequency','select','Mensal|Semanal|Anual|Único'],['Custo da empresa','companyCost','number'],['Desconto do colaborador','employeeDiscount','number'],['Data de início','startDate','date'],['Data de término','endDate','date'],['Matrícula / referência','registration'],['Observações','notes','textarea']],
+ sst:[['Setor / local','location'],['Responsável técnico','technicalOwner'],['Número de registro','reference'],['Grau de risco','riskLevel','select','Baixo|Médio|Alto|Crítico'],['Próxima inspeção','nextInspection','date'],['Vencimento','expiry','date'],['Medidas preventivas','prevention','textarea'],['EPI / CA','epiCa'],['Observações','notes','textarea']],
+ training:[['Modalidade','mode','select','Presencial|Online|Híbrido'],['Local / plataforma','location'],['Instituição','institution'],['Participantes','participants','textarea'],['Custo','cost','number'],['Data de conclusão','completionDate','date'],['Validade do certificado','certificateExpiry','date'],['Avaliação / resultado','result'],['Objetivos','objectives','textarea']],
+ performance:[['Ciclo de avaliação','cycle'],['Departamento','department'],['Cargo','role'],['Competências avaliadas','competencies','textarea'],['Metas e indicadores','goals','textarea'],['Pontos fortes','strengths','textarea'],['Pontos de melhoria','improvements','textarea'],['Plano de desenvolvimento','developmentPlan','textarea'],['Próxima revisão','nextReview','date']],
+ documents:[['Categoria','category'],['Responsável','owner'],['Departamento','department'],['Confidencialidade','confidentiality','select','Interno|Restrito|Confidencial'],['Versão','version'],['Status de aprovação','approvalStatus','select','Rascunho|Em revisão|Aprovado|Rejeitado'],['Localização / link autorizado','location'],['Revisão programada','reviewDate','date'],['Observações','notes','textarea']],
+ projects:[['Cliente / patrocinador','client'],['Departamento','department'],['Prioridade','priority','select','Baixa|Média|Alta|Crítica'],['Situação','status','select','Planejado|Em andamento|Pausado|Concluído|Cancelado'],['Progresso (%)','progress','number'],['Custo realizado','actualCost','number'],['Objetivo e escopo','scope','textarea'],['Entregáveis','deliverables','textarea'],['Riscos','risks','textarea']],
+ positions:[['Código do cargo','code'],['Departamento','department'],['CBO (se aplicável)','cbo'],['Faixa salarial mínima','salaryMin','number'],['Faixa salarial máxima','salaryMax','number'],['Nível','level','select','Júnior|Pleno|Sênior|Liderança|Diretoria'],['Requisitos','requirements','textarea'],['Responsabilidades','responsibilities','textarea']],
+ support:[['Canal','channel','select','Portal|E-mail|Telefone|WhatsApp|Presencial|Outro'],['Categoria','category'],['Responsável','owner'],['Departamento','department'],['Prazo de atendimento','dueDate','date'],['Número de protocolo','protocol'],['Cliente / empresa','customer'],['Solução aplicada','resolution','textarea'],['Observações internas','internalNotes','textarea']]
+};
+const v13Labels={
+ finance:['Lançamento','Classificação','Pagamento e vencimentos','Referências e observações'],
+ sales:['Cliente e oportunidade','Negociação','Acompanhamento','Informações complementares'],
+ stock:['Identificação','Saldos e preços','Rastreabilidade','Informações do produto'],
+ purchases:['Pedido e fornecedor','Aprovação','Entrega e pagamento','Justificativa'],
+ benefits:['Beneficiário','Plano e custos','Vigência','Observações'],
+ sst:['Ocorrência','Riscos e prevenção','Prazos','Responsáveis'],
+ training:['Curso','Organização','Participantes e certificados','Resultados'],
+ performance:['Avaliação','Competências','Metas e desenvolvimento','Revisão'],
+ documents:['Identificação','Classificação e acesso','Controle de versões','Revisões'],
+ projects:['Planejamento','Prazos e custos','Execução','Riscos e entregas'],
+ positions:['Cargo','Enquadramento','Remuneração','Atribuições'],
+ support:['Solicitação','Classificação','Prazos e responsáveis','Resolução']
+};
+for(const [module,fields] of Object.entries(v13Extras)){
+ const config=enterpriseModules[module];if(!config)continue;
+ const existing=new Set(config.fields.map(f=>f.name));
+ for(const [label,name,type,opts] of fields){
+  if(existing.has(name))continue;
+  config.fields.push({label,name,type:type||'text',...(type==='select'?{options:opts.split('|')}:{})});
+ }
+}
+const v13Css=document.createElement('style');
+v13Css.textContent=`.v9-form{max-height:94dvh;overflow:auto}.v9-form .form-grid{align-items:start}.v9-form textarea{width:100%;min-height:100px;background:#0a1726;color:#f2faff;border:1px solid #38516a;border-radius:10px;padding:12px;resize:vertical}.v13-hint{font-size:12px;color:#9cb6ca;margin:6px 0 14px}.v13-fieldset{padding:10px 0}@media(max-width:700px){.v9-form .form-grid{grid-template-columns:1fr!important}.v9-form .v9-tabs{overflow-x:auto;flex-wrap:nowrap}.v9-form{max-height:95dvh}}`;
+document.head.appendChild(v13Css);
+function v13ModalExtra(title,extra,onSave){
+ modal(title,extra,onSave);
+}
+function v13Append(base,items,record){
+ return base+items.map(([label,name,type,opts])=>type==='select'?
+  selectField(label,name,opts.split('|'),record[name]||opts.split('|')[0]):
+  type==='textarea'?`<label>${esc(label)}<textarea name="${esc(name)}" rows="3">${esc(record[name]||'')}</textarea></label>`:
+  inputField(label,name,record[name]??'',type||'text')).join('');
+}
+const v13OldDepartment=departmentForm;
+departmentForm=function(id=null){
+ const record=S.departments.find(x=>x.id===id)||{};
+ const fields=inputField('Nome','name',record.name,'text',true)+inputField('Código','code',record.code)+
+ selectField('Gestor / responsável','manager', [{value:'',label:'Não definido'},...S.employees.map(e=>({value:e.name,label:e.name}))],record.manager)+
+ selectField('Departamento superior','parentId',[{value:'',label:'Sem departamento superior'},...S.departments.filter(d=>d.id!==id).map(d=>({value:d.id,label:d.name}))],record.parentId)+
+ v13Append('',[['Centro de custo','costCenter'],['Local / unidade','location'],['E-mail de contato','email','email'],['Telefone','phone'],['Orçamento anual (R$)','budget','number'],['Objetivos e responsabilidades','description','textarea']],record);
+ modal(id?'Editar departamento':'Cadastrar departamento',fields,async d=>{
+  if(!isAdmin())throw Error('Sem permissão.');
+  if(d.parentId&&d.parentId===id)throw Error('Um departamento não pode ser superior a si mesmo.');
+  if(S.departments.some(x=>x.id!==id&&x.code&&x.code===d.code))throw Error('Código de departamento já utilizado.');
+  if(d.budget&&Number(d.budget)<0)throw Error('Orçamento inválido.');
+  await saveRecord('departments',d,id);await reload();
+ });
+};
+const v13OldVacancy=vacancyForm;
+vacancyForm=function(id=null){
+ const r=S.vacancies.find(x=>x.id===id)||{};
+ const fields=inputField('Título da vaga','title',r.title,'text',true)+
+ selectField('Departamento','departmentId',[{value:'',label:'Não definido'},...S.departments.map(x=>({value:x.id,label:x.name}))],r.departmentId)+
+ selectField('Situação','status',['Aberta','Pausada','Concluída'],r.status||'Aberta')+
+ v13Append('',[['Código da vaga','code'],['Quantidade de posições','openings','number'],['Modelo de trabalho','workMode','select','Presencial|Híbrido|Remoto'],['Tipo de contratação','contractType','select','CLT|Estágio|Aprendiz|Temporário|PJ|Outro'],['Faixa salarial mínima','salaryMin','number'],['Faixa salarial máxima','salaryMax','number'],['Local de trabalho','location'],['Data limite de inscrições','deadline','date'],['Responsável pelo recrutamento','recruiter'],['Requisitos','requirements','textarea'],['Atividades','responsibilities','textarea'],['Benefícios previstos','benefits','textarea']],r);
+ modal(id?'Editar vaga':'Abrir vaga completa',fields,async d=>{
+  if(!isAdmin())throw Error('Sem permissão.');
+  if(d.openings&&(!Number.isSafeInteger(Number(d.openings))||Number(d.openings)<1))throw Error('Número de vagas inválido.');
+  if(d.salaryMin&&d.salaryMax&&Number(d.salaryMin)>Number(d.salaryMax))throw Error('Faixa salarial inválida.');
+  await saveRecord('vacancies',d,id);await reload();
+ });
+};
+const v13OldEnterpriseForm=enterpriseModuleForm;
+enterpriseModuleForm=function(page,id=null){
+ v13OldEnterpriseForm(page,id);
+ const root=$('modalRoot');const tabs=root.querySelectorAll('[data-v9-tab]');
+ if(!tabs.length)return;
+ const config=enterpriseModules[page];if(!config)return;
+ const names=v13Labels[page]||[];
+ const rename=()=>{
+  root.querySelectorAll('[data-v9-tab]').forEach((b,i)=>{
+   const count=(config.fields.slice(i*5,(i+1)*5)).length;
+   b.textContent=(names[i]||['Identificação','Detalhes','Informações','Complementos'][i]||'Mais dados')+' ('+count+')';
+  });
+ };
+ rename();
+ root.querySelector('#v9Tabs').addEventListener('click',()=>setTimeout(rename,0));
+ root.querySelector('#v9Prev').addEventListener('click',()=>setTimeout(rename,0));
+ root.querySelector('#v9Next').addEventListener('click',()=>setTimeout(rename,0));
+ const form=root.querySelector('#v9Form');
+ form.addEventListener('submit',e=>{
+  const data=Object.fromEntries(new FormData(form).entries());
+  if(page==='finance'&&data.dueDate&&data.date&&data.dueDate<data.date){e.preventDefault();e.stopImmediatePropagation();toast('Vencimento anterior à data do lançamento.');}
+ },true);
+};
+
+</script>
+</body>
+</html>
