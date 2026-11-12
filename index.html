@@ -179,26 +179,27 @@ td{font-size:13px}
 <script type="module">
 import {initializeApp} from
  "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
 import {
  getAuth,GoogleAuthProvider,signInWithPopup,
  signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
 import {
- getFirestore,collection,doc,addDoc,setDoc,getDoc,getDocs,
+ getFirestore,collection,doc,addDoc,getDoc,getDocs,
  updateDoc,query,where,serverTimestamp,writeBatch
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-/*
-  SUBSTITUA SOMENTE A CONFIGURAÇÃO ABAIXO.
-  Ela é pública por definição. Nunca coloque chaves secretas aqui.
-*/
+/* FIREBASE REAL DO PROJETO ENTERPRISE DE TESTE */
+
 const firebaseConfig={
- apiKey:"COLE_API_KEY",
- authDomain:"COLE_PROJECT_ID.firebaseapp.com",
- projectId:"COLE_PROJECT_ID",
- storageBucket:"COLE_PROJECT_ID.firebasestorage.app",
- messagingSenderId:"COLE_SENDER_ID",
- appId:"COLE_APP_ID"
+ apiKey:"AIzaSyB-IiVlnzc_RESH_10MDmZsfnJ3iGm9zqw",
+ authDomain:"meu-negocio-enterprise-teste.firebaseapp.com",
+ projectId:"meu-negocio-enterprise-teste",
+ storageBucket:"meu-negocio-enterprise-teste.firebasestorage.app",
+ messagingSenderId:"1083026433106",
+ appId:"1:1083026433106:web:9041a8eb3959a9a101eb8b",
+ measurementId:"G-BW9N9QCFJ7"
 };
 
 const app=initializeApp(firebaseConfig);
@@ -230,8 +231,6 @@ const dateBR=v=>{
  return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:v;
 };
 
-const today=()=>new Date().toLocaleDateString("en-CA");
-
 function toast(message){
  $("toastRoot").innerHTML=`<div class="toast">${escapeHTML(message)}</div>`;
  setTimeout(()=>{$("toastRoot").innerHTML=""},4000);
@@ -240,10 +239,16 @@ function toast(message){
 function errorMessage(error){
  console.error(error);
  const code=error?.code||"";
- if(code==="permission-denied")return "Acesso negado pelas regras de segurança.";
- if(code==="auth/unauthorized-domain")return "Autorize este domínio no Firebase Authentication.";
- if(code==="auth/popup-blocked")return "O navegador bloqueou a janela do Google.";
- if(code==="auth/operation-not-allowed")return "Ative o provedor Google no Firebase.";
+ if(code==="permission-denied")
+  return "Acesso negado pelas regras de segurança.";
+ if(code==="auth/unauthorized-domain")
+  return "Autorize este domínio no Firebase Authentication.";
+ if(code==="auth/popup-blocked")
+  return "O navegador bloqueou a janela do Google.";
+ if(code==="auth/operation-not-allowed")
+  return "Ative o provedor Google no Firebase.";
+ if(code==="auth/api-key-not-valid.-please-pass-a-valid-api-key.")
+  return "A chave do Firebase não foi aceita. Confira o projeto.";
  return error?.message||"Ocorreu um erro inesperado.";
 }
 
@@ -256,12 +261,17 @@ function canApprove(){
 function isOwner(){
  return state.role==="owner";
 }
+function canReadEmployees(){
+ return canManage()||["manager","auditor"].includes(state.role);
+}
+function canReadAudit(){
+ return ["owner","admin","hr","auditor"].includes(state.role);
+}
 
 const companyRef=()=>doc(db,"companies",state.companyId);
-const sub=(name)=>collection(db,"companies",state.companyId,name);
+const sub=name=>collection(db,"companies",state.companyId,name);
 
 async function audit(action,target){
- // Auditoria operacional básica. Não é um log inviolável.
  try{
   await addDoc(sub("audit"),{
    action,target,
@@ -269,16 +279,24 @@ async function audit(action,target){
    actorName:state.user.displayName||"",
    createdAt:serverTimestamp()
   });
- }catch(e){console.warn("Auditoria:",e)}
+ }catch(e){
+  console.warn("Falha no registro de auditoria:",e);
+ }
 }
 
 async function login(){
+ $("authMessage").textContent="";
  try{
   await signInWithPopup(auth,google);
  }catch(e){
   if(e.code==="auth/popup-blocked"){
-   try{await signInWithRedirect(auth,google);return}
-   catch(err){$("authMessage").textContent=errorMessage(err);return}
+   try{
+    await signInWithRedirect(auth,google);
+    return;
+   }catch(err){
+    $("authMessage").textContent=errorMessage(err);
+    return;
+   }
   }
   $("authMessage").textContent=errorMessage(e);
  }
@@ -287,7 +305,9 @@ async function login(){
 $("loginBtn").onclick=login;
 $("logoutBtn").onclick=()=>signOut(auth);
 
-try{await getRedirectResult(auth)}catch(e){
+try{
+ await getRedirectResult(auth);
+}catch(e){
  $("authMessage").textContent=errorMessage(e);
 }
 
@@ -295,20 +315,47 @@ onAuthStateChanged(auth,async user=>{
  state.user=user;
  $("auth").classList.toggle("hidden",!!user);
  $("workspace").classList.toggle("hidden",!user);
- if(!user)return;
- try{await loadCompanies()}
- catch(e){toast(errorMessage(e))}
+
+ if(!user){
+  state.companyId="";
+  state.role="";
+  state.companies=[];
+  state.employees=[];
+  state.departments=[];
+  state.leaves=[];
+  state.members=[];
+  return;
+ }
+
+ try{
+  await loadCompanies();
+ }catch(e){
+  toast(errorMessage(e));
+  $("content").innerHTML=`
+   <div class="notice">
+   Não foi possível carregar as empresas.
+   Confira as regras do Firestore.
+   </div>`;
+ }
 });
 
 async function loadCompanies(){
  const snapshot=await getDocs(
-  query(collection(db,"companies"),where("memberUids","array-contains",state.user.uid))
+  query(
+   collection(db,"companies"),
+   where("memberUids","array-contains",state.user.uid)
+  )
  );
- state.companies=snapshot.docs.map(d=>({id:d.id,...d.data()}));
+
+ state.companies=snapshot.docs.map(d=>({
+  id:d.id,...d.data()
+ }));
 
  const previous=state.companyId;
  const saved=sessionStorage.getItem("mn_company");
- state.companyId=state.companies.some(c=>c.id===previous)?previous:
+
+ state.companyId=
+  state.companies.some(c=>c.id===previous)?previous:
   state.companies.some(c=>c.id===saved)?saved:
   state.companies[0]?.id||"";
 
@@ -323,26 +370,40 @@ async function loadCompanies(){
   renderNoCompany();
   return;
  }
+
  await selectCompany(state.companyId);
 }
 
 async function selectCompany(cid){
+ if(!state.companies.some(c=>c.id===cid)){
+  throw Error("Empresa não autorizada.");
+ }
+
  state.companyId=cid;
  sessionStorage.setItem("mn_company",cid);
+
  const membership=await getDoc(
   doc(db,"companies",cid,"members",state.user.uid)
  );
+
  if(!membership.exists()){
   state.role="";
-  $("content").innerHTML="<div class='notice'>Você não possui acesso a esta empresa.</div>";
+  $("content").innerHTML=`
+   <div class="notice">
+   Você não possui acesso a esta empresa.
+   </div>`;
   return;
  }
+
  state.role=membership.data().role;
+ state.page="dashboard";
+
  await loadData();
  render();
 }
 
-$("companyPicker").onchange=e=>selectCompany(e.target.value)
+$("companyPicker").onchange=e=>
+ selectCompany(e.target.value)
  .catch(err=>toast(errorMessage(err)));
 
 $("newCompanyBtn").onclick=companyModal;
@@ -351,8 +412,11 @@ function renderNoCompany(){
  $("title").textContent="Bem-vindo ao MEU NEGÓCIO";
  $("nav").innerHTML="";
  $("content").innerHTML=`
- <div class="hero"><h2>Crie sua primeira empresa</h2>
- <p>Organize colaboradores, departamentos e processos em um ambiente próprio.</p></div>
+ <div class="hero">
+ <h2>Crie sua primeira empresa</h2>
+ <p>Organize colaboradores, departamentos e processos
+ em um ambiente próprio.</p>
+ </div>
  <div class="panel">
  <h3>Nenhuma empresa encontrada</h3>
  <p class="muted">Crie uma empresa para iniciar a gestão.</p>
@@ -363,23 +427,36 @@ function renderNoCompany(){
 
 function openModal(title,html,onSubmit){
  $("modalRoot").innerHTML=`
- <div class="modalbg" id="modalBg">
- <div class="modal" role="dialog" aria-modal="true" aria-label="${escapeHTML(title)}">
- <div class="panelhead"><h2>${escapeHTML(title)}</h2>
- <button type="button" class="secondary" id="closeModal">Fechar</button></div>
+ <div class="modalbg">
+ <div class="modal" role="dialog" aria-modal="true"
+ aria-label="${escapeHTML(title)}">
+ <div class="panelhead">
+ <h2>${escapeHTML(title)}</h2>
+ <button type="button" class="secondary" id="closeModal">
+ Fechar
+ </button>
+ </div>
  <form id="modalForm">
  <div class="formgrid">${html}</div>
  <div class="actions">
  <button class="primary" type="submit">Salvar informações</button>
- <button class="secondary" type="button" id="cancelModal">Cancelar</button>
+ <button class="secondary" type="button" id="cancelModal">
+ Cancelar
+ </button>
  </div>
- </form></div></div>`;
+ </form>
+ </div>
+ </div>`;
+
  $("closeModal").onclick=closeModal;
  $("cancelModal").onclick=closeModal;
+
  $("modalForm").onsubmit=async e=>{
   e.preventDefault();
+
   const btn=e.target.querySelector("[type=submit]");
   btn.disabled=true;
+
   try{
    const values=Object.fromEntries(new FormData(e.target));
    await onSubmit(values);
@@ -391,29 +468,51 @@ function openModal(title,html,onSubmit){
   }
  };
 }
-function closeModal(){$("modalRoot").innerHTML=""}
+
+function closeModal(){
+ $("modalRoot").innerHTML="";
+}
 
 function input(label,name,value="",type="text",required=false){
- return `<div><label>${escapeHTML(label)}</label>
- <input name="${escapeHTML(name)}" type="${type}"
- value="${escapeHTML(value)}" ${required?"required":""}></div>`;
+ return `
+ <div>
+ <label>${escapeHTML(label)}</label>
+ <input
+  name="${escapeHTML(name)}"
+  type="${type}"
+  value="${escapeHTML(value)}"
+  ${required?"required":""}
+ >
+ </div>`;
 }
 
 function select(label,name,items,current=""){
- return `<div><label>${escapeHTML(label)}</label>
+ return `
+ <div>
+ <label>${escapeHTML(label)}</label>
  <select name="${escapeHTML(name)}">
  ${items.map(x=>{
   const value=typeof x==="string"?x:x.value;
   const text=typeof x==="string"?x:x.label;
-  return `<option value="${escapeHTML(value)}" ${value===current?"selected":""}>${escapeHTML(text)}</option>`;
+  return `
+  <option value="${escapeHTML(value)}"
+   ${value===current?"selected":""}>
+   ${escapeHTML(text)}
+  </option>`;
  }).join("")}
- </select></div>`;
+ </select>
+ </div>`;
 }
 
 function textarea(label,name,value=""){
- return `<div class="full"><label>${escapeHTML(label)}</label>
- <textarea name="${escapeHTML(name)}" rows="3">${escapeHTML(value)}</textarea></div>`;
+ return `
+ <div class="full">
+ <label>${escapeHTML(label)}</label>
+ <textarea name="${escapeHTML(name)}" rows="3">${escapeHTML(value)}</textarea>
+ </div>`;
 }
+
+/* EMPRESAS */
 
 function companyModal(){
  openModal("Cadastrar empresa",`
@@ -423,29 +522,44 @@ function companyModal(){
  ${input("Cidade","city")}
  ${input("Estado","state")}
  `,async v=>{
-  if(!v.name.trim())throw Error("Informe o nome da empresa.");
+  if(!v.name.trim()){
+   throw Error("Informe o nome da empresa.");
+  }
+
   const ref=doc(collection(db,"companies"));
   const batch=writeBatch(db);
+
   batch.set(ref,{
-   name:v.name.trim(),tradeName:v.tradeName.trim(),
-   cnpj:v.cnpj.trim(),city:v.city.trim(),state:v.state.trim(),
+   name:v.name.trim(),
+   tradeName:v.tradeName.trim(),
+   cnpj:v.cnpj.trim(),
+   city:v.city.trim(),
+   state:v.state.trim(),
    ownerUid:state.user.uid,
    memberUids:[state.user.uid],
    createdAt:serverTimestamp()
   });
-  batch.set(doc(db,"companies",ref.id,"members",state.user.uid),{
-   uid:state.user.uid,
-   email:state.user.email||"",
-   name:state.user.displayName||"",
-   role:"owner",
-   createdAt:serverTimestamp()
-  });
+
+  batch.set(
+   doc(db,"companies",ref.id,"members",state.user.uid),
+   {
+    uid:state.user.uid,
+    email:state.user.email||"",
+    name:state.user.displayName||"",
+    role:"owner",
+    createdAt:serverTimestamp()
+   }
+  );
+
   await batch.commit();
+
   state.companyId=ref.id;
   await loadCompanies();
   toast("Empresa criada.");
  });
 }
+
+/* NAVEGAÇÃO */
 
 const navigation=[
  ["PRINCIPAL",[
@@ -459,55 +573,107 @@ const navigation=[
   ["team","🔐 Usuários e acessos"],
   ["audit","🧾 Auditoria"]
  ]],
- ["CATÁLOGO ENTERPRISE",[
+ ["PLATAFORMA",[
   ["catalog","▦ Todos os módulos"]
  ]]
 ];
 
+function allowedPage(page){
+ if(page==="employees")return canReadEmployees();
+ if(page==="leaves")return canReadEmployees();
+ if(page==="audit")return canReadAudit();
+ return true;
+}
+
 function renderNav(){
  $("nav").innerHTML=navigation.map(group=>`
  <div class="navhead">${group[0]}</div>
- ${group[1].map(item=>`
- <button class="navbtn ${state.page===item[0]?"active":""}"
- data-page="${item[0]}">${item[1]}</button>`).join("")}
+ ${group[1].filter(item=>allowedPage(item[0])).map(item=>`
+ <button
+  class="navbtn ${state.page===item[0]?"active":""}"
+  data-page="${item[0]}">
+  ${item[1]}
+ </button>
+ `).join("")}
  `).join("");
+
  document.querySelectorAll("[data-page]").forEach(b=>
   b.onclick=()=>go(b.dataset.page)
  );
 }
 
 function go(page){
+ if(!allowedPage(page)){
+  toast("Seu perfil não possui acesso a esta área.");
+  return;
+ }
  state.page=page;
  render();
 }
 
 function render(){
+ if(!allowedPage(state.page)){
+  state.page="dashboard";
+ }
+
  renderNav();
+
  const names={
- dashboard:"Painel executivo",companies:"Estrutura empresarial",
- employees:"Colaboradores",departments:"Departamentos",
- leaves:"Férias e ausências",team:"Usuários e acessos",
- audit:"Auditoria",catalog:"Catálogo Enterprise"
+  dashboard:"Painel executivo",
+  companies:"Estrutura empresarial",
+  employees:"Colaboradores",
+  departments:"Departamentos",
+  leaves:"Férias e ausências",
+  team:"Usuários e acessos",
+  audit:"Auditoria",
+  catalog:"Catálogo Enterprise"
  };
+
  $("title").textContent=names[state.page]||"MEU NEGÓCIO";
+
  $("breadcrumb").textContent=
   (state.companies.find(c=>c.id===state.companyId)?.name||"Empresa")+
   " / "+(state.role||"");
+
  const views={
- dashboard:dashboardPage,companies:companiesPage,
- employees:employeesPage,departments:departmentsPage,
- leaves:leavesPage,team:teamPage,audit:auditPage,catalog:catalogPage
+  dashboard:dashboardPage,
+  companies:companiesPage,
+  employees:employeesPage,
+  departments:departmentsPage,
+  leaves:leavesPage,
+  team:teamPage,
+  audit:auditPage,
+  catalog:catalogPage
  };
+
  (views[state.page]||dashboardPage)();
 }
 
+/* CARREGAMENTO CORRIGIDO POR PERMISSÃO */
+
 async function loadData(){
  const names=["employees","departments","leaves","members"];
+
+ const permitted={
+  employees:canReadEmployees(),
+  departments:true,
+  leaves:canReadEmployees(),
+  members:true
+ };
+
  const values=await Promise.all(names.map(async name=>{
+  if(!permitted[name])return [];
+
   const snapshot=await getDocs(sub(name));
-  return snapshot.docs.map(d=>({id:d.id,...d.data()}));
+
+  return snapshot.docs.map(d=>({
+   id:d.id,...d.data()
+  }));
  }));
- names.forEach((name,i)=>state[name]=values[i]);
+
+ names.forEach((name,i)=>{
+  state[name]=values[i];
+ });
 }
 
 async function reload(){
@@ -515,16 +681,28 @@ async function reload(){
  render();
 }
 
+/* COMPONENTES VISUAIS */
+
 function hero(title,description){
- return `<div class="hero"><div class="muted" style="color:#bed6ff">MEU NEGÓCIO PRO • ENTERPRISE</div>
- <h2>${title}</h2><p>${description}</p></div>`;
+ return `
+ <div class="hero">
+ <div style="color:#bed6ff">MEU NEGÓCIO PRO • ENTERPRISE</div>
+ <h2>${title}</h2>
+ <p>${description}</p>
+ </div>`;
 }
 
 function metrics(items){
- return `<div class="grid">${items.map(x=>`
- <div class="metric"><small>${x[0]}</small>
- <strong>${x[1]}</strong><span class="muted">${x[2]||""}</span></div>
- `).join("")}</div>`;
+ return `
+ <div class="grid">
+ ${items.map(x=>`
+ <div class="metric">
+ <small>${x[0]}</small>
+ <strong>${x[1]}</strong>
+ <span class="muted">${x[2]||""}</span>
+ </div>
+ `).join("")}
+ </div>`;
 }
 
 function empty(message){
@@ -533,85 +711,149 @@ function empty(message){
 
 function status(value){
  const positive=["Ativo","Aprovado","Concluído"];
- return `<span class="badge ${positive.includes(value)?"ok":"warn"}">${escapeHTML(value||"—")}</span>`;
+ return `
+ <span class="badge ${positive.includes(value)?"ok":"warn"}">
+ ${escapeHTML(value||"—")}
+ </span>`;
 }
 
 function employeeName(id){
  return state.employees.find(x=>x.id===id)?.name||"Não encontrado";
 }
 
+/* PAINEL EXECUTIVO */
+
 function dashboardPage(){
  const active=state.employees.filter(x=>x.status==="Ativo").length;
  const pending=state.leaves.filter(x=>x.status==="Pendente").length;
+
+ const cards=[
+  ["👥","Colaboradores","employees","Fichas e contratos"],
+  ["🏢","Estrutura","companies","Empresas e organização"],
+  ["🏛","Departamentos","departments","Unidades organizacionais"],
+  ["🏖","Férias e ausências","leaves","Solicitações e aprovações"],
+  ["🔐","Permissões","team","Perfis de acesso"],
+  ["🧾","Auditoria","audit","Atividades administrativas"],
+  ["▦","Catálogo","catalog","Estrutura Enterprise"]
+ ].filter(x=>allowedPage(x[2]));
+
  $("content").innerHTML=`
- ${hero("Gestão empresarial integrada",
- "Uma empresa, várias áreas de gestão. Dados separados por organização e permissões por perfil.")}
+ ${hero(
+  "Gestão empresarial integrada",
+  "Ambiente empresarial com empresas independentes, departamentos, colaboradores e controle de acessos."
+ )}
  ${metrics([
- ["Colaboradores ativos",active,"Equipe atual"],
- ["Departamentos",state.departments.length,"Estrutura"],
- ["Ausências pendentes",pending,"Aguardando decisão"],
- ["Usuários autorizados",state.members.length,"Acessos"]
+  ["Colaboradores ativos",active,"Equipe atual"],
+  ["Departamentos",state.departments.length,"Estrutura"],
+  ["Ausências pendentes",pending,"Aguardando decisão"],
+  ["Usuários autorizados",state.members.length,"Acessos"]
  ])}
+
  <div class="panel">
- <div class="panelhead"><h2>Áreas de trabalho</h2></div>
+ <div class="panelhead">
+ <h2>Áreas de trabalho</h2>
+ </div>
+
  <div class="grid">
- ${[
- ["👥","Colaboradores","employees","Fichas e contratos"],
- ["🏢","Estrutura","companies","Empresas e filiais futuras"],
- ["🏛","Departamentos","departments","Unidades organizacionais"],
- ["🏖","Férias e ausências","leaves","Solicitações e aprovações"],
- ["🔐","Permissões","team","Perfis de acesso"],
- ["🧾","Auditoria","audit","Atividade operacional"],
- ["▦","Catálogo","catalog","Planejamento dos módulos"]
- ].map(x=>`<button class="card" data-go="${x[2]}">
- <span class="emoji">${x[0]}</span><b>${x[1]}</b><small>${x[3]}</small>
- </button>`).join("")}
- </div></div>
+ ${cards.map(x=>`
+ <button class="card" data-go="${x[2]}">
+ <span class="emoji">${x[0]}</span>
+ <b>${x[1]}</b>
+ <small>${x[3]}</small>
+ </button>
+ `).join("")}
+ </div>
+ </div>
+
  <div class="notice">
- Esta é a base Enterprise em construção. Os módulos operacionais concluídos aparecem no menu.
- O catálogo mostra os recursos planejados, sem apresentá-los como prontos.
+ Plataforma Enterprise em desenvolvimento.
+ As áreas do catálogo são planejamento, não ferramentas já concluídas.
  </div>`;
+
  document.querySelectorAll("[data-go]").forEach(b=>
   b.onclick=()=>go(b.dataset.go)
  );
 }
 
-/* EMPRESA E ESTRUTURA */
+/* ESTRUTURA EMPRESARIAL */
 
 function companiesPage(){
  const c=state.companies.find(x=>x.id===state.companyId);
+
  $("content").innerHTML=`
  <div class="panel">
  <h2>Empresa ativa</h2>
  <p><b>${escapeHTML(c?.name)}</b></p>
- <p class="muted">Nome fantasia: ${escapeHTML(c?.tradeName||"—")}</p>
- <p class="muted">CNPJ informado: ${escapeHTML(c?.cnpj||"—")}</p>
- <p class="muted">Cidade: ${escapeHTML(c?.city||"—")} / ${escapeHTML(c?.state||"—")}</p>
- <p class="muted">Seu perfil: ${escapeHTML(state.role)}</p>
- <button class="primary" id="addCompany">＋ Adicionar empresa</button>
+ <p class="muted">
+ Nome fantasia: ${escapeHTML(c?.tradeName||"—")}
+ </p>
+ <p class="muted">
+ CNPJ informado: ${escapeHTML(c?.cnpj||"—")}
+ </p>
+ <p class="muted">
+ Cidade: ${escapeHTML(c?.city||"—")} /
+ ${escapeHTML(c?.state||"—")}
+ </p>
+ <p class="muted">
+ Seu perfil: ${escapeHTML(state.role)}
+ </p>
+ <button class="primary" id="addCompany">
+ ＋ Adicionar empresa
+ </button>
  </div>`;
+
  $("addCompany").onclick=companyModal;
 }
+
+/* DEPARTAMENTOS */
 
 function departmentsPage(){
  $("content").innerHTML=`
  <div class="panel">
- <div class="panelhead"><h2>Departamentos</h2>
- ${canManage()?'<button class="primary" id="addDepartment">＋ Criar departamento</button>':""}
+ <div class="panelhead">
+ <h2>Departamentos</h2>
+ ${canManage()?
+  '<button class="primary" id="addDepartment">＋ Criar departamento</button>'
+  :""
+ }
  </div>
- <div class="tablewrap"><table>
- <thead><tr><th>Departamento</th><th>Código</th><th>Responsável</th><th>Colaboradores</th><th>Ações</th></tr></thead>
- <tbody>${state.departments.map(d=>`
- <tr><td><b>${escapeHTML(d.name)}</b></td>
+
+ <div class="tablewrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Departamento</th>
+ <th>Código</th>
+ <th>Responsável</th>
+ <th>Colaboradores</th>
+ <th>Ações</th>
+ </tr>
+ </thead>
+ <tbody>
+ ${state.departments.map(d=>`
+ <tr>
+ <td><b>${escapeHTML(d.name)}</b></td>
  <td>${escapeHTML(d.code||"—")}</td>
  <td>${escapeHTML(d.manager||"—")}</td>
  <td>${state.employees.filter(e=>e.departmentId===d.id).length}</td>
- <td>${canManage()?`<button class="secondary" data-edit-dep="${d.id}">Editar</button>`:"—"}</td></tr>
- `).join("")}</tbody></table></div>
+ <td>
+ ${canManage()?
+  `<button class="secondary" data-edit-dep="${d.id}">Editar</button>`
+  :"—"
+ }
+ </td>
+ </tr>
+ `).join("")}
+ </tbody>
+ </table>
+ </div>
+
  ${state.departments.length?"":empty("Nenhum departamento cadastrado.")}
  </div>`;
+
  if(canManage()){
   $("addDepartment").onclick=()=>departmentModal();
+
   document.querySelectorAll("[data-edit-dep]").forEach(b=>
    b.onclick=()=>departmentModal(b.dataset.editDep)
   );
@@ -620,25 +862,38 @@ function departmentsPage(){
 
 function departmentModal(id=null){
  const d=state.departments.find(x=>x.id===id)||{};
- openModal(id?"Editar departamento":"Criar departamento",`
- ${input("Nome","name",d.name,"text",true)}
- ${input("Código interno","code",d.code)}
- ${input("Responsável","manager",d.manager)}
- ${textarea("Descrição","description",d.description)}
- `,async v=>{
-  if(!canManage())throw Error("Sem permissão.");
-  if(id){
-   await updateDoc(doc(sub("departments"),id),{
-    ...v,updatedAt:serverTimestamp()
-   });
-  }else{
-   await addDoc(sub("departments"),{
-    ...v,createdAt:serverTimestamp()
-   });
+
+ openModal(
+  id?"Editar departamento":"Criar departamento",
+  `
+  ${input("Nome","name",d.name,"text",true)}
+  ${input("Código interno","code",d.code)}
+  ${input("Responsável","manager",d.manager)}
+  ${textarea("Descrição","description",d.description)}
+  `,
+  async v=>{
+   if(!canManage())throw Error("Sem permissão.");
+
+   if(id){
+    await updateDoc(doc(sub("departments"),id),{
+     ...v,
+     updatedAt:serverTimestamp()
+    });
+   }else{
+    await addDoc(sub("departments"),{
+     ...v,
+     createdAt:serverTimestamp()
+    });
+   }
+
+   await audit(
+    id?"Editar departamento":"Criar departamento",
+    v.name
+   );
+
+   await reload();
   }
-  await audit(id?"Editar departamento":"Criar departamento",v.name);
-  await reload();
- });
+ );
 }
 
 /* COLABORADORES */
@@ -648,36 +903,79 @@ function employeesPage(){
  <div class="panel">
  <div class="panelhead">
  <h2>Diretório de colaboradores</h2>
- ${canManage()?'<button class="primary" id="addEmployee">＋ Admitir colaborador</button>':""}
+ ${canManage()?
+  '<button class="primary" id="addEmployee">＋ Admitir colaborador</button>'
+  :""
+ }
  </div>
+
  <div class="toolbar">
- <input id="searchEmployee" placeholder="Pesquisar nome, cargo ou matrícula..." style="max-width:420px">
+ <input
+  id="searchEmployee"
+  placeholder="Pesquisar nome, cargo ou matrícula..."
+  style="max-width:420px"
+ >
  <span class="muted">${state.employees.length} registros</span>
  </div>
- <div class="tablewrap"><table>
- <thead><tr><th>Colaborador</th><th>Matrícula</th><th>Cargo</th><th>Departamento</th><th>Situação</th><th>Ações</th></tr></thead>
+
+ <div class="tablewrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Colaborador</th>
+ <th>Matrícula</th>
+ <th>Cargo</th>
+ <th>Departamento</th>
+ <th>Situação</th>
+ <th>Ações</th>
+ </tr>
+ </thead>
  <tbody id="employeeRows">
  ${state.employees.map(e=>`
- <tr data-search="${escapeHTML((e.name+" "+e.role+" "+e.registration).toLowerCase())}">
- <td><b>${escapeHTML(e.name)}</b><div class="muted">${escapeHTML(e.email||"")}</div></td>
+ <tr data-search="${escapeHTML(
+  ((e.name||"")+" "+(e.role||"")+" "+(e.registration||"")).toLowerCase()
+ )}">
+ <td>
+ <b>${escapeHTML(e.name)}</b>
+ <div class="muted">${escapeHTML(e.email||"")}</div>
+ </td>
  <td>${escapeHTML(e.registration||"—")}</td>
  <td>${escapeHTML(e.role||"—")}</td>
- <td>${escapeHTML(state.departments.find(d=>d.id===e.departmentId)?.name||"—")}</td>
+ <td>${escapeHTML(
+  state.departments.find(d=>d.id===e.departmentId)?.name||"—"
+ )}</td>
  <td>${status(e.status)}</td>
- <td>${canManage()?`<button class="secondary" data-edit-emp="${e.id}">Abrir ficha</button>`:"—"}</td>
- </tr>`).join("")}
- </tbody></table></div>
+ <td>
+ ${canManage()?
+  `<button class="secondary" data-edit-emp="${e.id}">Abrir ficha</button>`
+  :"—"
+ }
+ </td>
+ </tr>
+ `).join("")}
+ </tbody>
+ </table>
+ </div>
+
  ${state.employees.length?"":empty("Nenhum colaborador cadastrado.")}
  </div>
- <div class="notice">Este cadastro não transmite admissões ao eSocial e não substitui os processos legais de contratação.</div>`;
+
+ <div class="notice">
+ Cadastro administrativo de teste.
+ Não realiza admissão oficial nem transmissão ao eSocial.
+ </div>`;
+
  $("searchEmployee").oninput=e=>{
   const q=e.target.value.toLowerCase();
-  document.querySelectorAll("#employeeRows tr").forEach(tr=>
-   tr.hidden=!tr.dataset.search.includes(q)
-  );
+
+  document.querySelectorAll("#employeeRows tr").forEach(tr=>{
+   tr.hidden=!tr.dataset.search.includes(q);
+  });
  };
+
  if(canManage()){
   $("addEmployee").onclick=()=>employeeModal();
+
   document.querySelectorAll("[data-edit-emp]").forEach(b=>
    b.onclick=()=>employeeModal(b.dataset.editEmp)
   );
@@ -686,40 +984,83 @@ function employeesPage(){
 
 function employeeModal(id=null){
  const e=state.employees.find(x=>x.id===id)||{};
- openModal(id?"Ficha do colaborador":"Admitir colaborador",`
- ${input("Nome completo","name",e.name,"text",true)}
- ${input("Matrícula","registration",e.registration)}
- ${input("E-mail profissional","email",e.email,"email")}
- ${input("Cargo","role",e.role,"text",true)}
- ${select("Departamento","departmentId",[
-  {value:"",label:"Não definido"},
-  ...state.departments.map(d=>({value:d.id,label:d.name}))
- ],e.departmentId)}
- ${input("Data de admissão","admission",""+(e.admission||""),"date")}
- ${select("Tipo de vínculo","contract",["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"],e.contract)}
- ${select("Situação","status",["Ativo","Férias","Afastado","Desligado"],e.status||"Ativo")}
- ${input("Gestor responsável","manager",e.manager)}
- ${input("Jornada semanal (horas)","weeklyHours",e.weeklyHours,"number")}
- ${textarea("Observações administrativas","notes",e.notes)}
- `,async v=>{
-  if(!canManage())throw Error("Sem permissão.");
-  if(!v.name.trim()||!v.role.trim())throw Error("Nome e cargo são obrigatórios.");
-  const data={
-   ...v,
-   name:v.name.trim(),
-   role:v.role.trim(),
-   updatedAt:serverTimestamp()
-  };
-  if(id){
-   await updateDoc(doc(sub("employees"),id),data);
-  }else{
-   await addDoc(sub("employees"),{
-    ...data,createdAt:serverTimestamp()
-   });
+
+ openModal(
+  id?"Ficha do colaborador":"Admitir colaborador",
+  `
+  ${input("Nome completo","name",e.name,"text",true)}
+  ${input("Matrícula","registration",e.registration)}
+  ${input("E-mail profissional","email",e.email,"email")}
+  ${input("Cargo","role",e.role,"text",true)}
+
+  ${select(
+   "Departamento",
+   "departmentId",
+   [
+    {value:"",label:"Não definido"},
+    ...state.departments.map(d=>({
+     value:d.id,label:d.name
+    }))
+   ],
+   e.departmentId
+  )}
+
+  ${input(
+   "Data de admissão",
+   "admission",
+   e.admission||"",
+   "date"
+  )}
+
+  ${select(
+   "Tipo de vínculo",
+   "contract",
+   ["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"],
+   e.contract
+  )}
+
+  ${select(
+   "Situação",
+   "status",
+   ["Ativo","Férias","Afastado","Desligado"],
+   e.status||"Ativo"
+  )}
+
+  ${input("Gestor responsável","manager",e.manager)}
+  ${input("Jornada semanal (horas)","weeklyHours",e.weeklyHours,"number")}
+  ${textarea("Observações administrativas","notes",e.notes)}
+  `,
+  async v=>{
+   if(!canManage())throw Error("Sem permissão.");
+
+   if(!v.name.trim()||!v.role.trim()){
+    throw Error("Nome e cargo são obrigatórios.");
+   }
+
+   const data={
+    ...v,
+    name:v.name.trim(),
+    role:v.role.trim(),
+    updatedAt:serverTimestamp()
+   };
+
+   if(id){
+    await updateDoc(doc(sub("employees"),id),data);
+   }else{
+    await addDoc(sub("employees"),{
+     ...data,
+     createdAt:serverTimestamp()
+    });
+   }
+
+   await audit(
+    id?"Atualizar colaborador":"Cadastrar colaborador",
+    v.name
+   );
+
+   await reload();
   }
-  await audit(id?"Atualizar colaborador":"Cadastrar colaborador",v.name);
-  await reload();
- });
+ );
 }
 
 /* FÉRIAS E AUSÊNCIAS */
@@ -727,28 +1068,66 @@ function employeeModal(id=null){
 function leavesPage(){
  $("content").innerHTML=`
  <div class="panel">
- <div class="panelhead"><h2>Férias e ausências</h2>
- ${canManage()?'<button class="primary" id="addLeave">＋ Criar solicitação</button>':""}
+ <div class="panelhead">
+ <h2>Férias e ausências</h2>
+ ${canManage()?
+  '<button class="primary" id="addLeave">＋ Criar solicitação</button>'
+  :""
+ }
  </div>
- <div class="tablewrap"><table>
- <thead><tr><th>Colaborador</th><th>Tipo</th><th>Período</th><th>Dias</th><th>Situação</th><th>Decisão</th></tr></thead>
- <tbody>${state.leaves.map(l=>`
- <tr><td>${escapeHTML(employeeName(l.employeeId))}</td>
+
+ <div class="tablewrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Colaborador</th>
+ <th>Tipo</th>
+ <th>Período</th>
+ <th>Dias</th>
+ <th>Situação</th>
+ <th>Decisão</th>
+ </tr>
+ </thead>
+ <tbody>
+ ${state.leaves.map(l=>`
+ <tr>
+ <td>${escapeHTML(employeeName(l.employeeId))}</td>
  <td>${escapeHTML(l.type)}</td>
  <td>${dateBR(l.start)} até ${dateBR(l.end)}</td>
  <td>${calculateDays(l.start,l.end)}</td>
  <td>${status(l.status)}</td>
- <td>${l.status==="Pendente"&&canApprove()?`
- <button class="secondary" data-approve="${l.id}">Aprovar</button>
- <button class="danger" data-reject="${l.id}">Rejeitar</button>`:"—"}</td></tr>
- `).join("")}</tbody></table></div>
+ <td>
+ ${l.status==="Pendente"&&canApprove()?`
+  <button class="secondary" data-approve="${l.id}">
+  Aprovar
+  </button>
+  <button class="danger" data-reject="${l.id}">
+  Rejeitar
+  </button>
+ `:"—"}
+ </td>
+ </tr>
+ `).join("")}
+ </tbody>
+ </table>
+ </div>
+
  ${state.leaves.length?"":empty("Nenhuma solicitação registrada.")}
  </div>
- <div class="notice">A aprovação registra uma decisão administrativa. O sistema ainda não calcula períodos aquisitivos, remuneração de férias ou obrigações legais.</div>`;
- if(canManage())$("addLeave").onclick=leaveModal;
+
+ <div class="notice">
+ Este módulo registra solicitações administrativas.
+ Ainda não calcula férias trabalhistas ou períodos aquisitivos.
+ </div>`;
+
+ if(canManage()){
+  $("addLeave").onclick=leaveModal;
+ }
+
  document.querySelectorAll("[data-approve]").forEach(b=>
   b.onclick=()=>decideLeave(b.dataset.approve,"Aprovado")
  );
+
  document.querySelectorAll("[data-reject]").forEach(b=>
   b.onclick=()=>decideLeave(b.dataset.reject,"Rejeitado")
  );
@@ -756,148 +1135,298 @@ function leavesPage(){
 
 function calculateDays(a,b){
  if(!a||!b)return 0;
- return Math.round((
-  new Date(b+"T12:00:00")-new Date(a+"T12:00:00")
- )/86400000)+1;
+
+ return Math.round(
+  (
+   new Date(b+"T12:00:00")-
+   new Date(a+"T12:00:00")
+  )/86400000
+ )+1;
 }
 
 function leaveModal(){
- if(!state.employees.length)return toast("Cadastre um colaborador primeiro.");
- openModal("Solicitar ausência",`
- ${select("Colaborador","employeeId",state.employees.map(e=>({
-  value:e.id,label:e.name
- })))}
- ${select("Tipo","type",["Férias","Licença","Folga","Afastamento"])}
- ${input("Início","start","","date",true)}
- ${input("Fim","end","","date",true)}
- ${textarea("Observações","notes")}
- `,async v=>{
-  if(!canManage())throw Error("Sem permissão.");
-  if(v.end<v.start)throw Error("O fim não pode ser anterior ao início.");
-  const conflict=state.leaves.some(l=>
-   l.employeeId===v.employeeId&&l.status==="Aprovado"&&
-   v.start<=l.end&&v.end>=l.start
-  );
-  if(conflict)throw Error("Existe uma ausência aprovada no mesmo período.");
-  await addDoc(sub("leaves"),{
-   ...v,status:"Pendente",
-   createdBy:state.user.uid,
-   createdAt:serverTimestamp()
-  });
-  await audit("Solicitar ausência",employeeName(v.employeeId));
-  await reload();
- });
+ if(!state.employees.length){
+  return toast("Cadastre um colaborador primeiro.");
+ }
+
+ openModal(
+  "Solicitar ausência",
+  `
+  ${select(
+   "Colaborador",
+   "employeeId",
+   state.employees.map(e=>({
+    value:e.id,
+    label:e.name
+   }))
+  )}
+
+  ${select(
+   "Tipo",
+   "type",
+   ["Férias","Licença","Folga","Afastamento"]
+  )}
+
+  ${input("Início","start","","date",true)}
+  ${input("Fim","end","","date",true)}
+  ${textarea("Observações","notes")}
+  `,
+  async v=>{
+   if(!canManage())throw Error("Sem permissão.");
+
+   if(v.end<v.start){
+    throw Error("O fim não pode ser anterior ao início.");
+   }
+
+   const conflict=state.leaves.some(l=>
+    l.employeeId===v.employeeId&&
+    l.status==="Aprovado"&&
+    v.start<=l.end&&
+    v.end>=l.start
+   );
+
+   if(conflict){
+    throw Error("Existe uma ausência aprovada no mesmo período.");
+   }
+
+   await addDoc(sub("leaves"),{
+    ...v,
+    status:"Pendente",
+    createdBy:state.user.uid,
+    createdAt:serverTimestamp()
+   });
+
+   await audit(
+    "Solicitar ausência",
+    employeeName(v.employeeId)
+   );
+
+   await reload();
+  }
+ );
 }
 
 async function decideLeave(id,decision){
  if(!canApprove())return;
+
  const leave=state.leaves.find(l=>l.id===id);
+
  if(!leave||leave.status!=="Pendente")return;
+
  if(decision==="Aprovado"){
   const conflict=state.leaves.some(l=>
-   l.id!==id&&l.employeeId===leave.employeeId&&
+   l.id!==id&&
+   l.employeeId===leave.employeeId&&
    l.status==="Aprovado"&&
-   leave.start<=l.end&&leave.end>=l.start
+   leave.start<=l.end&&
+   leave.end>=l.start
   );
-  if(conflict)return toast("Conflito com ausência já aprovada.");
+
+  if(conflict){
+   return toast("Conflito com ausência já aprovada.");
+  }
  }
+
  if(!confirm("Confirmar decisão: "+decision+"?"))return;
+
  try{
   await updateDoc(doc(sub("leaves"),id),{
    status:decision,
    decidedBy:state.user.uid,
    decidedAt:serverTimestamp()
   });
-  await audit("Decisão de ausência: "+decision,employeeName(leave.employeeId));
+
+  await audit(
+   "Decisão de ausência: "+decision,
+   employeeName(leave.employeeId)
+  );
+
   await reload();
- }catch(e){toast(errorMessage(e))}
+ }catch(e){
+  toast(errorMessage(e));
+ }
 }
 
-/* PERMISSÕES E MEMBROS */
+/* USUÁRIOS E PERMISSÕES */
 
 function teamPage(){
  $("content").innerHTML=`
  <div class="panel">
- <div class="panelhead"><h2>Usuários autorizados</h2>
- ${isOwner()?'<button class="primary" id="addMember">＋ Autorizar usuário</button>':""}
+ <div class="panelhead">
+ <h2>Usuários autorizados</h2>
+ ${isOwner()?
+  '<button class="primary" id="addMember">＋ Autorizar usuário</button>'
+  :""
+ }
  </div>
- <div class="tablewrap"><table>
- <thead><tr><th>Usuário</th><th>E-mail</th><th>Perfil</th><th>Identificador</th></tr></thead>
- <tbody>${state.members.map(m=>`
- <tr><td>${escapeHTML(m.name||"—")}</td>
+
+ <div class="tablewrap">
+ <table>
+ <thead>
+ <tr>
+ <th>Usuário</th>
+ <th>E-mail</th>
+ <th>Perfil</th>
+ <th>Identificador</th>
+ </tr>
+ </thead>
+ <tbody>
+ ${state.members.map(m=>`
+ <tr>
+ <td>${escapeHTML(m.name||"—")}</td>
  <td>${escapeHTML(m.email||"—")}</td>
  <td>${status(m.role)}</td>
- <td class="muted">${escapeHTML(m.uid||m.id)}</td></tr>
- `).join("")}</tbody></table></div>
+ <td class="muted">${escapeHTML(m.uid||m.id)}</td>
+ </tr>
+ `).join("")}
+ </tbody>
+ </table>
  </div>
+ </div>
+
  <div class="notice">
- Os perfis controlam as operações permitidas no Firestore. Nesta etapa,
- a inclusão de membros é restrita ao proprietário. O usuário precisa fornecer
- seu UID do Firebase para ser autorizado.
+ Nesta versão, a inclusão de membros exige o UID do
+ Firebase Authentication. O controle definitivo de convites
+ e permissões ainda precisa de implementação no servidor.
  </div>`;
- if(isOwner())$("addMember").onclick=memberModal;
+
+ if(isOwner()){
+  $("addMember").onclick=memberModal;
+ }
 }
 
 function memberModal(){
- openModal("Autorizar usuário",`
- ${input("UID do Firebase Authentication","uid","","text",true)}
- ${input("E-mail para identificação","email","","email",true)}
- ${input("Nome","name")}
- ${select("Perfil","role",[
-  {value:"admin",label:"Administrador"},
-  {value:"hr",label:"Recursos Humanos"},
-  {value:"manager",label:"Gestor"},
-  {value:"employee",label:"Colaborador"},
-  {value:"auditor",label:"Auditor"}
- ])}
- `,async v=>{
-  if(!isOwner())throw Error("Somente o proprietário pode autorizar membros.");
-  const uid=v.uid.trim();
-  if(!uid||uid.includes("/"))throw Error("UID inválido.");
-  if(state.members.some(m=>m.uid===uid))
-   throw Error("Este usuário já pertence à empresa.");
-  const batch=writeBatch(db);
-  const c=state.companies.find(x=>x.id===state.companyId);
-  batch.set(doc(sub("members"),uid),{
-   uid,email:v.email.trim(),name:v.name.trim(),
-   role:v.role,createdAt:serverTimestamp()
-  });
-  batch.update(companyRef(),{
-   memberUids:[...new Set([...(c.memberUids||[]),uid])]
-  });
-  await batch.commit();
-  await audit("Autorizar usuário",v.email);
-  await loadCompanies();
- });
+ openModal(
+  "Autorizar usuário",
+  `
+  ${input(
+   "UID do Firebase Authentication",
+   "uid","","text",true
+  )}
+
+  ${input(
+   "E-mail para identificação",
+   "email","","email",true
+  )}
+
+  ${input("Nome","name")}
+
+  ${select(
+   "Perfil",
+   "role",
+   [
+    {value:"admin",label:"Administrador"},
+    {value:"hr",label:"Recursos Humanos"},
+    {value:"manager",label:"Gestor"},
+    {value:"employee",label:"Colaborador"},
+    {value:"auditor",label:"Auditor"}
+   ]
+  )}
+  `,
+  async v=>{
+   if(!isOwner()){
+    throw Error("Somente o proprietário pode autorizar membros.");
+   }
+
+   const uid=v.uid.trim();
+
+   if(!uid||uid.includes("/")){
+    throw Error("UID inválido.");
+   }
+
+   if(state.members.some(m=>m.uid===uid)){
+    throw Error("Este usuário já pertence à empresa.");
+   }
+
+   const batch=writeBatch(db);
+   const c=state.companies.find(x=>x.id===state.companyId);
+
+   batch.set(doc(sub("members"),uid),{
+    uid,
+    email:v.email.trim(),
+    name:v.name.trim(),
+    role:v.role,
+    createdAt:serverTimestamp()
+   });
+
+   batch.update(companyRef(),{
+    memberUids:[
+     ...new Set([
+      ...(c.memberUids||[]),
+      uid
+     ])
+    ]
+   });
+
+   await batch.commit();
+
+   await audit("Autorizar usuário",v.email);
+   await loadCompanies();
+  }
+ );
 }
 
 /* AUDITORIA */
 
 async function auditPage(){
- $("content").innerHTML=`<div class="panel"><h2>Carregando atividades...</h2></div>`;
+ $("content").innerHTML=`
+ <div class="panel">
+ <h2>Carregando atividades...</h2>
+ </div>`;
+
  try{
   const snapshot=await getDocs(sub("audit"));
-  const items=snapshot.docs.map(d=>d.data()).sort((a,b)=>
-   (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)
+
+  const items=snapshot.docs.map(d=>d.data()).sort(
+   (a,b)=>
+    (b.createdAt?.seconds||0)-
+    (a.createdAt?.seconds||0)
   ).slice(0,100);
+
   if(state.page!=="audit")return;
+
   $("content").innerHTML=`
-  <div class="panel"><h2>Histórico de atividades</h2>
-  <div class="tablewrap"><table>
-  <thead><tr><th>Data</th><th>Responsável</th><th>Ação</th><th>Registro</th></tr></thead>
-  <tbody>${items.map(a=>`
-  <tr><td>${a.createdAt?.toDate?.().toLocaleString("pt-BR")||"—"}</td>
+  <div class="panel">
+  <h2>Histórico de atividades</h2>
+
+  <div class="tablewrap">
+  <table>
+  <thead>
+  <tr>
+  <th>Data</th>
+  <th>Responsável</th>
+  <th>Ação</th>
+  <th>Registro</th>
+  </tr>
+  </thead>
+  <tbody>
+  ${items.map(a=>`
+  <tr>
+  <td>
+  ${a.createdAt?.toDate?.().toLocaleString("pt-BR")||"—"}
+  </td>
   <td>${escapeHTML(a.actorName||a.actorUid)}</td>
   <td>${escapeHTML(a.action)}</td>
-  <td>${escapeHTML(a.target)}</td></tr>
-  `).join("")}</tbody></table></div>
+  <td>${escapeHTML(a.target)}</td>
+  </tr>
+  `).join("")}
+  </tbody>
+  </table>
+  </div>
+
   ${items.length?"":empty("Nenhuma atividade registrada.")}
   </div>
-  <div class="notice">Log operacional gerado pelo navegador; ainda não é uma trilha de auditoria inviolável.</div>`;
- }catch(e){toast(errorMessage(e))}
+
+  <div class="notice">
+  Auditoria operacional básica.
+  Não substitui uma trilha de auditoria protegida no servidor.
+  </div>`;
+ }catch(e){
+  toast(errorMessage(e));
+ }
 }
 
-/* CATÁLOGO DO PRODUTO */
+/* CATÁLOGO ENTERPRISE */
 
 const modules=[
  ["👥","Gestão de pessoas","Admissão, contratos, dependentes, movimentações, desligamentos"],
@@ -926,14 +1455,27 @@ const modules=[
 
 function catalogPage(){
  $("content").innerHTML=`
- ${hero("Mapa completo da plataforma",
- "Módulos previstos para a evolução do MEU NEGÓCIO PRO até o Nível 3 Enterprise.")}
- <div class="notice">Os itens abaixo são o escopo do produto. Não significam que todas as operações já foram implementadas.</div>
- <div class="grid">${modules.map(m=>`
- <div class="card"><div class="emoji">${m[0]}</div>
- <b>${m[1]}</b><small>${m[2]}</small></div>
- `).join("")}</div>`;
+ ${hero(
+  "Mapa completo da plataforma",
+  "Estrutura prevista para o MEU NEGÓCIO PRO Enterprise."
+ )}
+
+ <div class="notice">
+ Os itens abaixo representam o escopo planejado.
+ Não são todos módulos operacionais implementados.
+ </div>
+
+ <div class="grid">
+ ${modules.map(m=>`
+ <div class="card">
+ <div class="emoji">${m[0]}</div>
+ <b>${m[1]}</b>
+ <small>${m[2]}</small>
+ </div>
+ `).join("")}
+ </div>`;
 }
+
 </script>
 </body>
 </html>
