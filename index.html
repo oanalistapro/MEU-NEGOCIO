@@ -4,292 +4,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#061419">
-<meta name="description" content="MEU NEGÓCIO PRO — Plataforma de gestão empresarial.">
-<title>MEU NEGÓCIO PRO | Enterprise</title>
+<meta name="theme-color" content="#090e17">
+<title>MEU NEGÓCIO PRO — Enterprise</title>
 <style>
 :root{
- --bg:#050d11;--sidebar:#08151b;--surface:#0c1d25;
- --surface2:#102832;--surface3:#14333d;
- --line:#21404a;--teal:#18d6c2;--teal2:#109c94;
- --text:#edf8fa;--muted:#91abb4;--danger:#ff6c7e;
- --orange:#ffbb62;--shadow:0 18px 65px #0005;
+ --bg:#090e17;--side:#0d131e;--panel:#121b28;
+ --panel2:#172231;--border:#263347;--text:#eef3fb;
+ --muted:#8998ad;--orange:#ff842d;--blue:#398eff;
+ --green:#24cb94;--purple:#a778f7;--red:#f26b75;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;background:var(--bg);color:var(--text);
- font:14px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-}
-body:before{
- content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
- background:
- radial-gradient(ellipse 65% 45% at 78% -8%,#087b6c33,transparent),
- radial-gradient(ellipse 45% 45% at 0% 95%,#094a6b25,transparent);
-}
+body{margin:0;background:var(--bg);color:var(--text);font:13px/1.5 Inter,system-ui,Arial,sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.5;cursor:not-allowed}
-button:focus-visible,input:focus-visible,select:focus-visible,
-textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-input,select,textarea{
- width:100%;background:#081a22;border:1px solid #30505a;
- color:var(--text);padding:12px;border-radius:11px;outline:none;
-}
-input::placeholder,textarea::placeholder{color:#79949e}
-input:focus,select:focus,textarea:focus{border-color:var(--teal)}
-label{display:block;color:#b5cbd2;font-weight:650;font-size:12px;margin-bottom:6px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+input,select,textarea{background:#0c1420;color:var(--text);border:1px solid var(--border);border-radius:8px;padding:10px;width:100%}
+input::placeholder{color:#66768c}
 h1,h2,h3,p{margin-top:0}
-h1{font-size:clamp(25px,3vw,34px);letter-spacing:-1px}
-h2{font-size:21px;letter-spacing:-.4px}
-h3{font-size:16px}
+h1{font-size:23px;letter-spacing:-.7px;margin-bottom:4px}
+h2{font-size:15px}
+h3{font-size:13px}
 small,.muted{color:var(--muted)}
-button.primary{
- border:0;background:linear-gradient(115deg,#0fc2b1,#1ce0c5);
- color:#052326;font-weight:800;padding:11px 17px;border-radius:11px;
- box-shadow:0 7px 26px #10c5af22;
-}
-button.primary:hover{filter:brightness(1.1)}
-button.ghost{
- background:#102831;border:1px solid #2a4b55;color:#e4f5f6;
- border-radius:11px;padding:10px 15px;font-weight:650;
-}
-button.ghost:hover{border-color:var(--teal)}
-button.danger{
- background:#421d2a;border:1px solid #713445;color:#ffb7c0;
- border-radius:10px;padding:10px 13px;
-}
-button.sm{padding:7px 10px;font-size:12px}
 .hidden{display:none!important}
-.layout{display:flex;min-height:100vh}
-.sidebar{
- width:267px;flex-shrink:0;position:sticky;top:0;height:100vh;
- overflow-y:auto;background:#08151bf5;border-right:1px solid #21404a;
- padding:22px 13px;
+.btn{border:1px solid var(--border);background:#172232;color:var(--text);padding:9px 13px;border-radius:8px;font-weight:650}
+.btn:hover{border-color:#62748e}
+.btn.primary{background:var(--orange);color:#16100c;border-color:var(--orange)}
+.btn.blue{background:#2165c6;border-color:#2165c6;color:white}
+.btn.sm{font-size:11px;padding:6px 9px}
+.btn.danger{color:#ff929b;border-color:#713c4b}
+.app{display:flex;min-height:100vh}
+.sidebar{width:225px;background:var(--side);border-right:1px solid var(--border);padding:16px 10px;position:sticky;top:0;height:100vh;overflow:auto;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:10px;padding:7px 10px 25px}
+.brand-icon{width:32px;height:32px;background:linear-gradient(135deg,#ffad48,#e95b15);border-radius:9px;display:grid;place-items:center;color:#1c1007;font-size:19px;font-weight:950}
+.brand b{font-size:14px;letter-spacing:-.3px}
+.brand b span{color:var(--orange)}
+.brand small{display:block;font-size:9px;letter-spacing:1.7px}
+.nav-label{font-size:10px;letter-spacing:1.4px;color:#63758e;padding:18px 12px 7px}
+.nav-btn{width:100%;display:flex;align-items:center;gap:10px;border:1px solid transparent;background:transparent;color:#a5b1c2;text-align:left;padding:10px;border-radius:8px;margin:2px 0}
+.nav-btn:hover{background:#192333;color:white}
+.nav-btn.active{color:#ffa354;background:#30251e;border-color:#62402a}
+.nav-icon{width:20px;text-align:center;font-size:16px}
+.side-bottom{border-top:1px solid var(--border);margin-top:22px;padding:17px 10px;color:var(--muted);font-size:11px}
+.main{min-width:0;flex:1;padding:16px 22px 35px;max-width:1900px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.top-left{display:flex;align-items:center;gap:12px}
+.top-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.search{width:270px}
+.company-select{width:175px}
+.avatar{height:33px;width:33px;border-radius:50%;background:#303e53;display:grid;place-items:center;font-weight:800}
+.icon-btn{width:35px;height:35px;border-radius:8px;border:1px solid var(--border);background:#131d2a;color:#bac9d9}
+.heading{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.heading p{margin:0;color:var(--muted)}
+.heading-actions{display:flex;gap:8px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin-bottom:13px}
+.panel,.stat{background:linear-gradient(145deg,#151f2c,#101925);border:1px solid var(--border);border-radius:10px}
+.stat{padding:15px;min-height:119px}
+.stat-head{display:flex;justify-content:space-between;align-items:center;color:#b5c1d1;font-size:11px}
+.stat-icon{width:29px;height:29px;display:grid;place-items:center;background:#263040;border-radius:9px;font-size:15px}
+.stat-value{font-size:24px;font-weight:850;letter-spacing:-.8px;margin:8px 0 2px}
+.stat-foot{font-size:10px;color:var(--green)}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,2.25fr) minmax(260px,1fr);gap:12px;margin-bottom:12px}
+.panel{padding:16px;min-width:0}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-bottom:15px}
+.panel-title h2{margin:0}
+.legend{display:flex;gap:13px;flex-wrap:wrap;color:var(--muted);font-size:10px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;background:var(--orange)}
+.dot.blue{background:var(--blue)}
+.dot.green{background:var(--green)}
+.dot.purple{background:var(--purple)}
+.chart-svg{width:100%;height:255px;display:block}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:12px}
+.bar-item{display:grid;grid-template-columns:100px 1fr 35px;align-items:center;gap:9px;margin:15px 0;font-size:11px}
+.bar-track{height:10px;background:#222e3c;border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;background:var(--orange);border-radius:3px}
+.donut-layout{display:flex;align-items:center;justify-content:center;gap:20px;min-height:190px}
+.donut{width:150px;height:150px;border-radius:50%;position:relative;flex-shrink:0}
+.donut:after{content:"";position:absolute;inset:35px;background:#131d2a;border-radius:50%}
+.legend-list{display:grid;gap:11px;font-size:11px}
+.insight{display:flex;gap:11px;padding:13px 0;border-bottom:1px solid var(--border)}
+.insight-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#30251e;color:var(--orange);flex-shrink:0}
+.insight b{display:block;font-size:12px}
+.insight p{margin:4px 0;color:var(--muted);font-size:11px}
+.progress{height:6px;background:#263344;border-radius:10px;overflow:hidden;margin-top:8px}
+.progress div{height:100%;background:var(--orange)}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:600px}
+th{text-align:left;color:#8090a7;font-size:10px;text-transform:uppercase;letter-spacing:.7px}
+th,td{padding:12px 9px;border-bottom:1px solid var(--border)}
+td{color:#d4dfea}
+tr:hover td{background:#ffffff05}
+.badge{display:inline-block;border-radius:20px;padding:3px 8px;font-size:10px;background:#283344;color:#c5d0df}
+.badge.ok{background:#173b31;color:#65e1ac}
+.badge.warn{background:#40311e;color:#ffca78}
+.badge.red{background:#40232b;color:#ff9da5}
+.tools{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tools input{max-width:340px}
+.empty{text-align:center;padding:30px;color:var(--muted)}
+.notice{padding:12px;background:#1a2837;border:1px solid #32465b;border-radius:9px;color:#afc1d6;margin:12px 0}
+.module-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.module{background:#151f2c;border:1px solid var(--border);border-radius:10px;padding:16px;text-align:left;color:var(--text);min-height:124px}
+.module:hover{border-color:var(--orange)}
+.module .symbol{font-size:22px;color:var(--orange)}
+.module b{display:block;margin:13px 0 4px}
+.module small{font-size:11px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.form-grid label{display:block;color:#adbdce;font-size:11px;margin-bottom:5px}
+.form-grid .full{grid-column:1/-1}
+.modal-back{position:fixed;inset:0;z-index:100;background:#000b;display:grid;place-items:center;padding:15px}
+.modal{background:#151f2c;border:1px solid #40516a;border-radius:13px;padding:22px;width:min(730px,100%);max-height:90vh;overflow:auto}
+.modal-actions{display:flex;gap:9px;margin-top:19px}
+.toast{position:fixed;bottom:20px;right:20px;background:#253549;border:1px solid #546781;color:white;border-radius:9px;padding:13px 17px;z-index:200;max-width:90vw}
+.auth{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 65% 25%,#2a251d,#090e17 55%);padding:20px}
+.auth-card{width:min(420px,100%);padding:30px;background:#151f2c;border:1px solid var(--border);border-radius:14px}
+.auth-card h1{font-size:27px}
+.auth-card .btn{width:100%;margin-top:16px}
+.mobile-menu{display:none}
+@media(max-width:1200px){
+ .stats{grid-template-columns:repeat(3,1fr)}
+ .bottom-grid{grid-template-columns:1fr 1fr}
+ .module-grid{grid-template-columns:repeat(3,1fr)}
 }
-.logo{padding:5px 13px 23px;display:flex;align-items:center;gap:11px}
-.logomark{
- width:41px;height:41px;border-radius:13px;display:grid;place-items:center;
- background:linear-gradient(135deg,#16d6c1,#066778);
- color:#00282b;font-size:23px;font-weight:950;
- box-shadow:0 0 24px #16d6c14a;
+@media(max-width:900px){
+ .sidebar{width:65px}
+ .brand div:last-child,.nav-label,.nav-btn .nav-text,.side-bottom{display:none}
+ .brand{padding:7px 5px 20px}
+ .nav-btn{justify-content:center}
+ .dashboard-grid{grid-template-columns:1fr}
+ .module-grid{grid-template-columns:repeat(2,1fr)}
 }
-.logo b{display:block;font-size:17px;letter-spacing:-.5px}
-.logo b span{color:var(--teal)}
-.logo small{display:block;font-size:9px;letter-spacing:2px}
-.navgroup{padding:15px 13px 8px;color:#6d939d;font-size:10px;letter-spacing:2px}
-.navitem{
- display:flex;align-items:center;gap:11px;width:100%;border:1px solid transparent;
- border-radius:11px;background:transparent;color:#a9c4ca;
- padding:11px 12px;text-align:left;margin:3px 0;
-}
-.navitem:hover{background:#14323a;color:white}
-.navitem.active{
- background:linear-gradient(100deg,#16443e,#12333b);
- color:#70ffea;border-color:#24675d;
-}
-.navitem .symbol{font-size:17px;width:24px;text-align:center}
-.sidefoot{padding:18px 12px;margin-top:18px;border-top:1px solid var(--line)}
-.main{flex:1;min-width:0;padding:22px clamp(15px,2.4vw,36px) 60px}
-.topbar{
- display:flex;align-items:center;justify-content:space-between;
- gap:12px;flex-wrap:wrap;margin-bottom:25px;
-}
-.topbar h1{margin:3px 0 0}
-.topbar small{font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
-.topactions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.topactions select{width:210px}
-.avatar{
- width:37px;height:37px;display:grid;place-items:center;border-radius:50%;
- background:#154b4b;border:1px solid #2d9c92;color:#8bfff1;font-weight:800;
-}
-.hero{
- position:relative;overflow:hidden;
- border:1px solid #215760;border-radius:23px;
- padding:clamp(23px,4vw,44px);margin-bottom:20px;
- background:linear-gradient(120deg,#102d3c,#08222b 60%,#073b37);
- box-shadow:var(--shadow);
-}
-.hero:before{
- content:"";position:absolute;width:410px;height:410px;border-radius:50%;
- right:-110px;top:-190px;background:#1be3bb33;filter:blur(68px);
-}
-.hero:after{
- content:"";position:absolute;width:270px;height:270px;border-radius:50%;
- right:12%;bottom:-210px;background:#1488b433;filter:blur(60px);
-}
-.hero>*{position:relative;z-index:1}
-.eyebrow{
- color:var(--teal);font-weight:850;font-size:11px;
- letter-spacing:2.5px;text-transform:uppercase;
-}
-.hero h2{font-size:clamp(26px,3.4vw,40px);max-width:650px;margin:12px 0}
-.hero p{max-width:670px;color:#aacbd0;font-size:15px}
-.hero .actions{margin-top:23px}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
-.metric,.panel,.tile{
- background:linear-gradient(150deg,#10242c,#0a1b22);
- border:1px solid #23434c;border-radius:17px;
- box-shadow:0 10px 28px #0002;
-}
-.metric{padding:21px}
-.metric .value{font-size:31px;font-weight:850;margin:9px 0 3px;letter-spacing:-1px}
-.metric .unit{font-size:11px;color:#6ce8d7}
-.panel{padding:22px;margin-bottom:19px}
-.panelhead{
- display:flex;align-items:center;justify-content:space-between;
- gap:12px;flex-wrap:wrap;margin-bottom:19px;
-}
-.panelhead h2{margin:0}
-.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.tile{padding:21px;text-align:left;min-height:160px;transition:.2s}
-button.tile{width:100%;color:var(--text)}
-button.tile:hover{
- border-color:#20bba9;transform:translateY(-3px);
- box-shadow:0 15px 38px #05b69b18;
-}
-.tile .iconbox{
- width:44px;height:44px;border-radius:13px;background:#163b42;
- border:1px solid #25636a;display:grid;place-items:center;font-size:23px;
-}
-.tile b{display:block;margin:15px 0 5px;font-size:15px}
-.tile small{line-height:1.5}
-.tag{
- display:inline-block;border:1px solid #2d6861;background:#123b39;
- color:#71e9d8;padding:4px 9px;border-radius:30px;font-size:11px;
-}
-.tag.warn{background:#3d301a;border-color:#6d542b;color:#ffd28b}
-.tag.off{background:#252c33;border-color:#3d4a52;color:#9db2bb}
-.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.toolbar input{max-width:390px}
-.tablewrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:670px}
-th{text-align:left;color:#8faeb7;font-size:11px;letter-spacing:.7px}
-th,td{padding:14px 11px;border-bottom:1px solid #1c3941}
-td{color:#dce9ed}
-tr:hover td{background:#ffffff04}
-.empty{padding:35px;text-align:center;color:var(--muted)}
-.notice{
- background:#102f36;border:1px solid #245963;border-radius:13px;
- padding:14px 17px;color:#b7d5db;margin:15px 0;
-}
-.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
-.full{grid-column:1/-1}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.modalback{
- position:fixed;inset:0;z-index:100;background:#000b;
- display:grid;place-items:center;padding:14px;
- backdrop-filter:blur(7px);
-}
-.modal{
- width:min(760px,100%);max-height:93vh;overflow:auto;
- background:linear-gradient(150deg,#112d37,#081920);
- border:1px solid #337078;border-radius:21px;padding:25px;
- box-shadow:0 30px 90px #000a;
-}
-.modal h2{margin-bottom:3px}
-.modal form .actions{margin-top:22px}
-.toast{
- position:fixed;z-index:200;bottom:22px;right:22px;
- background:#143b3d;border:1px solid #2b9789;color:white;
- padding:15px 20px;border-radius:12px;box-shadow:var(--shadow);
- max-width:90vw;
-}
-.auth{
- min-height:100vh;display:grid;place-items:center;padding:20px;
- background:
- radial-gradient(ellipse at 60% 20%,#07564a70,transparent 50%),
- #050d11;
-}
-.authcard{
- width:min(470px,100%);background:linear-gradient(155deg,#12303b,#091820);
- border:1px solid #2e6369;border-radius:25px;padding:37px;
- box-shadow:0 30px 90px #0009;
-}
-.authcard h1{font-size:35px}
-.authcard .primary{width:100%;margin-top:20px}
-.mobilebar{display:none}
-@media(max-width:1150px){
- .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
- .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:800px){
- .sidebar{width:76px;padding:13px 8px}
- .logo{padding:8px 5px;justify-content:center}
- .logo .logotext,.navgroup,.navitem .navlabel,.sidefoot{display:none}
- .navitem{justify-content:center;padding:12px}
- .navitem .symbol{font-size:20px}
-}
-@media(max-width:600px){
- .layout{display:block}
- .sidebar{
-  position:fixed;bottom:0;top:auto;width:100%;height:65px;
-  z-index:50;padding:5px 8px;border-right:0;border-top:1px solid #29515a;
-  overflow:auto;display:flex;align-items:center;gap:4px;
- }
- .logo{display:none}
- #nav{display:flex;align-items:center;gap:4px}
- .navitem{flex-shrink:0;width:47px;height:49px;margin:0}
- .main{padding:18px 13px 95px}
- .topbar{align-items:flex-start}
- .topactions{width:100%}
- .topactions select{flex:1;width:100px;min-width:110px}
- .tiles,.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .tile{padding:14px;min-height:150px}
- .metric{padding:15px}
- .metric .value{font-size:25px}
- .hero{border-radius:17px}
- .panel{padding:15px}
- .formgrid{grid-template-columns:1fr}
- .modal{padding:18px}
- .authcard{padding:25px}
-}
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{scroll-behavior:auto!important;transition:none!important}
+@media(max-width:650px){
+ .app{display:block}
+ .sidebar{width:100%;height:57px;position:fixed;top:auto;bottom:0;z-index:40;padding:5px;display:flex;overflow:auto;border-right:0;border-top:1px solid var(--border)}
+ .brand,.side-bottom,.nav-label{display:none}
+ #nav{display:flex;gap:4px}
+ .nav-btn{min-width:45px;flex-shrink:0}
+ .main{padding:12px 11px 85px}
+ .search{width:100%;order:3}
+ .top-right{width:100%}
+ .company-select{flex:1}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .bottom-grid{grid-template-columns:1fr}
+ .module-grid{grid-template-columns:repeat(2,1fr)}
+ .form-grid{grid-template-columns:1fr}
+ .chart-svg{height:210px}
+ .stat{padding:12px}
+ .stat-value{font-size:21px}
+ .panel{padding:13px}
 }
 </style>
 </head>
 <body>
 
 <div id="authScreen" class="auth">
- <div class="authcard">
-  <div class="eyebrow">Plataforma de gestão empresarial</div>
-  <h1>MEU NEGÓCIO <span style="color:var(--teal)">PRO</span></h1>
-  <p class="muted">Um novo ambiente de gestão, com empresas independentes, colaboradores, departamentos e controle de acessos.</p>
-  <div class="notice">ENTERPRISE • AMBIENTE DE TESTE</div>
-  <button class="primary" id="login">Entrar com Google</button>
-  <p id="authError" class="muted" style="margin:15px 0 0"></p>
+ <div class="auth-card">
+  <div style="color:var(--orange);font-weight:800;letter-spacing:2px">BUSINESS ENTERPRISE</div>
+  <h1>MEU NEGÓCIO <span style="color:var(--orange)">PRO</span></h1>
+  <p class="muted">Gestão empresarial e recursos humanos em um só ambiente.</p>
+  <div class="notice">Projeto Firebase de teste. Entre com sua conta Google.</div>
+  <button class="btn primary" id="loginBtn">Entrar com Google</button>
+  <p id="authError" class="muted" style="margin-top:15px"></p>
  </div>
 </div>
 
-<div id="appScreen" class="layout hidden">
+<div id="appScreen" class="app hidden">
  <aside class="sidebar">
-  <div class="logo">
-   <div class="logomark">M</div>
-   <div class="logotext">
-    <b>MEU <span>NEGÓCIO</span></b>
-    <small>PRO ENTERPRISE</small>
-   </div>
+  <div class="brand">
+   <div class="brand-icon">M</div>
+   <div><b>MEU <span>NEGÓCIO</span></b><small>PRO ENTERPRISE</small></div>
   </div>
   <nav id="nav"></nav>
-  <div class="sidefoot">
-   <span class="tag">● Ambiente de teste</span>
-   <p class="muted" style="margin-top:12px;font-size:12px">Dados armazenados no Firebase do projeto Enterprise.</p>
-  </div>
+  <div class="side-bottom">● Enterprise Test<br>Dados vinculados ao Firebase.</div>
  </aside>
-
  <main class="main">
-  <div class="topbar">
-   <div>
-    <small id="crumb">VISÃO GERAL</small>
-    <h1 id="pageTitle">Painel executivo</h1>
-   </div>
-   <div class="topactions">
-    <select id="companySelect" aria-label="Empresa ativa"></select>
-    <button class="ghost" id="addCompany">＋ Empresa</button>
+  <div class="top">
+   <div class="top-left"><span style="color:var(--orange);font-weight:800">◈</span><b id="topLabel">Executive Overview</b></div>
+   <div class="top-right">
+    <input class="search" id="globalSearch" placeholder="Pesquisar módulos...">
+    <select class="company-select" id="companySelect"></select>
+    <button class="icon-btn" id="notifyBtn" title="Notificações">♧</button>
+    <button class="btn sm" id="addCompanyBtn">＋ Empresa</button>
     <div class="avatar" id="avatar">U</div>
-    <button class="ghost" id="logout">Sair</button>
+    <button class="btn sm" id="logoutBtn">Sair</button>
    </div>
+  </div>
+  <div class="heading">
+   <div><h1 id="pageTitle">Painel executivo</h1><p id="subtitle">Visão geral da organização</p></div>
+   <div class="heading-actions" id="pageActions"></div>
   </div>
   <div id="view"></div>
  </main>
@@ -299,18 +200,17 @@ tr:hover td{background:#ffffff04}
 <div id="toastRoot"></div>
 
 <script type="module">
-import {initializeApp} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import {
- getAuth,GoogleAuthProvider,signInWithPopup,
- signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut
+ getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,
+ getRedirectResult,onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
- getFirestore,collection,doc,addDoc,getDoc,getDocs,
- updateDoc,query,where,serverTimestamp,writeBatch
+ getFirestore,collection,doc,getDoc,getDocs,addDoc,
+ updateDoc,query,where,writeBatch,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-/* FIREBASE ENTERPRISE DE TESTE */
+/* CONFIGURAÇÃO FIREBASE DO PROJETO DE TESTE */
 const firebaseConfig={
  apiKey:"AIzaSyB-IiVlnzc_RESH_10MDmZsfnJ3iGm9zqw",
  authDomain:"meu-negocio-enterprise-teste.firebaseapp.com",
@@ -320,7 +220,6 @@ const firebaseConfig={
  appId:"1:1083026433106:web:9041a8eb3959a9a101eb8b",
  measurementId:"G-BW9N9QCFJ7"
 };
-
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
@@ -328,162 +227,223 @@ const provider=new GoogleAuthProvider();
 
 const S={
  user:null,companies:[],cid:"",role:"",page:"dashboard",
- employees:[],departments:[],leaves:[],members:[]
+ employees:[],departments:[],leaves:[],members:[],
+ vacancies:[],candidates:[],attendance:[],payroll:[]
 };
-
 const $=id=>document.getElementById(id);
-const safe=v=>String(v??"").replace(/[&<>"']/g,c=>({
+const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({
  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
-const ref=(name,id)=>doc(db,"companies",S.cid,name,id);
-const col=name=>collection(db,"companies",S.cid,name);
-const manage=()=>["owner","admin","hr"].includes(S.role);
-const approve=()=>["owner","admin","hr","manager"].includes(S.role);
-const readHR=()=>manage()||["manager","auditor"].includes(S.role);
+const money=x=>Number(x||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const col=n=>collection(db,"companies",S.cid,n);
+const ref=(n,id)=>doc(db,"companies",S.cid,n,id);
+const admin=()=>["owner","admin","hr"].includes(S.role);
+const manager=()=>admin()||S.role==="manager";
+const hrRead=()=>manager()||S.role==="auditor";
 const owner=()=>S.role==="owner";
-const readAudit=()=>["owner","admin","hr","auditor"].includes(S.role);
+const auditRead=()=>admin()||S.role==="auditor";
+const fmtDate=x=>x?String(x).split("-").reverse().join("/"):"—";
+const today=()=>new Date().toISOString().slice(0,10);
+const num=x=>Number(x)||0;
+const empName=id=>S.employees.find(e=>e.id===id)?.name||"—";
+const depName=id=>S.departments.find(d=>d.id===id)?.name||"Não definido";
 
-function toast(msg){
- $("toastRoot").innerHTML=`<div class="toast">${safe(msg)}</div>`;
- setTimeout(()=>{$("toastRoot").innerHTML=""},4200);
+function toast(message){
+ $("toastRoot").innerHTML=`<div class="toast">${esc(message)}</div>`;
+ setTimeout(()=>{$("toastRoot").innerHTML=""},4000);
 }
-function err(e){
+function fail(e){
  console.error(e);
- if(e?.code==="auth/unauthorized-domain")
-  return "Autorize o domínio do site em Firebase Authentication.";
- if(e?.code==="auth/operation-not-allowed")
-  return "Ative o provedor Google no Firebase.";
- if(e?.code==="permission-denied")
-  return "Operação negada pelas regras do Firestore.";
- return e?.message||"Ocorreu um erro.";
-}
-function dateBR(v){
- if(!v)return "—";
- const [y,m,d]=v.split("-");
- return `${d}/${m}/${y}`;
-}
-function days(a,b){
- if(!a||!b)return 0;
- return Math.round((
-  new Date(b+"T12:00:00")-new Date(a+"T12:00:00")
- )/86400000)+1;
+ if(e?.code==="permission-denied")return "Sem permissão no Firestore.";
+ if(e?.code==="auth/unauthorized-domain")return "Autorize o domínio no Firebase Authentication.";
+ return e?.message||"Erro inesperado.";
 }
 function field(label,name,value="",type="text",required=false){
- return `<div><label>${safe(label)}</label>
- <input name="${safe(name)}" type="${type}" value="${safe(value)}"
- ${required?"required":""}></div>`;
+ return `<div><label>${esc(label)}</label><input name="${esc(name)}" type="${type}" value="${esc(value)}" ${required?"required":""}></div>`;
 }
-function choice(label,name,items,current=""){
- return `<div><label>${safe(label)}</label><select name="${safe(name)}">
- ${items.map(x=>{
-  const val=typeof x==="string"?x:x.value;
-  const txt=typeof x==="string"?x:x.label;
-  return `<option value="${safe(val)}" ${val===current?"selected":""}>${safe(txt)}</option>`;
+function selectField(label,name,options,current=""){
+ return `<div><label>${esc(label)}</label><select name="${esc(name)}">
+ ${options.map(o=>{
+  const v=typeof o==="string"?o:o.value;
+  const t=typeof o==="string"?o:o.label;
+  return `<option value="${esc(v)}" ${v===current?"selected":""}>${esc(t)}</option>`;
  }).join("")}</select></div>`;
 }
-function memo(label,name,value=""){
- return `<div class="full"><label>${safe(label)}</label>
- <textarea name="${safe(name)}" rows="3">${safe(value)}</textarea></div>`;
+function noteField(label,name,value=""){
+ return `<div class="full"><label>${esc(label)}</label><textarea name="${esc(name)}" rows="3">${esc(value)}</textarea></div>`;
 }
-function modal(title,body,submit){
- $("modalRoot").innerHTML=`
- <div class="modalback">
- <div class="modal" role="dialog" aria-modal="true" aria-label="${safe(title)}">
- <div class="panelhead">
- <div><div class="eyebrow">MEU NEGÓCIO PRO</div><h2>${safe(title)}</h2></div>
- <button class="ghost" type="button" id="closeModal">✕ Fechar</button>
- </div>
- <form id="modalForm">
- <div class="formgrid">${body}</div>
- <div class="actions">
- <button class="primary" type="submit">Salvar informações</button>
- <button class="ghost" type="button" id="cancelModal">Cancelar</button>
- </div></form></div></div>`;
- $("closeModal").onclick=closeModal;
- $("cancelModal").onclick=closeModal;
+function modal(title,fields,save){
+ $("modalRoot").innerHTML=`<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-label="${esc(title)}">
+ <div class="panel-title"><h2>${esc(title)}</h2><button class="btn sm" id="closeModal">✕</button></div>
+ <form id="modalForm"><div class="form-grid">${fields}</div>
+ <div class="modal-actions"><button class="btn primary" type="submit">Salvar</button>
+ <button class="btn" type="button" id="cancelModal">Cancelar</button></div></form></div></div>`;
+ const close=()=>{$("modalRoot").innerHTML=""};
+ $("closeModal").onclick=close;
+ $("cancelModal").onclick=close;
  $("modalForm").onsubmit=async ev=>{
   ev.preventDefault();
   const btn=ev.target.querySelector('[type="submit"]');
   btn.disabled=true;
   try{
-   await submit(Object.fromEntries(new FormData(ev.target)));
-   closeModal();
-  }catch(e){toast(err(e))}
+   await save(Object.fromEntries(new FormData(ev.target)));
+   close();
+   toast("Informações salvas.");
+  }catch(e){toast(fail(e))}
   finally{btn.disabled=false}
  };
 }
-function closeModal(){$("modalRoot").innerHTML=""}
-function tag(s){
- const ok=["Ativo","Aprovado","Concluído"].includes(s);
- const off=["Desligado","Rejeitado"].includes(s);
- return `<span class="tag ${off?"off":ok?"":"warn"}">${safe(s||"—")}</span>`;
+function badge(s){
+ const good=["Ativo","Aprovado","Presente","Concluído","Contratado","Aberta"].includes(s);
+ const bad=["Rejeitado","Desligado","Cancelada"].includes(s);
+ return `<span class="badge ${good?"ok":bad?"red":"warn"}">${esc(s||"—")}</span>`;
 }
-function empty(t){return `<div class="empty">${safe(t)}</div>`}
-function section(title,button="",content=""){
- return `<section class="panel"><div class="panelhead"><h2>${title}</h2>${button}</div>${content}</section>`;
+function panel(title,content,actions=""){
+ return `<section class="panel"><div class="panel-title"><h2>${esc(title)}</h2><div>${actions}</div></div>${content}</section>`;
 }
-function company(){return S.companies.find(c=>c.id===S.cid)}
-function employeeName(id){return S.employees.find(e=>e.id===id)?.name||"—"}
+function table(headers,rows){
+ return `<div class="table-wrap"><table><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead>
+ <tbody>${rows.join("")}</tbody></table></div>${rows.length?"":'<div class="empty">Nenhum registro encontrado.</div>'}`;
+}
+function stat(title,value,icon,color="var(--orange)",footer="DADOS ATUAIS"){
+ return `<div class="stat"><div class="stat-head"><span>${esc(title)}</span>
+ <span class="stat-icon" style="color:${color}">${icon}</span></div>
+ <div class="stat-value">${esc(value)}</div><div class="stat-foot">● ${esc(footer)}</div></div>`;
+}
+function stats(items){return `<div class="stats">${items.join("")}</div>`}
+function barChart(items,color="var(--orange)"){
+ const max=Math.max(1,...items.map(x=>num(x.value)));
+ return items.length?items.map(x=>`
+ <div class="bar-item"><span>${esc(x.label)}</span>
+ <div class="bar-track"><div class="bar-fill" style="width:${Math.max(0,num(x.value))/max*100}%;background:${color}"></div></div>
+ <b>${num(x.value)}</b></div>`).join(""):'<div class="empty">Sem dados para o gráfico.</div>';
+}
+function donut(items){
+ const colors=["#398eff","#ff842d","#a778f7","#24cb94","#f0b53e","#f26b75"];
+ const total=items.reduce((s,x)=>s+num(x.value),0);
+ if(!total)return '<div class="empty">Sem dados para o gráfico.</div>';
+ let offset=0;
+ const stops=items.map((x,i)=>{
+  const start=offset;
+  offset+=num(x.value)/total*100;
+  return `${colors[i%colors.length]} ${start}% ${offset}%`;
+ });
+ return `<div class="donut-layout"><div class="donut" style="background:conic-gradient(${stops.join(",")})"></div>
+ <div class="legend-list">${items.map((x,i)=>`
+ <div><span class="dot" style="background:${colors[i%colors.length]}"></span>
+ ${esc(x.label)} <b>${Math.round(num(x.value)/total*100)}%</b></div>`).join("")}</div></div>`;
+}
+function lineChart(points,color="#ff842d"){
+ const width=780,height=270,left=48,right=16,top=18,bottom=36;
+ const max=Math.max(1,...points);
+ const plotW=width-left-right,plotH=height-top-bottom;
+ const coords=points.map((v,i)=>[
+  left+(points.length===1?.5:i/(points.length-1))*plotW,
+  top+plotH-(v/max)*plotH
+ ]);
+ const path=coords.map((p,i)=>(i?"L":"M")+p.join(",")).join(" ");
+ const area=path+` L ${coords.at(-1)[0]},${top+plotH} L ${coords[0][0]},${top+plotH} Z`;
+ const grid=[0,.25,.5,.75,1].map(t=>{
+  const y=top+plotH*(1-t);
+  return `<line x1="${left}" y1="${y}" x2="${width-right}" y2="${y}" stroke="#2b3848" stroke-dasharray="3 5"/>
+  <text x="5" y="${y+4}" fill="#8190a5" font-size="11">${Math.round(max*t)}</text>`;
+ }).join("");
+ const labels=points.map((_,i)=>i%Math.max(1,Math.ceil(points.length/8))===0?
+  `<text x="${coords[i][0]}" y="${height-9}" text-anchor="middle" fill="#8190a5" font-size="10">${i+1}</text>`:"").join("");
+ return `<svg class="chart-svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" role="img" aria-label="Gráfico de evolução">
+ <defs><linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0%" stop-color="${color}" stop-opacity=".25"/>
+ <stop offset="100%" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+ ${grid}<path d="${area}" fill="url(#areaGradient)"/>
+ <path d="${path}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+ ${coords.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${color}"/>`).join("")}
+ ${labels}</svg>`;
+}
+function monthSeries(rows,dateKey,months=12){
+ const now=new Date();
+ const result=[];
+ for(let i=months-1;i>=0;i--){
+  const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+  const prefix=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`;
+  result.push(rows.filter(x=>String(x[dateKey]||"").startsWith(prefix)).length);
+ }
+ return result;
+}
+function exportCSV(filename,headers,rows){
+ const csv=[headers,...rows].map(row=>row.map(v=>{
+  let text=String(v??"");
+  if(/^\s*[=+\-@]/.test(text))text="'"+text;
+  return `"${text.replace(/"/g,'""')}"`;
+ }).join(";")).join("\r\n");
+ const url=URL.createObjectURL(new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"}));
+ const a=document.createElement("a");a.href=url;a.download=filename;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+async function audit(action,target){
+ try{
+  await addDoc(col("audit"),{
+   action,target,actorUid:S.user.uid,actorName:S.user.displayName||"",
+   createdAt:serverTimestamp()
+  });
+ }catch(e){console.warn("Auditoria:",e)}
+}
 
-async function login(){
+/* AUTENTICAÇÃO */
+$("loginBtn").onclick=async()=>{
  $("authError").textContent="";
  try{await signInWithPopup(auth,provider)}
  catch(e){
   if(e.code==="auth/popup-blocked"){
    try{await signInWithRedirect(auth,provider);return}
-   catch(x){$("authError").textContent=err(x);return}
+   catch(x){$("authError").textContent=fail(x);return}
   }
-  $("authError").textContent=err(e);
+  $("authError").textContent=fail(e);
  }
-}
-$("login").onclick=login;
-$("logout").onclick=()=>signOut(auth);
-$("addCompany").onclick=companyModal;
-$("companySelect").onchange=ev=>selectCompany(ev.target.value)
- .catch(e=>toast(err(e)));
-
+};
+$("logoutBtn").onclick=()=>signOut(auth);
+$("addCompanyBtn").onclick=companyModal;
+$("companySelect").onchange=e=>selectCompany(e.target.value).catch(x=>toast(fail(x)));
+$("notifyBtn").onclick=()=>toast(
+ `${S.leaves.filter(l=>l.status==="Pendente").length} solicitações de ausência pendentes.`
+);
+$("globalSearch").onkeydown=e=>{
+ if(e.key!=="Enter")return;
+ const q=e.target.value.toLowerCase().trim();
+ const match=navItems.find(x=>x[2].toLowerCase().includes(q)&&allowed(x[0]));
+ if(match)go(match[0]);
+ else toast("Nenhum módulo encontrado.");
+};
 try{await getRedirectResult(auth)}
-catch(e){$("authError").textContent=err(e)}
+catch(e){$("authError").textContent=fail(e)}
 
 onAuthStateChanged(auth,async user=>{
  S.user=user;
  $("authScreen").classList.toggle("hidden",!!user);
  $("appScreen").classList.toggle("hidden",!user);
  if(!user){
-  Object.assign(S,{
-   companies:[],cid:"",role:"",employees:[],
-   departments:[],leaves:[],members:[]
-  });
+  S.cid="";S.role="";S.companies=[];
   return;
  }
- $("avatar").textContent=(user.displayName||"U").slice(0,1).toUpperCase();
- try{await loadCompanies()}
- catch(e){$("view").innerHTML=`<div class="notice">${safe(err(e))}</div>`}
+ $("avatar").textContent=(user.displayName||"U").charAt(0).toUpperCase();
+ try{await loadCompanies()}catch(e){
+  $("view").innerHTML=`<div class="notice">${esc(fail(e))}</div>`;
+ }
 });
-
 async function loadCompanies(){
- const snap=await getDocs(query(
-  collection(db,"companies"),
-  where("memberUids","array-contains",S.user.uid)
- ));
+ const snap=await getDocs(query(collection(db,"companies"),
+  where("memberUids","array-contains",S.user.uid)));
  S.companies=snap.docs.map(d=>({id:d.id,...d.data()}));
- const old=S.cid;
  const saved=sessionStorage.getItem("mn_company");
- S.cid=S.companies.some(c=>c.id===old)?old:
+ S.cid=S.companies.some(c=>c.id===S.cid)?S.cid:
   S.companies.some(c=>c.id===saved)?saved:S.companies[0]?.id||"";
  $("companySelect").innerHTML=S.companies.map(c=>
-  `<option value="${safe(c.id)}">${safe(c.name)}</option>`
- ).join("");
+  `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join("");
  $("companySelect").value=S.cid;
  if(!S.cid){
-  S.role="";
-  $("pageTitle").textContent="Bem-vindo";
   $("nav").innerHTML="";
-  $("view").innerHTML=`
-  <div class="hero"><div class="eyebrow">Primeiros passos</div>
-  <h2>Comece sua gestão empresarial</h2>
-  <p>Crie uma empresa para começar a organizar sua estrutura.</p>
-  <div class="actions"><button class="primary" id="firstCompany">Criar empresa</button></div></div>`;
+  $("view").innerHTML=panel("Primeira configuração",
+   `<p>Crie sua primeira empresa para começar.</p><button class="btn primary" id="firstCompany">Criar empresa</button>`);
   $("firstCompany").onclick=companyModal;
   return;
  }
@@ -492,159 +452,527 @@ async function loadCompanies(){
 async function selectCompany(cid){
  if(!S.companies.some(c=>c.id===cid))throw Error("Empresa não autorizada.");
  const membership=await getDoc(doc(db,"companies",cid,"members",S.user.uid));
- if(!membership.exists())throw Error("Sua conta não é membro desta empresa.");
+ if(!membership.exists())throw Error("Sua conta não possui acesso a esta empresa.");
  S.cid=cid;S.role=membership.data().role;
  S.page="dashboard";
  sessionStorage.setItem("mn_company",cid);
- await loadData();
- render();
+ await loadData();render();
 }
 async function loadData(){
- const names=["employees","departments","leaves","members"];
- const allowed={employees:readHR(),departments:true,leaves:readHR(),members:true};
- const data=await Promise.all(names.map(async name=>{
-  if(!allowed[name])return [];
-  const snap=await getDocs(col(name));
-  return snap.docs.map(d=>({id:d.id,...d.data()}));
+ const collections=[
+  "employees","departments","leaves","members",
+  "vacancies","candidates","attendance","payroll"
+ ];
+ const permission={
+  employees:hrRead(),departments:true,leaves:hrRead(),
+  members:true,vacancies:hrRead(),candidates:hrRead(),
+  attendance:hrRead(),payroll:admin()
+ };
+ const results=await Promise.all(collections.map(async name=>{
+  if(!permission[name])return [];
+  try{
+   const snap=await getDocs(col(name));
+   return snap.docs.map(d=>({id:d.id,...d.data()}));
+  }catch(e){
+   if(e.code==="permission-denied"){
+    console.warn("Coleção não autorizada:",name);
+    return [];
+   }
+   throw e;
+  }
  }));
- names.forEach((n,i)=>S[n]=data[i]);
+ collections.forEach((name,i)=>S[name]=results[i]);
 }
 async function refresh(){await loadData();render()}
-async function audit(action,target){
- try{
-  await addDoc(col("audit"),{
-   action,target,actorUid:S.user.uid,
-   actorName:S.user.displayName||"",
-   createdAt:serverTimestamp()
-  });
- }catch(e){console.warn("Auditoria não registrada",e)}
-}
 
-const menu=[
- ["GERENCIAMENTO",[
+/* NAVEGAÇÃO */
+const groups=[
+ ["VISÃO GERAL",[
   ["dashboard","◈","Painel executivo"],
-  ["companies","▤","Estrutura empresarial"]
+  ["hr","♙","Central RH"]
  ]],
- ["CENTRAL RH",[
-  ["employees","♙","Colaboradores"],
-  ["departments","▦","Departamentos"],
-  ["leaves","◷","Férias e ausências"],
-  ["team","♧","Acessos e perfis"],
-  ["audit","≡","Auditoria"]
+ ["RECURSOS HUMANOS",[
+  ["employees","♧","Colaboradores"],
+  ["attendance","◷","Ponto e frequência"],
+  ["recruitment","◇","Recrutamento"],
+  ["performance","▥","Desempenho"],
+  ["payroll","▣","Folha administrativa"],
+  ["leaves","▤","Férias e ausências"],
+  ["departments","▦","Departamentos"]
  ]],
- ["PLATAFORMA",[
-  ["catalog","▥","Módulos Enterprise"]
+ ["ADMINISTRAÇÃO",[
+  ["companies","▧","Empresas"],
+  ["team","♙","Permissões"],
+  ["reports","▤","Relatórios"],
+  ["audit","≡","Auditoria"],
+  ["catalog","▦","Outros módulos"]
  ]]
 ];
+const navItems=groups.flatMap(g=>g[1]);
 function allowed(page){
- if(["employees","leaves"].includes(page))return readHR();
- if(page==="audit")return readAudit();
+ if(["employees","attendance","recruitment","performance","leaves"].includes(page))return hrRead();
+ if(page==="payroll")return admin();
+ if(page==="audit")return auditRead();
  return true;
 }
 function nav(){
- $("nav").innerHTML=menu.map(g=>`
- <div class="navgroup">${g[0]}</div>
+ $("nav").innerHTML=groups.map(g=>`
+ <div class="nav-label">${g[0]}</div>
  ${g[1].filter(x=>allowed(x[0])).map(x=>`
- <button class="navitem ${S.page===x[0]?"active":""}" data-page="${x[0]}"
- title="${x[2]}">
- <span class="symbol">${x[1]}</span><span class="navlabel">${x[2]}</span>
- </button>`).join("")}`).join("");
- document.querySelectorAll("[data-page]").forEach(b=>
-  b.onclick=()=>go(b.dataset.page));
+ <button class="nav-btn ${S.page===x[0]?"active":""}" data-page="${x[0]}" title="${x[2]}">
+ <span class="nav-icon">${x[1]}</span><span class="nav-text">${x[2]}</span></button>`).join("")}
+ `).join("");
+ document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>go(b.dataset.page));
 }
-function go(page){
- if(!allowed(page))return toast("Acesso não permitido.");
- S.page=page;render();
-}
+function go(page){if(!allowed(page))return toast("Sem permissão.");S.page=page;render()}
 function render(){
  if(!allowed(S.page))S.page="dashboard";
  nav();
  const titles={
-  dashboard:"Painel executivo",companies:"Estrutura empresarial",
-  employees:"Gestão de colaboradores",departments:"Departamentos",
-  leaves:"Férias e ausências",team:"Usuários e permissões",
-  audit:"Auditoria",catalog:"Módulos Enterprise"
+  dashboard:"Painel executivo",hr:"Central de Recursos Humanos",
+  employees:"Gestão de colaboradores",attendance:"Ponto e frequência",
+  recruitment:"Recrutamento e seleção",performance:"Desempenho e equipes",
+  payroll:"Folha administrativa",leaves:"Férias e ausências",
+  departments:"Departamentos",companies:"Estrutura empresarial",
+  team:"Usuários e permissões",reports:"Relatórios gerenciais",
+  audit:"Auditoria",catalog:"Ecossistema Enterprise"
  };
  $("pageTitle").textContent=titles[S.page];
- $("crumb").textContent=`${company()?.name||"Empresa"} / ${S.role}`;
+ $("topLabel").textContent=titles[S.page];
+ $("subtitle").textContent=
+  `${S.companies.find(c=>c.id===S.cid)?.name||"Empresa"} • Perfil: ${S.role}`;
+ $("pageActions").innerHTML=`
+ <button class="btn sm" id="refreshBtn">↻ Atualizar dados</button>`;
+ $("refreshBtn").onclick=()=>refresh().catch(e=>toast(fail(e)));
  const views={
-  dashboard:dashboard,
-  companies:companiesPage,
-  employees:employeesPage,
-  departments:departmentsPage,
-  leaves:leavesPage,
-  team:teamPage,
-  audit:auditPage,
-  catalog:catalogPage
+  dashboard:dashboard,hr:hrDashboard,employees:employeesPage,
+  attendance:attendancePage,recruitment:recruitmentPage,
+  performance:performancePage,payroll:payrollPage,
+  leaves:leavesPage,departments:departmentsPage,
+  companies:companiesPage,team:teamPage,reports:reportsPage,
+  audit:auditPage,catalog:catalogPage
  };
- const currentView=views[S.page];
- if(typeof currentView==="function")currentView();
+ const fn=views[S.page];
+ if(typeof fn==="function")fn();
  else $("view").innerHTML='<div class="notice">Página indisponível.</div>';
 }
 
-/* PAINEL PREMIUM */
+/* PAINEL EXECUTIVO */
 function dashboard(){
- const cards=[
-  ["♙","Central de colaboradores","employees","Cadastro e gestão de pessoas"],
-  ["▤","Estrutura empresarial","companies","Organização e empresas"],
-  ["▦","Departamentos","departments","Estrutura organizacional"],
-  ["◷","Férias e ausências","leaves","Solicitações e decisões"],
-  ["♧","Acessos e perfis","team","Usuários autorizados"],
-  ["≡","Auditoria","audit","Histórico administrativo"],
-  ["▥","Ecossistema Enterprise","catalog","Visão dos módulos planejados"]
- ].filter(x=>allowed(x[2]));
+ const active=S.employees.filter(e=>e.status==="Ativo").length;
+ const pending=S.leaves.filter(l=>l.status==="Pendente").length;
+ const deptCounts=S.departments.map(d=>({
+  label:d.name,value:S.employees.filter(e=>e.departmentId===d.id).length
+ })).filter(x=>x.value);
+ const employeesWithoutDept=S.employees.filter(e=>!e.departmentId).length;
+ if(employeesWithoutDept)deptCounts.push({label:"Sem departamento",value:employeesWithoutDept});
+ const contracts=["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"]
+  .map(label=>({label,value:S.employees.filter(e=>e.contract===label).length}))
+  .filter(x=>x.value);
+ const latest=S.leaves.slice(-5).reverse();
+
  $("view").innerHTML=`
- <div class="hero">
- <div class="eyebrow">● BUSINESS PRO • ENTERPRISE</div>
- <h2>Uma nova experiência em gestão empresarial.</h2>
- <p>Centralize seus processos em uma plataforma com visual premium, empresas independentes e operações conectadas.</p>
- <div class="actions">
- <button class="primary" data-go="employees" ${!readHR()?"disabled":""}>Abrir Central RH</button>
- <button class="ghost" data-go="catalog">Explorar plataforma</button>
- </div></div>
- <div class="metrics">
- ${[
-  ["Colaboradores ativos",S.employees.filter(e=>e.status==="Ativo").length,"EQUIPE"],
-  ["Departamentos",S.departments.length,"ESTRUTURA"],
-  ["Solicitações pendentes",S.leaves.filter(l=>l.status==="Pendente").length,"APROVAÇÕES"],
-  ["Usuários autorizados",S.members.length,"ACESSOS"]
- ].map(m=>`<div class="metric"><small>${m[0]}</small>
- <div class="value">${m[1]}</div><div class="unit">● ${m[2]}</div></div>`).join("")}
+ ${stats([
+  stat("Colaboradores ativos",active,"♙","var(--blue)","EQUIPE ATIVA"),
+  stat("Departamentos",S.departments.length,"▦","var(--orange)","ESTRUTURA"),
+  stat("Solicitações pendentes",pending,"◷","var(--purple)","APROVAÇÕES"),
+  stat("Usuários autorizados",S.members.length,"♧","var(--green)","ACESSOS"),
+  stat("Vagas cadastradas",S.vacancies.length,"◇","var(--red)","RECRUTAMENTO")
+ ])}
+ <div class="dashboard-grid">
+ ${panel("Evolução de admissões",`
+ <div class="legend"><span><i class="dot"></i>Admissões por mês</span>
+ <span>Últimos 12 meses • dados cadastrados</span></div>
+ ${lineChart(monthSeries(S.employees,"admission"))}`)}
+ ${panel("Análises da empresa",`
+ <div class="insight"><div class="insight-icon">◈</div>
+ <div><b>Estrutura organizacional</b>
+ <p>${S.departments.length} departamentos e ${S.employees.length} colaboradores cadastrados.</p></div></div>
+ <div class="insight"><div class="insight-icon">◷</div>
+ <div><b>Solicitações pendentes</b>
+ <p>${pending} solicitações aguardando decisão.</p></div></div>
+ <div class="insight"><div class="insight-icon">♙</div>
+ <div><b>Equipe ativa</b><p>${active} colaboradores com situação ativa.</p>
+ <div class="progress"><div style="width:${S.employees.length?active/S.employees.length*100:0}%"></div></div></div></div>
+ <div class="notice" style="font-size:11px">Indicadores calculados dos cadastros. Não há análise por IA ativa.</div>`)}
  </div>
- ${section("Centrais de trabalho","",`
- <div class="tiles">${cards.map(c=>`
- <button class="tile" data-go="${c[2]}">
- <div class="iconbox">${c[0]}</div><b>${c[1]}</b><small>${c[3]}</small>
- </button>`).join("")}</div>`)}
- <div class="notice">Esta versão traz o novo design e mantém as operações já implementadas. Os módulos futuros aparecem separados e identificados no catálogo.</div>`;
+ <div class="bottom-grid">
+ ${panel("Colaboradores por departamento",barChart(deptCounts))}
+ ${panel("Tipos de vínculo",donut(contracts))}
+ ${panel("Solicitações recentes",`
+ ${latest.length?latest.map(l=>`
+ <div class="insight"><div class="insight-icon">◷</div>
+ <div><b>${esc(empName(l.employeeId))}</b>
+ <p>${esc(l.type)} • ${fmtDate(l.start)} — ${fmtDate(l.end)}</p>
+ ${badge(l.status)}</div></div>`).join(""):'<div class="empty">Sem solicitações.</div>'}`)}
+ </div>`;
+}
+
+/* CENTRAL RH */
+function hrDashboard(){
+ const active=S.employees.filter(e=>e.status==="Ativo").length;
+ const open=S.vacancies.filter(v=>v.status==="Aberta").length;
+ const away=S.leaves.filter(l=>l.status==="Aprovado"&&l.start<=today()&&l.end>=today()).length;
+ const dept=S.departments.map(d=>({
+  label:d.name,value:S.employees.filter(e=>e.departmentId===d.id).length
+ })).filter(x=>x.value);
+ const without=S.employees.filter(e=>!e.departmentId).length;
+ if(without)dept.push({label:"Sem departamento",value:without});
+ $("view").innerHTML=`
+ ${stats([
+  stat("Funcionários ativos",active,"♙","var(--blue)","ATIVOS"),
+  stat("Vagas abertas",open,"◇","var(--purple)","RECRUTAMENTO"),
+  stat("Ausências hoje",away,"◷","var(--orange)","APROVADAS"),
+  stat("Departamentos",S.departments.length,"▦","var(--green)","EQUIPES"),
+  stat("Candidatos",S.candidates.length,"♧","var(--red)","PROCESSOS")
+ ])}
+ <div class="dashboard-grid">
+ ${panel("Evolução da equipe",`
+ <div class="legend"><span><i class="dot blue"></i>Admissões mensais</span></div>
+ ${lineChart(monthSeries(S.employees,"admission"),"#398eff")}`)}
+ ${panel("Distribuição de colaboradores",donut(dept))}
+ </div>
+ <div class="bottom-grid">
+ ${panel("Equipes por departamento",barChart(dept,"#398eff"))}
+ ${panel("Ações de RH",`
+ <div style="display:grid;gap:9px">
+ <button class="btn" data-go="employees">♙ Gerenciar colaboradores</button>
+ <button class="btn" data-go="attendance">◷ Registrar frequência</button>
+ <button class="btn" data-go="recruitment">◇ Abrir recrutamento</button>
+ <button class="btn" data-go="leaves">▤ Consultar ausências</button>
+ <button class="btn" data-go="payroll">▣ Folha administrativa</button>
+ </div>`)}
+ ${panel("Últimos colaboradores",`
+ ${S.employees.slice(-5).reverse().map(e=>`
+ <div class="insight"><div class="insight-icon">♙</div>
+ <div><b>${esc(e.name)}</b><p>${esc(e.role)} • ${esc(depName(e.departmentId))}</p></div></div>`).join("")||
+ '<div class="empty">Nenhum colaborador.</div>'}`)}
+ </div>`;
  document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+}
+
+/* COLABORADORES */
+function employeesPage(){
+ $("view").innerHTML=panel("Diretório de colaboradores",`
+ <div class="tools"><input id="empSearch" placeholder="Pesquisar nome, cargo ou matrícula...">
+ <span class="badge">${S.employees.length} registros</span></div>
+ ${table(["Colaborador","Matrícula","Cargo","Departamento","Situação","Ações"],
+ S.employees.map(e=>`
+ <tr class="emp-row" data-search="${esc(`${e.name||""} ${e.role||""} ${e.registration||""}`.toLowerCase())}">
+ <td><b>${esc(e.name)}</b><br><small>${esc(e.email||"")}</small></td>
+ <td>${esc(e.registration||"—")}</td><td>${esc(e.role)}</td>
+ <td>${esc(depName(e.departmentId))}</td><td>${badge(e.status)}</td>
+ <td>${admin()?`<button class="btn sm" data-emp="${e.id}">Abrir ficha</button>`:"—"}</td></tr>`))}
+ `,`${admin()?'<button class="btn primary sm" id="newEmp">＋ Admitir colaborador</button>':""}
+ <button class="btn sm" id="exportEmp">Exportar CSV</button>`) +
+ `<div class="notice">Cadastro administrativo de RH. Não equivale a admissão oficial no eSocial.</div>`;
+ $("empSearch").oninput=e=>{
+  const q=e.target.value.toLowerCase();
+  document.querySelectorAll(".emp-row").forEach(r=>r.hidden=!r.dataset.search.includes(q));
+ };
+ $("exportEmp").onclick=()=>exportCSV("colaboradores.csv",
+ ["Nome","Matrícula","Cargo","Departamento","Situação"],
+ S.employees.map(e=>[e.name,e.registration,e.role,depName(e.departmentId),e.status]));
+ if(admin()){
+  $("newEmp").onclick=()=>employeeModal();
+  document.querySelectorAll("[data-emp]").forEach(b=>b.onclick=()=>employeeModal(b.dataset.emp));
+ }
+}
+function employeeModal(id=null){
+ const e=S.employees.find(x=>x.id===id)||{};
+ modal(id?"Ficha do colaborador":"Admitir colaborador",`
+ ${field("Nome completo","name",e.name,"text",true)}
+ ${field("Matrícula","registration",e.registration)}
+ ${field("E-mail","email",e.email,"email")}
+ ${field("Cargo","role",e.role,"text",true)}
+ ${selectField("Departamento","departmentId",[
+  {value:"",label:"Não definido"},
+  ...S.departments.map(d=>({value:d.id,label:d.name}))
+ ],e.departmentId)}
+ ${field("Data de admissão","admission",e.admission,"date")}
+ ${selectField("Vínculo","contract",["CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"],e.contract)}
+ ${selectField("Situação","status",["Ativo","Férias","Afastado","Desligado"],e.status||"Ativo")}
+ ${field("Gestor","manager",e.manager)}
+ ${field("Jornada semanal","weeklyHours",e.weeklyHours,"number")}
+ ${noteField("Observações","notes",e.notes)}
+ `,async v=>{
+  if(!admin())throw Error("Sem permissão.");
+  const data={...v,updatedAt:serverTimestamp()};
+  if(id)await updateDoc(ref("employees",id),data);
+  else await addDoc(col("employees"),{...data,createdAt:serverTimestamp()});
+  await audit(id?"Editar colaborador":"Cadastrar colaborador",v.name);
+  await refresh();
+ });
+}
+
+/* DEPARTAMENTOS */
+function departmentsPage(){
+ $("view").innerHTML=panel("Estrutura de departamentos",
+ table(["Departamento","Código","Responsável","Pessoas","Ações"],
+ S.departments.map(d=>`<tr><td><b>${esc(d.name)}</b></td>
+ <td>${esc(d.code||"—")}</td><td>${esc(d.manager||"—")}</td>
+ <td>${S.employees.filter(e=>e.departmentId===d.id).length}</td>
+ <td>${admin()?`<button class="btn sm" data-dep="${d.id}">Editar</button>`:"—"}</td></tr>`)),
+ admin()?'<button class="btn primary sm" id="newDep">＋ Departamento</button>':"");
+ if(admin()){
+  $("newDep").onclick=()=>departmentModal();
+  document.querySelectorAll("[data-dep]").forEach(b=>b.onclick=()=>departmentModal(b.dataset.dep));
+ }
+}
+function departmentModal(id=null){
+ const d=S.departments.find(x=>x.id===id)||{};
+ modal(id?"Editar departamento":"Criar departamento",`
+ ${field("Nome","name",d.name,"text",true)}
+ ${field("Código","code",d.code)}
+ ${field("Responsável","manager",d.manager)}
+ ${noteField("Descrição","description",d.description)}
+ `,async v=>{
+  if(!admin())throw Error("Sem permissão.");
+  if(id)await updateDoc(ref("departments",id),{...v,updatedAt:serverTimestamp()});
+  else await addDoc(col("departments"),{...v,createdAt:serverTimestamp()});
+  await audit("Salvar departamento",v.name);await refresh();
+ });
+}
+
+/* FÉRIAS E AUSÊNCIAS */
+function leavesPage(){
+ $("view").innerHTML=panel("Solicitações de férias e ausências",
+ table(["Colaborador","Tipo","Início","Fim","Situação","Decisão"],
+ S.leaves.map(l=>`<tr><td>${esc(empName(l.employeeId))}</td>
+ <td>${esc(l.type)}</td><td>${fmtDate(l.start)}</td><td>${fmtDate(l.end)}</td>
+ <td>${badge(l.status)}</td>
+ <td>${l.status==="Pendente"&&manager()?`
+ <button class="btn sm" data-leave="${l.id}" data-status="Aprovado">Aprovar</button>
+ <button class="btn sm danger" data-leave="${l.id}" data-status="Rejeitado">Rejeitar</button>`:"—"}</td></tr>`)),
+ admin()?'<button class="btn primary sm" id="newLeave">＋ Solicitação</button>':"")+
+ '<div class="notice">Registro administrativo. Não calcula férias trabalhistas ou períodos aquisitivos.</div>';
+ if(admin())$("newLeave").onclick=leaveModal;
+ document.querySelectorAll("[data-leave]").forEach(b=>
+  b.onclick=()=>decideLeave(b.dataset.leave,b.dataset.status));
+}
+function leaveModal(){
+ if(!S.employees.length)return toast("Cadastre um colaborador.");
+ modal("Solicitação de ausência",`
+ ${selectField("Colaborador","employeeId",S.employees.map(e=>({value:e.id,label:e.name})))}
+ ${selectField("Tipo","type",["Férias","Licença","Folga","Afastamento"])}
+ ${field("Início","start","","date",true)}
+ ${field("Fim","end","","date",true)}
+ ${noteField("Observações","notes")}
+ `,async v=>{
+  if(!admin())throw Error("Sem permissão.");
+  if(v.end<v.start)throw Error("Período inválido.");
+  if(S.leaves.some(l=>l.employeeId===v.employeeId&&l.status==="Aprovado"&&v.start<=l.end&&v.end>=l.start))
+   throw Error("Há uma ausência aprovada no mesmo período.");
+  await addDoc(col("leaves"),{...v,status:"Pendente",createdAt:serverTimestamp()});
+  await audit("Solicitar ausência",empName(v.employeeId));await refresh();
+ });
+}
+async function decideLeave(id,status){
+ if(!manager())return;
+ const l=S.leaves.find(x=>x.id===id);
+ if(!l||l.status!=="Pendente")return;
+ if(status==="Aprovado"&&S.leaves.some(x=>
+  x.id!==id&&x.employeeId===l.employeeId&&x.status==="Aprovado"&&
+  l.start<=x.end&&l.end>=x.start))return toast("Conflito de período.");
+ if(!confirm(`Confirmar: ${status}?`))return;
+ try{
+  await updateDoc(ref("leaves",id),{
+   status,decidedBy:S.user.uid,decidedAt:serverTimestamp()
+  });
+  await audit("Decisão de ausência: "+status,empName(l.employeeId));
+  await refresh();
+ }catch(e){toast(fail(e))}
+}
+
+/* PONTO ADMINISTRATIVO */
+function attendancePage(){
+ $("view").innerHTML=panel("Registros de frequência",
+ table(["Colaborador","Data","Entrada","Saída","Intervalo (min)","Ações"],
+ S.attendance.map(a=>`<tr><td>${esc(empName(a.employeeId))}</td>
+ <td>${fmtDate(a.date)}</td><td>${esc(a.start||"—")}</td>
+ <td>${esc(a.end||"—")}</td><td>${esc(a.breakMinutes||"0")}</td>
+ <td>${admin()?`<button class="btn sm" data-att="${a.id}">Editar</button>`:"—"}</td></tr>`)),
+ admin()?'<button class="btn primary sm" id="newAttendance">＋ Registrar frequência</button>':"")+
+ '<div class="notice">Controle administrativo manual. Não é um registrador eletrônico de ponto homologado.</div>';
+ if(admin()){
+  $("newAttendance").onclick=()=>attendanceModal();
+  document.querySelectorAll("[data-att]").forEach(b=>b.onclick=()=>attendanceModal(b.dataset.att));
+ }
+}
+function attendanceModal(id=null){
+ const a=S.attendance.find(x=>x.id===id)||{};
+ if(!S.employees.length)return toast("Cadastre colaboradores primeiro.");
+ modal("Registro de frequência",`
+ ${selectField("Colaborador","employeeId",S.employees.map(e=>({value:e.id,label:e.name})),a.employeeId)}
+ ${field("Data","date",a.date||today(),"date",true)}
+ ${field("Entrada","start",a.start,"time",true)}
+ ${field("Saída","end",a.end,"time")}
+ ${field("Intervalo em minutos","breakMinutes",a.breakMinutes||"0","number")}
+ ${noteField("Observações","notes",a.notes)}
+ `,async v=>{
+  if(!admin())throw Error("Sem permissão.");
+  if(num(v.breakMinutes)<0)throw Error("Intervalo inválido.");
+  if(id)await updateDoc(ref("attendance",id),{...v,updatedAt:serverTimestamp()});
+  else await addDoc(col("attendance"),{...v,createdAt:serverTimestamp()});
+  await audit("Registro de frequência",empName(v.employeeId));await refresh();
+ });
+}
+
+/* RECRUTAMENTO */
+function recruitmentPage(){
+ const stages=["Inscrito","Triagem","Entrevista","Proposta","Contratado","Rejeitado"];
+ $("view").innerHTML=`
+ ${stats([
+  stat("Vagas abertas",S.vacancies.filter(v=>v.status==="Aberta").length,"◇"),
+  stat("Candidatos",S.candidates.length,"♙","var(--blue)"),
+  stat("Entrevistas",S.candidates.filter(c=>c.stage==="Entrevista").length,"◷","var(--purple)"),
+  stat("Contratados",S.candidates.filter(c=>c.stage==="Contratado").length,"✓","var(--green)"),
+  stat("Vagas totais",S.vacancies.length,"▦")
+ ])}
+ ${panel("Vagas",table(["Título","Departamento","Modalidade","Status","Ações"],
+ S.vacancies.map(v=>`<tr><td>${esc(v.title)}</td><td>${esc(depName(v.departmentId))}</td>
+ <td>${esc(v.mode||"—")}</td><td>${badge(v.status)}</td>
+ <td>${admin()?`<button class="btn sm" data-vac="${v.id}">Editar</button>`:"—"}</td></tr>`)),
+ admin()?'<button class="btn primary sm" id="newVac">＋ Abrir vaga</button>':"")}
+ ${panel("Candidatos",table(["Nome","Vaga","Etapa","Contato","Ações"],
+ S.candidates.map(c=>`<tr><td>${esc(c.name)}</td>
+ <td>${esc(S.vacancies.find(v=>v.id===c.vacancyId)?.title||"—")}</td>
+ <td>${badge(c.stage)}</td><td>${esc(c.email||"—")}</td>
+ <td>${admin()?`<button class="btn sm" data-cand="${c.id}">Atualizar etapa</button>`:"—"}</td></tr>`)),
+ admin()?'<button class="btn primary sm" id="newCand">＋ Candidato</button>':"")}`;
+ if(admin()){
+  $("newVac").onclick=()=>vacancyModal();
+  $("newCand").onclick=()=>candidateModal();
+  document.querySelectorAll("[data-vac]").forEach(b=>b.onclick=()=>vacancyModal(b.dataset.vac));
+  document.querySelectorAll("[data-cand]").forEach(b=>b.onclick=()=>candidateModal(b.dataset.cand));
+ }
+}
+function vacancyModal(id=null){
+ const v=S.vacancies.find(x=>x.id===id)||{};
+ modal(id?"Editar vaga":"Abrir vaga",`
+ ${field("Título da vaga","title",v.title,"text",true)}
+ ${selectField("Departamento","departmentId",[
+  {value:"",label:"Não definido"},
+  ...S.departments.map(d=>({value:d.id,label:d.name}))
+ ],v.departmentId)}
+ ${selectField("Modalidade","mode",["Presencial","Híbrido","Remoto"],v.mode)}
+ ${selectField("Situação","status",["Aberta","Pausada","Concluída","Cancelada"],v.status||"Aberta")}
+ ${noteField("Descrição da vaga","description",v.description)}
+ `,async data=>{
+  if(!admin())throw Error("Sem permissão.");
+  if(id)await updateDoc(ref("vacancies",id),{...data,updatedAt:serverTimestamp()});
+  else await addDoc(col("vacancies"),{...data,createdAt:serverTimestamp()});
+  await audit("Salvar vaga",data.title);await refresh();
+ });
+}
+function candidateModal(id=null){
+ const c=S.candidates.find(x=>x.id===id)||{};
+ if(!S.vacancies.length)return toast("Crie uma vaga primeiro.");
+ modal(id?"Atualizar candidato":"Cadastrar candidato",`
+ ${field("Nome","name",c.name,"text",true)}
+ ${field("E-mail","email",c.email,"email")}
+ ${selectField("Vaga","vacancyId",S.vacancies.map(v=>({value:v.id,label:v.title})),c.vacancyId)}
+ ${selectField("Etapa","stage",["Inscrito","Triagem","Entrevista","Proposta","Contratado","Rejeitado"],c.stage||"Inscrito")}
+ ${noteField("Observações","notes",c.notes)}
+ `,async data=>{
+  if(!admin())throw Error("Sem permissão.");
+  if(id)await updateDoc(ref("candidates",id),{...data,updatedAt:serverTimestamp()});
+  else await addDoc(col("candidates"),{...data,createdAt:serverTimestamp()});
+  await audit("Salvar candidato",data.name);await refresh();
+ });
+}
+
+/* DESEMPENHO — INDICADORES CADASTRAIS */
+function performancePage(){
+ const byDept=S.departments.map(d=>({
+  label:d.name,value:S.employees.filter(e=>e.departmentId===d.id&&e.status==="Ativo").length
+ })).filter(x=>x.value);
+ $("view").innerHTML=`
+ ${stats([
+  stat("Equipe ativa",S.employees.filter(e=>e.status==="Ativo").length,"♙","var(--blue)"),
+  stat("Departamentos",S.departments.length,"▦"),
+  stat("Afastados",S.employees.filter(e=>e.status==="Afastado").length,"◷","var(--red)"),
+  stat("Em férias",S.employees.filter(e=>e.status==="Férias").length,"▤","var(--purple)"),
+  stat("Desligados",S.employees.filter(e=>e.status==="Desligado").length,"◇")
+ ])}
+ <div class="dashboard-grid">
+ ${panel("Distribuição da equipe",barChart(byDept,"#398eff"))}
+ ${panel("Situação dos colaboradores",donut(
+  ["Ativo","Férias","Afastado","Desligado"].map(label=>({
+   label,value:S.employees.filter(e=>e.status===label).length
+  })).filter(x=>x.value)
+ ))}
+ </div>
+ <div class="notice">Esta tela apresenta indicadores de pessoal. Avaliações 360°, metas, feedback e PDI ainda não estão implementados.</div>`;
+}
+
+/* FOLHA ADMINISTRATIVA */
+function payrollPage(){
+ const totals=S.payroll.reduce((a,p)=>{
+  a.base+=num(p.base);a.extra+=num(p.extra);a.deductions+=num(p.deductions);
+  return a;
+ },{base:0,extra:0,deductions:0});
+ $("view").innerHTML=`
+ ${stats([
+  stat("Salário-base registrado",money(totals.base),"▣"),
+  stat("Adicionais",money(totals.extra),"＋","var(--green)"),
+  stat("Descontos manuais",money(totals.deductions),"−","var(--red)"),
+  stat("Total líquido estimado",money(totals.base+totals.extra-totals.deductions),"◇","var(--blue)"),
+  stat("Lançamentos",S.payroll.length,"▦")
+ ])}
+ ${panel("Lançamentos administrativos",
+ table(["Colaborador","Competência","Base","Adicionais","Descontos","Total","Ação"],
+ S.payroll.map(p=>`<tr><td>${esc(empName(p.employeeId))}</td>
+ <td>${esc(p.period)}</td><td>${money(p.base)}</td>
+ <td>${money(p.extra)}</td><td>${money(p.deductions)}</td>
+ <td>${money(num(p.base)+num(p.extra)-num(p.deductions))}</td>
+ <td>${admin()?`<button class="btn sm" data-pay="${p.id}">Editar</button>`:"—"}</td></tr>`)),
+ admin()?'<button class="btn primary sm" id="newPay">＋ Lançamento</button>':"")}
+ <div class="notice">Simulação administrativa manual. Não calcula INSS, IRRF, FGTS, férias, 13º ou rescisão legalmente. Não transmite dados ao eSocial.</div>`;
+ if(admin()){
+  $("newPay").onclick=()=>payrollModal();
+  document.querySelectorAll("[data-pay]").forEach(b=>b.onclick=()=>payrollModal(b.dataset.pay));
+ }
+}
+function payrollModal(id=null){
+ const p=S.payroll.find(x=>x.id===id)||{};
+ if(!S.employees.length)return toast("Cadastre colaboradores primeiro.");
+ modal("Lançamento de folha administrativa",`
+ ${selectField("Colaborador","employeeId",S.employees.map(e=>({value:e.id,label:e.name})),p.employeeId)}
+ ${field("Competência (AAAA-MM)","period",p.period||today().slice(0,7),"month",true)}
+ ${field("Salário-base","base",p.base||"0","number",true)}
+ ${field("Adicionais","extra",p.extra||"0","number")}
+ ${field("Descontos manuais","deductions",p.deductions||"0","number")}
+ ${noteField("Observações","notes",p.notes)}
+ `,async v=>{
+  if(!admin())throw Error("Sem permissão.");
+  if(["base","extra","deductions"].some(k=>!Number.isFinite(Number(v[k]))||Number(v[k])<0))
+   throw Error("Valores inválidos.");
+  if(id)await updateDoc(ref("payroll",id),{...v,updatedAt:serverTimestamp()});
+  else await addDoc(col("payroll"),{...v,createdAt:serverTimestamp()});
+  await audit("Lançamento administrativo de folha",empName(v.employeeId));
+  await refresh();
+ });
 }
 
 /* EMPRESAS */
 function companiesPage(){
- const c=company();
- $("view").innerHTML=`
- <div class="hero"><div class="eyebrow">ESTRUTURA EMPRESARIAL</div>
- <h2>${safe(c?.name||"Empresa")}</h2>
- <p>Administre organizações independentes e suas informações cadastrais.</p></div>
- ${section("Dados da empresa",`<button class="primary" id="companyNew">＋ Nova empresa</button>`,`
- <div class="formgrid">
- <div><small>Razão social</small><h3>${safe(c?.name||"—")}</h3></div>
- <div><small>Nome fantasia</small><h3>${safe(c?.tradeName||"—")}</h3></div>
- <div><small>CNPJ informado</small><h3>${safe(c?.cnpj||"—")}</h3></div>
- <div><small>Localidade</small><h3>${safe(c?.city||"—")} / ${safe(c?.state||"—")}</h3></div>
- </div>`)}
- ${section("Empresas vinculadas","",`
- <div class="tiles">${S.companies.map(x=>`
- <div class="tile"><div class="iconbox">▤</div><b>${safe(x.name)}</b>
- <small>${x.id===S.cid?"Empresa ativa":"Empresa disponível"}</small>
- </div>`).join("")}</div>`)}
- <div class="notice">O isolamento dos dados depende das regras do Firestore. Filiais e centros de custo ainda não foram implementados.</div>`;
- $("companyNew").onclick=companyModal;
+ const c=S.companies.find(x=>x.id===S.cid);
+ $("view").innerHTML=panel("Empresa ativa",`
+ <div class="form-grid">
+ <div><small>Razão social</small><h2>${esc(c?.name||"—")}</h2></div>
+ <div><small>Nome fantasia</small><h2>${esc(c?.tradeName||"—")}</h2></div>
+ <div><small>CNPJ informado</small><h2>${esc(c?.cnpj||"—")}</h2></div>
+ <div><small>Localidade</small><h2>${esc(c?.city||"—")} / ${esc(c?.state||"—")}</h2></div>
+ </div>`, '<button class="btn primary sm" id="newCompany">＋ Nova empresa</button>')+
+ panel("Empresas vinculadas",table(["Empresa","Cidade","Situação"],
+ S.companies.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.city||"—")}</td>
+ <td>${badge(x.id===S.cid?"Ativo":"Disponível")}</td></tr>`)));
+ $("newCompany").onclick=companyModal;
 }
 function companyModal(){
- modal("Cadastrar nova empresa",`
- ${field("Razão social / Nome","name","","text",true)}
+ modal("Cadastrar empresa",`
+ ${field("Razão social ou nome","name","","text",true)}
  ${field("Nome fantasia","tradeName")}
  ${field("CNPJ","cnpj")}
  ${field("Cidade","city")}
@@ -654,220 +982,27 @@ function companyModal(){
   const d=doc(collection(db,"companies"));
   const batch=writeBatch(db);
   batch.set(d,{
-   name:v.name.trim(),tradeName:v.tradeName.trim(),
-   cnpj:v.cnpj.trim(),city:v.city.trim(),state:v.state.trim(),
-   ownerUid:S.user.uid,memberUids:[S.user.uid],
-   createdAt:serverTimestamp()
+   name:v.name.trim(),tradeName:v.tradeName.trim(),cnpj:v.cnpj.trim(),
+   city:v.city.trim(),state:v.state.trim(),
+   ownerUid:S.user.uid,memberUids:[S.user.uid],createdAt:serverTimestamp()
   });
   batch.set(doc(db,"companies",d.id,"members",S.user.uid),{
-   uid:S.user.uid,email:S.user.email||"",
-   name:S.user.displayName||"",role:"owner",
-   createdAt:serverTimestamp()
+   uid:S.user.uid,email:S.user.email||"",name:S.user.displayName||"",
+   role:"owner",createdAt:serverTimestamp()
   });
-  await batch.commit();
-  S.cid=d.id;
-  await loadCompanies();
-  toast("Empresa cadastrada.");
+  await batch.commit();S.cid=d.id;await loadCompanies();
  });
 }
 
-/* DEPARTAMENTOS */
-function departmentsPage(){
- $("view").innerHTML=`
- <div class="hero"><div class="eyebrow">ESTRUTURA ORGANIZACIONAL</div>
- <h2>Departamentos e equipes</h2>
- <p>Organize as áreas da empresa e associe colaboradores a cada departamento.</p></div>
- ${section("Departamentos",manage()?`<button class="primary" id="newDep">＋ Criar departamento</button>`:"",`
- <div class="tablewrap"><table>
- <thead><tr><th>Departamento</th><th>Código</th><th>Responsável</th><th>Pessoas</th><th>Ações</th></tr></thead>
- <tbody>${S.departments.map(d=>`
- <tr><td><b>${safe(d.name)}</b></td><td>${safe(d.code||"—")}</td>
- <td>${safe(d.manager||"—")}</td>
- <td>${S.employees.filter(e=>e.departmentId===d.id).length}</td>
- <td>${manage()?`<button class="ghost sm" data-dep="${d.id}">Editar</button>`:"—"}</td>
- </tr>`).join("")}</tbody></table></div>
- ${S.departments.length?"":empty("Nenhum departamento cadastrado.")}`)}`;
- if(manage()){
-  $("newDep").onclick=()=>departmentModal();
-  document.querySelectorAll("[data-dep]").forEach(b=>
-   b.onclick=()=>departmentModal(b.dataset.dep));
- }
-}
-function departmentModal(id=null){
- const d=S.departments.find(x=>x.id===id)||{};
- modal(id?"Editar departamento":"Novo departamento",`
- ${field("Nome do departamento","name",d.name,"text",true)}
- ${field("Código interno","code",d.code)}
- ${field("Responsável","manager",d.manager)}
- ${memo("Descrição","description",d.description)}
- `,async v=>{
-  if(!manage())throw Error("Sem permissão.");
-  if(id)await updateDoc(ref("departments",id),{
-   ...v,updatedAt:serverTimestamp()
-  });
-  else await addDoc(col("departments"),{
-   ...v,createdAt:serverTimestamp()
-  });
-  await audit(id?"Editar departamento":"Criar departamento",v.name);
-  await refresh();toast("Departamento salvo.");
- });
-}
-
-/* COLABORADORES */
-function employeesPage(){
- $("view").innerHTML=`
- <div class="hero"><div class="eyebrow">CENTRAL DE RECURSOS HUMANOS</div>
- <h2>Gestão de colaboradores</h2>
- <p>Diretório profissional, vínculos, departamentos, situação contratual e informações administrativas.</p></div>
- ${section("Diretório de pessoas",`
- ${manage()?'<button class="primary" id="newEmp">＋ Cadastrar colaborador</button>':""}
- <button class="ghost" id="exportEmp">Exportar CSV</button>`,`
- <div class="toolbar"><input id="empSearch" placeholder="Buscar nome, cargo ou matrícula...">
- <span class="tag">${S.employees.length} registros</span></div>
- <div class="tablewrap"><table>
- <thead><tr><th>Nome</th><th>Matrícula</th><th>Cargo</th><th>Departamento</th><th>Status</th><th>Ação</th></tr></thead>
- <tbody id="empRows">${S.employees.map(e=>`
- <tr data-search="${safe(`${e.name||""} ${e.role||""} ${e.registration||""}`.toLowerCase())}">
- <td><b>${safe(e.name)}</b><div class="muted">${safe(e.email||"")}</div></td>
- <td>${safe(e.registration||"—")}</td><td>${safe(e.role||"—")}</td>
- <td>${safe(S.departments.find(d=>d.id===e.departmentId)?.name||"—")}</td>
- <td>${tag(e.status)}</td>
- <td>${manage()?`<button class="ghost sm" data-emp="${e.id}">Abrir ficha</button>`:"—"}</td>
- </tr>`).join("")}</tbody></table></div>
- ${S.employees.length?"":empty("Nenhum colaborador cadastrado.")}`)}
- <div class="notice">Cadastro administrativo. Não substitui admissão legal, registro trabalhista ou transmissão ao eSocial.</div>`;
- $("empSearch").oninput=ev=>{
-  const q=ev.target.value.toLowerCase();
-  document.querySelectorAll("#empRows tr").forEach(tr=>
-   tr.hidden=!tr.dataset.search.includes(q));
- };
- $("exportEmp").onclick=()=>exportCSV(
-  "colaboradores.csv",
-  ["Nome","Matrícula","Cargo","E-mail","Situação"],
-  S.employees.map(e=>[e.name,e.registration,e.role,e.email,e.status])
- );
- if(manage()){
-  $("newEmp").onclick=()=>employeeModal();
-  document.querySelectorAll("[data-emp]").forEach(b=>
-   b.onclick=()=>employeeModal(b.dataset.emp));
- }
-}
-function employeeModal(id=null){
- const e=S.employees.find(x=>x.id===id)||{};
- modal(id?"Ficha do colaborador":"Cadastrar colaborador",`
- ${field("Nome completo","name",e.name,"text",true)}
- ${field("Matrícula","registration",e.registration)}
- ${field("E-mail profissional","email",e.email,"email")}
- ${field("Cargo","role",e.role,"text",true)}
- ${choice("Departamento","departmentId",[
-  {value:"",label:"Não definido"},
-  ...S.departments.map(d=>({value:d.id,label:d.name}))
- ],e.departmentId)}
- ${field("Data de admissão","admission",e.admission,"date")}
- ${choice("Vínculo","contract",[
-  "CLT","Estágio","Aprendiz","Prestador","Sócio","Outro"
- ],e.contract)}
- ${choice("Situação","status",[
-  "Ativo","Férias","Afastado","Desligado"
- ],e.status||"Ativo")}
- ${field("Gestor","manager",e.manager)}
- ${field("Horas semanais","weeklyHours",e.weeklyHours,"number")}
- ${memo("Observações","notes",e.notes)}
- `,async v=>{
-  if(!manage())throw Error("Sem permissão.");
-  if(!v.name.trim()||!v.role.trim())throw Error("Informe nome e cargo.");
-  const data={...v,name:v.name.trim(),role:v.role.trim(),
-   updatedAt:serverTimestamp()};
-  if(id)await updateDoc(ref("employees",id),data);
-  else await addDoc(col("employees"),{
-   ...data,createdAt:serverTimestamp()
-  });
-  await audit(id?"Atualizar colaborador":"Cadastrar colaborador",v.name);
-  await refresh();toast("Colaborador salvo.");
- });
-}
-
-/* FÉRIAS E AUSÊNCIAS */
-function leavesPage(){
- $("view").innerHTML=`
- <div class="hero"><div class="eyebrow">GESTÃO DE AUSÊNCIAS</div>
- <h2>Férias, licenças e afastamentos</h2>
- <p>Solicitações com período, responsável e decisões administrativas.</p></div>
- ${section("Solicitações",manage()?`
- <button class="primary" id="newLeave">＋ Nova solicitação</button>`:"",`
- <div class="tablewrap"><table>
- <thead><tr><th>Colaborador</th><th>Tipo</th><th>Período</th><th>Dias</th><th>Situação</th><th>Decisão</th></tr></thead>
- <tbody>${S.leaves.map(l=>`
- <tr><td>${safe(employeeName(l.employeeId))}</td><td>${safe(l.type)}</td>
- <td>${dateBR(l.start)} — ${dateBR(l.end)}</td><td>${days(l.start,l.end)}</td>
- <td>${tag(l.status)}</td>
- <td>${l.status==="Pendente"&&approve()?`
- <button class="ghost sm" data-decision="Aprovado" data-leave="${l.id}">Aprovar</button>
- <button class="danger sm" data-decision="Rejeitado" data-leave="${l.id}">Rejeitar</button>`:"—"}</td></tr>`).join("")}</tbody></table></div>
- ${S.leaves.length?"":empty("Nenhuma solicitação registrada.")}`)}
- <div class="notice">Aprovação administrativa de ausência. Ainda não calcula períodos aquisitivos nem remuneração de férias.</div>`;
- if(manage())$("newLeave").onclick=leaveModal;
- document.querySelectorAll("[data-leave]").forEach(b=>
-  b.onclick=()=>decideLeave(b.dataset.leave,b.dataset.decision));
-}
-function leaveModal(){
- if(!S.employees.length)return toast("Cadastre um colaborador primeiro.");
- modal("Solicitar ausência",`
- ${choice("Colaborador","employeeId",S.employees.map(e=>({
-  value:e.id,label:e.name
- })))}
- ${choice("Tipo","type",["Férias","Licença","Folga","Afastamento"])}
- ${field("Data inicial","start","","date",true)}
- ${field("Data final","end","","date",true)}
- ${memo("Observações","notes")}
- `,async v=>{
-  if(!manage())throw Error("Sem permissão.");
-  if(v.end<v.start)throw Error("Data final anterior à inicial.");
-  const conflict=S.leaves.some(l=>
-   l.employeeId===v.employeeId&&l.status==="Aprovado"&&
-   v.start<=l.end&&v.end>=l.start);
-  if(conflict)throw Error("Conflito com ausência aprovada.");
-  await addDoc(col("leaves"),{
-   ...v,status:"Pendente",createdBy:S.user.uid,
-   createdAt:serverTimestamp()
-  });
-  await audit("Solicitar ausência",employeeName(v.employeeId));
-  await refresh();toast("Solicitação criada.");
- });
-}
-async function decideLeave(id,status){
- if(!approve())return;
- const l=S.leaves.find(x=>x.id===id);
- if(!l||l.status!=="Pendente")return;
- if(status==="Aprovado"&&S.leaves.some(x=>
-  x.id!==id&&x.employeeId===l.employeeId&&
-  x.status==="Aprovado"&&l.start<=x.end&&l.end>=x.start))
-  return toast("Há uma ausência aprovada no mesmo período.");
- if(!confirm(`Confirmar: ${status}?`))return;
- try{
-  await updateDoc(ref("leaves",id),{
-   status,decidedBy:S.user.uid,decidedAt:serverTimestamp()
-  });
-  await audit("Decisão de ausência: "+status,employeeName(l.employeeId));
-  await refresh();toast("Decisão registrada.");
- }catch(e){toast(err(e))}
-}
-
-/* MEMBROS */
+/* PERMISSÕES */
 function teamPage(){
- $("view").innerHTML=`
- <div class="hero"><div class="eyebrow">CONTROLE DE ACESSO</div>
- <h2>Usuários e permissões</h2>
- <p>Gerencie quem participa da empresa e o perfil de acesso atribuído.</p></div>
- ${section("Membros autorizados",owner()?`
- <button class="primary" id="newMember">＋ Autorizar membro</button>`:"",`
- <div class="tablewrap"><table>
- <thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>UID</th></tr></thead>
- <tbody>${S.members.map(m=>`
- <tr><td>${safe(m.name||"—")}</td><td>${safe(m.email||"—")}</td>
- <td>${tag(m.role)}</td><td><small>${safe(m.uid||m.id)}</small></td></tr>
- `).join("")}</tbody></table></div>`)}
- <div class="notice">O convite por e-mail ainda não foi implementado. Nesta versão, o proprietário precisa informar o UID do usuário no Firebase.</div>`;
+ $("view").innerHTML=panel("Usuários autorizados",
+ table(["Nome","E-mail","Perfil","UID"],
+ S.members.map(m=>`<tr><td>${esc(m.name||"—")}</td>
+ <td>${esc(m.email||"—")}</td><td>${badge(m.role)}</td>
+ <td><small>${esc(m.uid||m.id)}</small></td></tr>`)),
+ owner()?'<button class="btn primary sm" id="newMember">＋ Autorizar usuário</button>':"")+
+ '<div class="notice">O cadastro de membros usa UID. Convites por e-mail e administração segura de perfis exigem backend e regras específicas.</div>';
  if(owner())$("newMember").onclick=memberModal;
 }
 function memberModal(){
@@ -875,103 +1010,97 @@ function memberModal(){
  ${field("UID do Firebase Authentication","uid","","text",true)}
  ${field("E-mail","email","","email",true)}
  ${field("Nome","name")}
- ${choice("Perfil","role",[
-  "admin","hr","manager","employee","auditor"
- ])}
+ ${selectField("Perfil","role",["admin","hr","manager","employee","auditor"])}
  `,async v=>{
-  if(!owner())throw Error("Apenas o proprietário pode autorizar.");
+  if(!owner())throw Error("Apenas o proprietário.");
   const uid=v.uid.trim();
   if(!uid||uid.includes("/"))throw Error("UID inválido.");
-  if(S.members.some(m=>m.uid===uid))throw Error("Membro já cadastrado.");
+  if(S.members.some(m=>m.uid===uid))throw Error("Membro já existe.");
   const batch=writeBatch(db);
   batch.set(ref("members",uid),{
-   uid,email:v.email.trim(),name:v.name.trim(),
-   role:v.role,createdAt:serverTimestamp()
+   uid,email:v.email.trim(),name:v.name.trim(),role:v.role,createdAt:serverTimestamp()
   });
+  const c=S.companies.find(x=>x.id===S.cid);
   batch.update(doc(db,"companies",S.cid),{
-   memberUids:[...new Set([...(company().memberUids||[]),uid])]
+   memberUids:[...new Set([...(c.memberUids||[]),uid])]
   });
-  await batch.commit();
-  await audit("Autorizar membro",v.email);
-  await loadCompanies();toast("Membro autorizado.");
+  await batch.commit();await audit("Autorizar membro",v.email);
+  await loadCompanies();
  });
+}
+
+/* RELATÓRIOS */
+function reportsPage(){
+ $("view").innerHTML=`
+ ${stats([
+  stat("Colaboradores",S.employees.length,"♙"),
+  stat("Departamentos",S.departments.length,"▦","var(--blue)"),
+  stat("Vagas",S.vacancies.length,"◇"),
+  stat("Ausências",S.leaves.length,"◷","var(--purple)"),
+  stat("Frequências",S.attendance.length,"▤")
+ ])}
+ ${panel("Exportações",`
+ <div class="tools">
+ <button class="btn" id="reportEmployees">Exportar colaboradores</button>
+ <button class="btn" id="reportLeaves">Exportar ausências</button>
+ <button class="btn" id="reportDepartments">Exportar departamentos</button>
+ </div>
+ <p class="muted">Arquivos CSV para abrir em planilhas.</p>`)}
+ ${panel("Indicadores por departamento",barChart(S.departments.map(d=>({
+  label:d.name,value:S.employees.filter(e=>e.departmentId===d.id).length
+ }))))}`;
+ $("reportEmployees").onclick=()=>exportCSV("colaboradores.csv",
+ ["Nome","Cargo","Matrícula","Situação"],S.employees.map(e=>[e.name,e.role,e.registration,e.status]));
+ $("reportLeaves").onclick=()=>exportCSV("ausencias.csv",
+ ["Colaborador","Tipo","Início","Fim","Status"],
+ S.leaves.map(l=>[empName(l.employeeId),l.type,l.start,l.end,l.status]));
+ $("reportDepartments").onclick=()=>exportCSV("departamentos.csv",
+ ["Nome","Código","Responsável"],S.departments.map(d=>[d.name,d.code,d.manager]));
 }
 
 /* AUDITORIA */
 async function auditPage(){
- $("view").innerHTML=section("Histórico de atividades","","Carregando...");
+ $("view").innerHTML=panel("Histórico de atividades","Carregando...");
  try{
   const snap=await getDocs(col("audit"));
-  const items=snap.docs.map(d=>d.data()).sort((a,b)=>
+  const rows=snap.docs.map(d=>d.data()).sort((a,b)=>
    (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)).slice(0,100);
   if(S.page!=="audit")return;
-  $("view").innerHTML=`
-  <div class="hero"><div class="eyebrow">CONTROLE ADMINISTRATIVO</div>
-  <h2>Histórico de atividades</h2>
-  <p>Registro básico das operações realizadas na plataforma.</p></div>
-  ${section("Últimas atividades","",`
-  <div class="tablewrap"><table>
-  <thead><tr><th>Data</th><th>Responsável</th><th>Ação</th><th>Referência</th></tr></thead>
-  <tbody>${items.map(a=>`
-  <tr><td>${a.createdAt?.toDate?.().toLocaleString("pt-BR")||"—"}</td>
-  <td>${safe(a.actorName||a.actorUid)}</td><td>${safe(a.action)}</td>
-  <td>${safe(a.target)}</td></tr>`).join("")}</tbody></table></div>
-  ${items.length?"":empty("Nenhuma atividade registrada.")}`)}
-  <div class="notice">O log atual é gerado no cliente e não é inviolável. Uma auditoria Enterprise exige registros protegidos no servidor.</div>`;
- }catch(e){toast(err(e))}
+  $("view").innerHTML=panel("Últimas atividades",
+   table(["Data","Responsável","Ação","Registro"],rows.map(a=>`
+   <tr><td>${a.createdAt?.toDate?.().toLocaleString("pt-BR")||"—"}</td>
+   <td>${esc(a.actorName||a.actorUid)}</td><td>${esc(a.action)}</td>
+   <td>${esc(a.target)}</td></tr>`)))+
+   '<div class="notice">Auditoria básica registrada no navegador. Para auditoria inviolável, é necessário registrar eventos no servidor.</div>';
+ }catch(e){toast(fail(e))}
 }
 
-/* CATÁLOGO — ITENS NÃO IMPLEMENTADOS */
-const future=[
- ["▣","Folha e Departamento Pessoal","Folha, 13º, rescisões, encargos e eSocial"],
- ["◷","Ponto e jornadas","Escalas, turnos, banco de horas e frequência"],
- ["✚","Medicina ocupacional","ASO, exames e programas de saúde"],
- ["⬡","Segurança do trabalho","EPIs, inspeções, riscos e CIPA"],
- ["♙","Recrutamento e seleção","Vagas, candidatos e entrevistas"],
- ["◎","Desempenho e carreira","PDI, avaliações, cargos e salários"],
- ["◇","Benefícios","Transporte, alimentação, saúde e seguros"],
- ["▤","Gestão documental","Modelos, versões, arquivos e assinaturas"],
- ["▦","Treinamentos","Cursos, certificados e trilhas"],
- ["▥","Portal do colaborador","Documentos e solicitações pessoais"],
- ["♧","Portal do gestor","Equipe, aprovações e indicadores"],
- ["▧","Projetos e tomadores","Obras, alocações e custos"],
- ["◈","Financeiro","Contas, fluxo de caixa e orçamento"],
- ["▣","Vendas e CRM","Clientes, propostas e oportunidades"],
- ["▥","Estoque e compras","Produtos, fornecedores e inventário"],
- ["≡","Fiscal e contábil","Documentos e obrigações"],
- ["▤","Central Office","PDFs, contratos e documentos"],
- ["✧","BUSINESS IA","Assistente e automações"],
- ["▦","Filiais e centros de custo","Hierarquias e unidades"],
- ["◉","Relatórios avançados","Indicadores, gráficos e análises"]
-];
+/* CATÁLOGO DE EXPANSÃO */
 function catalogPage(){
+ const modules=[
+  ["▣","Financeiro","Contas, caixa, conciliação"],
+  ["▦","Vendas e CRM","Clientes e oportunidades"],
+  ["◇","Estoque","Produtos e inventário"],
+  ["▤","Compras","Fornecedores e pedidos"],
+  ["▧","Fiscal","Documentos e obrigações"],
+  ["♙","Benefícios RH","Transporte, saúde, alimentação"],
+  ["◷","Escalas","Turnos e jornadas"],
+  ["▥","Treinamentos","Cursos e certificados"],
+  ["◈","Desempenho 360°","Avaliações e PDI"],
+  ["▣","Folha oficial","Cálculos legais e eSocial"],
+  ["◇","Segurança do trabalho","EPIs e inspeções"],
+  ["▦","Medicina ocupacional","Exames e ASO"],
+  ["▤","Documentos","Modelos e assinaturas"],
+  ["♙","Portal do colaborador","Autoatendimento"],
+  ["▧","Portal do gestor","Aprovações e equipe"],
+  ["◈","BUSINESS IA","Assistente e automações"]
+ ];
  $("view").innerHTML=`
- <div class="hero"><div class="eyebrow">ROADMAP ENTERPRISE</div>
- <h2>Um ecossistema completo de gestão.</h2>
- <p>Áreas previstas para expansão da plataforma. Os recursos abaixo ainda não estão disponíveis nesta versão.</p></div>
- <div class="notice">Catálogo de desenvolvimento: estes cartões são informativos e não representam ferramentas operacionais.</div>
- <div class="tiles">${future.map(m=>`
- <div class="tile"><div class="iconbox">${m[0]}</div>
- <b>${m[1]}</b><small>${m[2]}</small>
- <div style="margin-top:13px"><span class="tag warn">Planejado</span></div>
+ <div class="notice">Módulos previstos para expansão. Estes cartões são informativos e ainda não possuem operações implementadas.</div>
+ <div class="module-grid">${modules.map(m=>`
+ <div class="module"><div class="symbol">${m[0]}</div>
+ <b>${m[1]}</b><small>${m[2]}</small><p style="margin:12px 0 0">${badge("Planejado")}</p>
  </div>`).join("")}</div>`;
-}
-
-/* EXPORTAÇÃO */
-function exportCSV(filename,headers,rows){
- const csv=[headers,...rows].map(r=>
-  r.map(v=>{
-   const value=String(v??"");
-   const protectedValue=/^[\s]*[=+\-@\t\r]/.test(value)?"'"+value:value;
-   return '"'+protectedValue.replace(/"/g,'""')+'"';
-  }).join(";")
- ).join("\r\n");
- const blob=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;a.download=filename;
- document.body.appendChild(a);a.click();a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 </script>
 </body>
