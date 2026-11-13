@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102b51">
+<title>Anjo Celestial — Fluid Simulation</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Arial,sans-serif;background:#102b51}
+.scene{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 77% 12%,#fff4bf 0%,transparent 28%),linear-gradient(180deg,#173d77 0%,#5cabe0 48%,#d6eff0 75%,#b4df9a 100%)}
+.sun{position:absolute;right:-8%;top:-20%;width:65vmin;height:65vmin;border-radius:50%;background:radial-gradient(circle,#fff 0%,#fff9d4 16%,#ffe4a166 42%,transparent 70%);filter:blur(12px)}
+.land{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 117%,#174f2e 0%,#348d47 25%,transparent 60%),radial-gradient(ellipse at 0% 113%,#246b3c 0%,#70bb75 35%,transparent 65%),radial-gradient(ellipse at 100% 110%,#1e633b 0%,#7ac57c 35%,transparent 63%)}
+.mountain{position:absolute;bottom:-7%;width:100%;height:40%;background:linear-gradient(150deg,#94d28d,#34794c 58%,#164634);clip-path:polygon(0 60%,15% 22%,27% 51%,43% 2%,60% 59%,77% 21%,100% 59%,100% 100%,0 100%);opacity:.8}
+.mountain.back{bottom:7%;opacity:.25;filter:blur(9px);transform:scale(1.25)}
+#fluid{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.angel-wrap{position:absolute;left:50%;top:45%;width:min(76vw,520px);height:min(80dvh,690px);transform:translate(-50%,-50%);z-index:5;pointer-events:none;animation:descent 12s ease-in-out infinite alternate}
+.angel{position:absolute;inset:0;background:url('anjo.png') center/contain no-repeat;filter:drop-shadow(0 0 20px #fff9d4) drop-shadow(0 0 42px #ffe59b9c);animation:tilt 8s ease-in-out infinite alternate}
+.aura{position:absolute;left:50%;top:49%;width:110%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fffbe2a8 0%,#ffdf8a55 25%,#ffdc7c20 50%,transparent 73%);filter:blur(25px);transform:translate(-50%,-50%);animation:breathe 5s ease-in-out infinite}
+.vignette{position:absolute;inset:0;z-index:8;pointer-events:none;background:radial-gradient(ellipse,transparent 35%,#06132565 100%)}
+.controls{position:absolute;z-index:10;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:10px;white-space:nowrap}
+button{padding:12px 17px;border:1px solid #ffffff80;border-radius:12px;color:#fff;background:#102a48e6;font:700 14px Arial;cursor:pointer}button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.paused .angel-wrap,.paused .angel,.paused .aura{animation-play-state:paused}
+@keyframes descent{from{transform:translate(-50%,-50%) translateY(-10vh) rotate(-3deg)}to{transform:translate(-50%,-50%) translateY(10vh) rotate(3deg)}}
+@keyframes tilt{from{transform:rotate(-2deg) scale(1)}to{transform:rotate(2deg) scale(1.035)}}
+@keyframes breathe{0%,100%{opacity:.65;transform:translate(-50%,-50%) scale(.9)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+@media(max-width:600px){.angel-wrap{width:98vw;height:72dvh}.mountain{height:30%}button{padding:12px}}
+@media(prefers-reduced-motion:reduce){.angel-wrap,.angel,.aura{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+<div class="sun"></div><div class="land"><div class="mountain back"></div><div class="mountain"></div></div>
+<canvas id="fluid" aria-label="Nuvens, vento e energia celestial fluindo em torno do anjo"></canvas>
+<div class="angel-wrap" id="angelWrap"><div class="aura"></div><div class="angel" role="img" aria-label="Anjo celestial de asas brancas"></div></div>
+<div class="vignette"></div>
+<div class="controls"><button id="pause">⏸ Pausar</button><button id="full">⛶ Tela cheia</button></div>
+</div>
+<script>
+'use strict';
+const scene=document.getElementById('scene'),canvas=document.getElementById('fluid'),ctx=canvas.getContext('2d'),angel=document.getElementById('angelWrap');
+let w=0,h=0,dpr=1,paused=false,previous=0,elapsed=0,particles=[],clouds=[];
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rand=(a,b)=>a+Math.random()*(b-a);
+function resize(){const r=scene.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);init();}
+function init(){const n=Math.min(100,Math.max(30,Math.round(w*h/11000)));particles=Array.from({length:n},()=>({x:rand(0,w),y:rand(0,h),size:rand(1,3.2),speed:rand(9,28),phase:rand(0,6.28),alpha:rand(.3,.85)}));clouds=Array.from({length:8},(_,i)=>({x:rand(-w*.3,w),y:h*(.12+i*.095),radius:rand(w*.13,w*.32),speed:rand(2,9),alpha:rand(.08,.23)}));}
+function paint(dt){ctx.clearRect(0,0,w,h);const t=elapsed;const box=angel.getBoundingClientRect(),sc=scene.getBoundingClientRect();const cx=box.left-sc.left+box.width/2,cy=box.top-sc.top+box.height*.49;
+// Nuvens volumétricas suaves
+for(const c of clouds){c.x+=c.speed*dt;if(c.x-c.radius>w)c.x=-c.radius;ctx.save();ctx.translate(c.x,c.y+Math.sin(t*.2+c.y)*8);ctx.scale(1,.32);const g=ctx.createRadialGradient(0,0,0,0,0,c.radius);g.addColorStop(0,`rgba(255,255,255,${c.alpha})`);g.addColorStop(.6,`rgba(255,255,255,${c.alpha*.55})`);g.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,c.radius,0,Math.PI*2);ctx.fill();ctx.restore();}
+// Campo de energia fluida com curvas que seguem o movimento do anjo
+ctx.save();ctx.globalCompositeOperation='screen';for(let i=0;i<22;i++){const a=i/22*Math.PI*2+t*.1;const radius=Math.min(w*.32,220)+Math.sin(t*.7+i)*18;const x=cx+Math.cos(a)*radius*.75,y=cy+Math.sin(a)*radius*.9;const g=ctx.createLinearGradient(cx,cy,x,y);g.addColorStop(0,'rgba(255,247,189,0)');g.addColorStop(.55,`rgba(255,224,142,${.035+.025*Math.sin(t+i)})`);g.addColorStop(1,'rgba(255,255,220,0)');ctx.strokeStyle=g;ctx.lineWidth=randLine(i);ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*25,cy+Math.sin(a)*25);ctx.bezierCurveTo(cx+Math.cos(a+1)*radius*.65,cy+Math.sin(a+1)*radius*.65,cx+Math.cos(a-1)*radius*.9,cy+Math.sin(a-1)*radius*.8,x,y);ctx.stroke();}
+// Partículas transportadas por um campo de vento ondulante
+for(const p of particles){const dx=p.x-cx,dy=p.y-cy,dist=Math.hypot(dx,dy)+1;const swirl=Math.exp(-dist/270)*42;const vx=Math.sin(p.y*.012+t*.75+p.phase)*13-dy/dist*swirl;const vy=-p.speed+dx/dist*swirl*.45;p.x+=vx*dt;p.y+=vy*dt;if(p.y< -10){p.y=h+10;p.x=rand(0,w)}if(p.x< -10)p.x=w+10;if(p.x>w+10)p.x=-10;const alpha=p.alpha*(.65+.35*Math.sin(t*2+p.phase));ctx.fillStyle=`rgba(255,247,202,${alpha})`;ctx.shadowBlur=12;ctx.shadowColor='#ffe9a2';ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();}
+ctx.restore();}
+function randLine(i){return .7+(i%4)*.35;}
+function frame(ms){const dt=previous?Math.min((ms-previous)/1000,.05):0;previous=ms;if(!paused&&!document.hidden&&!reduced){elapsed+=dt;paint(dt)}requestAnimationFrame(frame)}
+document.getElementById('pause').addEventListener('click',()=>{paused=!paused;scene.classList.toggle('paused',paused);document.getElementById('pause').textContent=paused?'▶ Continuar':'⏸ Pausar';});
+document.getElementById('full').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else if(scene.requestFullscreen)await scene.requestFullscreen();}catch(e){alert('Tela cheia não disponível neste navegador.')}});
+window.addEventListener('resize',resize);resize();paint(0);if(!reduced)requestAnimationFrame(frame);
+</script>
+</body>
+</html>
