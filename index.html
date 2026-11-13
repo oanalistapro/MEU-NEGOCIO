@@ -8776,6 +8776,259 @@ if(!reduce)frame=requestAnimationFrame(draw)}
 frame=requestAnimationFrame(draw);
 document.addEventListener('visibilitychange',()=>{last=0});
 })();
+/* ==========================================
+   ANJO CELESTIAL — CINEMA 3D
+   CAMADA ATRÁS DA INTERFACE
+========================================== */
+
+#celestialAngelScene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 1200px;
+  contain: layout style;
+}
+
+/* Mantém a interface acima do anjo */
+body > header,
+body > main,
+body > nav,
+body > footer,
+body > .app,
+body > #app,
+body > #root {
+  position: relative;
+  z-index: 2;
+}
+
+/* Anjo principal */
+.celestial-angel {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: min(65vw, 570px);
+  height: min(78vh, 700px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: celestialDescent 22s ease-in-out infinite alternate;
+}
+
+/* Imagem */
+.celestial-angel-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: .88;
+  filter:
+    drop-shadow(0 0 18px rgba(255,255,255,.7))
+    drop-shadow(0 0 45px rgba(255,224,135,.6));
+  animation: celestialSway 8s ease-in-out infinite alternate;
+}
+
+/* Aura dourada */
+.celestial-aura {
+  position: absolute;
+  width: 120%;
+  aspect-ratio: 1;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,255,245,.65) 0%,
+    rgba(255,229,155,.45) 22%,
+    rgba(255,210,110,.18) 48%,
+    transparent 72%);
+  filter: blur(35px);
+  animation: celestialAura 6s ease-in-out infinite;
+}
+
+/* Círculo de energia */
+.celestial-halo {
+  position: absolute;
+  width: 75%;
+  aspect-ratio: 1;
+  left: 50%;
+  top: 45%;
+  border-radius: 50%;
+  border: 2px solid rgba(255,245,205,.35);
+  box-shadow:
+    0 0 40px rgba(255,220,120,.45),
+    inset 0 0 35px rgba(255,220,120,.25);
+  transform: translate(-50%,-50%) rotateX(65deg);
+  animation: celestialHalo 7s ease-in-out infinite;
+}
+
+/* Partículas luminosas */
+.celestial-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff5c5;
+  box-shadow: 0 0 12px 3px rgba(255,224,135,.8);
+  opacity: 0;
+  animation: celestialParticle var(--duration)
+    linear var(--delay) infinite;
+}
+
+/* Descida bem leve */
+@keyframes celestialDescent {
+  0% {
+    transform:
+      translate(-50%,-50%)
+      translateY(-15vh)
+      rotateZ(-3deg)
+      rotateY(-5deg);
+  }
+  100% {
+    transform:
+      translate(-50%,-50%)
+      translateY(15vh)
+      rotateZ(3deg)
+      rotateY(5deg);
+  }
+}
+
+/* Movimento suave */
+@keyframes celestialSway {
+  from { transform: rotate(-2deg) scale(1); }
+  to { transform: rotate(2deg) scale(1.035); }
+}
+
+/* Respiração da aura */
+@keyframes celestialAura {
+  0%,100% {
+    opacity: .5;
+    transform: translate(-50%,-50%) scale(.9);
+  }
+  50% {
+    opacity: .95;
+    transform: translate(-50%,-50%) scale(1.12);
+  }
+}
+
+@keyframes celestialHalo {
+  0%,100% { opacity: .35; }
+  50% { opacity: .85; }
+}
+
+@keyframes celestialParticle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0,30px,0);
+  }
+  20% { opacity: .9; }
+  80% { opacity: .7; }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift),-80vh,0);
+  }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+  .celestial-angel {
+    width: 95vw;
+    height: 65dvh;
+    top: 40%;
+  }
+  .celestial-angel-image { opacity: .55; }
+  .celestial-aura { filter: blur(25px); }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .celestial-angel,
+  .celestial-angel-image,
+  .celestial-aura,
+  .celestial-halo,
+  .celestial-particle {
+    animation: none !important;
+  }
+}
+</script>
+
+<script>
+/* ==========================================
+   INICIALIZAR ANJO CELESTIAL
+   NÃO ALTERA AS FUNÇÕES DO APLICATIVO
+========================================== */
+
+(function () {
+  "use strict";
+
+  if (document.getElementById("celestialAngelScene")) return;
+
+  const scene = document.createElement("div");
+  scene.id = "celestialAngelScene";
+  scene.setAttribute("aria-hidden", "true");
+
+  const angel = document.createElement("div");
+  angel.className = "celestial-angel";
+
+  const aura = document.createElement("div");
+  aura.className = "celestial-aura";
+
+  const halo = document.createElement("div");
+  halo.className = "celestial-halo";
+
+  const image = document.createElement("img");
+  image.className = "celestial-angel-image";
+  image.src = "./anjo.png";
+  image.alt = "";
+  image.decoding = "async";
+  image.fetchPriority = "high";
+
+  image.onerror = function () {
+    console.warn("Imagem anjo.png não encontrada.");
+    angel.style.display = "none";
+  };
+
+  angel.append(aura, halo, image);
+  scene.appendChild(angel);
+
+  const particleLayer = document.createElement("div");
+  particleLayer.style.cssText =
+    "position:absolute;inset:0;pointer-events:none";
+
+  const count = window.innerWidth < 600 ? 25 : 55;
+
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement("span");
+    particle.className = "celestial-particle";
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = Math.random() * 100 + "%";
+
+    particle.style.setProperty(
+      "--duration",
+      (9 + Math.random() * 13) + "s"
+    );
+
+    particle.style.setProperty(
+      "--delay",
+      (-Math.random() * 20) + "s"
+    );
+
+    particle.style.setProperty(
+      "--drift",
+      ((Math.random() - .5) * 180) + "px"
+    );
+
+    particleLayer.appendChild(particle);
+  }
+
+  scene.appendChild(particleLayer);
+
+  document.body.prepend(scene);
+
+  console.log("Anjo Celestial 3D inicializado.");
+})();
 </script>
 </body>
 </html>
