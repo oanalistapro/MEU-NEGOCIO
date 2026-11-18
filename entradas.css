@@ -1,0 +1,45 @@
+/* =====================================================================================================
+   TRÊS ESTILOS DE ENTRADA INDEPENDENTES (cada um com seletores e keyframes próprios; nada compartilhado)
+   1) welcome-cinematic  → somente o título "Bem-vindo ao Business Pro"
+   2) tool-card-rise     → somente cartões internos das ferramentas (reta, de baixo para cima)
+   3) photo-card-curve   → somente os cartões fotográficos do carrossel principal (.bpm-flip)
+   ===================================================================================================== */
+
+/* ---------- 1) welcome-cinematic ---------- */
+.bp-s-cinema-welcome.welcome-cinematic{
+  font-family:"Cormorant Garamond","Playfair Display","Bodoni 72","Didot","Hoefler Text",Georgia,"Times New Roman",serif;
+  font-weight:700;font-style:normal;letter-spacing:.035em;line-height:1.05;font-size:clamp(34px,6vw,88px);
+  perspective:900px;perspective-origin:50% 60%;flex-wrap:wrap;column-gap:.3em;row-gap:.05em;align-content:center;
+  color:#fff;
+  text-shadow:0 1px 0 #eef6fc,0 2px 0 #cfe2f1,0 3px 0 #adc9e0,0 4px 0 #8db0cd,0 5px 0 #6f97b8,
+              0 9px 14px rgba(8,30,56,.42),0 20px 38px rgba(8,30,56,.32),0 0 26px rgba(160,215,255,.28)}
+@media (max-aspect-ratio:1/1){.bp-s-cinema-welcome.welcome-cinematic{font-size:clamp(30px,10.5vw,58px);letter-spacing:.02em}}
+.welcome-cinematic .wc-w{display:inline-block;white-space:nowrap;transform-style:preserve-3d}
+.welcome-cinematic .wc-c{display:inline-block;transform-origin:50% 100%;transform-style:preserve-3d}
+/* estado parado = título perfeitamente legível; a entrada só roda quando JS adiciona .welcome-cinematic-in */
+.welcome-cinematic.welcome-cinematic-in .wc-c{animation:wcLetter 1.05s cubic-bezier(.16,.8,.24,1) both;animation-delay:calc(var(--wi,0)*55ms)}
+@keyframes wcLetter{
+  0%{opacity:0;transform:translate3d(0,.35em,-340px) rotateX(-68deg) scale(.82);filter:blur(7px) brightness(1.9);text-shadow:0 0 0 transparent}
+  55%{opacity:1;filter:blur(0) brightness(1.55)}
+  100%{opacity:1;transform:none;filter:none}}
+@media (prefers-reduced-motion:reduce){.welcome-cinematic.welcome-cinematic-in .wc-c{animation:none}}
+
+/* ---------- 2) tool-card-rise (a classe .tool-card-rise-on é posta em #view por entradas.js só ao abrir uma ferramenta) ---------- */
+#appScreen:not(.bp-home) #view.tool-card-rise-on:not(.bp-enter) :is(.panel,.card,.stat,.v10-kpi,.mn69-panel,.mn69-kpi,.ig-kpis>div,.ig-panel,.sector,.bp-compact-sector,.notice,.future-banner,.future-tile,.vd-kpi,.vd-card,.vd-box,.vd-pn,.agx-top,.agx-main,.agx-side,.stk-hero,.stk-bento,article.c,.ad-sec,.bk-big,.bk-main,.bk-head):not(#v74Calendar):not(.rh-card):not(:is(.panel,.card,.stat,.v10-kpi,.mn69-panel,.mn69-kpi,.ig-kpis>div,.ig-panel,.sector,.bp-compact-sector,.notice,.future-banner,.future-tile,.vd-kpi,.vd-card,.vd-box,.vd-pn,.agx-top,.agx-main,.agx-side,.stk-hero,.stk-bento,article.c,.ad-sec,.bk-big,.bk-main,.bk-head) *){
+  animation:toolCardRise .65s cubic-bezier(.16,.84,.3,1) both}
+/* telas que já traziam .bp-enter (entrada herdada com escala/7vh, que repetia a cada re-render): substituída pela subida reta e sem repetição */
+html.bp-crystal body #appScreen #view.bp-enter>*{animation:none!important}
+html.bp-crystal body #appScreen:not(.bp-home) #view.bp-enter.tool-card-rise-on>*{animation:toolCardRise .65s cubic-bezier(.16,.84,.3,1) calc(var(--bp-i,0)*45ms) both!important}
+@keyframes toolCardRise{from{translate:0 35px;opacity:0}to{translate:0 0;opacity:1}}
+@media (prefers-reduced-motion:reduce){#view.tool-card-rise-on *{animation:none!important}}
+
+/* ---------- 3) photo-card-curve (só .bpm-flip, dentro de .bpm) — curva 3D de câmera, inclinação ≤ 22°, termina de frente ---------- */
+.bpm[data-side="L"]{--sd:-1}.bpm[data-side="R"]{--sd:1}
+.bpm.bpm-in .bpm-flip{animation:bpmCurve 1.15s cubic-bezier(.2,.75,.25,1) both}
+.bpm.bpm-flipping .bpm-flip{animation:bpmCurve 1.15s cubic-bezier(.2,.75,.25,1) both}
+@keyframes bpmCurve{
+  0%{opacity:.15;transform:perspective(1400px) translate3d(calc(var(--sd,1)*110px),46px,-300px) rotateY(calc(var(--sd,1)*-22deg)) rotateX(6deg)}
+  35%{opacity:1}
+  62%{transform:perspective(1400px) translate3d(calc(var(--sd,1)*34px),-16px,-110px) rotateY(calc(var(--sd,1)*-10deg)) rotateX(-2deg)}
+  100%{opacity:1;transform:perspective(1400px) translate3d(0,0,0) rotateY(0) rotateX(0)}}
+@media (prefers-reduced-motion:reduce){.bpm.bpm-in .bpm-flip,.bpm.bpm-flipping .bpm-flip{animation:none}}
