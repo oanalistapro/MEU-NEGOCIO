@@ -1,0 +1,7 @@
+/* SWARM REBUILD — overlay temporário (somente visual; nunca intercepta cliques) */
+#bpSwarm{position:fixed;inset:0;z-index:2147483000;pointer-events:none;overflow:hidden;contain:layout paint}
+#bpSwarm .bp-sw-cur{position:absolute;left:0;top:0;width:20px;height:24px;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 2px 3px rgba(20,30,90,.35)) drop-shadow(0 0 8px var(--c))}
+#bpSwarm .bp-sw-cur::after{content:"";position:absolute;left:14px;top:20px;width:34px;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--c),transparent);opacity:.55}
+#bpSwarm .bp-sw-skip{pointer-events:auto;position:absolute;right:14px;bottom:max(14px,env(safe-area-inset-bottom));min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid rgba(91,124,255,.55);background:rgba(255,255,255,.92);color:#123d65;font:700 12px/1 system-ui,sans-serif;letter-spacing:.04em;cursor:pointer;box-shadow:0 8px 22px rgba(20,50,110,.22)}
+#bpSwarm .bp-sw-skip:focus-visible{outline:3px solid #9a6bff;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){#bpSwarm{display:none}}
