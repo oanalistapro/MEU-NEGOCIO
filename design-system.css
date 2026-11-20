@@ -1,0 +1,18 @@
+
+:root {
+  --primary: #123a65;
+  --accent: #67cbef;
+  --background: #f2f8fc;
+
+  --glass: rgba(255,255,255,.18);
+  --radius: 20px;
+  --blur: 16px;
+
+  --motion-duration: 650ms;
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(var(--blur));
+  border-radius: var(--radius);
+}
