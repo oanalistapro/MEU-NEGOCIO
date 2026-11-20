@@ -1,0 +1,10 @@
+
+{
+  "permissions": {
+    "deny": [
+      "Read(./production-v23/**)",
+      "Edit(./production-v23/**)",
+      "Write(./production-v23/**)"
+    ]
+  }
+}
